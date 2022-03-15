@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>波矢星和小旁群</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”, “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">波矢星和小旁群</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>晶体的空间对称性和空间群</li>
+        <li>波矢星和小旁群</li>
+      </ul>
+</nav>
+<p>从代数观点上看，为了研究空间群<span class="math inline">\(SG\)</span>的表示，我们首先研究了它的正规子群：平移群<span class="math inline">\(T\)</span>的不可约表示。 上一节中，我们看到平移群的不可约表示可以用布里渊区中的准动量<span class="math inline">\(\boldsymbol k\)</span>来标记。 任何一个空间群的表示当然也可以看成平移群的表示；但是空间群的一个不可约表示却不一定是平移群的不可约表示。 一般地，<span class="math inline">\(SG\)</span>的一个不可约表示<span class="math inline">\(\mathcal V\)</span>可以分解成<span class="math inline">\(T\)</span>的若干个不可约表示的直和： <span class="math display">\[\mathcal V = \mathcal V_{\boldsymbol k_1}\oplus\cdots\oplus\mathcal V_{\boldsymbol k_n}.\]</span> 这里<span class="math inline">\(\mathcal V_{\boldsymbol k}\)</span>代表某个准动量<span class="math inline">\(\boldsymbol k\)</span>的布洛赫态<span class="math inline">\(|\phi_{\boldsymbol k}\rangle\)</span>张成的一维子空间。</p>
+<p>从几何观点来看，这件事可以很直观地得到理解。 我们知道在空间群中，除了平移操作之外，还有旋转、反射等点群操作。这些操作往往会将一个动量点<span class="math inline">\(\boldsymbol k_1\)</span>变到其它的动量点<span class="math inline">\(\boldsymbol k_{2,\ldots,n}\)</span>。 自然地，<span class="math inline">\(SG\)</span>的一个不可约表示必须包含所有的这些被对称性相联系的动量点，因此就表现为一系列准动量的不可约表示的直和。 （除此之外，在本节中我们也会看到，一些非对易的点群操作也会导致空间群的不可约表示中包含若干个处于同一个准动量的平移群不可约表示的直和。）</p>
+<p>为了系统地研究如何用平移群的不可约表示（即布洛赫态）构造空间群的不可约表示，我们需要引入小旁群(little cogroup)和波矢星(<span class="math inline">\(\boldsymbol k^\ast\)</span>)的概念。 这两个概念都在描述点群<span class="math inline">\(PG=SG/T\)</span>在准动量上的作用方式。 我们考虑布里渊区里的一个准动量<span class="math inline">\(\boldsymbol k\)</span>。 每个点群里的元素<span class="math inline">\(g\in PG\)</span>都会把<span class="math inline">\(\boldsymbol k\)</span>变换到一个准动量<span class="math inline">\(g\cdot \boldsymbol k\)</span>：有些群元素会把<span class="math inline">\(\boldsymbol k\)</span>变到另一个准动量<span class="math inline">\(g\cdot \boldsymbol k\neq\boldsymbol k\)</span>；而有的群元素会保持<span class="math inline">\(\boldsymbol k\)</span>不变，<span class="math inline">\(g\cdot \boldsymbol k = \boldsymbol k\)</span>。 注意这里两个相差一个倒格矢的准动量应该认为是相等的。 所有保持<span class="math inline">\(\boldsymbol k\)</span>不变的点群操作构成<span class="math inline">\(PG\)</span>的一个子群，我们称之为<span class="math inline">\(\boldsymbol k\)</span>点的小旁群<span class="math inline">\(LG_{\boldsymbol k}\)</span>。 数学上，这个定义可以写作： <span class="math display">\[LG_{\boldsymbol k} = \{g\in PG| g\cdot \boldsymbol k = \boldsymbol k\}.\]</span> 另一方面，我们将准动量点<span class="math inline">\(\boldsymbol k\)</span>在点群作用下得到的所有准动量点的集合称为<span class="math inline">\(\boldsymbol k\)</span>所属的波矢星，并记作<span class="math inline">\(\boldsymbol k^\ast\)</span>： <span class="math display">\[\boldsymbol k^\ast = \{g\cdot \boldsymbol k|\forall g\in PG\}.\]</span> 容易看出，<span class="math inline">\(\boldsymbol k^\ast\)</span>中的动量点一一对应于<span class="math inline">\(PG/LG_{\boldsymbol k}\)</span>中的陪集：<span class="math inline">\(\boldsymbol k^\ast\simeq PG/LG_{\boldsymbol k}\)</span>。 由此我们可以证明<span class="math inline">\(\boldsymbol k^\ast\)</span>中动量点的个数乘上小旁群中元素的个数等于点群中元素的个数。</p>
+<p>当小旁群中的元素均为点式(symmorphic)点群操作时，在该准动量点<span class="math inline">\(\boldsymbol k\)</span>的量子态构成小旁群的表示。 因此，我们可以用小旁群的不可约表示来标记这个<span class="math inline">\(\boldsymbol k\)</span>点的量子态。 如果小旁群是阿贝尔群，如<span class="math inline">\(C_n\)</span>等，它的不可约表示都是1维的。 相应地，如果没有其它的对称性保护，<span class="math inline">\(\boldsymbol k\)</span>点的波函数就不存在简并。 如果小旁群是非阿贝尔群，如<span class="math inline">\(D_n (n&gt;2)\)</span>、<span class="math inline">\(T\)</span>、<span class="math inline">\(O\)</span>等，它们存在高维不可约表示。 相应的<span class="math inline">\(\boldsymbol k\)</span>点波函数就有可能存在点群对称性保护的简并。</p>
+<p>当小旁群中包含非点式(nonsymmorphic)对称操作时，情况会变得更为复杂： 这时，小旁群在<span class="math inline">\(\boldsymbol k\)</span>点量子态上的作用有可能是一种投影(projective)的方式；相应地，量子态不构成小旁群通常的线性表示，而是构成一个投影表示(projective representation)。 如第1节中介绍的那样，此时小旁群中的每个元素<span class="math inline">\(g\in LG_k\subset PG\)</span>并不总是空间群中的一个点群操作，而可能对应一个非点式对称操作。 我们如第1节中那样为每个<span class="math inline">\(g\in LG_k\)</span>选择一个对应的空间群操作<span class="math inline">\(\phi(g)\in SG\)</span>。 此时这个<span class="math inline">\(\phi(g)\)</span>并不是群同态，而是满足如下的乘法关系： <span id="eq:omega" class="eqnos"><span class="math display">\[\phi(g)\phi(h) = \omega(g, h)\phi(gh).\]</span><span class="eqnos-number">(1)</span></span>  这里<span class="math inline">\(\omega\in H^2(PG, T)\)</span>是标记<span class="math inline">\(PG\)</span>到<span class="math inline">\(SG\)</span>的群扩张的二阶上同调类；对于一对群元素<span class="math inline">\(g, h\in LG_k\)</span>，<span class="math inline">\(\omega(g, h)\in T\)</span>是一个平移操作。 我们将它对应的平移向量记作<span class="math inline">\(\boldsymbol r_{\omega(g, h)}\)</span>。 相应地，<span class="math inline">\(\omega(g, h)\)</span>作用在动量为<span class="math inline">\(\boldsymbol k\)</span>的量子态上会得到<span class="math inline">\(e^{i\boldsymbol r_{\omega(g, h)}\cdot\boldsymbol k}\)</span>的相因子。 因此，当我们考虑小旁群在量子态上的作用时，表示矩阵<span class="math inline">\(f\)</span>就将满足如下的投影乘法关系： <span class="math display">\[f(g)f(h)=\omega_k(g, h)f(gh).\]</span> 其中<span class="math inline">\(\omega_k(g, h)=e^{i\boldsymbol r_{\omega(g, h)}\cdot\boldsymbol k}\)</span>给出了一个以<span class="math inline">\(U(1)\)</span>为系数的二阶群上同调类<span class="math inline">\(\omega_k\in H^2[LG_k, U(1)]\)</span>。 这个上同调类说明量子态构成的表示<span class="math inline">\(f\)</span>是一个投影表示，而非通常的线性群表示。</p>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>双群的表示</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”, “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">双群的表示</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>空间群的拓展：双群与磁群</li>
+        <li>双群的表示</li>
+      </ul>
+</nav>
+<p>在上节中我们看到，当材料中的自旋-轨道耦合效应不可忽略时，对于费米子激发我们必须考虑双空间群对称性。 相应地，为了描述费米子激发的量子态，我们需要利用双空间群的不可约表示。 特别地，我们需要用到的是双空间群的一类特殊的表示，称为双值(double-valued)不可约表示。 在本节中，我们将引入双值表示的概念，并介绍如何在Bilbao数据库中查询双空间群的双值表示。</p>
+<h2 id="双群的双值表示">双群的双值表示</h2>
+<p>在上节中，我们论证了费米子激发的对称群总是一个包含费米子奇偶对称性的双群<span class="math inline">\(G_f\)</span>。 自然地，为了标记具有这个对称性的量子态，我们应该考虑<span class="math inline">\(G_f\)</span>的不可约表示。 由于费米子奇偶对称性<span class="math inline">\(P_f\)</span>和其它所有的对称操作都对易（也就是说<span class="math inline">\(\mathbb Z_2^f\)</span>是<span class="math inline">\(G_f\)</span>的正规子群），根据Schur引理，在一个不可约表示中<span class="math inline">\(P_f\)</span>一定是<span class="math inline">\(\pm1\)</span>。 在上节中我们看到，<span class="math inline">\(G_b=G_f/\mathbb Z_2^f\)</span>中的每个元素对应<span class="math inline">\(G_f\)</span>中的两个群元素，二者之间相差一个<span class="math inline">\(P_f\)</span>。 因此，<span class="math inline">\(P_f=+1\)</span>的表示在这两个群元素上的表示矩阵相同；而<span class="math inline">\(P_f=+1\)</span>的表示在这两个群元素上的表示矩阵相差一个负号。 自然地，我们称前者为双群<span class="math inline">\(G_f\)</span>的单值表示，而称后者为双群<span class="math inline">\(G_f\)</span>的双值表示。</p>
+<p>根据<span class="math inline">\(P_f\)</span>的物理定义，对于费米子激发，我们要求<span class="math inline">\(P_f=-1\)</span>。 因此，在<span class="math inline">\(G_f\)</span>的所有不可约表示中，只有<span class="math inline">\(P_f=-1\)</span>的双值表示才描述费米子的量子态；而<span class="math inline">\(P_f=+1\)</span>的单值表示则描述该希尔伯特空间中玻色激发的量子态。 例如一个电子体系中，电子等费米子激发携带<span class="math inline">\(P_f=-1\)</span>的双值表示；而粒子空穴对、超导库伯对(Cooper pair)等玻色中激发则携带<span class="math inline">\(P_f=+1\)</span>的单值表示。</p>
+<h2 id="双值表示与对称群的投影表示">双值表示与对称群的投影表示</h2>
+<p>从<span class="math inline">\(G_b\)</span>的角度来看，<span class="math inline">\(G_f\)</span>的单值表示和双值表示分别对应<span class="math inline">\(G_b\)</span>的线性表示和投影表示。 首先，我们来看<span class="math inline">\(G_f\)</span>的单值表示。 为了记号上的方便，考虑<span class="math inline">\(G_f\)</span>的一个<span class="math inline">\(N\)</span>维幺正表示<span class="math inline">\(\phi: G_f\rightarrow U(N)\)</span>。 由于在这个表示中<span class="math inline">\(\phi(P_f)=+1\)</span>，这个表示在<span class="math inline">\(g\in G_f\)</span>和<span class="math inline">\(P_fg\)</span>上面的矩阵形式相同： <span class="math display">\[\phi(P_fg)=\phi(P_f)\phi(g)=\phi(g).\]</span> 因此，<span class="math inline">\(\phi\)</span>可以看成是商群<span class="math inline">\(G_b=G_f/\mathbb Z_2^f\)</span>到<span class="math inline">\(U(N)\)</span>的一个群同态。 也就是说，它也构成<span class="math inline">\(G_b\)</span>的一个线性表示。 直观上，双群非平庸的部分来自于<span class="math inline">\(G_b\)</span>在<span class="math inline">\(\mathbb Z_2^f\)</span>上面的非平凡扩张：例如旋转对称性满足<span class="math inline">\((C_n)^n=P_f\)</span>。 对于单值表示，由于这个扩张非平凡的生成元<span class="math inline">\(P_f\)</span>取值为1，这个扩张非平凡的特质就无法展现出来了。 因此，单值表示就是<span class="math inline">\(G_b\)</span>的线性表示。 这也和我们的物理直觉相符合：对于玻色型激发，我们无需考虑费米子奇偶对称性，因此只需要考虑<span class="math inline">\(G_b\)</span>对称性就够了。</p>
+<p>其次，我们考虑双值表示。 由于在这个表示中<span class="math inline">\(\phi(P_f)=+1\)</span>，这个表示在<span class="math inline">\(g\in G_f\)</span>和<span class="math inline">\(P_fg\)</span>上面的矩阵形式相差一个负号： <span class="math display">\[\phi(P_fg)=\phi(P_f)\phi(g)=-\phi(g).\]</span> 这时，如果我们试图定义一个商群<span class="math inline">\(G_b=G_f/\mathbb Z_2^f\)</span>到<span class="math inline">\(U(N)\)</span>的一个映射<span class="math inline">\(\tilde\phi\)</span>，可以用到群扩张中存在的<span class="math inline">\(G_b\)</span>到<span class="math inline">\(G_f\)</span>的映射<span class="math inline">\(i:G_b\hookrightarrow G_f\)</span>。 注意这里<span class="math inline">\(i\)</span>不是一个群同态：它满足如下的非平庸关系 <span class="math display">\[i(g)i(h) = \omega_2^{1/2}(g, h)i(gh),\]</span> 其中<span class="math inline">\(\omega_2^{1/2}\)</span>是上节中引入的描述这个非平凡群扩张的二阶群上同调类。 由此，我们可以将<span class="math inline">\(\tilde\phi\)</span>定义为拉回(pullback)映射<span class="math inline">\(\tilde\phi=i^\ast\phi\)</span>，即 <span class="math display">\[\tilde\phi(g)=\phi(i(g)).\]</span> 这样定义的<span class="math inline">\(\tilde\phi:G_b\rightarrow U(N)\)</span>也不是一个群同态，而是满足下面的关系： <span class="math display">\[\tilde\phi(g)\tilde\phi(h)=\tilde\omega_2(g, h)\tilde\phi(gh),\]</span> 这里的<span class="math inline">\(\tilde\omega_2^{1/2}\)</span>是由<span class="math inline">\(\omega_2^{1/2}\)</span>导出的一个二阶群上闭链：当<span class="math inline">\(\omega_2^{1/2}(g, h)\)</span>取值为单位元(<span class="math inline">\(P_f\)</span>)时，<span class="math inline">\(\tilde\omega_2^{1/2}(g, h)\)</span>取值为<span class="math inline">\(\pm1\)</span>。 因此，双值表示可以看成由<span class="math inline">\(\tilde\omega_2^{1/2}\)</span>刻画的一个<span class="math inline">\(G_b\)</span>的投影表示。</p>
+<p>为了具体说明上面介绍的概念，我们这里考虑两个例子：</p>
+<p>首先，我们考虑一个2重旋转对称性，也就是<span class="math inline">\(G_b=C_2\)</span>。 由于二重旋转对称性满足<span class="math inline">\((c_2)^2=-1\)</span>，这个对称群在<span class="math inline">\(\mathbb Z_2^f\)</span>上的扩张是非平庸的，得到的<span class="math inline">\(G_f\)</span>具有<span class="math inline">\(\mathbb Z_4\)</span>群（而不是<span class="math inline">\(\mathbb Z_2\times\mathbb Z_2\)</span>）的结构。 这里<span class="math inline">\(G_f\)</span>的生成元是<span class="math inline">\(c_2\)</span>，它满足<span class="math inline">\((c_2)^2=P_f={}^d1\)</span>；<span class="math inline">\((c_2)^3=P_fc_2={}^dc_2\)</span>；<span class="math inline">\((c_2)^2=1\)</span>。 根据我们熟知的群论知识，<span class="math inline">\(G\simeq\mathbb Z_4\)</span>有四个一维不可约表示，分别对应于<span class="math inline">\(\phi(c_2)=1,i,-1,-i\)</span>。 相应地，<span class="math inline">\(P_f=(c_2)^2\)</span>的表示为<span class="math inline">\(\phi(P_f)=\phi(c_2)^2\)</span>。 因此，<span class="math inline">\(\phi(c_2)=\pm1\)</span>的两个表示对应<span class="math inline">\(\phi(P_f)=+1\)</span>，是两个单值表示，它们也是<span class="math inline">\(G_b\)</span>的两个不可约线性表示；<span class="math inline">\(\phi(c_2)=\pm i\)</span>的两个表示对应<span class="math inline">\(\phi(P_f)=-1\)</span>，是两个双值表示，它们都是<span class="math inline">\(G_b\)</span>的投影表示。 根据我们前面介绍的规则，玻色激发应该携带<span class="math inline">\(\phi(c_2)=\pm1\)</span>的单值表示，而费米激发应该携带<span class="math inline">\(\phi(c_2)=\pm i\)</span>的双值表示。</p>
+<p>其次，我们考虑二面体群对称性<span class="math inline">\(G=D_2\)</span>。 注意二面体群的记号有两种约定方式，我们这里采用的约定是<span class="math inline">\(D_n\)</span>有<span class="math inline">\(2n\)</span>个元素，由一个<span class="math inline">\(n\)</span>重旋转和一个镜面反射生成；有的文献里会将我们这里的<span class="math inline">\(D_n\)</span>群记作<span class="math inline">\(D_{2n}\)</span>。 <span class="math inline">\(D_2\)</span>的群结构同构于<span class="math inline">\(\mathbb Z_2\times\mathbb Z_2\)</span>，共包含4个元素，分别为单位元<span class="math inline">\(1\)</span>、一个绕<span class="math inline">\(z\)</span>轴的二重旋转<span class="math inline">\(c_2\)</span>、相对<span class="math inline">\(xz\)</span>平面的镜面反射<span class="math inline">\(m_{xz}\)</span>和相对<span class="math inline">\(yz\)</span>平面的镜面反射<span class="math inline">\(m_{yz}\)</span>。 除了单位元之外的三个元素都是2阶元素；任意两个相乘会得到第三个元素。 根据上节的描述，上述三个非平凡的空间操作分别对应于自旋空间的<span class="math inline">\(\pm i\sigma^z\)</span>、<span class="math inline">\(\pm i\sigma^y\)</span>和<span class="math inline">\(\pm i\sigma^x\)</span>操作。 因此，得到的双群共有8个元素，可以用8个SU(2)矩阵<span class="math inline">\(\pm1\)</span>、<span class="math inline">\(\pm i\sigma^z\)</span>、<span class="math inline">\(\pm i\sigma^y\)</span>和<span class="math inline">\(\pm i\sigma^x\)</span>来表示。 这个群是所谓的双二面体群(binary dihedral group)。 它有5个不可约表示： 其中4个都是1维表示，对应于 <span class="math display">\[\phi(\pm1)=1;\phi(\pm i\sigma^x)=\pm1;\phi(\pm i\sigma^y)=\pm1.\]</span> 这4个表示都是单值表示，也对应于<span class="math inline">\(D_2\)</span>的4个1维不可约表示。 最后一个不可约表示是一个2维表示，对应的表示矩阵就是上面的8个SU(2)矩阵。 这是一个双值表示，对应于<span class="math inline">\(D_2\)</span>的一个2维投影表示。</p>
+<p>最后，我们讨论一下自旋自由度带来的二重简并的问题。 在没有自旋-轨道耦合的系统中，所有的电子量子态总具有一个来自自旋自由度的二重简并。 如前所述，此时我们一般只考虑空间群本身的表示，而空间群的不可约表示往往是一维的。 但是，此时的希尔伯特空间可以写成空间群的不可约表示与自旋自由度的直积。 因此，电子能级总有额外的二重简并：即当空间群表示是一维的时候，如果考虑到电子自旋，此时能级实际是二重简并的；如果空间群表示本身就是二维的，再考虑到电子自旋，实际的能级就是四重简并的了。 在具有自旋-轨道耦合的系统中，我们看到我们关心的费米子双值表示有时是二维的，具有二重简并度。 这个二重简并度从物理上往往还是来自于电子的自旋自由度。 我们以上面介绍的二面体群对称性<span class="math inline">\(D_2\)</span>为例：它的双值表示就是二维的。 这意味着即使自旋-轨道耦合已经破缺了自旋旋转对称性，<span class="math inline">\(D_2\)</span>点群对称性还是足以保持原有的自旋自由度的二重简并不被解除。 而在<span class="math inline">\(C_2\)</span>的例子中，两个双值表示<span class="math inline">\(c_2=\pm i\)</span>都是一维的。 这意味着自旋-轨道耦合破缺了自旋旋转对称性之后，二重旋转对称性不足以保持原有的二重简并，两个自旋状态就会解除简并了。 但是，我们注意到这两个双值表示互为复共轭。 因此，如果系统还有时间反演对称性（见第??节），它会把<span class="math inline">\(c_2=\pm i\)</span>的表示变成<span class="math inline">\(c_2=\mp i\)</span>的表示，也就会继续保持二者的简并。</p>
+<h2 id="双空间群的双值表示">双空间群的双值表示</h2>
+<p>下面，我们简单介绍构造双空间群的双值不可约表示的方法，以及如何在Bilbao服务器上进行查询。 上文中指出，双空间群的双值不可约表示可以看成原空间群的投影表示。这种观点虽然比较直观能够帮助我们理解双值表示这一概念，但正如在上一章中介绍的那样，系统地计算一个群的投影表示并不方便。 实际计算（包括Bilbao服务器上的算法）往往采用另外的方法，直接从双空间群的结构构造其不可约表示并从中挑选双值表示。</p>
+<p>在第一章中构造空间群表示的时候，我们曾先从平移子群出发，先构造平移群的表示（即Bloch波函数），再进一步考虑波矢星和小群的表示。 对于双空间群，我们可以采用同样的做法。 特别地，空间群<span class="math inline">\(SG\)</span>的平移子群<span class="math inline">\(T\)</span>中包含的都是平移操作<span class="math inline">\(\{I|\boldsymbol v\}\)</span>，这些操作中SO(3)转动部分都是单位阵。 相应地，在双群中，我们可以把自旋空间上的SU(2)矩阵也取成单位阵，从而避免了<span class="math inline">\(\pm\phi_R\)</span>的选择问题。 这样我们就把<span class="math inline">\(T\)</span>嵌入到了<span class="math inline">\({}^dSG\)</span>中。 由此可见，由于平移不涉及自旋的操作，<span class="math inline">\(T\)</span>也是双空间群<span class="math inline">\({}^dSG\)</span>的一个正规子群。 而对应的商群<span class="math inline">\({}^dSG/T={}^dPG\)</span>就是双点群，也就是点群和<span class="math inline">\(\mathbb Z_2^f\)</span>的扩张： $$<span class="math inline">\(1\rightarrow\mathbb Z_2^f\rightarrow{}^dPG\rightarrow PG\rightarrow1.\)</span></p>
+<p>接下来，我们可以直接照搬构造空间群的不可约表示的步骤。 首先，我们考虑<span class="math inline">\(T\)</span>的不可约表示，即由某个准动量标记的Bloch态<span class="math inline">\(|\boldsymbol k\rangle\)</span>。 接下来，我们考虑双空间群在Bloch态上的作用，由此我们可以定义波矢星<span class="math inline">\(\boldsymbol k^\ast\)</span>、双小群<span class="math inline">\({}^dG_{\boldsymbol k}\)</span>和双小旁群<span class="math inline">\({}^dPG_{\boldsymbol k}\)</span>。 这里波矢星<span class="math inline">\(\boldsymbol k^\ast\)</span>和原空间群时得到的结果是一样的。 双小群和双小旁群分别是双空间群和双点群中保持<span class="math inline">\(\boldsymbol k\)</span>不变的对称操作构成的子群，它们同时也分别是小群和小旁群在<span class="math inline">\(\mathbb Z_2^f\)</span>上的扩张。 一般地，双空间群的双值不可约表示可以用某个准动量<span class="math inline">\(\boldsymbol k\)</span>的波矢星<span class="math inline">\(\boldsymbol k^\ast\)</span>以及相应双小群的双值不可约表示来构造。 对于点式空间群，双小群就是双小旁群和平移群的半直积。 这时，双空间群的双值不可约表示可以用相应双小旁群的双值不可约表示来构造。 对于非点式空间群，双小群是双小旁群和平移群的非平庸扩张。 此时，双空间群的双值不可约表示对应双小旁群的投影表示。 实际计算中往往直接从双小群的群结构出发构造其双值不可约表示。 与第??节的情况类似，其中的具体计算比较繁琐且涉及计算群论中的一些专门的算法，我们这里就不再赘述了。</p>
+</body>
+</html>

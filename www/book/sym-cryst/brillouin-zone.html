@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>平移群和布里渊区</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">平移群和布里渊区</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>晶体的空间对称性和空间群</li>
+        <li>平移群和布里渊区</li>
+      </ul>
+</nav>
+<p>在具有对称性的量子力学系统中，量子态可以用对称群的表示来标记：哈密顿量的一组简并的能量本征态总是构成对称群的一个表示。在不考虑偶然简并的情况下，一组简并的能量本征态应该构成对称群的不可约表示。例如具有SU(2)自旋对称性的能量本征态构成自旋为<span
+class="math inline">\(s\)</span>的<span
+class="math inline">\((2s+1)\)</span>维不可约表示；具有空间反演对称性的能量本征态具有确定的宇称，这里宇称为<span
+class="math inline">\(\pm1\)</span>分别对应于<span
+class="math inline">\(\mathbb Z_2\)</span>对称群的两个不可约表示。</p>
+<p>因此，对于具有晶体空间群对称性的电子系统，我们可以用空间群的不可约表示标记各个电子能量本征态。但是大多数空间群的不可约表示都比较复杂，并不方便直接用来标记电子状态。因此，我们首先考虑空间群中的平移操作构成的正规子群：平移群，并用平移群的不可约表示来标记电子本征态。</p>
+<h3 id="平移群的不可约表示和准动量">平移群的不可约表示和准动量</h3>
+<p>我们以三维晶格的平移群为例。平移群 <span
+class="math inline">\(T\)</span> 的群结构总是 <span
+class="math inline">\(\mathbb Z\times\mathbb Z\times\mathbb
+Z\)</span>，由三个相互对易的平移变换 <span
+class="math inline">\(T_{1,2,3}\)</span>
+生成。（这三个平移变换分别对应于沿着晶格元胞的三个基矢方向平移。）由于
+<span class="math inline">\(T\)</span>
+是一个阿贝尔群，它的所有不可约表示都是一维表示。我们现在考虑平移群的一个一维表示
+<span
+class="math inline">\(|\phi\rangle\)</span>。对群表示不熟悉的读者可以把
+<span class="math inline">\(|\phi\rangle\)</span>
+看成一个量子态，并且这个量子态是平移群里所有对称操作的一个本征态。
+在这个一维表示中，三个生成元分别对应于三个一维的幺正矩阵，也就是三个
+U(1) 相因子。 这里我们暂时将其记作 <span
+class="math inline">\(e^{-i\kappa_i}\)</span>。也就是说，<span
+class="math inline">\(T_i\)</span> 在 <span
+class="math inline">\(|\phi\rangle\)</span> 上按如下方式作用：
+<span id="eq:Taction" class="eqnos"><span
+class="math display">\[T_i|\phi\rangle =
+e^{-i\kappa_i}|\phi\rangle.\]</span><span class="eqnos-number">(1)</span></span>
+用量子力学的语言，<span class="math inline">\(T\)</span>的一维表示<span
+class="math inline">\(|\phi\rangle\)</span>也就是<span
+class="math inline">\(T_i\)</span>的共同本征态，相应的本征值为<span
+class="math inline">\(e^{-i\kappa_i}\)</span>。</p>
+<p>这里用来标记<span
+class="math inline">\(T_i\)</span>作用方式（或本征值）的<span
+class="math inline">\(\kappa_i\)</span>可以用来构造我们在固体物理中熟知的准动量。为了看出这一点，我们注意到<span
+class="math inline">\(T_i\)</span>，作为平移算符，将空间坐标<span
+class="math inline">\(\boldsymbol r\)</span>平移到<span
+class="math inline">\(\boldsymbol r + \boldsymbol
+a_i\)</span>，其中<span class="math inline">\(\boldsymbol
+a_i\)</span>为<span
+class="math inline">\(T_i\)</span>对应的晶格基矢。在这样的平移变换下，一个具有特定动量的平面波态<span
+class="math inline">\(|\boldsymbol k\rangle=\int d^3r\,e^{i\boldsymbol
+k\cdot\boldsymbol r}|\boldsymbol r\rangle\)</span>将变为 <span
+class="math display">\[T_i|\boldsymbol k\rangle=\int
+d^3r\,e^{i\boldsymbol k\cdot\boldsymbol r}|\boldsymbol r+\boldsymbol
+a_i\rangle
+=\int d^3r\,e^{i\boldsymbol k\cdot(\boldsymbol r-\boldsymbol
+a_i)}|\boldsymbol r\rangle
+=e^{-i\boldsymbol k\cdot\boldsymbol a_i}|\boldsymbol k\rangle.\]</span>
+因此<span class="math inline">\(T_i\)</span>的本征值中的<span
+class="math inline">\(\kappa_i\)</span>确实相当于动量<span
+class="math inline">\(\boldsymbol k\)</span>在<span
+class="math inline">\(\boldsymbol a_i\)</span>方向的投影。 当<span
+class="math inline">\(\boldsymbol
+a_i\)</span>构成一组非正交的完备基时，我们可以用固体物理中的如下方法构造倒空间的基底和准动量：
+我们首先构造满足<span class="math inline">\(\boldsymbol
+g_i\cdot\boldsymbol a_j=\delta_{ij}\)</span>的一组倒空间的对偶基底<span
+class="math inline">\(\boldsymbol g_i\)</span>。
+然后，我们构造准动量<span class="math inline">\(\boldsymbol
+k=\sum_i\kappa_i\boldsymbol g_i\)</span>。
+容易验证，准动量满足我们想要的性质<span
+class="math inline">\(\boldsymbol k\cdot\boldsymbol
+a_i=\kappa_i\)</span>。</p>
+<p>数学上看，<span class="math inline">\(\boldsymbol
+g_i\)</span>构成非正交完备基<span class="math inline">\(\boldsymbol
+a_i\)</span>的一组对偶基底。 由于<span class="math inline">\(\boldsymbol
+a_i\)</span>之间并不正交，如果采用这组基底，我们应当把它张成的三维空间（通常称为实空间）看成一个没有内积结构的线性空间<span
+class="math inline">\(V\)</span>（因为对于一个具有内积结构的正交空间，更自然的选择是采用一组正交归一基底）。
+事实上，我们在讨论晶体中电子波函数的时候，也只会用到实空间向量和动量之间的内积，并不会用到实空间向量之间的内积。
+在这种观点下，动量实际上是实空间的对偶空间<span
+class="math inline">\(V^\ast\)</span>中的向量。
+这个对偶空间在固体物理中被称为倒空间(reciprocal space)。
+而动量与实空间向量之间的点乘就是对偶空间<span
+class="math inline">\(V^\ast\)</span>中元素与<span
+class="math inline">\(V\)</span>中元素的复合。 上面定义的<span
+class="math inline">\(\boldsymbol g_i\)</span>就是<span
+class="math inline">\(\boldsymbol a_i\)</span>在<span
+class="math inline">\(V^\ast\)</span>中的一组对偶基底。</p>
+<div id="fig:bz" class="fignos">
+<figure>
+<img src="bz.svg" style="width:50.0%" alt="图 1: 布里渊区示意图。" />
+<figcaption aria-hidden="true"><span>图 1:</span>
+布里渊区示意图。</figcaption>
+</figure>
+</div>
+<p>这里的准动量<span class="math inline">\(\boldsymbol
+k\)</span>和自由空间的动量还有一个重要的区别：<span
+class="math inline">\(\boldsymbol k\)</span>具有以<span
+class="math inline">\(2\pi\boldsymbol g_i\)</span>为周期的周期性。
+这是因为在(<a href="#eq:Taction">1</a>)式的定义中，<span
+class="math inline">\(T_i\)</span>的作用方式只依赖于<span
+class="math inline">\(e^{i\kappa_i}\)</span>。因此<span
+class="math inline">\(\kappa_i\)</span>和<span
+class="math inline">\(\kappa_i+2\pi\)</span>给出的是同一个不可约表示。
+相应地，<span class="math inline">\(\boldsymbol k\)</span>与<span
+class="math inline">\(\boldsymbol k+2\pi\boldsymbol
+g_i\)</span>给出的也就是同一个不可约表示。
+在固体物理中，我们定义这里的周期为<span
+class="math inline">\(\boldsymbol G_i=2\pi\boldsymbol g_i\)</span>。
+这个周期性导致了倒空间里的一个点<span class="math inline">\(\boldsymbol
+k\)</span>和一系列点<span class="math inline">\(\boldsymbol
+k+\sum_in_i\boldsymbol G_i\)</span>（这里<span
+class="math inline">\(n_i\)</span>都是整数）全都等价。
+由此可见，倒空间中也出现了一个周期性的结构，其中所有等价的动量点构成倒空间中的一个晶格，而这个倒空间晶格的基矢就是<span
+class="math inline">\(\boldsymbol G_i\)</span>。
+这个性质引出了固体物理中一个很重要的概念：布里渊区(Brillouin Zone)。
+由于<span class="math inline">\(\boldsymbol k\)</span>等价于<span
+class="math inline">\(\boldsymbol k+\sum_in_i\boldsymbol
+G_i\)</span>，我们只需要考虑这一系列等价的动量中的一个代表元就可以了。
+将三维的动量空间<span
+class="math inline">\(V^\ast\)</span>模掉上述等价关系，我们得到了一个商空间。这个商空间就是倒空间晶格的原胞，而其拓扑结构是三维环面<span
+class="math inline">\(T^3=V^\ast / \mathbb Z^3\)</span>。
+我们将这个空间称为晶格的（第一）布里渊区。
+和实空间的晶格原胞选取方法类似，布里渊区也有不同的选取方法。
+通常布里渊区的选取方法类似于晶格的Wigner-Seitz原胞：如图??所示，我们选择所有距离原点最近的倒格矢<span
+class="math inline">\(\sum_i\boldsymbol
+G_i\)</span>；构造倒格矢和原点连线的中垂线；所有中垂线包围起来的区域就是布里渊区。我们也可以简单地选择三个倒空间基矢<span
+class="math inline">\(\boldsymbol
+G_{1,2,3}\)</span>张成的平行六面体作为布里渊区。</p>
+<h3 id="布洛赫波函数和瓦尼尔波函数">布洛赫波函数和瓦尼尔波函数</h3>
+<p>下面我们进一步讨论具有某个准动量<span
+class="math inline">\(\boldsymbol k\)</span>的电子态，即平移群<span
+class="math inline">\(T\)</span>的一维不可约表示<span
+class="math inline">\(|\phi_k\rangle\)</span>，所对应的实空间波函数的性质。
+根据狄拉克符号的定义，这个一维不可约表示对应的波函数为<span
+class="math inline">\(\phi_{\boldsymbol k}(\boldsymbol r)=\langle
+\boldsymbol r|\phi_{\boldsymbol k}\rangle\)</span>。
+这个波函数就是固体物理中的布洛赫(Bloch)波函数。事实上，利用一维不可约表示的变换形式，我们可以推导固体物理中的布洛赫定理：</p>
+<p>利用<span class="math inline">\(|\phi_{\boldsymbol
+k}\rangle\)</span>和<span class="math inline">\(|\boldsymbol
+r\rangle\)</span>在平移变换下的变换形式，我们很容易得到布洛赫波函数在平移变换下的变换形式：
+<span id="eq:T-Bloch" class="eqnos"><span
+class="math display">\[\phi_{\boldsymbol k}(\boldsymbol r)=\langle
+\boldsymbol r|T_i^\dagger T_i|\phi_{\boldsymbol k}\rangle
+=\langle \boldsymbol r+\boldsymbol a_i|e^{-i\boldsymbol
+k\cdot\boldsymbol a_i}|\phi_{\boldsymbol k}\rangle
+=e^{-i\boldsymbol k\cdot\boldsymbol a_i}\phi_{\boldsymbol k}(\boldsymbol
+r+\boldsymbol a_i).\]</span><span class="eqnos-number">(2)</span></span>
+我们将布洛赫波函数表示为<span class="math inline">\(\phi_{\boldsymbol
+k}(\boldsymbol r)=u_{\boldsymbol k}(\boldsymbol r)e^{i\boldsymbol
+k\cdot\boldsymbol r}\)</span>。 代入上面的变换形式，我们得到
+<span id="eq:T-u" class="eqnos"><span
+class="math display">\[u_{\boldsymbol k}(\boldsymbol r)=u_{\boldsymbol
+k}(\boldsymbol r+\boldsymbol
+a_i),\]</span><span class="eqnos-number">(3)</span></span> 即<span
+class="math inline">\(u_{\boldsymbol k}(\boldsymbol
+r)\)</span>为实空间晶格上的周期函数。这个结论就是布洛赫定理。</p>
+<p>布洛赫波函数<span class="math inline">\(\phi_{\boldsymbol
+k}(\boldsymbol r)=u_{\boldsymbol k}(\boldsymbol r)e^{i\boldsymbol
+k\cdot\boldsymbol r}\)</span>可以看成平面波<span
+class="math inline">\(e^{i\boldsymbol k\cdot\boldsymbol
+r}\)</span>在连续的平移对称性破缺到离散的晶格平移对称性<span
+class="math inline">\(T\)</span>时的推广。
+在具有连续平移对称性时，平面波是动量表象的基底，我们也可以取坐标表象的基底<span
+class="math inline">\(\delta(\boldsymbol
+r)\)</span>；二者通过傅里叶(Fourier)变换相联系。
+相应地，当对称性破缺到离散的晶格平移对称性时，我们也可以对布洛赫波函数进行傅里叶变换。
+这时准动量自由度会被变换成晶格格点坐标自由度，得到的就是固体物理中的瓦尼尔(Wannier)波函数。</p>
+<p>首先，我们回顾一下傅里叶级数的构造方式。 对于一个在<span
+class="math inline">\((0,2\pi)\)</span>间定义的周期函数<span
+class="math inline">\(f(x)\)</span>，我们可以引入傅里叶级数展开：
+<span id="eq:Fourier1" class="eqnos"><span class="math display">\[f(x)
+=\sum_{n=-\infty}^{\infty}f_ne^{i\frac n{2\pi}
+x},\]</span><span class="eqnos-number">(4)</span></span> 其中<span
+class="math inline">\(n\)</span>取遍所有整数。这里傅里叶级数展开的系数<span
+class="math inline">\(f_n\)</span>由如下积分给出：
+<span id="eq:Fourier2" class="eqnos"><span
+class="math display">\[f_n=\frac1{2\pi} \int_0^{2\pi}dx\,f(x)e^{-i\frac
+n{2\pi} x}.\]</span><span class="eqnos-number">(5)</span></span> </p>
+<p>对于布洛赫波函数，量子态<span
+class="math inline">\(|\phi_{\boldsymbol k}\rangle\)</span>是准动量<span
+class="math inline">\(\boldsymbol k\)</span>的周期性函数， 周期为<span
+class="math inline">\(\boldsymbol G_i\)</span>。
+注意这里的周期性函数指的是量子态作为准动量的函数，而不是对于一个固定的准动量，量子态作为空间坐标的函数。
+针对这个周期性，我们可以将量子态<span
+class="math inline">\(|\phi_{\boldsymbol
+k}\rangle\)</span>写成傅里叶级数的形式。 为了利用(<a
+href="#eq:Fourier1">4</a>)式中标准的傅里叶级数展开形式，我们改用<span
+class="math inline">\(\kappa_i\)</span>来标记准动量和相应的布洛赫态：
+<span class="math inline">\(|\phi_{\boldsymbol
+k}\rangle=|\phi(\kappa_{1,2,3})\rangle\)</span>。 这里的<span
+class="math inline">\(\kappa_{1,2,3}\)</span>相当于(<a
+href="#eq:Fourier1">4</a>)式中的连续变量<span
+class="math inline">\(x\)</span>，它们也以<span
+class="math inline">\(2\pi\)</span>为周期。
+因此，这里需要在三个方向做三重傅里叶级数展开。
+相应地，需要引入三个整数指标<span
+class="math inline">\(n_{1,2,3}\in\mathbb Z\)</span>： <span
+class="math display">\[|\phi(\kappa_{1,2,3})\rangle
+=\sum_{n_{1,2,3} = -\infty}^{\infty}|\Psi_n\rangle
+e^{i\sum_i\frac{n_i\kappa_i}{2\pi}},\]</span>
+在本书中，为了简化记号，我们用<span
+class="math inline">\(n\)</span>来代表<span
+class="math inline">\(n_{1,2,3}\)</span>组成的三元组<span
+class="math inline">\(n=(n_1,n_2,n_3)\)</span>。 利用<span
+class="math inline">\(\kappa_i=\boldsymbol k\cdot\boldsymbol
+a_i\)</span>的关系，这里傅里叶级数中的相因子<span
+class="math inline">\(\sum_in_i\kappa_i/2\pi\)</span>可以写成<span
+class="math inline">\(\boldsymbol r_n\cdot\boldsymbol k\)</span>，
+其中<span class="math inline">\(\boldsymbol r_n=\sum_in_i\boldsymbol
+a_i\)</span>是<span class="math inline">\(n\)</span>对应的晶格格点坐标。
+这样就可以将上面的傅里叶级数展开改写为
+<span id="eq:Bloch-Wannier" class="eqnos"><span
+class="math display">\[|\phi_{\boldsymbol k}\rangle
+=\sum_n|\Psi_n\rangle
+e^{i\boldsymbol k\cdot\boldsymbol
+r_n}.\]</span><span class="eqnos-number">(6)</span></span>
+这个傅里叶级数展开对应的逆变换为
+<span id="eq:Wannier-Bloch" class="eqnos"><span
+class="math display">\[|\Psi_n\rangle = \int_{BZ}\frac{d^3\boldsymbol
+k}{(2\pi)^3}
+|\phi_{\boldsymbol k}\rangle e^{-i\boldsymbol k\cdot\boldsymbol
+r_n},\]</span><span class="eqnos-number">(7)</span></span>
+其中积分号下的<span
+class="math inline">\(BZ\)</span>表示积分范围为（第一）布里渊区。</p>
+<p>这组傅里叶变换表明，对于具有晶体平移对称性的系统，实空间的晶格点阵坐标<span
+class="math inline">\(\boldsymbol
+r_n\)</span>和倒空间（动量空间）第一布里渊区内的准动量<span
+class="math inline">\(\boldsymbol k\)</span>是一对共轭的自由度；
+二者可以通过傅里叶级数展开相联系。这组傅里叶变换在固体物理中非常重要。</p>
+<p>这里的瓦尼尔态<span
+class="math inline">\(|\Psi_n\rangle\)</span>对应的波函数<span
+class="math inline">\(\Psi_n(\boldsymbol r)=\langle\boldsymbol
+r|\Psi_n\rangle\)</span> 就是固体物理中的瓦尼尔波函数。
+根据布洛赫定理中给出的布洛赫态在实空间的周期性(<a
+href="#eq:T-Bloch">2</a>)，可以证明瓦尼尔态在平移变换下满足如下的变换性质：
+<span
+class="math display">\[T_1^{m_1}T_2^{m_2}T_3^{m_3}|\Psi_{(n_1,n_2,n_3)}\rangle
+=|\Psi_{(n_1+m_1,n_2+m_2,n_3+m_3)}\rangle.\]</span>
+这个变换性质直观上可以理解为平移变换将中心位于格点<span
+class="math inline">\((n_1,n_2,n_3)\)</span>的瓦尼尔态平移到了中心位于<span
+class="math inline">\((n_1+m_1,n_2+m_2,n_2+m_3)\)</span>的瓦尼尔态。
+利用这个变换性质，可以证明瓦尼尔波函数<span
+class="math inline">\(\Psi_n(\boldsymbol r)\)</span>实际上只是<span
+class="math inline">\(\boldsymbol r-\boldsymbol r_n\)</span>的函数：
+<span id="eq:Wannier0" class="eqnos"><span
+class="math display">\[\Psi_n(\boldsymbol r)=\Psi_0(\boldsymbol
+r-\boldsymbol r_n).\]</span><span class="eqnos-number">(8)</span></span>
+</p>
+</body>
+</html>
