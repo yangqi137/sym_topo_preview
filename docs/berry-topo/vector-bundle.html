@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>向量丛和联络</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">向量丛和联络</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>能带、贝里相位与拓扑数</li>
+        <li>向量丛和联络</li>
+      </ul>
+</nav>
+<p>在本节中，我们介绍贝里联络、贝里相位与微分几何中相关概念之间的关系。
+特别地，我们将解释为什么上一节中定义的贝里联络<span
+class="math inline">\(\mathcal A\)</span>被称为一个“联络”。
+事实上，这里的联络是数学中向量丛（vector bundle）上的一个微分联络。
+本节中介绍的向量丛等数学概念将对我们理解能带拓扑分类的数学理论起关键作用。</p>
+<h2 id="能带结构与向量丛">能带结构与向量丛</h2>
+<p>首先，我们简要而直观地介绍向量丛的概念。
+通俗地讲，数学上的一个向量丛可以看成是在一个底空间上的每一个点粘上一根“纤维”。
+我们要求每个纤维都是一个向量空间<span class="math inline">\(\mathbb
+C^n\)</span>，这也是“向量”丛名字的由来。
+一个最简单的向量丛的例子就是底空间<span
+class="math inline">\(X\)</span>和<span class="math inline">\(\mathbb
+C^n\)</span>的直积：<span class="math inline">\(E = X\times\mathbb
+C^n\)</span>。
+我们真正关心的非平庸的向量丛当然不会是二者简单的直积，但是我们要求对于<span
+class="math inline">\(X\)</span>上每一个点<span
+class="math inline">\(x\in
+X\)</span>附近，这个向量丛局部的结构都等价于一个平庸的直积。
+这个要求保证了我们的向量丛每个局部都不会太“奇怪”，而其非平庸的特征体现在它的整体性质上。
+上面这个局部平庸性的要求保证了在<span
+class="math inline">\(X\)</span>的每个联通分支上，所有点上粘的纤维的维数都是一致的。
+在本书中，我们总是假定底空间<span
+class="math inline">\(X\)</span>是联通的。
+因此，它上面每个点上粘的纤维都是有着一致的维度<span
+class="math inline">\(n\)</span>的线性空间<span
+class="math inline">\(\mathbb C^n\)</span>。</p>
+<p>在固体物理理论中，每个绝缘体的能带结构都可以看成一个向量丛。
+在一个绝缘体的能带结构中，第一布里渊区<span
+class="math inline">\(BZ\)</span>中的每一个准动量<span
+class="math inline">\(\boldsymbol k\in
+BZ\)</span>点上都存在若干在价带（valence
+band）中的量子态，我们将其记作<span
+class="math inline">\(|\psi[\boldsymbol k]_\alpha\rangle\)</span>。
+这些量子态张成了价带的希尔伯特子空间<span
+class="math inline">\(V_o[\boldsymbol
+k]\)</span>（这里角标o代表占据态，即occupied states）。
+如果将这个希尔伯特空间<span class="math inline">\(V_o[\boldsymbol
+k]\)</span>看成<span class="math inline">\(\boldsymbol
+k\)</span>点上粘的一个线性空间，那么第一布里渊区上每个准动量点上粘的线性空间<span
+class="math inline">\(V_o[\boldsymbol k]\)</span>就构成<span
+class="math inline">\(BZ\)</span>上的一个向量丛。
+为了严格地证明这一点，我们需要论证这个向量丛在每个动量点附近的一个足够小的局部具有平庸的直积结构。
+如果哈密顿量<span class="math inline">\(H[\boldsymbol k]\)</span>在<span
+class="math inline">\(\boldsymbol k\)</span>附近的一个邻域<span
+class="math inline">\(\boldsymbol k\in
+X\)</span>内没有简并，那么这个平庸的直积结构是显然的：
+我们可以取哈密顿量的一组费米面下的本征态<span
+class="math inline">\(|\psi[\boldsymbol
+x]_\alpha\rangle\)</span>作为占据态子空间的一组正交归一的基底。
+使用这组基底，邻域内每个准动量点的占据态子空间<span
+class="math inline">\(V_o[\boldsymbol k]\)</span>都同构于<span
+class="math inline">\(\mathbb C^n\)</span>，这里<span
+class="math inline">\(n\)</span>是占据态子空间的维度。
+因此，在这个邻域内，该向量丛具有平庸的<span
+class="math inline">\(X\times \mathbb C^n\)</span>的结构。
+如果哈密顿量在<span class="math inline">\(\boldsymbol
+k\)</span>点附近有简并，我们总可以在哈密顿量上施加一个足够小的微扰来解除该点的简并。
+只要这个微扰远小于占据态和非占据态（即价带和导带）之间的带隙，它就不会影响占据态子空间的结构。
+在简并解除之后，我们就可以利用上面的论证来证明向量丛局部具有平庸的直积结构了。</p>
+<p>这里要特别注意，只有具有带隙的绝缘体能带结构才构成一个向量丛。
+而对于一个具有费米面的金属能带，如果我们考虑费米面上的一个动量点<span
+class="math inline">\(\boldsymbol
+k\)</span>，那么它附近的任意小的一个邻域必然被费米面分割成两半。
+而在费米面的两侧，占据态的数目是不同的：从费米面的一侧到另一侧，总有若干条能带穿过费米面从占据态变成非占据态。
+因此，在这个邻域内占据态子空间显然不具备直积的结构。
+事实上，我们在前面论证过，对于布里渊区上的一个向量丛，每个动量点上粘的纤维空间必然有同样的维度；而金属态的能带结构显然不满足这个条件。
+此外，类似狄拉克半金属、外尔半金属等能带结构的占据态子空间也不构成一个向量丛。
+这是因为在狄拉克点或外尔点<span class="math inline">\(\boldsymbol
+k\)</span>，能带的占据态和非占据态之间存在简并，因而在该动量点上无法准确地定义占据态子空间。事实上，此时如果从<span
+class="math inline">\(\boldsymbol k\)</span>点附近沿不同方向逼近<span
+class="math inline">\(\boldsymbol
+k\)</span>点，得到的占据态子空间往往是不一致的。</p>
+<p>将绝缘体能带结构的占据态子空间用数学上的向量丛来描述之后，我们就可以利用向量丛的拓扑性质来研究相应能带结构的拓扑性质了。
+在本书中，我们将用一个占据态子空间构成的向量丛的拓扑性质来代表绝缘体（或超导体的BdG哈密顿量）能带结构的拓扑性质。
+特别地，如果一个绝缘体的占据态子空间构成的向量丛是非平庸的，我们就称这个绝缘体是一个拓扑绝缘体。
+相应地，对于一个有能隙的超导体，如果其BdG哈密顿量的占据态子空间构成的向量丛是非平庸的，我们就称其为一个拓扑超导体。
+这里要注意，上面这样定义的拓扑绝缘体和拓扑超导体还包含了所谓的脆弱的（fragile）拓扑绝缘体、超导体；脆弱拓扑态的概念将在本书第??章中做更进一步的描述。
+简单地说，我们通常讨论的拓扑态不仅要求能带本身构成非平庸的向量丛，还要求该向量丛在添加若干平庸的能带之后，仍是非平庸的。
+这个要求乍一看非常自然，因为似乎一个拓扑非平庸的向量丛与一个拓扑平庸的向量丛的直和应该仍是拓扑非平庸的向量丛；但是确实存在一些非常奇妙的反例，即一个拓扑非平庸的向量丛与一个拓扑平庸的向量丛的直和变成拓扑平庸的了。这样的数学结构对应的物理系统就是脆弱的拓扑绝缘体。
+我们将在第??章中对此进行更详细的讨论。</p>
+<p>介绍完这个抽象的概念之后，我们先来简要讨论一下，什么样的能带结构是拓扑平庸的。
+根据向量丛的定义，一个拓扑平庸的向量丛拓扑等价于底空间（布里渊区<span
+class="math inline">\(BZ\)</span>）和纤维（<span
+class="math inline">\(n\)</span>个占据的量子态）之间的简单直积<span
+class="math inline">\(BZ\times\mathbb C^n\)</span>。
+这意味着对于一个平庸的向量丛，我们可以对占据态子空间取一组在整个布里渊区上全局适用的正交归一的基底<span
+class="math inline">\(|\psi[\boldsymbol
+k]_\alpha\rangle\)</span>，其中<span
+class="math inline">\(\alpha=1,\ldots,n\)</span>。
+什么样的能带结构可以取到这样的全局基底呢？
+在固体物理中我们知道，如果忽略掉不同原子轨道之间的交叠，每个原子上的轨道都具有相同的离散能级，可以用一个角标<span
+class="math inline">\(\alpha\)</span>来标记这些原子轨道。
+当不同原子之间的轨道交叠很小的时候，每个原子轨道会展宽成一个能带。
+这些能带就可以用原子轨道的角标<span
+class="math inline">\(\alpha\)</span>来标记。
+此时，每个能带上不同动量的布洛赫态就可以取成相应原子轨道波函数的傅里叶变换，
+<span class="math display">\[|\psi[\boldsymbol k]_\alpha\rangle =
+\frac1{\sqrt N}\sum_i|\psi_{i\alpha}\rangle e^{-i\boldsymbol
+k\cdot\boldsymbol r_i}.\]</span> 当费米能位于第<span
+class="math inline">\(n\)</span>条能带和第<span
+class="math inline">\(n+1\)</span>条能带之间时，对于占据态子空间我们就可以取一组全局基底<span
+class="math inline">\(|\psi[\boldsymbol
+k]_\alpha\rangle\)</span>，其中<span
+class="math inline">\(\alpha=1,\ldots,n\)</span>。
+因此，这种原子之间轨道交叠很小的极限，即原子极限下的能带对应的向量丛就是拓扑平庸的。
+我们称这样的能带结构为一个“原子绝缘体（atomic insulator）”。
+因此，拓扑绝缘体的定义也可以用原子绝缘体的概念进行表述：
+如果一个绝缘体的能带结构与原子绝缘体拓扑不等价，那么相应的向量丛就是拓扑非平庸的，这个绝缘体就是拓扑绝缘体。
+对于拓扑超导体，我们也可以将其BdG哈密顿量看成一个具有粒子空穴对称性的绝缘体能带结构，从而类似地定义拓扑超导体。</p>
+<p>明确了拓扑平庸的能带结构的物理意义之后，一个自然的问题就是如何描述拓扑非平庸的能带结构。
+在数学中，一个常用的方法是利用拓扑不变量来描述几何对象的拓扑性质。
+拓扑不变量是在拓扑变换下保持不变的量，数学中常见的拓扑空间的拓扑不变量包括拓扑空间联通分支的个数、基本群、同伦群、同调群等等。
+对于向量丛，我们可以利用陈数、绕数等拓扑不变量来区分拓扑非平庸的能带结构。
+如果一个能带结构对应的向量丛的某个拓扑不变量与平庸向量丛（即原子绝缘体）的拓扑不变量不同，我们就证明了前者是拓扑非平庸的。
+在本章中，我们将讲解陈数（Chern
+number）这一拓扑不变量；它可以用来区分拓扑不等价的偶数维向量丛。
+在下一章中，我们将引入具有手征对称性，即AIII类的奇数维向量丛的绕数（winding
+number）这一拓扑不变量。
+在第??-??章中，我们将讲解其它8个对称类的拓扑不变量。
+在第??章中，我们将介绍数学中分类各种向量丛的K理论；该理论将证明前面几章中给出的拓扑不变量完整地分类了不同维度下10个对称类的向量丛。</p>
+<p>这里需要注意的一点是，上面讨论的一直都是能带结构中占据态，即价态的子空间构成的向量丛结构。
+因此对于一个确定的能带结构模型，该向量丛取决于费米能量的位置，即哪些能带是占据的价带、哪些是未占据的导带。
+特别地，如果费米能处于所有能带的上方，即所有能带都被占据。
+这样的能带结构对应于一个所有原子轨道都被占据的原子绝缘体，因而总是平庸的。</p>
+<h2 id="向量丛的联络与贝里联络">向量丛的联络与贝里联络</h2>
+<p>接下来，我们介绍向量丛上联络（connection）的数学概念，并讲解为什么前面引入的贝里联络是一个联络。
+事实上，我们将看到，占据态之间的贝里联络就是对应的占据态构成的向量丛上的联络。</p>
+<p>由于向量丛上每个点粘的纤维都是一个线性空间<span
+class="math inline">\(\mathbb C^n\)</span>，而这个线性空间上的<span
+class="math inline">\(n\)</span>维向量之间自然地存在减法操作。
+因此，我们自然地希望对两个纤维，包括底空间上两个不同点上所粘的纤维中的两个向量进行加减法操作。
+但是，细心的读者可能会立刻发现这个操作是行不通的：
+底空间上不同的两点<span class="math inline">\(\boldsymbol k\neq
+\boldsymbol k&#39;\)</span>上所粘的向量空间<span
+class="math inline">\(V_o[\boldsymbol k]\)</span>和<span
+class="math inline">\(V_o[\boldsymbol
+k&#39;]\)</span>是两个完全不同的线性空间，因此二者中各自取一个向量并不能进行加减法计算。
+如果想对二者中的向量进行操作，需要将前者中的向量“搬运”至后者中。
+在微分几何中，这种操作被称为向量丛上向量的“平行输运”（parallel
+transport）。 平行输运更精确的数学定义是考虑底空间上连接不同的两点<span
+class="math inline">\(\boldsymbol k\neq \boldsymbol
+k&#39;\)</span>的一条路径。 平行输运将<span
+class="math inline">\(V_o[\boldsymbol k]\)</span>中的向量平移至<span
+class="math inline">\(V_o[\boldsymbol k&#39;]\)</span>中。
+一般地，平行输运的结果依赖于两点之间的路径（这种路径依赖关系非常类似于前面定义的贝里相位的路径依赖关系；我们将在下文中看到贝里相位与平行输运之间的联系）。
+特别地，我们可以考虑相隔无穷小距离的两点<span
+class="math inline">\(\boldsymbol k\)</span>和<span
+class="math inline">\(\boldsymbol k&#39;=\boldsymbol k+d\boldsymbol
+k\)</span>之间的近似直线路径<span class="math inline">\(d\boldsymbol
+k\)</span>上的平行输运。
+沿任意路径的平行输运可以通过对这样的无穷小路径上的平行输运沿该路径积分得到。
+这样的无穷小路径上的平行输运可以等价地用一个微分算符得到：<span
+class="math inline">\(v(\boldsymbol k)\in V_o[\boldsymbol
+k]\)</span>被平行输运到<span class="math inline">\(v(\boldsymbol
+k&#39;)\in V_o[\boldsymbol
+k&#39;]\)</span>（这里为了介绍对一般向量丛的数学概念，我们没有用狄拉克右矢来表示纤维中的向量）这个条件可以等价地表达为
+<span class="math display">\[\nabla v(\boldsymbol k)=0,\]</span>
+这里<span
+class="math inline">\(\nabla\)</span>是向量丛上的某种微分算符（准确地说，是满足莱布尼兹公式等一系列条件的一个线性算符）；而这样的微分算符被称为向量丛上的一个联络（connection）。
+本书不打算介绍联络的具体数学定义；对这方面知识感兴趣的读者可以参考专门的数学教材。
+我们在这里只直观地介绍联络的几何和物理直观解释。</p>
+<p>首先，直观地看，<span class="math inline">\(v(\boldsymbol
+k)=0\)</span>表示底空间上的一个向量场（数学上称为向量丛上的一个“截面”，section）。如果我们将<span
+class="math inline">\(\nabla\)</span>看成一个微分算符，那么<span
+class="math inline">\(\nabla v=0\)</span>就代表<span
+class="math inline">\(v(\boldsymbol
+k)\)</span>在底空间上（局部）是一个常数。也就表示<span
+class="math inline">\(v\)</span>被平行地从一个纤维<span
+class="math inline">\(V_o[\boldsymbol
+k]\)</span>移动到了附近的另一个纤维<span
+class="math inline">\(V_o[\boldsymbol k&#39;]\)</span>。
+需要注意的是，在一个最一般的向量丛上，并没有一个自然的联络的定义。
+这是因为如前所述，在一个没有额外附加结构的向量丛上，<span
+class="math inline">\(V_o[\boldsymbol k]\)</span>和<span
+class="math inline">\(V_o[\boldsymbol
+k&#39;]\)</span>中的向量不能直接进行比较。
+因此一般来说一个向量丛上的联络并不唯一，可能存在多个满足定义的联络。
+如果向量丛有额外的附加结构，使得我们可以直接比较<span
+class="math inline">\(V_o[\boldsymbol k]\)</span>和<span
+class="math inline">\(V_o[\boldsymbol
+k&#39;]\)</span>中的向量，那么就会导致某种自然的联络的选择。</p>
+<p>在微分几何中，一个常见的例子就是微分流形的切丛上的Levi-Civita联络：如果一个微分流形被嵌入了一个高维线性空间，那么它上面所有点的切空间也都自然地嵌入了这个高维线性空间。
+这个自然的嵌入映射使得我们可以直接比较两个点的切空间中的向量，从而给出了Levi-Civita联络。
+（由于Levi-Civita联络的具体形式与本书要讨论的问题并无直接关系，因此我们就不再进行深入的介绍了。
+感兴趣的同学可以参考微分几何方面的数学教材。）</p>
+<p>另外一个和本书讨论的物理内容高度相关的例子就是贝里联络。
+对于布里渊区上占据态构成的向量丛，每个点上粘的纤维都是该动量点上的占据态子空间。
+这些子空间都可以自然地嵌入到整个电子系统的总希尔伯特空间中，因而是可以直接进行比较的。
+事实上，在上一节中我们将贝里联络定义为如下的矩阵：
+<span id="eq:vb:def-An" class="eqnos"><span
+class="math display">\[\mathcal A(\boldsymbol k)_{\alpha\beta} =
+i\langle\psi[\boldsymbol k]_\alpha|
+\frac\partial{\partial\boldsymbol k}|\psi[\boldsymbol k]_\beta\rangle.
+\]</span><span class="eqnos-number">(1)</span></span>
+在这个表达式中，我们在对波函数求导数<span
+class="math inline">\(\frac\partial{\partial\boldsymbol
+k}|\psi[\boldsymbol
+k]_\beta\rangle\)</span>时，就默认了不同动量点的波函数可以相减。
+这里可以进行这种操作其实是因为所有量子态都可以自然地映射到同一个希尔伯特空间内。
+而这种操作对一个最一般的向量丛是无法自然地定义的。
+因此，数学上往往需要对一个向量丛指定一个联络；而对于我们关心的能带中占据态子空间构成的向量丛，上面自然的一个联络就是贝里联络。</p>
+<p>最后，我们简单地讨论一下贝里联络与向量丛上的平行输运的关系。
+如前所述，联络描述的是向量丛上平行输运的条件：沿着一条路径满足<span
+class="math inline">\(d\boldsymbol k\cdot\nabla
+v=0\)</span>的向量场就是被平行输运的向量场。
+对于贝里联络，如果沿着一条路径的向量场满足<span
+class="math inline">\(\mathcal A(\boldsymbol
+k)v=0\)</span>，那么根据贝里相位的定义，这个向量场沿着该路径累积的贝里相位也是零。
+因此，贝里联络对应的平行输运就是量子态的绝热演化。</p>
+<h2 id="贝里联络与基底变换">贝里联络与基底变换</h2>
+<p>在上一节中，我们定义贝里联络时曾经指出，贝里联络并不是规范不变的；当我们换用不同基底的时候，贝利联络需要做相应的规范变换。
+在向量丛的数学理论中，这种规范变换对应于两个局部坐标系之间的转换函数（transition
+function）。
+这些数学概念实际上和我们在物理中熟悉的基底之间的规范变换非常类似，但是利用相应的数学概念可以更好地理解拓扑非平庸能带结构对应的向量丛的非平庸拓扑性质。
+因此我们在这里对其进行一个简要的介绍。
+和前面对数学概念的介绍类似，这里给出的数学概念定义并不严谨。
+想进一步了解向量丛的数学概念的读者，可以参考相关的数学教材。</p>
+<p>如前所述，每个向量丛在底空间的局部都是平庸的，也就是具有平庸的直积结构。
+数学上可以将这个要求更精确地表述为如下形式： 对于底空间上任意一点<span
+class="math inline">\(\boldsymbol k\in BZ\)</span>，都存在一个邻域<span
+class="math inline">\(\boldsymbol k\in
+U_k\)</span>，使得在该邻域上向量丛具有平庸的直积结构<span
+class="math inline">\(U_k\times\mathbb C^n\)</span>。
+这个直积结构意味着我们可以对这个邻域上每个点所粘的纤维取一组一致的基底：
+对于布里渊区上的占据态子空间构成的向量丛，这意味着对于<span
+class="math inline">\(\boldsymbol
+k\)</span>点附近的动量上存在一个局部的基底<span
+class="math inline">\(|\psi[\boldsymbol
+k]_\alpha\rangle\)</span>，其中<span
+class="math inline">\(n=1,\ldots,n\)</span>。 利用这组局部基底，<span
+class="math inline">\(\boldsymbol k\)</span>点的贝里联络也就可以用(<a
+href="#eq:vb:def-An">1</a>)式定义。</p>
+<p>由于一个拓扑非平庸的向量丛整体上不是简单的底空间和纤维之间的直积结构，它上面也就不存在全局适用的基底。
+因此，我们一般需要用超过一组的局部基底来覆盖整个底空间。
+这里，每个局部基底都对应于一个邻域<span class="math inline">\(U_i\subset
+BZ\)</span>和它上面的一组基底<span
+class="math inline">\(|\psi[\boldsymbol k]_\alpha^i\rangle\)</span>。
+如果两个邻域有重叠，<span class="math inline">\(U_i\cap
+U_j\neq0\)</span>，那么在它们的交集上就存在两组基底。
+由于贝里联络并不是规范不变的，它在两组不同基底下的形式也有所不同。
+在上一节的末尾，我们推导了贝里联络在基底变换下的变换形式；这里就不再赘述了。
+从对向量丛的讨论中我们可以看到推导贝里联络在基底变换下的变换形式的必要性：
+对于拓扑非平庸的向量丛，我们无法取到一组全局适用的基底。
+因此，我们必须将布里渊区分成若干部分（一般两部分就够了），在不同部分选取不同的基底。
+这样在不同部分的交叠处，就需要考虑同一个贝里联络在不同基底选择下的表达形式。</p>
+</body>
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>贝里曲率和陈数</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">贝里曲率和陈数</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>能带、贝里相位与拓扑数</li>
+        <li>贝里曲率和陈数</li>
+      </ul>
+</nav>
+<p>在本节中，我们讲解如何用贝里联络来定义能带的贝里曲率和陈数。</p>
+<h2 id="贝里曲率">贝里曲率</h2>
+<p>在本章第一节中，我们介绍了能带的贝里联络。
+贝里联络描述了绝缘体布里渊区上价带子空间构成的向量丛，是描述能带拓扑结构的重要因素。
+但是，由于贝里联络的规范依赖性，它使用起来并不方便。
+为了得到一个规范不变的量，我们可以考虑贝里联络沿一条闭合路径积分得到的贝里相位。
+但是，与贝里联络只依赖于某个动量点的局部性质不同，贝里相位是积分之后的结果，反映了该闭合路径内向量丛整体的性质；因此也不能直接反映某个动量点处的局部性质。
+自然地，我们可以考虑让这个闭合路径所包围的面积趋于无穷小，在这个极限下得到的贝里相位就可以以规范不变的方式反映该点的局部性质。
+我们在下文中将证明，此时贝里相位将正比于闭合路径包围的面积，而在这个极限下单位面积的贝里相位就是贝里曲率。</p>
+<p>我们还是先讨论一维子空间的简单情形，此时贝里联络<span
+class="math inline">\(\mathcal A\)</span>是一个简单的向量。
+根据本章第一节中的定义，围绕一个闭合路径<span
+class="math inline">\(C\)</span>的贝里相位为： <span
+class="math display">\[\gamma = \oint_C d\boldsymbol k\cdot\mathcal A.
+\]</span>
+根据斯托克斯（Stokes）公式，一个向量场的环路积分等于其旋度场的面积分。
+我们假设闭合路径<span
+class="math inline">\(C\)</span>包围的二维区域为<span
+class="math inline">\(D\)</span>，那么上式的结果可以改写为 <span
+class="math display">\[\gamma = \int_D d^2\boldsymbol
+k\cdot\nabla\times\mathcal A.\]</span> 假设<span
+class="math inline">\(\nabla\times\mathcal A\)</span>是一个随<span
+class="math inline">\(\boldsymbol
+k\)</span>光滑地变化的向量场，那么当<span
+class="math inline">\(D\)</span>趋于一个无穷小的区域时，我们可以将<span
+class="math inline">\(\nabla\times\mathcal
+A\)</span>近似为一个常数，从而得到<span class="math inline">\(\gamma =
+\boldsymbol S_D\cdot\nabla\times\mathcal A\)</span>。 这里<span
+class="math inline">\(\boldsymbol S_D\)</span>是大小为<span
+class="math inline">\(D\)</span>的面积；方向指向<span
+class="math inline">\(D\)</span>的法向的面积矢量。
+因此，单位面积的贝里相位是<span
+class="math inline">\(\nabla\times\mathcal A\)</span>。
+我们将其定义为能带的贝里曲率 <span class="math display">\[\mathcal
+F=\nabla\times\mathcal A.\]</span> 容易验证，贝里曲率<span
+class="math inline">\(\mathcal F\)</span>是规范不变的：
+这是因为在规范变换下，<span class="math inline">\(\mathcal
+A\)</span>的变化量为一个标量场的梯度；而梯度场的旋度为零。</p>
+<p>事实上，上面定义贝里曲率时用的旋度仅对对于3维参数空间（如动量空间，即布里渊区）有定义。
+这是因为旋度场可以看成<span class="math inline">\((\nabla\times\mathcal
+A)_i=\epsilon_{ijk}\partial_jA_k\)</span>，其中<span
+class="math inline">\(\epsilon\)</span>为三阶全反称张量；而在更高的维度下并不存在这样的<span
+class="math inline">\(\epsilon\)</span>。
+对于二维布里渊区，我们可以认为旋度场只有<span
+class="math inline">\(z\)</span>分量；但是在更高的维度下就不行了。
+对于一般的维度，我们应该认为贝利曲率<span class="math inline">\(\mathcal
+F\)</span>是一个二阶张量：
+<span id="eq:berry-curvature1" class="eqnos"><span
+class="math display">\[\mathcal F_{ij}=\partial_iA_j-\partial_jA_i.
+\]</span><span class="eqnos-number">(1)</span></span>
+此处参数空间是动量空间，因此<span
+class="math inline">\(\partial_i\)</span>指的是对动量的第<span
+class="math inline">\(i\)</span>个分量求导，即<span
+class="math inline">\(\partial_i = \partial_{k_i}\)</span>。</p>
+<p>接下来，我们将上述贝利曲率的定义推广至高维子空间的情形。
+这时，我们可以考虑用非阿贝尔贝里联络计算的一个闭合路径<span
+class="math inline">\(C\)</span>上的和乐矩阵<span
+class="math inline">\(\Phi\)</span>： <span
+class="math display">\[\Phi=\mathcal P\exp\left\{i\oint_Cd\boldsymbol
+k\cdot\mathcal A\right\}.\]</span>
+与一维情形类似，我们还是考虑一个无穷小的闭合路径上的和乐矩阵。
+为了具体起见，我们考虑如下的一个从<span
+class="math inline">\(\boldsymbol k\)</span>出发，沿<span
+class="math inline">\(k_i\)</span>和<span
+class="math inline">\(k_j\)</span>方向分别延伸<span
+class="math inline">\(\Delta k_i\)</span>和<span
+class="math inline">\(\Delta k_j\)</span>的矩形闭合路径： <span
+class="math display">\[C:\boldsymbol k\rightarrow\boldsymbol k+\Delta
+k_i\hat{\boldsymbol k}_i
+\rightarrow \boldsymbol k+\Delta k_i\hat{\boldsymbol k}_i+\Delta
+k_j\hat{\boldsymbol k}_j
+\rightarrow \boldsymbol k+\Delta k_j\hat{\boldsymbol k}_j\rightarrow
+\boldsymbol k.\]</span> 在该矩型的第一条边<span
+class="math inline">\(\boldsymbol k\rightarrow\boldsymbol k+\Delta
+k_i\hat{\boldsymbol k}_i\)</span>上，和乐矩阵为 <span
+class="math display">\[\Phi_1=e^{i\Delta k_i\mathcal A_i(\boldsymbol
+k)}=1+i\Delta k_i\mathcal A_i(\boldsymbol k).\]</span>
+注意对于一个无穷小的闭合路径，我们在计算中只展开到<span
+class="math inline">\(\Delta k_i\)</span>和<span
+class="math inline">\(\Delta k_j\)</span>的一阶。
+在该矩形的第二条边<span class="math inline">\(\boldsymbol k+\Delta
+k_i\hat{\boldsymbol k}_i \rightarrow \boldsymbol k+\Delta
+k_i\hat{\boldsymbol k}_i+\Delta k_j\hat{\boldsymbol k}_j\)</span>上，
+和乐矩阵为 <span class="math display">\[\Phi_2=1+i\Delta k_j\mathcal
+A_j(\boldsymbol k+\Delta k_i\hat{\boldsymbol k}_i)
+=1+i\Delta k_j\mathcal A_j(\boldsymbol k)
++i\Delta k_i\Delta k_j\partial_i\mathcal A_j(\boldsymbol k).\]</span>
+在第三条边<span class="math inline">\(\boldsymbol k+\Delta
+k_i\hat{\boldsymbol k}_i+\Delta k_j\hat{\boldsymbol k}_j \rightarrow
+\boldsymbol k+\Delta k_j\hat{\boldsymbol k}_j\)</span>上，和乐矩阵为
+<span class="math display">\[\Phi_3=1-i\Delta k_i\mathcal
+A_i(\boldsymbol k+\Delta k_i\hat{\boldsymbol k}_i+\Delta
+k_j\hat{\boldsymbol k}_j)
+=1-i\Delta k_i\mathcal A_i(\boldsymbol k)-i\Delta k_i\Delta
+k_j\partial_j\mathcal A_i(\boldsymbol k).\]</span> 在第四条边<span
+class="math inline">\(\rightarrow \boldsymbol k+\Delta
+k_j\hat{\boldsymbol k}_j\rightarrow \boldsymbol k\)</span>上，和乐矩阵为
+<span class="math display">\[\Phi_4=1-i\Delta k_j\mathcal
+A_j(\boldsymbol k).\]</span> 总的和乐矩阵为四段的和乐矩阵相乘：<span
+class="math inline">\(\Phi=\Phi_1\Phi_2\Phi_3\Phi_4\)</span>。
+将上述四式代入，并保留到<span class="math inline">\(\Delta
+k_i\)</span>和<span class="math inline">\(\Delta
+k_j\)</span>的一阶，我们得到 <span class="math display">\[\Phi=1+i\Delta
+k_i\Delta k_j\{\partial_i\mathcal A_j(\boldsymbol k)-\partial_j\mathcal
+A_i(\boldsymbol k)+[\mathcal A_i(\boldsymbol k),\mathcal A_j(\boldsymbol
+k)]\},\]</span> 其中中括号表示两个矩阵的对易子：<span
+class="math inline">\([\mathcal A_i,\mathcal A_j]=\mathcal A_i\mathcal
+A_j-\mathcal A_j\mathcal A_i\)</span>。
+由此可见，和乐矩阵与单位矩阵的区别，或者说<span
+class="math inline">\(\ln\Phi\)</span>，正比于<span
+class="math inline">\(\Delta k_i\Delta
+k_j\)</span>（即矩形的面积）；而单位矩阵对应的非阿贝尔相位为<span
+class="math inline">\(\partial_i\mathcal A_j-\partial_j\mathcal
+A_i+[\mathcal A_i,\mathcal A_j]\)</span>。 因此，我们将(<a
+href="#eq:berry-curvature1">1</a>)式的定义推广为如下形式：
+<span id="eq:berry-curvaturen" class="eqnos"><span
+class="math display">\[\mathcal F_{ij}=\partial_i\mathcal
+A_j-\partial_j\mathcal A_i+[\mathcal A_i,\mathcal A_j].
+\]</span><span class="eqnos-number">(2)</span></span>
+容易验证，非阿贝尔贝里曲率具有如下的规范变换形式： <span
+class="math display">\[\mathcal F_{ij}(\boldsymbol k)\mapsto
+U^\dagger(\boldsymbol k)\mathcal F_{ij}(\boldsymbol k)U(\boldsymbol
+k).\]</span> 特别地，曲率的迹<span
+class="math inline">\(\mathrm{tr}\,\mathcal
+F_{ij}\)</span>是规范不变的。</p>
+<p>在上一节中，我们介绍了向量丛和向量丛上的联络的概念。
+贝里联络是价带子空间向量丛上绝热输运给出的一个自然的联络；而一个一般的向量丛上可能会存在各种不同的联络。
+对于一个任意的向量丛上的联络<span class="math inline">\(\mathcal
+A\)</span>，(<a
+href="#eq:berry-curvaturen">2</a>)中的定义都可以给出相应的曲率张量。
+特别地，对于一个流形的切丛上的Levi-Civita联络，相应的曲率张量就是该流形的曲率张量。
+此外，熟悉规范场理论的读者可能已经发现，(<a
+href="#eq:berry-curvaturen">2</a>)式中的定义和一个非阿贝尔规范场的场强张量具有同样的形式。
+事实上，规范场也可以看成向量丛上的一个联络；而相应的曲率张量就是规范场的场强。
+上面这些数学结果和本书的主旨关系不大，此处就不在赘述了。
+感兴趣的读者可以参考相关数学物理教材。</p>
+<h2 id="能带的陈数">能带的陈数</h2>
+<p>利用绝缘体能带的贝里曲率，我们可以定义能带的陈数。
+对于一个二维的布里渊区，陈数的定义为
+<span id="eq:chern1" class="eqnos"><span
+class="math display">\[c_1=\frac1{2\pi}\int
+dk_xdk_y\,\mathrm{tr}\,\mathcal F_{xy}.
+\]</span><span class="eqnos-number">(3)</span></span> </p>
+<p>陈数是描述二维绝缘体能带的一个重要的拓扑不变量。
+为此，我们需要证明它的两个性质：首先，<span
+class="math inline">\(c_1\)</span>是规范不变的；其次，<span
+class="math inline">\(c_1\)</span>总是一个整数。
+第一点很容易证明：在前文中，我们证明了<span
+class="math inline">\(\mathrm{tr}\,\mathcal
+F_{xy}\)</span>是规范不变的。
+因此，它在整个布里渊区的积分也是规范不变的。</p>
+<p>接下来，我们需要证明<span
+class="math inline">\(c_1\)</span>是个整数。
+事实上，这个证明用到的技巧将在后文分析能带的陈数时发挥重要的作用。
+首先，我们用一个“错误”的推导来计算<span
+class="math inline">\(c_1\)</span>。
+我们在前文中讲过，在二维布里渊区中，二阶反对称张量<span
+class="math inline">\(\mathcal F\)</span>实际上只有一个独立分量<span
+class="math inline">\(\mathcal F_{xy}\)</span>；其迹<span
+class="math inline">\(\mathrm{tr}\,\mathcal
+F_{xy}=\partial_x\mathrm{tr}\,\mathcal
+A_y-\partial_y\mathrm{tr}\,\mathcal A_x\)</span>可以看成矢量场<span
+class="math inline">\(\mathrm{tr}\,\mathcal A\)</span>的旋度： <span
+class="math display">\[\mathrm{tr}\,\mathcal
+F_{xy}=\left(\nabla\times\mathrm{tr}\,\mathcal A\right)_z.\]</span>
+因此，(<a
+href="#eq:chern1">3</a>)中的积分可以利用斯托克斯公式写成一个环路积分：
+<span id="eq:loop-integral" class="eqnos"><span
+class="math display">\[c_1=\frac1{2\pi}\oint_Cd\boldsymbol
+k\cdot\mathrm{tr}\,\mathcal A.
+\]</span><span class="eqnos-number">(4)</span></span> 其中<span
+class="math inline">\(C\)</span>是包围整个布里渊区的一个环路，如<span
+class="math inline">\((0, 0)\rightarrow(2\pi,0)\rightarrow(2\pi,
+2\pi)\rightarrow(0,2\pi)\rightarrow(0, 0)\)</span>。
+由于布里渊区的周期性，这个环路上的四段积分显然两两相互抵消，因而上式右端的环路积分为零！
+这个推导似乎告诉我们，陈数<span
+class="math inline">\(c_1\)</span>总是零？</p>
+<p>细心的读者应该已经发现上面的推导中的不严谨之处了：这里推导的关键在于要注意贝里联络的规范选择。
+如前所述，贝利曲率的迹<span class="math inline">\(\mathrm{tr}\,\mathcal
+F_{xy}\)</span>是规范不变的。 因此(<a
+href="#eq:chern1">3</a>)式的被积函数在每个点上都是不依赖于规范的选择的。
+但是，(<a
+href="#eq:loop-integral">4</a>)式中环路积分里的贝里联络是规范依赖的（即使取了迹之后也是如此）。
+因此，为了在此处应用斯托克斯公式，我们需要在整个环路<strong>内部</strong>都取定一个统一的规范（即价带子空间的基底），以保证在斯托克斯公式应用范围之内，贝里联络的旋度有一致的定义。（这里需要特别注意，仅仅在环路上取定统一的规范是不够的；此时环路积分虽然有良好的定义，但并不能通过斯托克斯公式联系到一个面积分上。）
+而此处环路<span class="math inline">\(C\)</span>的内部就是整个布里渊区。
+因此上述推导成立的条件是我们在整个布里渊区上可以对价带子空间取一个全局的基底。
+正如本章第二节所述，这也就意味着这个价带子空间构成的向量丛具有平庸的直积结构，也就是说这个能带结构是拓扑平庸的。
+因此，上面的论证其实只证明了对于一个拓扑平庸的绝缘体能带，其陈数<span
+class="math inline">\(c_1=0\)</span>。
+当然，虽然这也许并不令人意外，但也是一个重要的结果。
+另一方面，这个推导反过来也证明了如果陈数非零，那么在布里渊区上不能取一个统一的全局基底。
+因此，一个非零的陈数可以理解成对全局基地存在性的一种阻碍（obstruction）。</p>
+<p>对于一个拓扑非平庸的能带结构，由于无法取定一组全局的基底，我们就不能利用(<a
+href="#eq:loop-integral">4</a>)中的环路积分计算陈数了。
+这时我们如何计算陈数呢？ 让我们回到(<a
+href="#eq:chern1">3</a>)的定义，并注意到此处的被积函数<span
+class="math inline">\(\mathrm{tr}\,\mathcal
+F_{xy}\)</span>是规范不变的。
+因此，我们可以将布里渊区分成几个部分，在每个部分上这个面积分都有规范不变的积分结果；而总的陈数就是各个部分的积分之和。
+如果在每个部分上都可以取定一个一致的规范，那么在这个部分上就可以利用斯托克斯公式将面积分转化为该区域边界上的一个环路积分来进行计算。
+事实上，在一个单连通的二维开集上的一个向量丛总是拓扑平庸的（或者更一般地，一个可缩的（contractible）底空间，即拓扑等价于一个点的底空间上的向量丛总是拓扑平庸的）。
+对于一个最简单的二维闭合曲面，即一个球面，我们总可以将它分成两个单连通的部分<span
+class="math inline">\(D_1\)</span>和<span
+class="math inline">\(D_2\)</span>。
+我们先对球面上的向量丛（即以球面为底空间的向量丛）证明<span
+class="math inline">\(c_1\)</span>是一个整数。</p>
+<p>读者可能会对我们为什么关心球面上的向量丛产生疑惑：
+因为在固体物理中，我们熟知布里渊区总是拓扑等价于一个环面而非球面，因此球面上的向量丛，即以球面为布里渊区的能带结构，似乎与我们关心的物理问题并不相关？
+这里主要有两方面的原因：
+首先，在讨论能带的拓扑结构时，我们通常反而考虑一个球面而非环面上的向量丛。
+这是因为通过考虑球面而非环面上的能带结构，我们可以去除一些所谓“弱（weak）拓扑态”，而聚焦于“强”拓扑态。
+在后续章节中，我们还会介绍弱拓扑态的具体例子。
+我们这里以二维能带为例，简单地介绍一下弱拓扑态的概念。
+在一个二维能带中，如果我们考虑<span class="math inline">\((0,
+0)\rightarrow(2\pi, 0)\)</span>这样一条<span
+class="math inline">\(x\)</span>方向的环路，它就构成了一条一维能带。
+如果这个一维能带（作为一个一维系统）是拓扑非平庸的，那么整个二维能带也是拓扑非平庸的，因为我们甚至不能将这个一维能带连续地变成平庸能带。
+此时，我们称这样的二维能带为一个弱拓扑态。
+反之，如果一个二维能带的所有一维环路均为拓扑平庸的（也就是说它不是一个弱拓扑态），而它整体还构成一个拓扑非平庸的能带，我们称其为一个“强（strong）拓扑态”。
+比起强拓扑态，弱拓扑态显得相对“平庸”一些，因为我们可以将它按一个低维的系统进行研究。
+因此，我们在研究能带的拓扑性质的时候，往往会忽略掉弱拓扑态而只考虑该维度下的强拓扑态。
+相应地，我们会假定该能带不是弱拓扑态，即其中任意一个低维结构（如二维能带中的一维环路）都是平庸的一维能带。
+特别地，对于一个环面布里渊区上的二维能带，如果它不是弱拓扑态，我们就可以假定围绕其边界的<span
+class="math inline">\((\pi,
+\pi)\rightarrow(\pi,-\pi)\rightarrow(-\pi,-\pi)\rightarrow(-\pi,\pi)\rightarrow(\pi,\pi)\)</span>这个一维环路上的一维能带是拓扑平庸的。
+因此，我们可以连续地将该边界环路上的哈密顿量变形至同一形式<span
+class="math inline">\(H_0\)</span>。
+在这种变形之后，我们可以将环面布里渊区对其边界环路做单点紧化：即将边界上所有动量点都看成同一个点。
+容易看出，在这种变换之后，环面布里渊区就变成了一个二维球面布里渊区。
+反之，由于球面上不包含拓扑非平庸的一维环路（也就是说球面上的每条一维环路都能连续地收缩到一个点），球面布里渊区上也不包含任何弱拓扑态。
+因此，如果只考虑二维强拓扑态，我们应该考虑二维球面，而不是二维环面布里渊区上的向量丛。
+其次，在下文中我们也将看到，即使在环面等比球面复杂的一般二维闭合曲面上，我们同样可以利用类似的方法证明陈数是一个整数。
+基于这两个原因，让我们先不要担心二维环面带来的复杂性，而考虑一个二维球面上的向量丛及其陈数。</p>
+<p>对于一个球面，我们总是可以将它拆分成两个部分<span
+class="math inline">\(D_1\)</span>和<span
+class="math inline">\(D_2\)</span>，使得在每个部分上存在一组价带子空间的基底。
+而(<a href="#eq:chern1">3</a>)式的积分可以拆成两部分： <span
+class="math display">\[c_1=\frac1{2\pi}\left(\int_{D_1}+\int_{D_2}\right)dk_xdk_y\,\mathrm{tr}\,\mathcal
+F_{xy}.\]</span> 在<span
+class="math inline">\(D_{1,2}\)</span>上分别应用斯托克斯公式，我们可以将这两部分的面积分都变成边界上的环路积分：
+<span class="math display">\[c_1=\frac1{2\pi}\left(\oint_{\partial
+D_1}d\boldsymbol k\cdot\mathrm{tr}\,\mathcal A^{D_1}+
+\oint_{\partial D_2}d\boldsymbol k\cdot\mathrm{tr}\,\mathcal
+A^{D_2}\right),\]</span> 其中<span class="math inline">\(\mathcal
+A^{D_{1,2}}\)</span>分别代表利用<span
+class="math inline">\(D_{1,2}\)</span>区域上的规范（即价带子空间基底）计算的贝里联络。
+由于<span
+class="math inline">\(D_{1,2}\)</span>两区域互补，它们的边界就是二者的分界线。
+因此<span class="math inline">\(\partial D_2=-\partial D_1\)</span>。
+由此我们得到： <span id="eq:c1-loop-diff" class="eqnos"><span
+class="math display">\[c_1=\frac1{2\pi}\oint_{\partial D_1}d\boldsymbol
+k\cdot\mathrm{tr}
+\left(\mathcal A^{D_1}-\mathcal A^{D_2}\right).
+\]</span><span class="eqnos-number">(5)</span></span>
+也就是说，陈数可以表示为两个区域边界上的一个环路积分；而被积分的向量场是边界两侧两种规范下贝里联络的差（的迹）。
+利用本章第一节中介绍的贝里联络规范变换的形式，我们假设<span
+class="math inline">\(D_1\)</span>上的基底可以由<span
+class="math inline">\(D_2\)</span>上的基底通过幺正变换<span
+class="math inline">\(U(\boldsymbol
+k)\)</span>得到，那么二者贝里联络迹的关系为： <span
+class="math display">\[\mathrm{tr}\,\mathcal
+A^{D_1}=\mathrm{tr}\,\mathcal A^{D_2} + i\partial_{\boldsymbol k}\ln\det
+U.\]</span> 将这个结果代入(<a href="#eq:c1-loop-diff">5</a>)式，我们得到
+<span class="math display">\[c_1=-\frac 1{2\pi i}\oint_{\partial D_1}
+d\ln\det U(\boldsymbol k).\]</span> 这里等式的右边是函数<span
+class="math inline">\(\chi(\boldsymbol k)=\ln\det U(\boldsymbol
+k)\)</span>沿边界<span class="math inline">\(\partial
+D_1\)</span>旋转一周的变化值。 这里规范变换<span
+class="math inline">\(U(\boldsymbol k)\)</span>总可以取成动量<span
+class="math inline">\(\boldsymbol
+k\)</span>的单值函数；但是对数函数<span
+class="math inline">\(\ln\)</span>在复数域上有多值性。
+更直观地说，这里幺正矩阵<span
+class="math inline">\(U\)</span>的行列式实际上是一个幺模的复数，其对数就是<span
+class="math inline">\(\det U\)</span>的辐角乘上<span
+class="math inline">\(i\)</span>；而这里辐角的选择有<span
+class="math inline">\(2\pi\)</span>整数倍的不确定性。
+因此，当我们环绕<span class="math inline">\(\partial
+D_1\)</span>一周，如果要求<span class="math inline">\(\chi(\boldsymbol
+k)\)</span>连续地取值，其末值和初值就会差<span
+class="math inline">\(2\pi i\)</span>的整数倍。 由此我们就证明了<span
+class="math inline">\(c_1\)</span>总是一个整数。</p>
+<p>事实上，上述证明可以简单地推广到任意二维曲面为底空间的向量丛。
+对于一个一般的二维曲面，我们可能需要将其分成超过两个部分<span
+class="math inline">\(D_1,\ldots, D_n\)</span>，才能在每个<span
+class="math inline">\(D_i\)</span>上取定一组基底。 一般地，(<a
+href="#eq:chern1">3</a>)式中的陈数可以写成每两个部分<span
+class="math inline">\(D_i\)</span>和<span
+class="math inline">\(D_j\)</span>的边界<span
+class="math inline">\(C_{ij}\)</span>上不同规范下贝里联络的差的环路积分：
+<span class="math display">\[c_1=\frac1{2\pi}
+\sum_{i&lt;j}\oint_{C_{ij}}\boldsymbol k\cdot\mathrm{tr}
+\left(\mathcal A^{D_i}-\mathcal A^{D_j}\right).\]</span>
+根据前面的论证，每个边界上的环路积分都是一个整数。 因此，最后得到的<span
+class="math inline">\(c_1\)</span>也是一个整数。</p>
+<p><span
+class="math inline">\(c_1\)</span>是个整数表明它是能带的一个拓扑不变量。
+为证明这一点，我们首先注意到(<a href="#eq:chern1">3</a>)式中定义的<span
+class="math inline">\(c_1\)</span>是能带贝利曲率的一个连续函数。
+因此，当我们连续地改变布里渊区上的哈密顿量，即连续地改变布里渊区上占据态向量丛的结构时，贝里曲率总是连续变化的，而<span
+class="math inline">\(c_1\)</span>也是连续变化的。
+另一方面，上面证明了<span
+class="math inline">\(c_1\)</span>总是整数，因而它只能取一些离散的值，无法连续地变化。
+这两条看似矛盾的结论只有一种情况下可以同时得到满足：
+即在连续地改变能带结构时，<span
+class="math inline">\(c_1\)</span>必须保持不变（除非在这个过程中能带的能隙关闭，此时占据态向量丛不再有良好的定义）。
+也就是说，<span
+class="math inline">\(c_1\)</span>是一个拓扑不变量：它在能带连续变化时总是保持不变，因而可以用来区分拓扑不等价的能带结构。
+特别地，一个平庸的二维能带的陈数<span
+class="math inline">\(c_1=0\)</span>；而陈数非零的能带总是拓扑非平庸的。
+类似的论证方式在本书后面章节还会反复用到：如果我们能够证明能带参数（如贝利曲率、贝里相位等）的一个连续（一般是布里渊区上的一个积分）总是一个整数，那么它就是一个拓扑不变量。</p>
+<p>本节中定义的<span
+class="math inline">\(c_1\)</span>也被称为第一陈数（the first Chern
+number）。
+事实上，对于所有偶数维的绝缘体能带（或者偶数维底空间上的向量丛上的一个联络），都可以定义一个陈数。
+<span class="math inline">\(2n\)</span>维能带的陈数被称为第<span
+class="math inline">\(n\)</span>陈数，记作<span
+class="math inline">\(c_n\)</span>。
+在物理中，我们一般只关心三维以下的能带结构。
+因此本书中只讨论第一陈数<span class="math inline">\(c_1\)</span>。
+事实上，高阶陈数最简洁方便的表示形式是使用微分形式；但是本书中其它地方并没有引入微分形式的必要。
+因此我们就不再深入讨论高阶陈数了。 下一个陈数<span
+class="math inline">\(c_2\)</span>可以用来描述四维量子霍尔效应，因此也在研究拓扑物理中有重要的应用。</p>
+<p>本章中定义的陈数<span
+class="math inline">\(c_1\)</span>是一个适用于任意的二维能带结构的拓扑不变量。
+因此，它可以给出最一般的，即没有额外对称性的二维能带的一种拓扑分类。
+在上一章中，我们看到这种能带属于A对称性类型。
+因此，陈数给出了二维A对称性类型的一个整数（<span
+class="math inline">\(\mathbb Z\)</span>）分类。
+在第??章中，我们将证明二维A对称性类型的全部拓扑分类就是<span
+class="math inline">\(\mathbb Z\)</span>，而它可以用陈数完全地刻画。</p>
+<p>本节对陈数的讨论是从数学角度进行的，也并没有给出具体的计算陈数的例子，特别是具有非零陈数的拓扑非平庸能带的例子。
+在下一节中，我们将具体讲解具有非零陈数的能带系统，即所谓的拓扑陈绝缘体（Chern
+Insulator），以及它与二维整数量子霍尔效应之间的关系。</p>
+</body>
+</html>

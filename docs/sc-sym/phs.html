@@ -8,7 +8,9 @@
   <style>
     html {
       line-height: 2;
-      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”, “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro Hei”,sans-serif;;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
       font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -159,9 +161,19 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
 </head>
 <body>
 <header id="title-block-header">
@@ -173,6 +185,324 @@
         <li>粒子-空穴对称性</li>
       </ul>
 </nav>
-
+<h2
+id="金属和绝缘体中的粒子-空穴对称性">金属和绝缘体中的粒子-空穴对称性</h2>
+<p>在介绍超导体的粒子-空穴对称性之前，我们先回顾一下在通常的非超导体中的粒子-空穴对称性。
+我们首先考虑粒子-空穴变换这一对称操作。
+我们通常所指的粒子空穴变换是把电子激发与空穴激发进行互换。
+利用二次量子化的语言，我们可以将这种变换表示成将电子的产生和湮灭算符进行互换：
+<span id="eq:bdg-sym:phs0" class="eqnos"><span
+class="math display">\[\mathcal C:c_i\mapsto c_i^\dagger;
+c_i^\dagger\mapsto c_i.
+\]</span><span class="eqnos-number">(1)</span></span>
+由于电子激发与空穴激发具有大小相等、符号相反的能量，粒子-空穴变换应该会使系统的哈密顿量变号。
+事实上，正如本章开篇处所述，我们在本章中主要考虑自由费米子哈密顿量的对称性。
+如果我们考虑一个自由费米子哈密顿量： <span class="math display">\[\hat H
+= \sum_{ij}c_i^\dagger H_{ij}c_j,\]</span> 其中<span
+class="math inline">\(H_{ij}=H_{ji}^\ast\)</span>构成一个厄米矩阵<span
+class="math inline">\(H\)</span>。
+在粒子空穴变换下，这个哈密顿量会变为： <span
+class="math display">\[\mathcal C\hat H\mathcal C^{-1}
+=\sum_{ij}c_i H_{ij}c_j^\dagger
+=-\sum_{ij}c_i^\dagger H_{ji} c_j+\sum_i H_ii.\]</span>
+如果忽略掉最后一项常数项（它只改变系统总能量的零点，不改变激发态的能谱），我们可以看到，哈密顿量矩阵<span
+class="math inline">\(H\)</span>变成了<span
+class="math inline">\(H^T=-H^\ast\)</span>。
+因此，我们可以认为单体哈密顿量在粒子空穴变换下的变换形式为<span
+class="math inline">\(H\)</span>变成<span
+class="math inline">\(-H^\ast\)</span>。</p>
+<h2 id="粒子空穴对称性的反幺正属性">粒子空穴对称性的反幺正属性</h2>
+<p>上述哈密顿量的变换形式中涉及到了哈密顿量的厄米共轭。
+对比这个变换形式和我们之前在第??节中介绍的时间反演对称性下哈密顿量变换的形式，我们可以猜到，粒子空穴对称性应该也是一个反幺正对称性操作。
+我们注意到(<a
+href="#eq:bdg-sym:phs0">1</a>)式中的粒子空穴变换将一个产生算符变成一个湮灭算符。
+如果将二次量子化的语言转换为一次量子化的语言，产生算符在基底变换下的变换形式和右矢是一样的，而湮灭算符的变换形式和左矢是一样的。
+这是因为一个单粒子态（右矢）可以用产生算符作用在真空态上得到：<span
+class="math inline">\(|\alpha\rangle=c_\alpha^\dagger|0\rangle\)</span>；
+因此等式两边应该有同样的变换性质。
+而Fock空间上的真空态是与基底选择无关的一个独特的量子态。因此<span
+class="math inline">\(c_\alpha^\dagger\)</span>的变换性质与<span
+class="math inline">\(|\alpha\rangle\)</span>相同。
+在二次量子化的Fock空间上，粒子空穴变换是一个幺正操作。 因此，如果<span
+class="math inline">\(\mathcal C\)</span>将<span
+class="math inline">\(c_i\)</span>变成<span
+class="math inline">\(c_i^\dagger\)</span>，那么对于任意复数<span
+class="math inline">\(\lambda\)</span>，它会将<span
+class="math inline">\(\lambda c_i\)</span>变成<span
+class="math inline">\(\lambda c_i^\dagger\)</span>。
+相应地，在一次量子化下，<span class="math inline">\(\mathcal
+C\)</span>就将<span
+class="math inline">\(\lambda|i\rangle\)</span>变成了<span
+class="math inline">\(\lambda^\ast \langle i|\)</span>。
+由此可见，在一次量子化的观点下，粒子空穴变换满足如下的反线性条件： <span
+class="math display">\[\mathcal C(\lambda |\alpha\rangle)
+=\lambda^\ast\mathcal C|\alpha\rangle.\]</span> 也就是说，<span
+class="math inline">\(\mathcal C\)</span>也是一个反幺正对称操作。
+这里我们再强调一下粒子空穴对称性与时间反演对称性的不同：时间反演对称性本质上就是一个反幺正变换，它在二次量子化和一次量子化的形式下都是反幺正变换；粒子空穴对称性本质上是一个幺正变换，它在二次量子化的形式下确实也是一个幺正变换，但是写到一次量子化的形式下却表现为一个反幺正变换。</p>
+<p>明确了粒子空穴对称性的幺正和反幺正性质，我们就可以将(<a
+href="#eq:bdg-sym:phs0">1</a>)中的粒子空穴变换推广为在任意基底下的形式。
+由于(<a
+href="#eq:bdg-sym:phs0">1</a>)中的变换形式并不具备基底变换下的不变性，我们将最一般的粒子空穴变换用一个矩阵来描述：
+<span class="math display">\[\mathcal C c_\alpha^\dagger\mathcal
+C^{-1}=c_\beta^\dagger C_{\beta\alpha}\]</span>
+在上面的二次量子化表达形式下，<span class="math inline">\(\mathcal
+C\)</span>应该是一个幺正变换，因此这里<span
+class="math inline">\(C_{\beta\alpha}\)</span>构成一个幺正矩阵。
+相应地，在一次量子化的表达形式下，<span class="math inline">\(\mathcal
+C\)</span>可以写成 <span class="math inline">\(\mathcal C = C\mathcal
+K\)</span>， 这里<span class="math inline">\(\mathcal
+K\)</span>表示复共轭操作（或者说是Hilbert空间上的一个实结构）。
+单体哈密顿量<span
+class="math inline">\(H\)</span>在这个粒子空穴变换下的变换形式为 <span
+class="math display">\[H\rightarrow-\mathcal CH\mathcal C^{-1} =
+-CH^\ast C^{-1}.\]</span> 因此，一个哈密顿量在粒子空穴变换下不变的条件为
+<span class="math display">\[H = -\mathcal CH\mathcal C^{-1}=-CH^\ast
+C^{-1}.\]</span></p>
+<h2
+id="动量空间哈密顿量的粒子空穴对称性">动量空间哈密顿量的粒子空穴对称性</h2>
+<p>对于具有晶体平移对称性的系统，电子的状态可以用动量这一好量子数标记标记，因此（二次量子化的）哈密顿量可以写成如下在动量空间块对角化的形式：
+<span id="eq:bdg-sym:cHc" class="eqnos"><span
+class="math display">\[H=\sum_kc_{k\alpha}^\dagger
+H_{\alpha\beta}(\boldsymbol k)c_{k\beta},
+\]</span><span class="eqnos-number">(2)</span></span> 其中<span
+class="math inline">\(\alpha,\beta\)</span>标记除了动量外额外的量子数（如能带、自旋等）。
+相应地，单体哈密顿量<span
+class="math inline">\(H\)</span>也可以写成分块对角化的形式：每个动量<span
+class="math inline">\(\boldsymbol k\)</span>对应于一个对角块<span
+class="math inline">\(H(\boldsymbol
+k)\)</span>，其矩阵元就是上式中的<span
+class="math inline">\(H_{\alpha\beta}(\boldsymbol k)\)</span>。</p>
+<p>下面我们讨论粒子空穴变换在<span class="math inline">\(H(\boldsymbol
+k)\)</span>上的作用形式。
+从物理上看，二次量子化下的粒子空穴变换应该保持准粒子激发的动量不变（数学上说，这是因为粒子空穴变换和平移变换对易）。
+而动量为<span class="math inline">\(\boldsymbol
+k\)</span>的空穴激发携带的动量是<span class="math inline">\(-\boldsymbol
+k\)</span>。 因此，粒子空穴变换将把动量为<span
+class="math inline">\(\boldsymbol k\)</span>的电子<span
+class="math inline">\(c_k\)</span>映射为动量为<span
+class="math inline">\(-\boldsymbol k\)</span>的空穴<span
+class="math inline">\(c_{-k}^\dagger\)</span>。
+如果考虑到除了动量之外其它的量子数，粒子空穴变换可以用如下的幺正矩阵<span
+class="math inline">\(C\)</span>表示：
+<span id="eq:bdg-sym:Ck" class="eqnos"><span
+class="math display">\[\mathcal Cc_{k\alpha}\mathcal C^{-1} =
+c_{-k\beta}^\dagger C_{\beta\alpha}.
+\]</span><span class="eqnos-number">(3)</span></span>
+这一结论也可以从粒子空穴变换的基底变换性质中推导出来。
+从物理上看，粒子空穴变换应该保持空间坐标不变。
+因此，它在坐标空间的变换形式为： <span class="math display">\[\mathcal
+Cc_{i\alpha}\mathcal C^{-1} = c_{i\beta}^\dagger
+C_{\beta\alpha}.\]</span>
+将等式两边同时做傅里叶变换，并注意到产生和湮灭算符的傅里叶变换展开系数互为复共轭，就可以得到上面坐标空间的变换形式。</p>
+<p>上述二次量子化下粒子空穴变换的动量空间形式也可以表示成一次量子化下的形式。
+由于粒子空穴变换会将<span class="math inline">\(\boldsymbol
+k\)</span>变成<span class="math inline">\(-\boldsymbol
+k\)</span>，它也就会将<span class="math inline">\(H(\boldsymbol
+k)\)</span>与<span class="math inline">\(H(-\boldsymbol
+k)\)</span>联系起来。
+我们不难得到一个哈密顿量在粒子空穴变换下不变的条件为
+<span id="eq:bdg-sym:hk-transf" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)= -\mathcal CH(-\boldsymbol
+k)\mathcal C^{-1}
+=-CH(-\boldsymbol k)^\ast C^{-1}.
+\]</span><span class="eqnos-number">(4)</span></span> </p>
+<h2 id="例子六角晶格上的狄拉克点">例子：六角晶格上的狄拉克点</h2>
+<p>作为一个具体的例子，我们考虑一个六角晶格(honeycomb
+lattice)上的紧束缚模型：
+<span id="eq:bdg-sym:honeycomb" class="eqnos"><span
+class="math display">\[\hat H=-t\sum_{\langle
+ij\rangle}\left(c_i^\dagger c_j+\text{h.c.}\right).
+\]</span><span class="eqnos-number">(5)</span></span>
+这个例子不仅可以帮助我们理解电子能带中的粒子空穴对称性，也是后面Haldane模型和Kane-Mele模型的基础。</p>
+<p>首先，我们用二次量子化的语言验证上述模型具有粒子空穴对称性。
+如果我们简单地将产生湮灭算符互换：<span
+class="math inline">\(c_i\leftrightarrow
+c_i^\dagger\)</span>，紧束缚模型哈密顿量将变为
+<span id="eq:bdg-sym:honey-transf-naive" class="eqnos"><span
+class="math display">\[\mathcal C\hat H\mathcal C^{-1}=-t\sum_{\langle
+ij\rangle}\left(c_ic_j^\dagger+\text{h.c.}\right)
+=t\sum_{\langle ij\rangle}\left(c_i^\dagger c_j+\text{h.c.}\right)=-\hat
+H.
+\]</span><span class="eqnos-number">(6)</span></span>
+因此，这种最简单的粒子空穴对称变换并不是保持哈密顿量<span
+class="math inline">\(\hat H\)</span>不变的对称性。
+为了得到真正的粒子空穴对称性，我们需要注意到六角晶格是一个复式晶格：它的一个原胞包含两个格点（我们将其标记为<span
+class="math inline">\(A\)</span>和<span
+class="math inline">\(B\)</span>）；而最近邻的跃迁只在两个格点之间进行。也就是说，<span
+class="math inline">\(\hat H\)</span>中只包含<span
+class="math inline">\(A\)</span>格点到<span
+class="math inline">\(B\)</span>格点、或<span
+class="math inline">\(B\)</span>格点到<span
+class="math inline">\(A\)</span>格点的跃迁，而不包含<span
+class="math inline">\(A\)</span>格点到<span
+class="math inline">\(A\)</span>格点、或<span
+class="math inline">\(B\)</span>格点到<span
+class="math inline">\(B\)</span>格点的跃迁。根据图论中的术语，具备这样性质的晶格被称为可二分（bipartite）晶格。
+对于可二分晶格，我们可以修改一下之前的粒子空穴变换：在<span
+class="math inline">\(B\)</span>子格上，我们将<span
+class="math inline">\(c_i\)</span>变成<span
+class="math inline">\(-c_i^\dagger\)</span>。这个新的粒子空穴变换可以写成如下的形式
+<span id="eq:bdg-sym:ABtransf" class="eqnos"><span
+class="math display">\[\mathcal Cc_i\mathcal C^{-1}=(-1)^ic_i^\dagger,
+\]</span><span class="eqnos-number">(7)</span></span> 其中<span
+class="math inline">\((-1)^i\)</span>在<span
+class="math inline">\(A,B\)</span>两套子格上分别取正负1。 由于(<a
+href="#eq:bdg-sym:honeycomb">5</a>)式中的每个跃迁项都恰好包含一个<span
+class="math inline">\(B\)</span>格点，(<a
+href="#eq:bdg-sym:ABtransf">7</a>)中的粒子空穴变换会给该哈密顿量中每个跃迁项都加上一个额外的负号，
+它会抵消掉(<a
+href="#eq:bdg-sym:honey-transf-naive">6</a>)中变换结果里的负号。
+因此，<span class="math inline">\(\hat
+H\)</span>在这个新的粒子空穴变换下不变，也就是说(<a
+href="#eq:bdg-sym:ABtransf">7</a>)是该系统的一个对称性。</p>
+<div id="fig:honeycomb-lattice" class="fignos">
+<figure>
+<img src="honeycomb-lattice.svg" style="width:50.0%"
+alt="图 1: 六角晶格示意图。图中红色和蓝色格点分别标记AB两套子格。我们为原胞选择的两个基矢\boldsymbol e_1和\boldsymbol e_2如图所示。六角晶格的每个原胞包含红色和蓝色格点各一个；根据我们原胞的选择，每个原胞里包含的红色和蓝色格点在图中用虚线圈出。" />
+<figcaption aria-hidden="true"><span>图 1:</span>
+六角晶格示意图。图中红色和蓝色格点分别标记AB两套子格。我们为原胞选择的两个基矢<span
+class="math inline">\(\boldsymbol e_1\)</span>和<span
+class="math inline">\(\boldsymbol
+e_2\)</span>如图所示。六角晶格的每个原胞包含红色和蓝色格点各一个；根据我们原胞的选择，每个原胞里包含的红色和蓝色格点在图中用虚线圈出。</figcaption>
+</figure>
+</div>
+<p>接下来，我们在动量空间检查该模型的粒子空穴对称性。
+利用傅里叶变换，我们可以将(<a
+href="#eq:bdg-sym:honeycomb">5</a>)在动量空间分块对角化。
+我们对六角晶格的原胞及基矢的选择如图 <a
+href="#fig:honeycomb-lattice">1</a> 所示。 如果用<span
+class="math inline">\(n=(n_1, n_2)\)</span>来标记原胞，其中<span
+class="math inline">\(n_{1,2}\)</span>代表在两个基矢方向的坐标，即<span
+class="math inline">\(\boldsymbol r_n=n_1\boldsymbol e_1+n_2\boldsymbol
+e_2\)</span>、用<span
+class="math inline">\(a=A,B\)</span>标记两套子格，那么电子算符<span
+class="math inline">\(c_i\)</span>可以写成<span
+class="math inline">\(c_{na}\)</span>。 在图 <a
+href="#fig:honeycomb-lattice">1</a> 中可以看到，每个原胞中的<span
+class="math inline">\(A\)</span>格点有三个最近邻格点，分别位于当前原胞<span
+class="math inline">\((n_1,n_2)\)</span>、原胞<span
+class="math inline">\((n_1+1,n_2)\)</span>和原胞<span
+class="math inline">\((n_1,n_2-1)\)</span>。 因此，(<a
+href="#eq:bdg-sym:honeycomb">5</a>)中的哈密顿量可以表示成： <span
+class="math display">\[\hat H=-t\sum_{n_1n_2}c_{(n_1,n_2)A}^\dagger
+c_{(n_1,n_2)B}+
+c_{(n_1,n_2)A}^\dagger c_{(n_1+1,n_2)B}+
+c_{(n_1,n_2)A}^\dagger c_{(n_1,n_2-1)B}+\text{h.c.}.\]</span>
+对此进行傅里叶变换，不难得到 <span class="math display">\[\hat
+H=-t\sum_kc_{kA}^\dagger
+c_{kB}\left(1+e^{ik_1}+e^{-ik_2}\right)+\text{h.c.},\]</span> 其中<span
+class="math inline">\(k_{1,2}=\boldsymbol k\cdot\boldsymbol
+e_{1,2}\)</span>为动量在由两个基矢构成的斜坐标系中的两个分量。
+如上节所述，我们将<span class="math inline">\(c_{kA}\)</span>和<span
+class="math inline">\(c_{kB}\)</span>组合成一个二维向量：<span
+class="math inline">\(\psi_k=\begin{pmatrix}c_{kA}&amp;c_{kB}\end{pmatrix}^T\)</span>，就可以将傅里叶变换后的哈密顿量写成<span
+class="math inline">\(\hat H=\sum_k\psi_k^\dagger H(\boldsymbol
+k)\psi_k\)</span>，其中<span class="math inline">\(H(\boldsymbol
+k)\)</span>为如下矩阵：
+<span id="eq:bdg-sym:honey-Hk" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=\begin{pmatrix}
+0 &amp; -t(1+e^{ik_1}+e^{-ik_2})\\
+-t(1+e^{-ik_1}+e^{ik_2}) &amp; 0
+\end{pmatrix}.
+\]</span><span class="eqnos-number">(8)</span></span> 而(<a
+href="#eq:bdg-sym:ABtransf">7</a>)式中的粒子空穴变换可以写成<span
+class="math inline">\(\mathcal C\psi_k\mathcal
+C^{-1}=\tau^z\psi_k\)</span>，其中<span
+class="math inline">\(\tau^z\)</span>是泡利矩阵。
+也就是说，这里表示粒子空穴变换的幺正矩阵<span
+class="math inline">\(C=\tau^z\)</span>。 容易验证(<a
+href="#eq:bdg-sym:honey-Hk">8</a>)中的<span
+class="math inline">\(H(\boldsymbol k)\)</span>和这样的<span
+class="math inline">\(C\)</span>满足(<a
+href="#eq:bdg-sym:hk-transf">4</a>)式的关系。
+这证明了六角晶格上的紧束缚模型确实有粒子空穴对称性。</p>
+<h2 id="超导体中的粒子空穴对称性">超导体中的粒子空穴对称性</h2>
+<p>理解了通常的金属和绝缘体中的粒子空穴对称性之后，我们再来讨论超导体中的粒子空穴对称性。
+这里需要强调的是，这两种对称性尽管具有类似的数学形式，但是背后的物理涵义截然不同。
+金属和绝缘体中的粒子空穴对称性，就像其它对称性一样，是某些自由费米子系统具有的一种特殊的性质，而这种对称性也对系统可能的哈密顿量构成一定的约束。正如前面例子中看到的那样，只有可二分的晶格才具有粒子空穴对称性，而不可二分晶格（如三角晶格等）上的模型一般都没有粒子空穴对称性。
+对于可二分晶格，粒子空穴对称性进一步要求哈密顿量中同种子格之间的跃迁项矩阵元均为零。</p>
+<p>但是，超导体的粒子空穴对称性具有完全不同的物理涵义。
+正如第??节中所述，对于超导体，我们可以用一个平均场BdG哈密顿量来描述它的准粒子色散关系。
+为了避免自旋自由度带来的额外复杂性，我们在本节中以无自旋费米子的超导体为例介绍其粒子-空穴对称性。
+（在第??节中，会介绍具有额外自旋对称性的超导体的粒子-空穴对称性及其拓扑分类。）
+我们考虑如下的BdG哈密顿量：
+<span id="eq:bdg-sym:pHp" class="eqnos"><span
+class="math display">\[\hat H=\sum_k\psi_k^\dagger H(\boldsymbol
+k)\psi_k,
+\]</span><span class="eqnos-number">(9)</span></span> 其中<span
+class="math inline">\(H(\boldsymbol k)\)</span>由(??)式给出：
+<span id="eq:bdg-sym:Hkp" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=\begin{pmatrix}
+\epsilon_k-\mu &amp; \Delta_k\\
+\Delta_k^\ast &amp; -\epsilon_{-k}+\mu
+\end{pmatrix}.
+\]</span><span class="eqnos-number">(10)</span></span> 这里(<a
+href="#eq:bdg-sym:pHp">9</a>)虽然具有和绝缘体哈密顿量(<a
+href="#eq:bdg-sym:cHc">2</a>)相同的数学形式，但是其中的<span
+class="math inline">\(\psi_k\)</span>却不是通常的电子算符。
+事实上，这里的<span class="math inline">\(\psi_k=\begin{pmatrix}c_k
+&amp;
+c_{-k}^\dagger\end{pmatrix}^T\)</span>的两个分量分别为电子算符<span
+class="math inline">\(\psi_{k1}=c_k\)</span>和空穴算符<span
+class="math inline">\(\psi_{k2}=c_{-k}^\dagger\)</span>。
+并且后者和前者实际上对应同样的物理自由度：<span
+class="math inline">\(\psi_{k2}\)</span>就是<span
+class="math inline">\(\psi_{-k1}\)</span>的反粒子。 这意味着<span
+class="math inline">\(H(\boldsymbol
+k)\)</span>中存在某种冗余度：同样的物理自由度以不同形式出现了两次。
+因此，<span class="math inline">\(H(\boldsymbol
+k)\)</span>的形式不能随意取，而是必须满足某些规则。 例如在(<a
+href="#eq:bdg-sym:Hkp">10</a>)中可以观察到，<span
+class="math inline">\(H(\boldsymbol k)\)</span>的左上角总是和<span
+class="math inline">\(H(-\boldsymbol k)\)</span>的右下角互为相反数。</p>
+<p>这种对<span class="math inline">\(H(\boldsymbol
+k)\)</span>的约束可以写成粒子空穴对称性的形式。 由于<span
+class="math inline">\(\psi_k\)</span>的两个分量实际对应同一个物理自由度，我们可以用<span
+class="math inline">\(\tau^x\)</span>乘在这个向量上交换二者的位置，就会得到<span
+class="math inline">\(\psi_k\)</span>对应的空穴模式：
+<span id="eq:bdg-sym:taux" class="eqnos"><span
+class="math display">\[\tau^x\begin{pmatrix}c_k\\
+c_{-k}^\dagger\end{pmatrix}
+=\begin{pmatrix}c_{-k}^\dagger\\c_k\end{pmatrix}.
+\]</span><span class="eqnos-number">(11)</span></span> 也就是说，<span
+class="math inline">\(\psi_k\)</span>就是<span
+class="math inline">\(\tau^x\psi_{-k}^\dagger\)</span>；<span
+class="math inline">\(\tau^x\psi_k\)</span>就是<span
+class="math inline">\(\psi_{-k}^\dagger\)</span>。
+根据本节前面对粒子-空穴对称性的讨论，我们可以将从<span
+class="math inline">\(\tau^x\psi_k\)</span>到<span
+class="math inline">\(\psi_{-k}^\dagger\)</span>的变换关系看成如下的粒子-空穴对称性：
+<span id="eq:bdg-sym:sc-phs" class="eqnos"><span
+class="math display">\[\mathcal C\psi_{k\alpha}\mathcal
+C^{-1}=\psi_{-k\alpha}^\dagger \tau^x_{\alpha\beta}.
+\]</span><span class="eqnos-number">(12)</span></span> 根据(<a
+href="#eq:bdg-sym:taux">11</a>)式的关系，上述粒子-空穴变换的结果实际就严格地等于<span
+class="math inline">\(\psi_{k\alpha}\)</span>。 因此，如果我们知道<span
+class="math inline">\(\psi_k\)</span>的两个分量之间的内在关系，那么这个粒子-空穴变换就是一个恒等变换，也就是BdG哈密顿量总是具有的一个对称性。
+但是，如果我们忘掉<span
+class="math inline">\(\psi_k\)</span>的两个分量之间的内在关系，而将BdG哈密顿量看成一个一般的2阶厄米矩阵，那么它就必须满足(<a
+href="#eq:bdg-sym:sc-phs">12</a>)式中的粒子-空穴对称性。 根据(<a
+href="#eq:bdg-sym:Ck">3</a>)中的定义，这个粒子-空穴对称性对应的矩阵为<span
+class="math inline">\(C=\tau^x\)</span>。
+因此，无自旋费米子超导体的哈密顿量<span
+class="math inline">\(H(\boldsymbol k)\)</span>需要满足(<a
+href="#eq:bdg-sym:hk-transf">4</a>)式中的关系： <span
+class="math display">\[H(\boldsymbol k)=-\tau^xH(-\boldsymbol
+k)^\ast\tau^x.\]</span>
+不难验证，由于无自旋费米子超导配对函数一定是动量的奇函数：<span
+class="math inline">\(\Delta_{-k}=-\Delta_k\)</span>，(<a
+href="#eq:bdg-sym:Hkp">10</a>)中的哈密顿量确实满足如上的粒子-空穴对称性。</p>
+<p>最后，与前面第??节中讨论的时间反演对称性类似，由于粒子-空穴对称性<span
+class="math inline">\(\mathcal
+C\)</span>也是反幺正变换，因此我们也可以讨论超导体中的粒子-空穴对称性的<span
+class="math inline">\(\mathcal C^2=\pm1\)</span>。
+根据前面得到的无自旋费米子粒子-空穴对称性的具体形式：<span
+class="math inline">\(C=\tau^x\)</span>，我们很容易验证它满足<span
+class="math inline">\(\mathcal C^2=CC^\ast=+1\)</span>。
+因此无自旋费米子的粒子空穴对称性是<span class="math inline">\(\mathcal
+C^2=+1\)</span>的反幺正对称性。
+在第??节中，我们将会看到，具有SU(2)自旋对称性的超导体可以用一个满足<span
+class="math inline">\(\mathcal
+C^2=-1\)</span>的粒子-空穴对称性来描述。</p>
 </body>
 </html>

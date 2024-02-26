@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>霍尔电导量子化的劳扶林论证</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">霍尔电导量子化的劳扶林论证</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>陈绝缘体与整数量子霍尔效应</li>
+        <li>霍尔电导量子化的劳扶林论证</li>
+      </ul>
+</nav>
+<p>在本节中，我们将简单回顾磁场中的整数量子霍尔效应现象，并通过讲解劳扶林论证（Laughlin’s
+argument）这一证明过程，论证量子霍尔效应中霍尔电导的量子化现象是二维绝缘体系统的普遍特征，并引入量子化的霍尔电导与电荷泵浦效应的定量关系。
+这个关系将在下一节中用来证明陈绝缘体的霍尔电导与陈数之间的关系。</p>
+<h2 id="霍尔效应与霍尔电导">霍尔效应与霍尔电导</h2>
+<p>大家在普通物理中应该就学过经典的霍尔效应： 假设一块材料处于<span
+class="math inline">\(z\)</span>方向的磁场<span
+class="math inline">\(B_z\)</span>中。 如果在材料中有<span
+class="math inline">\(x\)</span>方向的电流通过，相应的电子就沿<span
+class="math inline">\(-x\)</span>方向运动（因为电子带负电）。
+在磁场中，沿<span
+class="math inline">\(-x\)</span>方向运动的电子会受到<span
+class="math inline">\(y\)</span>方向的洛伦兹力的作用。
+因此，在外磁场中，一个<span
+class="math inline">\(x\)</span>方向上的电流<span
+class="math inline">\(I_x\)</span>，会在与其垂直（并且与外磁场垂直）的方向产生一个电压<span
+class="math inline">\(V_y\)</span>。 二者的比值就是霍尔电阻<span
+class="math inline">\(R_H=V_y/I_x\)</span>。
+由于此处电压方向与电流方向垂直，我们通常又称其为横向（transverse）电阻，而称通常的电阻为纵向（longitutional）电阻。</p>
+<p>在讨论纵向电阻时，我们通常会使用电阻率或电导率来消除材料宏观形状与尺寸的影响，来得到一个描述材料本征性质的强度量。
+特别地，电导率<span
+class="math inline">\(\sigma\)</span>可以看成同方向的电场强度和电流密度矢量之间的关系：<span
+class="math inline">\(j_x=\sigma E_x\)</span>。
+类似地，在讨论霍尔效应时，我们也可以利用霍尔电导率： <span
+class="math inline">\(j_x=\sigma_H E_y\)</span>。
+注意在二维系统中，电导率<span
+class="math inline">\(\sigma\)</span>和电导<span
+class="math inline">\(G\)</span>具有相同的量纲。 因此，我们常常将<span
+class="math inline">\(\sigma_H\)</span>简称为霍尔电导。</p>
+<p>接下来，我们利用经典电磁学推导经典霍尔电导的公式。
+在这部分的推导中，我们主要关心霍尔电导的绝对值大小，而不是其符号（霍尔电导<span
+class="math inline">\(\sigma_{xy}\)</span>的符号表示电流、电场与磁场的方向关系，这可以利用洛伦兹力的右手定则简单地得到，也不是本书讨论的主要内容）。
+因此，下文中的磁场、电流和电场也应理解为其在相应方向分量的绝对值大小。
+特别地，我们将电子电荷取为<span
+class="math inline">\(e\)</span>而无视其负号。 假设磁场强度为<span
+class="math inline">\(B_z\)</span>；电流密度为<span
+class="math inline">\(j_x\)</span>。 根据电流密度和电子速度的关系：<span
+class="math inline">\(j_x=en_ev_x\)</span>，其中<span
+class="math inline">\(v_x\)</span>为电子漂移速度。
+由此，我们得到在该电流密度下，电子的漂移速度为<span
+class="math inline">\(v_x=j_x/(en_e)\)</span>。
+因此，以此速度漂移的电子将受到洛伦兹力<span
+class="math inline">\(f_y=ev_xB_z/c=B_zj_x/(n_ec)\)</span>（注意本书采用高斯单位制而非国际单位制）。
+在稳恒状态下，此力应与电子受到的电场力平衡，即<span
+class="math inline">\(eE_y=f_y=B_zj_x/(n_ec)\)</span>。
+由此我们即可以得到霍尔电导 <span
+class="math display">\[\sigma_H=\frac{j_x}{E_y}=ec\frac{n_e}{B_z}.\]</span>
+其中<span
+class="math inline">\(n_e=\)</span>为电子密度（即单位面积上的电子数）。</p>
+<h2 id="郎道能级与量子霍尔效应">郎道能级与量子霍尔效应</h2>
+<p>接下来，我们引入磁通量子和郎道能级填充数的概念，来“解释”整数量子霍尔效应。
+（我们马上会看到为什么真正严谨地解释量子霍尔效应远比在磁场下求解一套郎道能级要来得复杂，因此此处的解释应当打上引号。
+对整数量子霍尔效应真正的解释需要用到本节后面讲解的劳扶林论证。）
+顾名思义，<strong>量子</strong>霍尔效应与量子效应有关，因此在量子霍尔效应中，我们需要超越电子在磁场中运动的经典图像，而考虑磁场中带电粒子运动的量子力学问题。
+对于磁场中带电粒子运动的问题，其薛定谔方程的解就构成郎道能级，而量子霍尔效应也与郎道能级密切相关。
+但是，本书的重点并非量子霍尔效应，我们在这里为了理解陈绝缘体的霍尔电导也无需了解郎道能级的具体形式。
+因此，此处我们并不讲解郎道能级的具体形式，而是不加证明地给出郎道能级的若干关键性质。
+这些关键性质已经足够用于理解整数量子霍尔效应了。</p>
+<p>在二维平面上，均匀磁场中运动的带电粒子将形成一系列分立的郎道能级。
+这些郎道能级之间的间距在热力学极限下保持为一个常数。
+（对于非相对论性的电子，其郎道能级是等间距的；这个间距为<span
+class="math inline">\(\hbar\omega_c\)</span>，其中<span
+class="math inline">\(\omega_c\)</span>为电子磁场下的回旋频率<span
+class="math inline">\(\omega_c=eB/mc\)</span>。
+但是郎道能级的具体能量分布也对形成整数量子霍尔效应影响不大，所以不感兴趣的读者可以忽略这段注释。）
+因此，自然地，能级的简并度是一个广延量，它正比于二维系统的面积<span
+class="math inline">\(A\)</span>。
+通过求解二维平面上均匀磁场下的薛定谔方程可以得到，此处能级的简并度<span
+class="math inline">\(N\)</span>可以表示为
+<span id="eq:laughlin:LL-N" class="eqnos"><span
+class="math display">\[N=\frac{\Phi}{\Phi_0},
+\]</span><span class="eqnos-number">(1)</span></span> 其中<span
+class="math inline">\(\Phi = BA\)</span>为通过整个平面的磁通量；<span
+class="math inline">\(\Phi_0\)</span>被称为一个“磁通量子（flux
+quanta）”。
+我们知道，当电子围绕一个包含磁场的区域转一圈时，会积累一个正比于该区域内磁通量的贝里相位，这个相位被称为Aharonov-Bohm相位。
+而磁通量子就是当Aharnov-Bohm相位为<span
+class="math inline">\(2\pi\)</span>时对应的磁通量。
+根据Aharonov-Bohm相位的公式：<span class="math inline">\(\gamma =
+e\Phi/\hbar c\)</span>，不难得到磁通量子的公式：
+<span id="eq:laughlin:flux-quanta" class="eqnos"><span
+class="math display">\[\Phi_0=\frac{hc}{e}.
+\]</span><span class="eqnos-number">(2)</span></span>
+关于磁通量子的概念，有两个初学者常见的误区需要提醒一下读者：
+首先，磁通“量子”这个名字可能会引起一些误解。
+与电荷量子化等概念不同，磁通量子指的并不是磁通量可能的取值是量子化的。
+事实上，即使考虑量子效应，通过一个特定区域的磁通量也是可以连续取值的。
+磁通量子指的是一个特殊大小的磁通量：当一个特定区域的磁通量是一个磁通量子（或其整数倍）时，电子围绕该区域运动得到的Aharonov-Bohm相位为<span
+class="math inline">\(2\pi\)</span>的整数倍，从而使得我们不需要考虑这个贝里相位。
+其次，在讨论第二类超导体的涡旋态的时候，也有磁通量子的概念。
+但是，那里的磁通量子的大小为<span
+class="math inline">\(hc/2e\)</span>，即(<a
+href="#eq:laughlin:flux-quanta">2</a>)式中的一半。
+这是因为在超导体中，磁通量子的大小是由其中的带电载流子，即库珀对看到的Aharonov-Bohm相位决定的。
+由于库珀对由两个电子组成，其携带的电量为<span
+class="math inline">\(-2e\)</span>，因此此时磁通量子大小也是(<a
+href="#eq:laughlin:flux-quanta">2</a>)式中的一半。</p>
+<p>接下来，我们引入朗道能级的填充数<span
+class="math inline">\(\nu\)</span>，即二维电子气中的电子数<span
+class="math inline">\(N_e\)</span>与能级简并度的比值。
+根据泡利不相容原理，如果忽略电子间的库伦相互作用，电子将按从低能到高能的顺序依次占据各个朗道能级。
+例如当<span
+class="math inline">\(\nu&lt;1\)</span>时，电子部分占据最低朗道能级；当<span
+class="math inline">\(\nu=1\)</span>时，电子正好填满最低朗道能级；当<span
+class="math inline">\(1&lt;\nu&lt;2\)</span>时，电子填满最低朗道能级并部分占据第二朗道能级，依此类推。
+利用(<a href="#eq:laughlin:LL-N">1</a>)式，我们可以得到<span
+class="math inline">\(\nu\)</span>的如下表达式：
+<span id="eq:laughlin:nu" class="eqnos"><span class="math display">\[\nu
+= \frac{N_e}{N}=\frac{n_e\Phi_0}{B},
+\]</span><span class="eqnos-number">(3)</span></span> 这里利用了<span
+class="math inline">\(n_e=N_e/A\)</span>的关系。 因此，在固定的磁场<span
+class="math inline">\(B\)</span>下，电子密度可以用<span
+class="math inline">\(\nu\)</span>表达出来。
+将上式代入霍尔电导的表达式中，我们得到
+<span id="eq:laughlin:sigmaH-nu" class="eqnos"><span
+class="math display">\[\sigma_H=\nu \frac{e^2}h.
+\]</span><span class="eqnos-number">(4)</span></span>
+这个结果似乎解释了整数量子霍尔效应：当电子恰好填满整数个朗道能级时，<span
+class="math inline">\(\nu\)</span>为整数，上式得出的霍尔电导是<span
+class="math inline">\(e^2/h\)</span>的整数倍。这里<span
+class="math inline">\(e^2/h\)</span>这个基本常数的组合也被称为冯·克利青（von
+Klitzing）常数。
+但事实上，上式只是将朗道能级的电子密度代入了<strong>经典</strong>霍尔电导公式，并不是量子霍尔效应的解释。
+特别地，上式得到的霍尔效应并不是量子化的：这里的<span
+class="math inline">\(\sigma_H\)</span>仍然正比于<span
+class="math inline">\(\nu\)</span>这个连续变化的参数。
+当电子密度偏离整数填充时，<span
+class="math inline">\(\nu\)</span>不再是整数，相应地<span
+class="math inline">\(\sigma_H\)</span>也不再是<span
+class="math inline">\(e^2/h\)</span>的整数倍。</p>
+<p>要理解量子霍尔效应，特别是整数量子霍尔效应平台的出现，我们必须考虑二维电子气中杂质等无序因素带来的电子局域化现象。
+考虑到无序因素之后，二维电子气在磁场下形成的朗道能级就不再是严格简并的了。
+如图??所示，此时朗道能级会发生展宽，并且其中一部分量子态会形成局域态（localized
+state）；而另一部分量子态形成延展态（extended state）。
+由于延展态波函数仍然覆盖了整个二维平面，其只受到杂质的平均作用，能量变化较小；
+因而这部分延展态能量依然比较接近原朗道能级的能量。
+而局域态受附近的杂质影响较大，能量往往偏离原朗道能级。
+因此，受杂质影响朗道能级发生展宽之后，在原能级附近的都是延展态，而两个能级之间的是局域态。
+当电子浓度稍稍偏离整数填充之时，费米能落在两个能级之间的局域态中，此时费米能附近的局域态并不导电，因此霍尔电导仍然保持不变。
+这部分解释了量子霍尔效应平台的出现。
+但是杂质的引入又带来了一个疑问：对于一个无序系统，为什么霍尔电导仍然可以用(??)式计算？
+或者说，杂质会不会对(??)式给出的霍尔电导进行修正？
+历史上，劳扶林（Robert B.
+Laughlin）给出了量子霍尔效应中霍尔电导量子化的证明，这个证明通常被称为劳扶林论证（Laughlin’s
+argument）。
+这个证明指出，当某个系统处于绝缘态时，其霍尔电导一定是量子化的，即为<span
+class="math inline">\(e^2/h\)</span>的整数倍。
+当二维电子气的费米能处于两个朗道能级之间的局域态时，该电子气处于绝缘态，因而满足了劳扶林论证的前提条件。
+因此，劳扶林论证可以用来解释二维电子气中量子化的霍尔电导，特别是解释为什么量子化霍尔电导完全不受杂质等因素的修正。
+接下来，我们将讲解劳扶林论证。
+特别地，我们将看到，劳扶林论证中关键的一环是建立了霍尔电导和某种电荷泵浦（charge
+pumping）之间的关系。
+在下一节中，我们将利用这个关系证明上一节得到的陈绝缘体的霍尔电导等于其能带陈数乘以<span
+class="math inline">\(e^2/h\)</span>，即陈绝缘体也具备整数量子霍尔效应。</p>
+<h2 id="劳扶林论证">劳扶林论证</h2>
+<p>如图??所示，我们考虑将某种具有霍尔电导的二维绝缘体卷成一个圆柱形。
+在圆柱形的中央有磁场穿过，其磁通量为<span
+class="math inline">\(\Phi\)</span>。
+该磁场仅局限在圆柱的中央，因此在圆柱表面绝缘体内运动的电子并不会直接感受到该磁场产生的洛伦兹力。
+但是如果考虑量子力学效应，圆柱表面的电子在绕圆周一圈时会感受到磁通量<span
+class="math inline">\(\Phi\)</span>带来的Aharonov-Bohm相位。
+如前所述，当磁通量<span
+class="math inline">\(\Phi\)</span>等于磁通量子<span
+class="math inline">\(\Phi_0\)</span>的整数倍时，其带来的Aharonov-Bohm相位是平庸的（即<span
+class="math inline">\(2\pi\)</span>的整数倍），因此此时的Aharonov-Bohm相位没有可观测的物理效应。</p>
+<p>我们考虑通过如下过程在圆柱体内穿入一个<span
+class="math inline">\(\Phi_0\)</span>的磁通量：当<span
+class="math inline">\(t=0\)</span>时，磁通量<span
+class="math inline">\(\Phi(t=0)=0\)</span>；当<span
+class="math inline">\(t&gt;0\)</span>时，磁通量随时间缓慢地增加：这个过程足够缓慢，使得圆柱表面的绝缘体经历的是一个绝热（adiabatic）过程（由于绝缘体的电荷激发有能隙，这个绝热条件总是可以满足的）；当<span
+class="math inline">\(t=t_f\)</span>时，磁通量<span
+class="math inline">\(\Phi(t=t_f)=\Phi_0\)</span>。
+在这个穿入磁通量的过程中，如果圆柱体表面绝缘体具有非零的霍尔电导，电荷就会从圆柱的一端移动到另一端。
+这个效应就被称为穿入磁通量时产生的电荷泵浦效应。
+该效应产生的原因可以用基础的电磁学原理来理解：
+首先，随时间变化的磁通量<span
+class="math inline">\(\Phi(t)\)</span>会在圆柱体表面产生沿圆周方向的感应电场；
+其次，由于霍尔效应，感应电场会产生垂直方向，即平行于圆柱轴向的霍尔电流。
+霍尔电流即意味着电荷将被从圆柱的一端移动到另一端。
+由于整个过程都是绝热的，圆柱表面的绝缘体一直处于其基态；而在<span
+class="math inline">\(t_f\)</span>时刻，由于<span
+class="math inline">\(\Phi(t=t_f)=\Phi_0\)</span>没有可观测的物理效应，此时的基态与<span
+class="math inline">\(t=0\)</span>时刻的基态是一样的。
+（细心的读者会注意到，我们这里假设该绝缘体在<span
+class="math inline">\(\Phi=0\)</span>时具有唯一的基态。
+这个假设对于自由费米子显然是成立的，但是它对具有所谓非平庸拓扑序的相互作用费米子系统并不成立。
+这也是为什么分数量子霍尔效应体系虽然也是绝缘态，但是其霍尔电导并不是<span
+class="math inline">\(e^2/h\)</span>的整数倍。
+在本章中，我们并不讨论分数量子霍尔效应等具有拓扑序的拓扑物态，因此我们不再对这一假设做过多的阐述。）
+因此，圆柱表面的电荷密度必须保持不变。
+这意味着电荷不能停留在圆柱表面，必须从圆柱的一端走到另一端。
+由于电荷是量子化的，在这个穿入磁通量的过程中，被泵浦的电荷电量一定是<span
+class="math inline">\(e\)</span>的整数倍。</p>
+<p>接下来，我们利用基本的电磁学原理来定量地计算被泵浦的电荷量。
+首先，根据法拉第定律，变化的磁通量产生的感应电场<span
+class="math inline">\(E\)</span>满足 <span class="math display">\[2\pi R
+E=\frac1c\frac{d\Phi}{dt},\]</span> 其中<span
+class="math inline">\(R\)</span>为圆柱体的半径。 因此我们得到 <span
+class="math display">\[E=\frac{1}{2\pi Rc}\frac{d\Phi}{dt}.\]</span>
+接下来，假设霍尔电导为<span
+class="math inline">\(\sigma_H\)</span>，霍尔电流的大小为 <span
+class="math display">\[j=\sigma_H E=\frac{\sigma_H}{2\pi
+Rc}\frac{d\Phi}{dt}.\]</span>
+最后，从霍尔电流可以计算单位时间被泵浦的电荷量 <span
+class="math display">\[\frac{dQ}{dt}=2\pi R
+j=\frac{\sigma_H}c\frac{d\Phi}{dt}.\]</span>
+将上式对时间积分，我们得到被泵浦的电荷量 <span
+class="math display">\[\Delta Q=\int_0^{t_f}dt
+\frac{\sigma_H}c\frac{d\Phi}{dt}=\frac{\sigma_H}c\Phi_0=\sigma_H\frac
+he.\]</span> 根据上面论证的量子化条件，我们代入<span
+class="math inline">\(\Delta Q=ne\)</span>，其中<span
+class="math inline">\(n\)</span>为一个整数，就得到了霍尔电导的量子化条件
+<span id="eq:langulin:sH-n" class="eqnos"><span
+class="math display">\[\sigma_H=n\frac{e^2}h.
+\]</span><span class="eqnos-number">(5)</span></span>
+这个结果表明，一个二维绝缘体的霍尔电导一定是<span
+class="math inline">\(e^2/h\)</span>的整数倍。
+并且这个倍数可以由穿入一个磁通量子时被泵浦的电荷量得到。
+在下一节中，我们将利用这个结果，通过讨论陈绝缘体的电荷泵浦效应计算陈绝缘体的霍尔电导。</p>
+</body>
+</html>

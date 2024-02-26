@@ -8,7 +8,9 @@
   <style>
     html {
       line-height: 2;
-      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”, “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro Hei”,sans-serif;;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
       font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -143,6 +145,25 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
 
     figure {
       text-align: center;
@@ -159,9 +180,19 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
 </head>
 <body>
 <header id="title-block-header">
@@ -169,10 +200,419 @@
 </header>
 <nav class="breadcrumb">
   <ul>
-        <li>空间群的拓展：双群与磁群</li>
+        <li>时间反演与磁群对称性</li>
         <li>磁群的共表示</li>
       </ul>
 </nav>
-
+<p>在本章中，我们介绍磁群的共表示（corepresentation），以及如何得到磁空间群的不可约共表示。
+<span class="math inline">\(\DeclareMathOperator{\tr}{tr}\)</span></p>
+<h2 id="磁群对称性在量子态上的作用">磁群对称性在量子态上的作用</h2>
+<p>我们首先从物理上讨论磁群对称性是如何作用在量子态上面的。
+由此可以引出磁群的共表示的数学定义。 我们知道，在量子力学中，对称群<span
+class="math inline">\(G\)</span>的表示空间就是具有该对称性的若干量子态构成的希尔伯特空间。
+因此，对于一个磁群，我们也考虑若干具有该对称性的量子态构成的希尔伯特空间<span
+class="math inline">\(\mathcal H\)</span>。 在上节中，我们看到磁群<span
+class="math inline">\(G\)</span>具有一个<span
+class="math inline">\(\mathbb Z_2\)</span>分级：<span
+class="math inline">\(G=G_0\cup G_1\)</span>，其中<span
+class="math inline">\(G_{0,1}\)</span>分别由幺正和反幺正元素组成。
+正如在一个通常的对称群中那样，<span
+class="math inline">\(G_0\)</span>中的元素<span
+class="math inline">\(g\)</span>在<span class="math inline">\(\mathcal
+H\)</span>上的作用可以用一个幺正矩阵<span
+class="math inline">\(\phi(g)\)</span>表示。 而<span
+class="math inline">\(\phi:g\mapsto\phi(g)\)</span>是<span
+class="math inline">\(G_0\)</span>到<span class="math inline">\(\mathcal
+H\)</span>上的幺正群<span class="math inline">\(U(\mathcal
+H)\)</span>的群同态，即它满足 <span id="eq:phi-gh" class="eqnos"><span
+class="math display">\[\phi(gh)=\phi(g)\phi(h).\]</span><span class="eqnos-number">(1)</span></span>
+而<span class="math inline">\(G_1\)</span>中的元素则应该对应于<span
+class="math inline">\(\mathcal H\)</span>上的反幺正变换。
+如上一节中所述，为了描述<span class="math inline">\(\mathcal
+H\)</span>上的反幺正变换，我们需要利用<span
+class="math inline">\(\mathcal H\)</span>上的复共轭操作<span
+class="math inline">\(\mathcal K\)</span>。 （数学上说，我们假设<span
+class="math inline">\(\mathcal H\)</span>具有一个实结构<span
+class="math inline">\(\mathcal K\)</span>。） 当我们取定了<span
+class="math inline">\(\mathcal K\)</span>之后，<span
+class="math inline">\(\mathcal H\)</span>上的一个反幺正变换<span
+class="math inline">\(\mathcal A\)</span>就可以写成<span
+class="math inline">\(\mathcal A=A\mathcal K\)</span>，其中<span
+class="math inline">\(A\in U(\mathcal H)\)</span>是<span
+class="math inline">\(\mathcal H\)</span>上的幺正变换。 因此，<span
+class="math inline">\(G_1\)</span>中的一个元素<span
+class="math inline">\(g\)</span>在量子态上的作用可以写成一个幺正矩阵<span
+class="math inline">\(\phi(g)\)</span>与复共轭操作<span
+class="math inline">\(\mathcal K\)</span>的复合。 由此，<span
+class="math inline">\(G_1\)</span>在<span class="math inline">\(\mathcal
+H\)</span>上的作用也可以用一个映射<span
+class="math inline">\(\phi:G_1\rightarrow U(\mathcal H)\)</span>来表示。
+综合<span class="math inline">\(G_{0,1}\)</span>上<span
+class="math inline">\(\phi\)</span>的定义，我们得到了一个映射<span
+class="math inline">\(\phi:G\rightarrow U(\mathcal H)\)</span>。
+利用这个映射，<span class="math inline">\(g\in
+G\)</span>在量子态上的作用可以写成<span
+class="math inline">\(\phi(g)\mathcal K^{s(g)}\)</span>，其中<span
+class="math inline">\(s(g)\)</span>是上节介绍<span
+class="math inline">\(g\)</span>的<span class="math inline">\(\mathbb
+Z_2\)</span>分级。 利用这个结果，我们可以计算两个对称操作<span
+class="math inline">\(g\)</span>和<span
+class="math inline">\(h\)</span>在量子态上相继作用的结果： <span
+class="math display">\[g\cdot\left(h\cdot|\psi\rangle\right)
+=\phi(g)\mathcal K^{s(g)}\phi(h)\mathcal K^{s(h)}|\psi\rangle
+=\phi(g)\mathcal K^{s(g)}\phi(h)\mathcal K^{-s(g)}\mathcal
+K^{s(gh)}|\psi\rangle.\]</span> 而另一方面，<span
+class="math inline">\(gh\)</span>在量子态上的作用结果为 <span
+class="math display">\[gh\cdot|\psi\rangle=\phi(gh)\mathcal
+K^{s(gh)}|\psi\rangle.\]</span> 比较这两者的结果，我们得到
+<span id="eq:phi-gh-s" class="eqnos"><span
+class="math display">\[\phi(gh)=\phi(g)\mathcal K^{s(g)}\phi(h)\mathcal
+K^{-s(g)}
+=\phi(g){}^g\phi(h).\]</span><span class="eqnos-number">(2)</span></span>
+这里，为了简单起见，我们将<span class="math inline">\(\mathcal
+K^{s(g)}\phi(h)\mathcal K^{-s(g)}\)</span>记作<span
+class="math inline">\({}^g\phi(h)\)</span>：当<span
+class="math inline">\(g\in G_0\)</span>为幺正元素时，它就等于<span
+class="math inline">\(\phi(h)\)</span>；而当<span
+class="math inline">\(g\in G_1\)</span>为反幺正元素时，它等于<span
+class="math inline">\(\phi(h)\)</span>的复共轭<span
+class="math inline">\(\phi^\ast(h)\)</span>。
+由此可见，对于磁群，它的表示映射<span
+class="math inline">\(\phi:G\rightarrow U(\mathcal
+H)\)</span>并不是一个满足(<a
+href="#eq:phi-gh">1</a>)式的群同态，而满足的是(<a
+href="#eq:phi-gh-s">2</a>)式中变化的(twisted)关系。</p>
+<p>如果我们选定希尔伯特空间<span class="math inline">\(\mathcal
+H\)</span>上的一组正交归一的基底，<span
+class="math inline">\(\phi(g)\)</span>就可以在这组基底下表示成一个幺正矩阵，也就是我们熟知的群的表示矩阵。
+相应地，不同正交归一基底之间的幺正变换会导致表示矩阵做相应的变换。
+对于对称群的表示，<span class="math inline">\(\mathcal
+H\)</span>上的幺正变换<span class="math inline">\(U\)</span>会导致<span
+class="math inline">\(\phi(g)\)</span>做相应的幺正变换：
+<span id="eq:UgU" class="eqnos"><span
+class="math display">\[\phi(g)\mapsto
+U\phi(g)U^\dagger.\]</span><span class="eqnos-number">(3)</span></span>
+相应地，对于磁群<span class="math inline">\(G\)</span>里的幺正元素<span
+class="math inline">\(g\in G_0\)</span>,
+其表示矩阵也按这个方式进行变换。 对于<span
+class="math inline">\(G\)</span>里的反幺正元素<span
+class="math inline">\(g\in G_1\)</span>，它在<span
+class="math inline">\(\mathcal H\)</span>上的作用实际是<span
+class="math inline">\(\phi(g)\mathcal K\)</span>。
+因此，它在新的基底下的作用形式会变成
+<span id="eq:UgUs" class="eqnos"><span
+class="math display">\[U\phi(g)\mathcal KU^\dagger = U\phi(g)U^T\mathcal
+K.\]</span><span class="eqnos-number">(4)</span></span> 综合(<a
+href="#eq:UgU">3</a>)和(<a href="#eq:UgUs">4</a>)两式，我们可以将<span
+class="math inline">\(\phi(g)\)</span>的变换形式写为
+<span id="eq:UgUu" class="eqnos"><span
+class="math display">\[\phi(g)\mapsto
+U\phi(g){}^g\left(U^\dagger\right).\]</span><span class="eqnos-number">(5)</span></span>
+正如相差一个(<a
+href="#eq:UgU">3</a>)式的幺正变换的两个表示是相互等价的，如果两个共表示可以用(<a
+href="#eq:UgUu">5</a>)联系起来，我们认为它们是相互等价的。</p>
+<h2 id="磁群的共表示">磁群的共表示</h2>
+<p>基于上一小节的讨论，我们给出如下的共表示的数学定义：</p>
+<p>考虑<span class="math inline">\(G=G_0\cup
+G_1\)</span>是一个磁群，它的<span class="math inline">\(\mathbb
+Z_2\)</span>分级为<span class="math inline">\(s:G\rightarrow\mathbb
+Z_2\)</span>。 它的一个共表示是一个具有实结构<span
+class="math inline">\(\mathcal K\)</span>的复线性空间<span
+class="math inline">\(\mathcal V\)</span>，以及从<span
+class="math inline">\(G\)</span>到<span class="math inline">\(\mathcal
+V\)</span>上的幺正变换群<span class="math inline">\(U(\mathcal
+V)\)</span>的一个映射<span class="math inline">\(\phi: G\rightarrow
+U(\mathcal V)\)</span>。 这里<span
+class="math inline">\(\phi\)</span>需要满足(<a
+href="#eq:phi-gh-s">2</a>)式的条件。</p>
+<p>此外，与群的表示类似，我们需要定义共表示之间的等价关系。
+我们可以引入两个共表示空间之间的交结映射（intertwining map）： 假设<span
+class="math inline">\((\mathcal V, \mathcal K, \phi)\)</span>与<span
+class="math inline">\((\mathcal V&#39;, \mathcal K&#39;,
+\phi&#39;)\)</span>是<span
+class="math inline">\(G\)</span>的两个共表示。
+它们之间的一个交结映射<span
+class="math inline">\(f\)</span>是两个复空间之间的一个线性映射<span
+class="math inline">\(f:\mathcal V\rightarrow\mathcal
+V&#39;\)</span>，并且<span class="math inline">\(f\)</span>与<span
+class="math inline">\(G\)</span>的作用可以交换。 由于<span
+class="math inline">\(G\)</span>中一个元素<span
+class="math inline">\(g\)</span>的作用形式为<span
+class="math inline">\(\phi(g)\mathcal K^{s(g)}\)</span>与<span
+class="math inline">\(\phi&#39;(g)\mathcal K^{\prime
+s(g)}\)</span>，<span class="math inline">\(f\)</span>与<span
+class="math inline">\(g\in G\)</span>的作用可以交换这一条件可以写成：
+<span id="eq:V-int" class="eqnos"><span class="math display">\[f\phi(g)
+=\phi&#39;(g)\mathcal K^{\prime s(g)}f\mathcal
+K^{-s(g)}.\]</span><span class="eqnos-number">(6)</span></span>
+如果两个共表示之间存在互为逆映射的交结映射<span
+class="math inline">\(f:\mathcal V\rightarrow\mathcal
+V&#39;\)</span>和<span class="math inline">\(g:\mathcal
+V&#39;\rightarrow\mathcal
+V\)</span>，我们称这两个共表示为等价共表示。</p>
+<p>如果我们取定<span class="math inline">\(\mathcal V\)</span>和<span
+class="math inline">\(\mathcal
+V&#39;\)</span>上的两组正交归一基底，<span
+class="math inline">\(f\)</span>可以写成一个矩阵<span
+class="math inline">\(M_f\)</span>；<span
+class="math inline">\(\phi(g)\)</span>和<span
+class="math inline">\(\phi&#39;(g)\)</span>也可以写成幺正矩阵。
+这些矩阵满足如下的性质： <span id="eq:Mf" class="eqnos"><span
+class="math display">\[M_f\phi(g)=\phi&#39;(g){}^gM_f.\]</span><span class="eqnos-number">(7)</span></span>
+特别地，当<span
+class="math inline">\(M_f=U\)</span>时，这个条件就是上一小节中的(<a
+href="#eq:UgUu">5</a>)式。 而当<span
+class="math inline">\(M_f=U\)</span>时，它的逆矩阵<span
+class="math inline">\(U^\dagger\)</span>表示的线性映射就是<span
+class="math inline">\(f\)</span>的逆映射。 因此，根据上面的定义，由(<a
+href="#eq:UgUu">5</a>)式联系起来的两个共表示是等价的。</p>
+<p>对于群的表示，我们有Schur引理、正交定理等结果。
+这些定理也可以推广到群的共表示。
+我们下面介绍这些推广的定理，这些定理的证明可以参见文献~<span
+class="citation"
+data-cites="dimmockRepresentationTheoryNonunitary1963"> [1]</span>。</p>
+<h3 id="schur引理">Schur引理</h3>
+<p>首先，我们介绍如下的Schur引理的推广。 对于两个不可约共表示<span
+class="math inline">\((\mathcal V,\mathcal K,\phi)\)</span>和<span
+class="math inline">\((\mathcal V&#39;,\mathcal
+K&#39;,\phi&#39;)\)</span>，如果二者之间存在一个交结映射<span
+class="math inline">\(f:\mathcal V\rightarrow\mathcal
+V&#39;\)</span>，那么：</p>
+<ol type="1">
+<li><p>如果两个不可约共表示是不等价的，那么<span
+class="math inline">\(f=0\)</span>。</p></li>
+<li><p>如果<span class="math inline">\(\mathcal V\)</span>和<span
+class="math inline">\(\mathcal
+V&#39;\)</span>是同一个不可约共表示，即<span
+class="math inline">\(\mathcal V=\mathcal V&#39;\)</span>且<span
+class="math inline">\(\phi=\phi&#39;\)</span>；并且<span
+class="math inline">\(f=f^\dagger\)</span>。 那么<span
+class="math inline">\(f = f_01_{\mathcal V}\)</span>；其中<span
+class="math inline">\(f_0\)</span>是一个标量，而<span
+class="math inline">\(1_{\mathcal V}\)</span>是<span
+class="math inline">\(\mathcal V\)</span>上的单位映射。</p></li>
+</ol>
+<p>这里我们要注意，与幺正群表示的Schur引理相比，这里的第2点结论有个额外的要求，即<span
+class="math inline">\(f\)</span>是个厄米算符<span
+class="math inline">\(f=f^\dagger\)</span>。 如果选定<span
+class="math inline">\(\mathcal V\)</span>的一组正交归一基底，<span
+class="math inline">\(f\)</span>就可以表示成矩阵<span
+class="math inline">\(M_f\)</span>，这个结论可以表述成：
+如果一个厄米矩阵<span class="math inline">\(M_f\)</span>与<span
+class="math inline">\(G\)</span>的一个不可约共表示的所有表示矩阵<span
+class="math inline">\(\phi(g)\)</span>之间都满足(<a
+href="#eq:Mf">7</a>)式中的条件，那么<span
+class="math inline">\(M_f\)</span>一定是一个标量乘上单位矩阵。
+由于哈密顿量是个厄米算符，即使加上这个限制条件，这个定理也可以用来证明一个不可约共表示中的所有量子态都是简并的。
+因此，与幺正对称群的不可约表示一样，磁群的不可约共表示也可以用来标记和解释量子系统中能量简并的量子态。</p>
+<p>为了理解Schur引理中对<span
+class="math inline">\(f\)</span>厄米性的要求，我们可以来看一个反例。
+显然构造这样一个反例需要考虑一个磁群的高维不可约表示。
+作为例子，我们考虑(??)节中介绍的费米子时间反演对称群<span
+class="math inline">\(\mathbb Z_4^T\)</span>。
+我们在本节的后面会详细列举它的不可约共表示；
+而在这里我们先考虑它的一个2维不可约共表示：
+这个共表示可以理解成一个自旋<span
+class="math inline">\(\frac12\)</span>的量子态。 我们知道一个自旋<span
+class="math inline">\(\frac12\)</span>的二重简并态确实具有时间反演对称性和费米子奇偶对称性，所以它是<span
+class="math inline">\(\mathbb Z_4^T\)</span>的一个不可约共表示。
+其中<span class="math inline">\(\mathcal T\)</span>的表示矩阵为 <span
+class="math display">\[\phi(\mathcal
+T)=\begin{pmatrix}0&amp;1\\-1&amp;0\end{pmatrix}=-i\sigma^y.\]</span>
+如果我们不要求<span
+class="math inline">\(M_f\)</span>是厄米矩阵的话，<span
+class="math inline">\(M_f=i\sigma^y\)</span>、<span
+class="math inline">\(M_f=i\sigma^z\)</span>或<span
+class="math inline">\(M_f=i\sigma^z\)</span>显然均满足交结映射的条件(<a
+href="#eq:Mf">7</a>)，但是它们都不是一个标量乘上单位矩阵。
+这个反例表明，共表示的Schur引理中必须加上厄米的条件，才能保证交结映射正比于单位映射。</p>
+<p>接下来的一个自然的问题就是，如果一般的交结映射并不正比于单位映射，它们满足什么样的性质？
+为了回答这个问题，我们需要转而考虑所有交结映射构成的集合。
+首先，两个交结映射<span class="math inline">\(f_1\)</span>和<span
+class="math inline">\(f_2\)</span>的实系数线性组合<span
+class="math inline">\(af_1+bf_2\)</span>也是一个交结映射。
+写成矩阵形式的话，就是如果<span
+class="math inline">\(M_{f1}\)</span>和<span
+class="math inline">\(M_{f2}\)</span>满足(<a
+href="#eq:Mf">7</a>)，那么<span
+class="math inline">\(aM_{f1}+bM_{f2}\)</span>也满足。
+这里需要要求叠加系数<span class="math inline">\(a\)</span>，<span
+class="math inline">\(b\)</span>都是实数，因为只有实数才能从交结条件(<a
+href="#eq:V-int">6</a>)或(<a href="#eq:Mf">7</a>)式中的复共轭中提出来。
+因此，所有交结映射构成一个<span class="math inline">\(\mathbb
+R\)</span>-线性空间。
+其次，两个交结映射的复合也是一个交结映射；写成矩阵的话就是<span
+class="math inline">\(M_{f1}M_{f2}\)</span>也满足(<a
+href="#eq:Mf">7</a>)。
+因此，如果把复合操作看成这个线性空间上的乘法，所有交结映射构成一个<span
+class="math inline">\(\mathbb R\)</span>-代数（algebra）。
+最后，由于每个非零交接映射都是可逆的，这个代数里的每个非零元素都存在逆元。
+因此，所有交接映射<span class="math inline">\(f:\mathcal
+V\rightarrow\mathcal V\)</span>构成一个实系数的可除代数（division
+algebra），我们将这个可除代数记作<span class="math inline">\(C_{\mathcal
+V}\)</span>。 由于实数域上的可除代数只有三种，分别为实数域<span
+class="math inline">\(\mathbb R\)</span>、复数域<span
+class="math inline">\(\mathbb C\)</span>和四元数<span
+class="math inline">\(\mathbb H\)</span>，这个可除代数<span
+class="math inline">\(C_{\mathcal V}\)</span>一定同构于这三者之一。
+根据<span class="math inline">\(C_{\mathcal
+V}\)</span>的结构不同，我们可以将不可约共表示分为a、b、c三类：
+分别对应于<span class="math inline">\(C_{\mathcal V}\)</span>同构于<span
+class="math inline">\(\mathbb R\)</span>、<span
+class="math inline">\(\mathbb H\)</span>和<span
+class="math inline">\(\mathbb C\)</span>。</p>
+<h3 id="三类不可约共表示的例子">三类不可约共表示的例子</h3>
+<p>为了便于直观的理解，我们这里先对每类共表示给出一个例子。</p>
+<p>首先，我们详细地考虑一下之前出现过的费米子时间反演对称群<span
+class="math inline">\(G=\mathbb Z_4^T\)</span>的共表示。
+我们首先考虑其幺正子群<span
+class="math inline">\(G_0\)</span>的不可约表示。 由于<span
+class="math inline">\(G_0=\mathbb
+Z_2^f\)</span>，它有两个不可约表示，分别对应于<span
+class="math inline">\(\phi(P_f)=\pm1\)</span>。</p>
+<p>对于<span class="math inline">\(\phi(P_f)=+1\)</span>的平凡表示，(<a
+href="#eq:phi-gh-s">2</a>)式要求 <span
+class="math display">\[\phi(\mathcal T)\phi(\mathcal
+T)^\ast=\phi(P_f)=1.\]</span> 因此，任意的U(1)相位<span
+class="math inline">\(\phi(\mathcal
+T)=e^{i\theta}\)</span>均满足此要求。 然而，(<a
+href="#eq:UgUu">5</a>)式表明不同<span
+class="math inline">\(\theta\)</span>的取值给出的共表示都是等价的。
+因此，对于<span
+class="math inline">\(\phi(P_f)=+1\)</span>，我们可以找到一个1维的共表示。
+由于所有群元素的表示矩阵都可以取成1，它可以看成一个平凡的共表示。
+这个平凡的共表示显然属于(a)类型：由于表示空间是1维的，其<span
+class="math inline">\(C_{\mathcal
+V}\)</span>也是一个1维实可除代数，因而同构于<span
+class="math inline">\(\mathbb R\)</span>。</p>
+<p>对于<span
+class="math inline">\(\phi(P_f)=-1\)</span>的非平凡表示，(<a
+href="#eq:phi-gh-s">2</a>)式要求 <span
+class="math display">\[\phi(\mathcal T)\phi(\mathcal
+T)^\ast=\phi(P_f)=-1.\]</span>
+一个1维矩阵不可能满足这个要求，因而这个共表示必然是2维的。
+事实上，这个共表示就是前面介绍的<span
+class="math inline">\(\phi(\mathcal T)=-i\sigma^y\)</span>的2位共表示。
+它的<span class="math inline">\(C_{\mathcal V}\)</span>由<span
+class="math inline">\(1\)</span>和<span
+class="math inline">\(i\sigma^{x,y,z}\)</span>生成，因而同构于四元数<span
+class="math inline">\(\mathbb H\)</span>。
+所以，这是一个(b)类型的不可约共表示。</p>
+<p>为了得到一个(c)类型的共表示的例子，我们考虑<span
+class="math inline">\(G=\mathbb Z_3\times\mathbb Z_2\)</span>。
+它由两个生成元<span class="math inline">\(a\)</span>和<span
+class="math inline">\(t\)</span>生成，其中<span
+class="math inline">\(a\)</span>是<span class="math inline">\(\mathbb
+Z_3\)</span>子群的生成元，而<span
+class="math inline">\(t\)</span>是<span class="math inline">\(\mathbb
+Z_2\)</span>子群的生成元。 这里我们假设<span
+class="math inline">\(a\)</span>是幺正的群元素，而<span
+class="math inline">\(t\)</span>是反幺正的群元素；即<span
+class="math inline">\(G_0=\mathbb Z_3\)</span>。 我们尝试由<span
+class="math inline">\(G_0=\mathbb
+Z_3\)</span>的一个非平庸一维表示：<span
+class="math inline">\(\phi(a)=\omega\)</span>出发来构造一个<span
+class="math inline">\(G\)</span>的不可约表示，这里<span
+class="math inline">\(\omega=e^{2\pi i/3}\)</span>是1的一个三次方根。
+在一个一维表示中，<span
+class="math inline">\(\phi(t)\)</span>也只能是一个标量，因此它必然与<span
+class="math inline">\(\phi(a)\)</span>对易。
+由此我们得到反幺正对称性对表示的约束条件： <span
+class="math display">\[\phi(a)=\phi(tat^{-1})=\phi(t)\phi(a)^\ast\phi(t^{-1})^\ast=\phi(a)^\ast;\]</span>
+而<span class="math inline">\(\phi(a)=\omega\)</span>显然不满足这一点。
+直观来看，这是因为<span
+class="math inline">\(\phi(a)=\omega\)</span>这个表示破缺了时间反演对称性：它在时间反演下会变成它的复共轭<span
+class="math inline">\(\phi(a)=\omega^\ast=\omega^2\)</span>。
+因此，为了构造一个<span
+class="math inline">\(G\)</span>的不可约表示，我们必须将<span
+class="math inline">\(\phi(a)=\omega\)</span>和其复共轭组合起来构成一个二维表示，而<span
+class="math inline">\(t\)</span>会交换二者。 也就是说，我们需要令 <span
+class="math display">\[\phi(a)=\begin{pmatrix}\omega &amp;
+0\\0&amp;\omega^2\end{pmatrix}; \phi(t)=\begin{pmatrix}0 &amp;
+1\\1&amp;0\end{pmatrix}=\tau^x.\]</span> 容易看出，这个二维表示的<span
+class="math inline">\(C_{\mathcal V}\)</span>由<span
+class="math inline">\(1\)</span>和<span
+class="math inline">\(i\tau^z\)</span>生成，因而同构于复数<span
+class="math inline">\(\mathbb C\)</span>。
+所以，这是一个(c)类型的不可约表示。</p>
+<p>从上面的例子可以看出，(a)类型的不可约表示其实就是一个在反幺正变换下不变的<span
+class="math inline">\(G_0\)</span>的不可约表示；而(c)类型的不可约表示由两个互为复共轭的<span
+class="math inline">\(G_0\)</span>的表示构成，反幺正操作会交换两个不可约表示。</p>
+<h3 id="正交定理与特征标">正交定理与特征标</h3>
+<p>我们介绍正交定理在共表示上的推广。
+与幺正群表示的正交定理类似，共表示的正交定理有如下结论：
+假设对于两个不可约共表示<span class="math inline">\((\mathcal V,\mathcal
+K,\phi)\)</span>和<span class="math inline">\((\mathcal V&#39;,\mathcal
+K&#39;,\phi&#39;)\)</span>，我们对二者取定一组正交归一的实基底，二者的表示矩阵可以写成<span
+class="math inline">\(\phi(g)_{\alpha\beta}\)</span>和<span
+class="math inline">\(\phi&#39;(g)_{\alpha\beta}\)</span>：</p>
+<ol type="1">
+<li><p>对于两个不等价的不可约共表示：
+<span id="eq:DD-diff" class="eqnos"><span
+class="math display">\[\sum_{g\in
+G_0}\phi(g)_{\alpha\beta}\phi&#39;(g)_{\alpha&#39;\beta&#39;}^\ast=0;
+\sum_{g\in
+G_1}\phi(g)_{\alpha\beta}\phi&#39;(g)_{\alpha&#39;\beta&#39;}^\ast=0.
+\]</span><span class="eqnos-number">(8)</span></span> </p></li>
+<li><p>对于同一个不可约共表示：
+<span id="eq:DD-same" class="eqnos"><span
+class="math display">\[\sum_{g\in
+G_0}\phi(g)_{\alpha\beta}\phi(g)_{\alpha&#39;\beta&#39;}^\ast
++\sum_{g\in
+G_1}\phi(g)_{\alpha\beta&#39;}\phi(g)_{\alpha&#39;\beta}^\ast
+=\frac{|G|}{\dim\mathcal
+V}\delta_{\alpha\alpha&#39;}\delta_{\beta\beta&#39;}.
+\]</span><span class="eqnos-number">(9)</span></span> </p></li>
+</ol>
+<p>由此，我们可以引入共表示的特征标。 我们定义幺正元素<span
+class="math inline">\(g\in G_0\)</span>的特征标为 <span
+class="math display">\[\chi(g)=\tr\phi(g).\]</span>
+由于幺正元素的表示矩阵在基底变换下仍按通常的幺正变换形式进行变换，其表示矩阵的迹是一个与基底选择无关的不变量。
+但是对于反幺正元素<span class="math inline">\(g\in
+G_1\)</span>，其表示矩阵在基底变换下不再按通常的幺正变换形式进行变换，而是按(<a
+href="#eq:UgUs">4</a>)进行变换；因此其表示矩阵的迹不再是一个不变量。
+因而我们只对幺正元素定义特征标。 与幺正群的表示类似，我们对(<a
+href="#eq:DD-diff">8</a>)式中的矩阵取迹，可以得到：
+<span id="eq:corep:chi-diff" class="eqnos"><span
+class="math display">\[\sum_{g\in G_0}\chi(g)\chi&#39;(g)=0;
+\sum_{g\in G_1}\tr\phi(g)\cdot\tr\phi&#39;(g)=0.
+\]</span><span class="eqnos-number">(10)</span></span> 而在(<a
+href="#eq:DD-same">9</a>)式中，我们取<span
+class="math inline">\(\alpha=\alpha&#39;\)</span>，<span
+class="math inline">\(\beta=\beta&#39;\)</span>，并对二者求和，即得到
+<span id="eq:corep:chi-same" class="eqnos"><span
+class="math display">\[\sum_{g\in G_0}|\chi(g)|^2+\sum_{g\in
+G_1}\chi(g^2)=|G|.
+\]</span><span class="eqnos-number">(11)</span></span>
+注意这里用到了如下结果：对于反幺正元素<span class="math inline">\(g\in
+G_1\)</span>，<span class="math inline">\(g^2\in
+G_0\)</span>是一个幺正元素，且其表示矩阵为<span
+class="math inline">\(\phi(g^2)=\phi(g)\phi(g)^\ast\)</span>。</p>
+<p>(<a
+href="#eq:corep:chi-same">11</a>)式可以帮助我们判断一个不可约共表示的类型。
+这个等式左边两项加起来等于群中元素个数<span
+class="math inline">\(|G|\)</span>。
+可以证明，对于三种不同类型的不可约共表示，这两项的分配方式有如下的规律。</p>
+<ol type="1">
+<li>(a)类型的共表示满足 <span class="math display">\[\sum_{g\in
+G_0}|\chi(g)|^2 = \sum_{g\in G_1}\chi(g^2)=\frac{|G|}2.\]</span></li>
+<li>(b)类型的共表示满足 <span class="math display">\[\sum_{g\in
+G_0}|\chi(g)|^2 = 2|G|; \sum_{g\in G_1}\chi(g^2)=-|G|.\]</span></li>
+<li>(c)类型的共表示满足 <span class="math display">\[\sum_{g\in
+G_0}|\chi(g)|^2 = |G|; \sum_{g\in G_1}\chi(g^2)=0.\]</span>
+因此，通过计算<span class="math inline">\(\sum_{g\in
+G_0}|\chi(g)|^2\)</span>或者<span class="math inline">\(\sum_{g\in
+G_1}\chi(g^2)\)</span>，就可以判断共表示的类型。</li>
+</ol>
+<div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-dimmockRepresentationTheoryNonunitary1963"
+class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J.
+O. Dimmock, <em><a
+href="https://doi.org/10.1063/1.1703905">Representation Theory for
+Nonunitary Groups</a></em>, J. Math. Phys. <strong>4</strong>, 1307
+(1963).</div>
+</div>
+</div>
 </body>
 </html>

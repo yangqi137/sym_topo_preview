@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>对称性与群</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">对称性与群</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>群论和抽象代数简介</li>
+        <li>对称性与群</li>
+      </ul>
+</nav>
+<p>在本节中，我们将简单回顾群的基本定义和基本性质。</p>
+<h2 id="对称性对称操作与群">对称性、对称操作与群</h2>
+<p>对称性在物理学的研究中扮演着重要的角色。
+首先，每种对称性都对应于一条守恒律，而守恒律是近现代物理的基石。
+例如时间平移对称性和空间平移对称性分别对应能量守恒和动量守恒这两条物理定律。
+对于连续对称性，场论（包括经典和量子场论）中的诺特定理指出每种连续对称性都对应一个守恒流。
+而对于离散对称性，在量子力学中它也将给出相应的能级好量子数和能级简并度（我们在??节中将详细讨论这一点）。
+其次，在凝聚态物理中，对称性和对称性自发破缺给出了描述物态和连续相变的郎道范式。
+因此，对称性在近现代物理研究中扮演着越来越重要的角色。</p>
+<p>在物理学中，群论这一数学工具主要用来描述对称性操作这个物理概念。
+在本节后文的数学描述中，我们将看到，群这一数学概念的核心内容是其元素之间的乘法操作。
+在物理学中，我们利用群中的不同元素表示不同的对称性操作；利用元素之间的乘法操作表示对称性之间的复合操作：即相继进行两个对称性操作得到的复合对称性操作。
+如果<span class="math inline">\(g\)</span>、<span
+class="math inline">\(h\)</span>分别代表两个对称性操作（即某个群中的两个元素），我们将先进行<span
+class="math inline">\(g\)</span>、后进行<span
+class="math inline">\(h\)</span>得到的复合操作记作二者的乘积：<span
+class="math inline">\(h\cdot g\)</span>。
+注意我们假设当两个操作相乘时，对称性操作的作用顺序是从右向左的。
+这其实是一个约定：我们也完全可以约定对称性操作的作用顺序是从左向右的，并且将上述复合操作记作<span
+class="math inline">\(g\cdot h\)</span>。
+我们在本书中将一直使用前一约定。
+选择这个约定并不影响我们对群等数学概念的描述方式；只影响我们如何将群的数学概念联系到对称性操作的物理概念上。
+特别地，在后面讨论群的表示和量子力学之间的关系的时候，我们将看到上述约定与我们使用列向量代表量子态、相应地群的表示矩阵从左边作用到量子态上的符号约定是一致的。</p>
+<p>在本节中，我们将介绍数学上群的概念。
+我们将看到，这个概念可以很方便地用来表达物理学中的对称性操作；相应地，对称性操作构成的群被称为对称群。
+当然，群是一个数学上的概念，它也并不一定能够完全精确地描述物理学中对称性操作的所有性质。
+在本书后面的章节中，我们将看到，一些比较复杂的对称性操作，尤其是与量子力学中的相位相关的对称性操作的性质，并不能用群来完全地描述。
+此时我们可能需要将群的数学工具拓展到代数或者更复杂的数学结构，以此来适应相应的物理概念的发展。</p>
+<h2 id="群的定义">群的定义</h2>
+<p>首先，我们引入半群（semigroup）的概念。 半群<span
+class="math inline">\(G\)</span>是一个集合，其中的元素之间存在一个乘法操作。
+在本书中，我们往往将群元素<span class="math inline">\(a\)</span>, <span
+class="math inline">\(b\)</span>之间的乘法记为<span
+class="math inline">\(a\cdot b\)</span>或者<span
+class="math inline">\(ab\)</span>。
+并且这个乘法操作满足两个条件：封闭性和结合律。 封闭性要求对于<span
+class="math inline">\(G\)</span>中的任意两个元素<span
+class="math inline">\(\forall a,b\in G\)</span>，其乘积也是<span
+class="math inline">\(G\)</span>中的一个元素：<span
+class="math inline">\(a\cdot b\in G\)</span>。 换句话说，这个乘法是<span
+class="math inline">\(G\)</span>上的一个二元操作：<span
+class="math inline">\(\cdot:G\times G\rightarrow G\)</span>。
+结合律要求对于<span
+class="math inline">\(G\)</span>中的任意三个元素<span
+class="math inline">\(\forall a,b,c\in G\)</span>，其乘积满足： <span
+class="math display">\[a\cdot(b\cdot c)=(a\cdot b)\cdot c.
+\]</span> 结合律允许我们在写下若干个群元素乘法的时候省下括号，如<span
+class="math inline">\(abc\cdots\)</span>。</p>
+<p>例子：所有整数在乘法下构成一个半群、所有偶数在乘法下也构成一个半群。但是${1,2,3,4}}不构成半群，因为它在乘法下不封闭。</p>
+<p>在半群的基础上，我们进一步引入单位元（又称幺元）存在性的要求，就会得到幺半群（monoid）的概念。
+幺元<span
+class="math inline">\(e\)</span>相当于我们习惯的整数乘法中的单位”1”在抽象的乘法中的推广；
+严格地说一个群的幺元指的是满足如下条件的元素<span
+class="math inline">\(e\in G\)</span>：对于任意的<span
+class="math inline">\(a\in G\)</span>，都满足<span
+class="math inline">\(ae=ea=a\)</span>。
+一般地，一个半群中不一定包含幺元；而包含幺元的半群就被自然地称为含幺半群，或者简称幺半群。</p>
+<p>例子：所有整数在乘法下构成一个幺半群；所有偶数在乘法下构成的半群不是幺半群（因为1不在这个半群里面）。</p>
+<p>在幺半群的基础上，进一步引入每个元素可逆的要求，就会得到群（group）的概念。
+对于幺半群中的元素<span class="math inline">\(g\in
+G\)</span>，如果存在另一个元素<span class="math inline">\(h\in
+G\)</span>，使得<span
+class="math inline">\(gh=hg=e\)</span>，我们就称<span
+class="math inline">\(h\)</span>为<span
+class="math inline">\(g\)</span>的逆元（inverse），记作<span
+class="math inline">\(h=g^{-1}\)</span>。 如果<span
+class="math inline">\(G\)</span>中的每个元素都存在逆元（即每个元素都可逆），我们就称<span
+class="math inline">\(G\)</span>为一个群。</p>
+<p>例子：所有整数在乘法下构成幺半群，但不是群，因为除了<span
+class="math inline">\(\pm1\)</span>之外所有元素都没有逆元；所有非零实数（记作<span
+class="math inline">\(\mathbb
+R^\times\)</span>）和所有非零复数（记作<span
+class="math inline">\(\mathbb
+C^\times\)</span>）在乘法下构成一个群。</p>
+<h2 id="群的例子">群的例子</h2>
+<p>为了表达一个群，我们需要说明两点：一方面，我们需要指定群里都有哪些元素；另一方面，我们需要指定群元素之间的乘法运算规则。
+为了讲解下面的例子，我们首先介绍常见的群元素之间乘法运算的表达形式。</p>
+<p>首先，我们可以利用矩阵之间的乘法规则，将群元素表示为一系列矩阵的形式。
+通过这种方法构造的群又被称为矩阵群（matrix group）。
+矩阵群的好处是它可以表示一大类群，包括有限群（指包含有限个群元素的群）、离散群（包含无限但可数个元素）和连续群（如李群）；
+但是这种表达方式计算起来比较繁琐。</p>
+<p>其次，数学上经常用置换（permutation）符号来代表群元素；利用置换之间的乘法作为元素之间的乘法。
+利用这种方法可以表示有限群，但是不能表示无限群。</p>
+<p>最后，我们可以用群的presentation（注意这个概念不要和群的表示，representation
+of group混淆了）来表示一个群。
+利用presentation的标记，我们可以将一个群记作<span
+class="math inline">\(G=\langle S|R\rangle\)</span>，其中<span
+class="math inline">\(S\)</span>是群的生成元（generator）的集合；<span
+class="math inline">\(R\)</span>是群的关系元（relator）的集合。
+这个标记我们可以直观的理解为：群<span
+class="math inline">\(G\)</span>包含所有<span
+class="math inline">\(S\)</span>中元素利用各种方式相乘、求逆产生的所有元素；但是所有<span
+class="math inline">\(R\)</span>中的乘法组合都应当被认为是单位元<span
+class="math inline">\(e\)</span>。 例如如下的presentation：<span
+class="math inline">\(G=\langle
+a|a^2\rangle\)</span>表示群中的元素由一个元素<span
+class="math inline">\(a\)</span>相乘、求逆得到，因此<span
+class="math inline">\(G\)</span>中可以包含所有形如<span
+class="math inline">\(a^n\)</span>，其中<span
+class="math inline">\(n\)</span>为任意正整数；但是<span
+class="math inline">\(a^2=e\)</span>。 因此<span
+class="math inline">\(G\)</span>中只包含两个元素<span
+class="math inline">\(e\)</span>和<span
+class="math inline">\(a\)</span>，而<span
+class="math inline">\(a^2=e\)</span>。
+对于presentation的精确理解需要用到自由群和商群的概念，因此就不在这里展开讲解了。</p>
+<p>例：<span
+class="math inline">\(n\)</span>阶循环群。它们的presentation为<span
+class="math inline">\(\langle a|a^n\rangle\)</span>，其中包含<span
+class="math inline">\(n\)</span>个元素：<span class="math inline">\(a^i,
+i=0, 1, \ldots, n-1\)</span>，其乘法规则为<span
+class="math inline">\(a^i\cdot a^j=a^{i+j\mod n}\)</span>。 整数模<span
+class="math inline">\(n\)</span>的余数在加法下构成的群也是<span
+class="math inline">\(n\)</span>阶循环群，因此它也往往被记为<span
+class="math inline">\(\mathbb Z_n\)</span>。 在文献中，<span
+class="math inline">\(n\)</span>阶循环群往往也记作<span
+class="math inline">\(\mathbb Z/n\mathbb
+Z\)</span>，但是理解这个记号需要用到后文中介绍的商群的概念。</p>
+<p>例：无穷阶循环群，其presentation为<span class="math inline">\(\langle
+a|\rangle\)</span>（即没有非平庸的关系元）。
+所有整数在加法下构成的群就是无穷阶循环群，因此它也往往被记作<span
+class="math inline">\(\mathbb Z\)</span>。</p>
+<p>例：二面体群（Dihedral group）。 <span class="math display">\[\mathbb
+D_n=\langle a,b|a^n, b^2, bab^{-1}a\rangle.\]</span>
+注意最后一个关系元告诉我们，<span
+class="math inline">\(bab^{-1}=a^{-1}\)</span>，因此当<span
+class="math inline">\(n&gt;2\)</span>时，<span
+class="math inline">\(a\)</span>与<span
+class="math inline">\(b\)</span>并不对易。</p>
+<p>例：矩阵群：</p>
+<p><span class="math inline">\(n\times
+n\)</span>的满秩矩阵构成一般线性群<span class="math inline">\(GL(n,
+\mathbb R)\)</span>或者<span class="math inline">\(GL(n, \mathbb
+C)\)</span>。</p>
+<p><span class="math display">\[GL(n, k)=\{M\in M_n(k)| \det M\neq
+0\};\]</span> <span class="math display">\[SL(n, k)=\{M\in GL(n, k)|
+\det M=1\}.\]</span></p>
+<p>正交矩阵群：<span class="math inline">\(O(n)=\{M\in GL(n, \mathbb R)|
+M^TM=MM^T=I\}\)</span>; <span class="math inline">\(SO(n)=\{M\in O(n)|
+\det M=1\}.\)</span></p>
+<p>幺正矩阵群：<span class="math inline">\(U(n) = \{M\in GL(n, \mathbb
+C)| M^\dagger M=MM^\dagger = I\}\)</span>; <span
+class="math inline">\(SU(n)=\{M\in U(n)| \det M=1\}.\)</span></p>
+<p>如果一个群中所有元素之间的乘法都对易，我们称其为阿贝尔群（Abelian
+group）；反之，称其为非阿贝尔群（non-Abelian group）。
+在上述例子中，<span class="math inline">\(\mathbb
+Z_n\)</span>是阿贝尔群；<span class="math inline">\(\mathbb D_n\)</span>
+(<span class="math inline">\(n&gt;2\)</span>)和矩阵群 (<span
+class="math inline">\(n&gt;2\)</span>)都是非阿贝尔群。</p>
+<p>由于加法往往是对易的，而矩阵乘法一般是非对易的；在很多文献中通常将阿贝尔群上的“乘法”记作加法，如上文中<span
+class="math inline">\(n\)</span>阶循环群<span
+class="math inline">\(\mathbb Z_n\)</span>就是如此。
+此时，我们将群的“幺元”相应地称作零元。</p>
+</body>
+</html>

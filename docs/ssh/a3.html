@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>AIII对称类型的拓扑不变量</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">AIII对称类型的拓扑不变量</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>SSH模型与绕数不变量</li>
+        <li>AIII对称类型的拓扑不变量</li>
+      </ul>
+</nav>
+<p><span class="math inline">\(\DeclareMathOperator{\tr}{tr}\)</span>
+接下来，我们将上一节中引入的绕数不变量推广到多带模型，以及三维模型中。
+这个绕数不变量将给出一维和三维AIII对称类型的拓扑分类都是整数<span
+class="math inline">\(\mathbb Z\)</span>。</p>
+<h2 id="一维多带模型的绕数不变量">一维多带模型的绕数不变量</h2>
+<p>首先，我们考虑一个具有手征对称性<span
+class="math inline">\(S\)</span>的一维多带模型。
+不失一般性地，我们假设该模型有<span
+class="math inline">\(2n\)</span>个能带，而手征对称性<span
+class="math inline">\(S=\tau^z\)</span>。 严格来讲，这里的<span
+class="math inline">\(\tau^z\)</span>应该写作<span
+class="math inline">\(\tau^z\otimes I_n\)</span>，其中<span
+class="math inline">\(\tau^z\)</span>是一个2乘2的泡利矩阵；<span
+class="math inline">\(I_n\)</span>是一个<span
+class="math inline">\(n\times n\)</span>的单位矩阵。
+在本书中，我们为了记号的方便和简洁起见，一般不把单位矩阵显式地写出来。
+因此我们此处将其简记为<span
+class="math inline">\(S=\tau^z\)</span>。</p>
+<p>接下来，和上节中类似，我们考虑一个满足上述手征对称性的哈密顿量<span
+class="math inline">\(H(k)\)</span>。 如前所述，我们假设<span
+class="math inline">\(H(k)\)</span>具有平带的能谱结构，即<span
+class="math inline">\(H(k)^2=1\)</span>。 容易证明，<span
+class="math inline">\(H(k)\)</span>与<span
+class="math inline">\(S\)</span>反对易导致<span
+class="math inline">\(H(k)\)</span>具有如下的分块对角结构：
+<span id="eq:ssh-Hqn" class="eqnos"><span class="math display">\[
+H(k)=\begin{pmatrix}0 &amp; q(k)\\q(k)^\dagger &amp; 0\end{pmatrix},
+\]</span><span class="eqnos-number">(1)</span></span> 其中<span
+class="math inline">\(q(k)\)</span>不再是上节中的一个复数，而是一个<span
+class="math inline">\(n\times n\)</span>的矩阵。
+将上述分块对角的形式代入平带条件<span
+class="math inline">\(H(k)^2=1\)</span>，我们得到<span
+class="math inline">\(q(k)q(k)^\dagger=1\)</span>，即<span
+class="math inline">\(q(k)\in \mathrm U(n)\)</span>为一个幺正矩阵。
+因此，一个AIII对称性类型的平带哈密顿量可以用一个幺正矩阵表示。</p>
+<p>与上节情况类似，一个一维的绝缘体能带对应于从一维布里渊区到U(n)的连续映射，因此可以用U(n)里的一个一维闭合曲线表示。
+因而其拓扑分类可以用U(n)群的基本群，即一阶同伦群给出。
+数学上已经知道U(n)群的各阶同伦群的结果（在本书第??章中，我们也会简单介绍计算这些同伦群的Bott周期律的数学结果）。
+特别地，<span class="math inline">\(\pi_1[U(n)]=\mathbb Z\)</span>。
+这说明对于一维AIII类型的多带模型，其拓扑分类仍是一个整数。
+事实上，这个能带的拓扑不变量可以用如下的绕数公式给出：
+<span id="eq:winding-number-qn" class="eqnos"><span
+class="math display">\[w=\frac1{2\pi
+i}\int_0^{2\pi}dk\,\tr\left[q(k)^{-1}\frac{dq(k)}{dk}\right].
+\]</span><span class="eqnos-number">(2)</span></span>
+容易看出，这个绕数公式就是把上节中两带模型的绕数公式中的<span
+class="math inline">\(q(k)\)</span>换成一个幺正矩阵，并对被积函数取了迹。</p>
+<h2 id="三维aiii类型的绕数不变量">三维AIII类型的绕数不变量</h2>
+<p>接下来，我们将绕数不变量推广到三维的AIII对称性类型绝缘体哈密顿量。
+与一维系统一样，根据手征对称性，一个平带哈密顿量还是可以写成(<a
+href="#eq:ssh-Hqn">1</a>)式中分块对角的形式。
+与上一章中讨论陈数的计算方法时的考虑类似，我们这里也先假设哈密顿量在布里渊区边界上可以被连续变形至相同的形式。
+因此三维布里渊区到U(n)矩阵的映射可以看成一个三维球面（而非三维环面）到U(n)的映射。
+这类映射的拓扑分类由U(n)的三阶同伦群给出。 根据数学上已知的结果，<span
+class="math inline">\(\pi_3[U(n)]=\mathbb Z\)</span>。
+因此，三维AIII对称性类型的拓扑分类也是整数。
+可以证明，这个分类可以由一个从(<a
+href="#eq:winding-number-qn">2</a>)推广而来的三维绕数公式给出 <span
+class="math display">\[w_3 = \int_{BZ} \frac{d^3k}{(2\pi)^3}
+\tr\left[\left(q^{-1}\frac{\partial q}{\partial k_x}\right)
+\left(q^{-1}\frac{\partial q}{\partial k_y}\right)
+\left(q^{-1}\frac{\partial q}{\partial k_z}\right)
+\right].\]</span></p>
+<p>当然了，对于一般的三维环面布里渊区上的哈密顿量，这个绕数公式也是可以应用的，并且可以给出一个整数的拓扑不变量，对应于该模型的强拓扑指数。</p>
+</body>
+</html>

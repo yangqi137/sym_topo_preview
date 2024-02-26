@@ -4,11 +4,13 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>Berry相位、Berry联络和Berry曲率</title>
+  <title>贝里相位和贝里联络</title>
   <style>
     html {
       line-height: 2;
-      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”, “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro Hei”,sans-serif;;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
       font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -159,20 +161,307 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">Berry相位、Berry联络和Berry曲率</h1>
+<h1 class="title">贝里相位和贝里联络</h1>
 </header>
 <nav class="breadcrumb">
   <ul>
-        <li>能带、Berry相位与拓扑数</li>
-        <li>Berry相位、Berry联络和Berry曲率</li>
+        <li>能带、贝里相位与拓扑数</li>
+        <li>贝里相位和贝里联络</li>
       </ul>
 </nav>
-
+<p>在本章中，我们将回顾量子力学中贝里相位（Berry
+phase）的概念，并引入布里渊区中能带的贝里联络（Berry connection）。
+贝里联络将构成描述能带拓扑结构的拓扑不变量的重要组成部分。</p>
+<h2 id="贝里相位和贝里联络">贝里相位和贝里联络</h2>
+<p>我们考虑一个量子力学系统，其哈密顿量<span
+class="math inline">\(H\)</span>是一组<span
+class="math inline">\(n_p\)</span>维参数<span
+class="math inline">\(\boldsymbol x\)</span>的连续函数：<span
+class="math inline">\(H=H[\boldsymbol x]\)</span>。
+假设描述该系统的参数<span class="math inline">\(\boldsymbol
+x\)</span>随时间缓慢地变化，<span class="math inline">\(\boldsymbol
+x=\boldsymbol x(t)\)</span>。 在这个变化过程中，哈密顿量<span
+class="math inline">\(H[\boldsymbol
+x(t)]\)</span>始终有能隙，并且这个变化过程满足绝热定理的条件。
+因此，在这个过程中，系统始终处于哈密顿量的基态<span
+class="math inline">\(|\psi[\boldsymbol x]\rangle\)</span>。
+可以证明，从<span class="math inline">\(t_1\)</span>时刻到<span
+class="math inline">\(t_2\)</span>时刻演化过程中积累的贝里相位为
+<span id="eq:def-g1" class="eqnos"><span
+class="math display">\[\gamma=\int_Cd\boldsymbol x\mathcal A(\boldsymbol
+x),
+\]</span><span class="eqnos-number">(1)</span></span> 其中<span
+class="math inline">\(\mathcal A(\boldsymbol x)\)</span>为贝里联络：
+<span id="eq:def-A1" class="eqnos"><span class="math display">\[
+\mathcal A(\boldsymbol x)=i\langle\psi[\boldsymbol x]|
+\frac\partial{\partial\boldsymbol x}|\psi[\boldsymbol x]\rangle.
+\]</span><span class="eqnos-number">(2)</span></span>
+这里我们要注意：虽然上面贝里联络的定义中有一个<span
+class="math inline">\(i\)</span>的系数，但是由此得到的贝里联络<span
+class="math inline">\(\mathcal A(\boldsymbol
+x)\)</span>总是一个实的矢量场。 这是因为对于<span
+class="math inline">\(|\psi[\boldsymbol
+x]\rangle\)</span>这样一个归一化的量子态，<span
+class="math inline">\(\langle\psi[\boldsymbol x]|
+\frac\partial{\partial\boldsymbol x}|\psi[\boldsymbol
+x]\rangle\)</span>总是一个纯虚数。</p>
+<p>上述定义适用于基态非简并的情形。
+拓扑系统一般都包含多条能带，其拓扑性质往往依赖于费米面下能带之间出现一些交叉。
+在这些交叉点上，我们必须考虑简并的量子态的贝里相位。
+特别地，在下文中我们将看到：在研究拓扑物态时，我们为了数学推导的方便会将能带“平带化”。
+这时在整个布里渊区上基态都是简并的。
+因此，我们需要将上面的非简并量子态的贝里联络、贝里相位的概念推广到简并量子态的情形。</p>
+<p>我们假设对于任意一组参数<span class="math inline">\(\boldsymbol
+x\)</span>，哈密顿量<span class="math inline">\(H=H[\boldsymbol
+x]\)</span>都具有<span
+class="math inline">\(n\)</span>重简并的基态：<span
+class="math inline">\(|\psi[\boldsymbol x]_\alpha\)</span>。
+注意这里<span class="math inline">\(|\psi[\boldsymbol
+x]_\alpha\)</span>，<span
+class="math inline">\(\alpha=1,\ldots,n\)</span>满足正交归一的性质，但是并不构成一组完备基。
+事实上，它们构成哈密顿量基态子空间的一组完备基底；而这个子空间的维度小于整个希尔伯特空间的总维度。
+而下面定义的贝里联络和贝里相位正是描述了这个基态子空间随参数变化的性质。</p>
+<p>利用这组基底，我们可以将(<a
+href="#eq:def-A1">2</a>)式中的贝里联络推广为如下的形式：
+<span id="eq:def-An" class="eqnos"><span class="math display">\[\mathcal
+A(\boldsymbol x)_{\alpha\beta} = i\langle\psi[\boldsymbol x]_\alpha|
+\frac\partial{\partial\boldsymbol x}|\psi[\boldsymbol x]_\beta\rangle.
+\]</span><span class="eqnos-number">(3)</span></span>
+从上式的结构来看，我们其实不能简单地推广(<a
+href="#eq:def-g1">1</a>)中的贝里相位到简并基态的情形：
+这是因为上式中定义的贝里联络是一个矩阵，其基底为<span
+class="math inline">\(|\psi[\boldsymbol x]_\alpha\)</span>。
+但是一般地，在不同参数下的基底并没有直接的关系；因此我们不能直接将这些矩阵进行加法运算。
+事实上，在下文中我们将具体推导贝里联络在基底变换下的变换形式；而在基底变换下，我们将看到将贝利联络如(<a
+href="#eq:def-g1">1</a>)式中那样积分并不能得到一个具有良好的协变形式的结果。</p>
+<p>此时，为了避免上面所说的困难，最简单的做法是取贝里联络的迹： <span
+class="math display">\[\mathrm{tr}\,\mathcal A(\boldsymbol
+x)=\sum_{\alpha=1}^ni\langle\psi[\boldsymbol x]_\alpha|
+\frac\partial{\partial\boldsymbol x}|\psi[\boldsymbol
+x]_\beta\rangle.\]</span>
+由于迹和基底的选择无关，这就避免了上面所说的基底依赖性的问题。
+因此，我们可以用贝里联络的迹来计算一个标量的相位：
+<span id="eq:def-gn" class="eqnos"><span
+class="math display">\[\gamma=\int_Cd\boldsymbol
+x\;\mathrm{tr}\,\mathcal A(\boldsymbol x),
+\]</span><span class="eqnos-number">(4)</span></span> </p>
+<p>更一般地，我们可以将(<a
+href="#eq:def-A1">2</a>)式中贝里相位的定义进行推广，从而得到一个幺正矩阵，以此表示经过一段路径的绝热演化之后得到的在基态子空间上的一个幺正演化。
+为了得到这个推广的形式，我们注意到(<a
+href="#eq:def-A1">2</a>)中得到的实际是一个U(1)的相位：特别地，<span
+class="math inline">\(\gamma\)</span>和<span
+class="math inline">\(\gamma+2\pi\)</span>实际是等价的。
+所以我们实际计算的应该是一个幺模的复数<span
+class="math inline">\(\Phi=e^{i\gamma}\)</span>。 相应地，我们可以将(<a
+href="#eq:def-A1">2</a>)改写为 <span class="math display">\[\Phi =
+\exp\left\{i\int_Cd\boldsymbol x\mathcal A(\boldsymbol x)\right\}.
+\]</span> 上式的右端可以看成在路径<span
+class="math inline">\(C\)</span>上，一系列无穷小的幺正演化<span
+class="math inline">\(\exp[i\Delta\boldsymbol x\cdot\mathcal
+A(\boldsymbol x)]\)</span>的连乘。 因此，当贝里联络为(<a
+href="#eq:def-An">3</a>)式中的矩阵时，我们也可以考虑无穷小的幺正演化<span
+class="math inline">\(\exp[i\Delta\boldsymbol x\cdot\mathcal
+A(\boldsymbol x)]\)</span>的连乘。 此时，该幺正矩阵表示从<span
+class="math inline">\(\boldsymbol x\)</span>点的基态子空间到<span
+class="math inline">\(\boldsymbol x+\Delta\boldsymbol
+x\)</span>点的基态子空间的一个幺正演化。
+因此，我们可以将这些无穷小幺正演化矩阵进行连乘。
+数学上，我们将这个连乘的极限记作如下的积分：
+<span id="eq:def-Phi" class="eqnos"><span class="math display">\[\Phi =
+\mathcal P\exp\left\{i\int_Cd\boldsymbol x\mathcal A(\boldsymbol
+x)\right\},
+\]</span><span class="eqnos-number">(5)</span></span> 其中<span
+class="math inline">\(\mathcal
+P\)</span>表示后面的指数函数要取“路径顺序（path
+ordering）”，即上式的右边应该理解为一系列无穷小幺正矩阵的乘积；由于这些幺正矩阵彼此并不对易，它们相乘的顺序要按<span
+class="math inline">\(\boldsymbol x\)</span>在路径<span
+class="math inline">\(C\)</span>上的顺序，从右向左排列。 这样得到的<span
+class="math inline">\(\Phi\)</span>是一个幺正矩阵（因为它是一系列幺正矩阵的乘积），其物理意义为沿路径<span
+class="math inline">\(C\)</span>的绝热演化对应的在基态子空间上的幺正演化矩阵。
+数学上，它被称为该路径<span
+class="math inline">\(C\)</span>上的一个和乐矩阵。英文文献中称<span
+class="math inline">\(\Phi\)</span>为路径<span
+class="math inline">\(C\)</span>的holonomy，而holonomy一词一般音译为和乐；此处holonomy是一个名词，在英文中语法是通顺的；但是中文中“和乐”一词不似名词，而更像是形容词。因此此处我们选择将其译为“和乐矩阵”，似乎语法上更通顺一些。
+在下文中，我们将看到，和乐矩阵<span
+class="math inline">\(\Phi\)</span>确实是(<a
+href="#eq:def-A1">2</a>)式的一个具有良好的基底变换协变性的推广。
+特别地，容易证明，<span
+class="math inline">\(\Phi\)</span>的行列式就是<span
+class="math inline">\(e^{i\gamma}\)</span>：如果我们对<span
+class="math inline">\(\Phi\)</span>取对数，<span
+class="math inline">\(\mathrm{tr}\,\ln\Phi\)</span>就和<span
+class="math inline">\(i\gamma\)</span>只差<span
+class="math inline">\(2\pi
+i\)</span>的整数倍（复数的对数本身也会差一个<span
+class="math inline">\(2\pi i\)</span>的整数倍）。
+相应地，由于矩阵对数的迹等于矩阵行列式的对数，我们得到 <span
+class="math display">\[e^{i\gamma} = \det\Phi =
+\exp\left\{i\int_Cd\boldsymbol x\,\mathrm{tr}\,\mathcal A(\boldsymbol
+x)\right\}.\]</span></p>
+<h2
+id="能带结构中的贝里相位和贝里联络">能带结构中的贝里相位和贝里联络</h2>
+<p>我们可以将上面定义的贝里相位和贝里联络用来研究布里渊区上的绝缘体能带结构。
+一个绝缘体能带结构中所有的能带被费米能量分成费米能上面的导带（conducting
+bands）和费米能下面的价带（valence bands）。
+对于布里渊区中的每个准动量<span class="math inline">\(\boldsymbol
+k\)</span>，存在一组正交归一的布洛赫态<span
+class="math inline">\(|\psi[\boldsymbol
+k]_\alpha\rangle\)</span>来描述价带构成的子希尔伯特空间。
+如果我们不考虑不同价带之间的能量差别，只关心价带子空间本身的性质，我们就可以认为价带子空间构成了上一节中所讨论的基态子空间，并且利用贝里联络和贝里相位来讨论价带子空间随准动量变化的拓扑性质。</p>
+<p>事实上，对于任意的一个能带哈密顿量<span
+class="math inline">\(H=H[\boldsymbol
+k]\)</span>，我们总可以将哈密顿量连续地变形至如下形式： <span
+class="math display">\[H_F[\boldsymbol
+k]=1-2\sum_{\alpha=1}^n|\psi[\boldsymbol
+k]_\alpha\rangle\langle\psi[\boldsymbol k]_\alpha|.\]</span>
+不难看出，对于这个哈密顿量，所有价带的能量都是<span
+class="math inline">\(-1\)</span>，而所有导带的能量都是<span
+class="math inline">\(+1\)</span>。
+因此，我们称这个哈密顿量为一个平带哈密顿量。
+由于在将原始绝缘体哈密顿量变形至这个平带哈密顿量的过程中始终没有关闭能隙，因此能带的拓扑性质并没有发生变化。
+所以，每个绝缘体哈密顿量都拓扑等价于一个平带哈密顿量。
+这个结论在本书后面讨论能带拓扑性质时还将被反复使用。
+利用平带哈密顿量，我们可以看到，能带的拓扑性质与价带中不同量子态的能量差别并无关系，只取决于价带量子态张成的价带子空间本身。</p>
+<p>在下一节中，我们将看到，布里渊区上每个准动量点的价带子空间构成了一个被称为向量丛的数学结构，而这个向量丛的拓扑性质也反映了绝缘体能带的拓扑性质。
+本节介绍的贝里相位和贝里联络就是研究该向量丛拓扑性质的重要工具。</p>
+<p>由于本书中主要讨论的是动量空间上的贝里相位和贝里联络，在本节的剩余部分我们将把参数<span
+class="math inline">\(\boldsymbol x\)</span>写成动量<span
+class="math inline">\(\boldsymbol k\)</span>。</p>
+<h2 id="贝里联络的规范变换">贝里联络的规范变换</h2>
+<p>在量子力学中，我们熟知一个波函数的绝对相位是无法被直接观测的，因而并不具有真实的物理意义；两个量子态的相对相位，或者量子态的相位变化才能够通过干涉效应转化成可观测的几率等物理量，从而具有真实的物理意义。
+数学上，这体现在我们可以重新定义波函数的相位：<span
+class="math inline">\(|\psi\rangle\mapsto
+e^{i\theta}|\psi\rangle\)</span>，而不产生可观测的物理效应。
+对于非简并基态的贝里联络，由于不同参数<span
+class="math inline">\(\boldsymbol k\)</span>对应不同的哈密顿量<span
+class="math inline">\(H[\boldsymbol k]\)</span>以及不同的基态波函数<span
+class="math inline">\(|\psi[\boldsymbol
+k]\rangle\)</span>，我们可以对不同的<span
+class="math inline">\(\boldsymbol k\)</span>选择不同的相位<span
+class="math inline">\(\theta\)</span>：
+<span id="eq:berry:gauge-transf-u1" class="eqnos"><span
+class="math display">\[|\psi[\boldsymbol k]\rangle\mapsto
+e^{i\theta(\boldsymbol k)}|\psi[\boldsymbol k]\rangle.
+\]</span><span class="eqnos-number">(6)</span></span>
+这对应于在参数空间上的一个局域的U(1)相位变换，因此被称为一个U(1)规范变换。</p>
+<p>从贝里联络的定义不难看出，它并不是一个规范不变的量。直观地看，这是因为其定义中涉及到基态波函数对参数<span
+class="math inline">\(\boldsymbol
+k\)</span>的微分，而这相当于比较两个（相差无穷小的）不同参数下的基态波函数的相位。数学上，我们可以将上面的规范变换代入贝里联络的定义，得到其在规范变换下的协变形式：
+<span class="math display">\[\mathcal A\mapsto \mathcal
+A-\frac{\partial\theta}{\partial\boldsymbol k}.\]</span></p>
+<p>相应地，在一般情况下，贝里相位也不是规范不变的可观测量。由于贝里相位描述的是<span
+class="math inline">\(\boldsymbol k_2\)</span>和<span
+class="math inline">\(\boldsymbol
+k_1\)</span>这两个参数下的基态之间的相对相位，它应该依赖于二者在规范变换下的变化量：<span
+class="math inline">\(\theta(\boldsymbol k_1)\)</span>和<span
+class="math inline">\(\theta(\boldsymbol k_2)\)</span>。
+将贝里联络的规范变换形式代入贝里相位的表达式，可以得到在规范变换下，贝里相位按如下形式变化：
+<span class="math display">\[\gamma\mapsto \gamma -\theta(\boldsymbol
+k_2) + \theta(\boldsymbol k_1).\]</span></p>
+<p>特别地，如果<span class="math inline">\(\boldsymbol k_2 = \boldsymbol
+k_1\)</span>，即系统经过一段时间的演化，又回到了最开始的参数状态。
+根据绝热定理，在基态不存在简并的情况下，系统也将回到最开始的基态。此时，由于初末态是同一个量子态，它们之间的相对相位不受规范变换的影响，因而贝里相位<span
+class="math inline">\(\gamma\)</span>变成了一个规范不变的、具有真实物理意义的可观测量。从上面的规范变换的数学形式也可以看出，当<span
+class="math inline">\(\boldsymbol k_2 = \boldsymbol
+k_1\)</span>时，等式右端的两个相位相互抵消，因而<span
+class="math inline">\(\gamma\)</span>具有规范不变性。</p>
+<p>对于简并基态（即高维子空间）的贝里联络，其规范变换的性质要更复杂一些。
+类似于(<a
+href="#eq:berry:gauge-transf-u1">6</a>)，我们可以对基底做一个规范变换；但是此时我们不仅可以给每个基底加上一个任意的相位，而且可以在这<span
+class="math inline">\(n\)</span>个基底之间做任意的幺正变换。
+因此，我们可以进行任意的<span
+class="math inline">\(U(n)\)</span>规范变换：
+<span id="eq:berry:gauge-transf-un" class="eqnos"><span
+class="math display">\[|\psi[\boldsymbol
+k]_\alpha\rangle\mapsto|\psi[\boldsymbol k]_\beta\rangle U[\boldsymbol
+k]_{\beta\alpha},
+\]</span><span class="eqnos-number">(7)</span></span> 其中<span
+class="math inline">\(U[\boldsymbol k]\in
+U(n)\)</span>是一个依赖于准动量<span class="math inline">\(\boldsymbol
+k\)</span>的幺正矩阵。
+相应地，贝里联络在这个规范变换下具有如下的协变形式： <span
+class="math display">\[\mathcal A\mapsto U^\dagger\mathcal A U +
+iU^\dagger\frac{\partial U}{\partial\boldsymbol k}.\]</span>
+其中第一项的出现是因为此时<span class="math inline">\(\mathcal
+A\)</span>是一个以<span class="math inline">\(|\psi[\boldsymbol
+k]_\alpha\rangle\)</span>为基底表示的矩阵，因此在基底的幺正变换下自然应该做相应的幺正变换。
+而第二项则来自于规范变换<span class="math inline">\(U[\boldsymbol
+k]\)</span>的动量依赖性。 注意到<span
+class="math inline">\(U\)</span>的幺正性质：<span
+class="math inline">\(U^\dagger =
+U^{-1}\)</span>，我们可以将上式的第二项改写成如下形式：
+<span id="eq:berry:gauge-transf-An" class="eqnos"><span
+class="math display">\[\mathcal A\mapsto U^\dagger\mathcal A U +
+i\frac{\partial}{\partial\boldsymbol k}\ln U.
+\]</span><span class="eqnos-number">(8)</span></span> </p>
+<p>接下来，我们需要推导(<a
+href="#eq:def-Phi">5</a>)式中定义的和乐矩阵的规范变换性质。
+我们首先讨论对贝里联络<span class="math inline">\(\mathcal
+A\)</span>取迹后在(<a href="#eq:def-gn">4</a>)式中得到的标量相位。 对(<a
+href="#eq:berry:gauge-transf-An">8</a>)式取迹之后，第一项中的基底变换就消失了（因为矩阵的迹与基底无关），我们得到：
+<span class="math display">\[\mathrm{tr}\;\mathcal
+A\mapsto\mathrm{tr}\,\mathcal A+i\frac{\partial}{\partial\boldsymbol
+k}\ln\det U.\]</span> 注意到这里我们用到了矩阵的一个性质：<span
+class="math inline">\(\mathrm{tr}\,\ln U=\ln\det U\)</span>。
+由此可以得到，一段路径上的贝里相位的规范变换形式为： <span
+class="math display">\[\gamma\mapsto\gamma + i\ln\frac{\det
+U[\boldsymbol k_2]}{\det U[\boldsymbol k_1]}.\]</span>
+特别地，在一段闭合路径上，如果我们定义的规范变换对于<span
+class="math inline">\(\boldsymbol
+k\)</span>是单值的，那么上式中的第二项将变成零。也就是说，和非简并基态的情形类似，对于简并基态（即高维价带子空间），闭合路径上的标量相位<span
+class="math inline">\(e^{i\gamma}=\det\Phi\)</span>也是规范不变的。</p>
+<p>对于(<a
+href="#eq:def-Phi">5</a>)式中定义的和乐矩阵，我们需要考虑其中每个无穷小幺正矩阵<span
+class="math inline">\(\exp[i\Delta\boldsymbol x\cdot\mathcal
+A(\boldsymbol k)]\)</span>的规范变换性质。 将(<a
+href="#eq:berry:gauge-transf-An">8</a>)式中的规范变换带入无穷小幺正矩阵，并保留到<span
+class="math inline">\(\Delta\boldsymbol
+k\)</span>的一阶，我们得到如下的规范变换： <span
+class="math display">\[e^{i\Delta\boldsymbol k\cdot\mathcal
+A(\boldsymbol k)}=1+i\Delta\boldsymbol k\cdot\mathcal A(\boldsymbol k)
+\mapsto 1+i\Delta k\cdot U(\boldsymbol k)^\dagger \mathcal A(\boldsymbol
+k)U(\boldsymbol k)-\ln\frac{U(\boldsymbol k+\Delta\boldsymbol
+k)}{U(\boldsymbol k)}=U(\boldsymbol k)^\dagger e^{i\Delta\boldsymbol
+k\cdot\mathcal A(\boldsymbol k)}U(\boldsymbol k+\Delta\boldsymbol
+k).\]</span> 因此，将这些无穷小幺正矩阵的规范变换相乘，我们得到(<a
+href="#eq:def-Phi">5</a>)式中和乐矩阵的规范变换形式： <span
+class="math display">\[\Phi\mapsto U^\dagger(\boldsymbol k_1)\Phi
+U(\boldsymbol k_2).\]</span> 这个规范变换形式与和乐矩阵作为从<span
+class="math inline">\(\boldsymbol k_1\)</span>点的基态子空间到<span
+class="math inline">\(\boldsymbol
+k_2\)</span>点的基态子空间的幺正变换的性质是吻合的：
+作为两个子空间之间的一个线性映射，在二者发生基底的幺正变换的时候自然也要做相应的幺正变换。
+特别地，如果<span
+class="math inline">\(C\)</span>是一个闭合路径，即<span
+class="math inline">\(\boldsymbol k_1=\boldsymbol
+k_2\)</span>，那么和乐矩阵的规范变换就是<span
+class="math inline">\(\boldsymbol
+k_1\)</span>点子空间基底改变的幺正变换： <span
+class="math display">\[\Phi\mapsto U^\dagger(\boldsymbol k_1)\Phi
+U(\boldsymbol k_1).\]</span>
+由于行列式在幺正变换下不变，在一个闭合路径上，<span
+class="math inline">\(\det\Phi = e^{i\gamma}\)</span>是规范不变的。
+这和我们前面的分析也是一致的。</p>
+<p>综上所述，贝里联络是参数空间上的一个规范依赖的矢量场；而参数空间上一段非闭合路径上的贝里相位也依赖于其起点和终点上的规范选择。
+只有参数空间上一段闭合路径上的贝里相位是规范不变的。
+不难想象，对于拓扑性质的描述不应该依赖于波函数规范的选择。
+因此本章中描述拓扑性质时，我们更倾向于使用规范不变的物理量，如闭合路径的贝里相位和（下文中将介绍的）贝里曲率等。
+如果在描述拓扑性质、定义拓扑不变量时需要直接使用贝里联络，需要仔细检查最终结果的规范不变性。</p>
 </body>
 </html>

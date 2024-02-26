@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>SSH模型</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">SSH模型</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>SSH模型与绕数不变量</li>
+        <li>SSH模型</li>
+      </ul>
+</nav>
+<p>一维Su-Schrieffer–Heeger (SSH) 模型是最简单的拓扑能带模型之一。
+在本节中，我们将介绍该模型，并讨论该模型的拓扑性质。
+这将为我们在下节中讨论一般的AIII类型能带模型的拓扑不变量打下基础。</p>
+<h2 id="一维ssh模型">一维SSH模型</h2>
+<p>一维SSH模型最早是由Su, Schrieffer,
+Heeger三人提出的一个描述一维聚乙炔链的电子模型。
+在聚乙炔链中，碳原子排列成一个一维链；这些碳原子之间形成交替分布的双键和单键。
+因此，碳原子形成一个复式一维晶格：每个晶格原胞中中包含两个碳原子格点，我们将其分别记为<span
+class="math inline">\(A\)</span>和<span
+class="math inline">\(B\)</span>。 不妨假设原胞内<span
+class="math inline">\(A\)</span>和<span
+class="math inline">\(B\)</span>之间的化学键为双键，而原胞间的<span
+class="math inline">\(B\)</span>和<span
+class="math inline">\(A\)</span>之间的化学键为单键。
+由于化学键不同，碳原子上的电子在两个键上的跃迁矩阵元也有所不同。
+由此，我们得到如下的一维电子能带模型：
+<span id="eq:ssh-H" class="eqnos"><span class="math display">\[
+\hat H=-t\sum_i\left(c_{iA}^\dagger c_{iB}+\text{h.c.}\right)
+-t&#39;\sum_i\left(c_{iB}^\dagger c_{i+1,A}+\text{h.c.}\right).
+\]</span><span class="eqnos-number">(1)</span></span>
+聚乙炔中的自旋轨道耦合很明显可以忽略，因此我们略去自旋自由度，考虑一个无自旋的电子模型。</p>
+<p>通过傅里叶变换，我们可以得到如下的动量空间的哈密顿量 <span
+class="math display">\[H=\sum_k\begin{pmatrix}c_{kA}^\dagger&amp;c_{kB}^\dagger\end{pmatrix}
+\begin{pmatrix}0&amp;-t-t&#39;e^{-ik}\\-t-t&#39;e^{ik}&amp;0\end{pmatrix}
+\begin{pmatrix}c_{kA}\\c_{kB}\end{pmatrix}.\]</span>
+这个二次量子化的哈密顿量对应于如下的一次量子化哈密顿量
+<span id="eq:ssh-H1" class="eqnos"><span
+class="math display">\[H(\boldsymbol
+k)=\begin{pmatrix}0&amp;-t-t&#39;e^{-ik}\\-t-t&#39;e^{ik}&amp;0\end{pmatrix},
+\]</span><span class="eqnos-number">(2)</span></span>
+其中矩阵的两个自由度分别对应于<span
+class="math inline">\(A\)</span>和<span
+class="math inline">\(B\)</span>两个子格。
+我们立刻可以看出，这个哈密顿量<span class="math inline">\(H(\boldsymbol
+k)\)</span>的两个对角元都为零，而左下角的矩阵元必然是右上角的复共轭；因此它可以由右上角的矩阵元唯一确定。
+我们将其右上角的矩阵元记作 <span id="eq:ssh-qk1" class="eqnos"><span
+class="math display">\[h_{AB}(\boldsymbol k)=-t-t&#39;e^{ik}.
+\]</span><span class="eqnos-number">(3)</span></span>
+而哈密顿量可以表示为 <span id="eq:ssh-Hq1" class="eqnos"><span
+class="math display">\[H(\boldsymbol
+k)=\begin{pmatrix}0&amp;h_{AB}(\boldsymbol k)\\h_{AB}(\boldsymbol
+k)^\ast&amp;0\end{pmatrix}.
+\]</span><span class="eqnos-number">(4)</span></span> </p>
+<h2 id="手征对称性">手征对称性</h2>
+<p>哈密顿量(<a
+href="#eq:ssh-H1">2</a>)的两个对角元为零并不是偶然的，而是(<a
+href="#eq:ssh-H">1</a>)式中模型对称性的要求。
+事实上，聚乙炔链的SSH模型中只存在AB两子格之间的跃迁项，不存在子格内部的跃迁项。
+因此，该模型具备我们在第5.3节中讲解的手征对称性： <span
+class="math display">\[c_{iA}\mapsto c_{iA}^\dagger; c_{iB}\mapsto
+-c_{iB}^\dagger.\]</span>
+在一次量子化的基底选择下，该对称性对应的矩阵为<span
+class="math inline">\(S=\tau^z\)</span>，其中<span
+class="math inline">\(\tau^{x,y,z}\)</span>表示作用在AB子格自由度上的泡利矩阵。
+不难验证，(<a href="#eq:ssh-Hq1">4</a>)式中的哈密顿量满足<span
+class="math inline">\(H(\boldsymbol k)=-SH(\boldsymbol
+k)S^{-1}.\)</span>
+因此，该模型具有这个手征对称性，它属于AIII对称性类型。</p>
+<p>反过来，我们可以证明，手征对称性会导致哈密顿量具有(<a
+href="#eq:ssh-Hq1">4</a>)的形式。 一般地，一个2乘2的厄米矩阵<span
+class="math inline">\(H\)</span>可以用泡利矩阵和单位矩阵作为基底展开：
+<span class="math display">\[H=h_0+\sum_{a=x,y,z}h_a\tau^a,\]</span>
+其中<span class="math inline">\(h_{0,x,y,z}\)</span>均为实数。
+手征对称性要求<span class="math inline">\(H\)</span>和<span
+class="math inline">\(S=\tau^z\)</span>反对易，这个要求四个基底中只有<span
+class="math inline">\(\tau^x\)</span>和<span
+class="math inline">\(\tau^y\)</span>满足。 因此我们可以将<span
+class="math inline">\(H\)</span>写成 <span
+class="math display">\[H=h_x\tau^x+h_y\tau^y=
+\begin{pmatrix}0&amp;h_x+ih_y\\h_x-ih_y&amp;0\end{pmatrix},\]</span>
+其中<span class="math inline">\(h_x+ih_y\)</span>就是(<a
+href="#eq:ssh-Hq1">4</a>)式中的<span
+class="math inline">\(h_{AB}\)</span>。</p>
+<p>细心的读者可能已经看出，模型(<a
+href="#eq:ssh-H">1</a>)其实还具备时间反演对称性。
+事实上，从物理的角度，一维聚乙炔链并没有磁性，当然也并不会自发破缺时间反演对称性。
+时间反演对称性的存在也意味着该模型还具有粒子-空穴对称性，因为它就是时间反演和手征对称性的复合。
+因此，严格地说，SSH模型其实属于BDI对称性类型。
+但是，手征对称性已经足以保护SSH模型的拓扑非平庸性质了。
+在后文中我们会看到，BDI和AIII对称性类型在1维的拓扑分类是一样的。
+因此，我们通常选择忽略掉SSH模型中的时间反演和粒子-空穴对称性，把它作为AIII对称性类型的代表模型。</p>
+<h2 id="能谱与绕数拓扑不变量">能谱与绕数拓扑不变量</h2>
+<p>通过对角化(<a
+href="#eq:ssh-Hq1">4</a>)式中的哈密顿量，我们很容易得到模型的能谱：
+<span class="math display">\[E(k)=\pm|h_{AB}(k)|.\]</span> 因此，当<span
+class="math inline">\(h_{AB}(k)\neq0\)</span>时，该动量点上有一正一负两个能级。
+而当<span
+class="math inline">\(h_{AB}(k)=0\)</span>时，有两个能量为零的简并能级。
+根据聚乙炔的化学式推断，SSH模型的电子填充数应该处于半填满的状态。
+因此，其费米面应该正好位于<span
+class="math inline">\(E_F=0\)</span>的位置（事实上，手征对称性总会导致半填满时费米能为零）。
+如果在整个布里渊区上<span
+class="math inline">\(h_{AB}(k)\)</span>均非零，那么哈密顿量就在整个布里渊区上均没有简并。
+系统包含两条能带：一条能量为正的导带和一条能量为负的价带。
+因此此时系统为绝缘态。 如果在布里渊区上存在动量点<span
+class="math inline">\(k\)</span>使得<span
+class="math inline">\(h_{AB}(k)=0\)</span>，由于费米能为零，系统在该动量点上能隙关闭。
+因此此时系统为（半）金属态。</p>
+<p>我们接下来将从哈密顿量的这个能谱特征中推导描述能带拓扑性质的拓扑不变量。
+如前所述，哈密顿量由函数<span
+class="math inline">\(h_{AB}(k)\)</span>唯一决定。
+这个函数是从一维布里渊区到复平面的一个映射。
+由于一维布里渊区拓扑等价于一个一维圆<span
+class="math inline">\(S^1\)</span>，这个映射可以看成复平面上的一个闭合曲线<span
+class="math inline">\(h_{AB}(k), k\in[0, 2\pi]\)</span>。
+因此，一个能带结构可以用复平面上的一条闭合曲线来表示。
+根据哈密顿量额能谱特征，当这个曲线穿过原点（即<span
+class="math inline">\(h_{AB}(k)=0\)</span>）时，该能带为（半）金属；当这个曲线不穿过原点时，能带为绝缘体。
+相应地，绝缘体能带的拓扑分类就对应于不穿过原点的曲线的拓扑分类。</p>
+<p>不难看出，这种不穿过原点的曲线可以用曲线相对原点的绕数（winding
+number）来分类。 事实上，去掉一个点的复平面<span
+class="math inline">\(X=\mathbb C-{0}\)</span>的基本群<span
+class="math inline">\(\pi_1(X)=\mathbb
+Z\)</span>，因此这类曲线可以用一个整数拓扑不变量来分类。
+直观地看，这里的绕数指的是曲线围绕原点绕了多少圈：如果曲线没有包围原点，则绕数为零；曲线绕原点逆（顺）时针转一圈，则绕数为+1
+(<span class="math inline">\(-1\)</span>)；依此类推。
+数学上，我们可以用如下方法计算曲线<span
+class="math inline">\(h_{AB}(k)\)</span>的绕数：
+首先，我们取曲线上每点相对原点的辐角<span
+class="math inline">\(\theta(k)=\arg h_{AB}(k)\)</span>。 令辐角随<span
+class="math inline">\(k\)</span>连续变化，计算<span
+class="math inline">\(\theta(2\pi)-\theta(0)\)</span>就可以得到绕数<span
+class="math inline">\(w\)</span>： <span
+class="math display">\[w=\frac1{2\pi}[\theta(2\pi)-\theta(0)].\]</span>
+我们可以将<span
+class="math inline">\(\theta(2\pi)-\theta(0)\)</span>写成一个定积分：
+<span class="math display">\[\theta(2\pi)-\theta(0)=\int_0^{2\pi}
+dk\frac{d\theta(k)}{dk}.\]</span> 由于<span
+class="math inline">\(\theta(k)=\arg h_{AB}(k)\)</span>，我们得到<span
+class="math inline">\(e^{i\theta(k)}=h_{AB}(k)/|h_{AB}(k)|\)</span>。
+容易验证，<span
+class="math inline">\(d\theta/dk=-ie^{-i\theta}d(e^{i\theta})/dk\)</span>。
+利用这些结果，我们可以将上面的定积分改写为
+<span id="eq:winding-number-hab" class="eqnos"><span
+class="math display">\[w=\frac1{2\pi
+i}\int_0^{2\pi}dk\left(\frac{h_{AB}(k)}{|h_{AB}(k)|}\right)^{-1}\frac{d}{dk}\left(\frac{h_{AB}(k)}{|h_{AB}(k)|}\right).
+\]</span><span class="eqnos-number">(5)</span></span> </p>
+<p>上面的推导证明，(<a href="#eq:winding-number-hab">5</a>)式给出的<span
+class="math inline">\(w\)</span>一定是一个整数。 同时，它又是<span
+class="math inline">\(h_AB(k)\)</span>的一个光滑函数。
+因此，当我们对模型哈密顿量进行连续变形时，<span
+class="math inline">\(w\)</span>也会连续变化。
+但是它又只能取离散的整数值。
+因此，为了满足这两条要求，它也只能保持不变了。 这就证明了绕数<span
+class="math inline">\(w\)</span>是绝缘体能带的一个拓扑不变量。
+另一方面，当能带的能隙关闭时，对应于在某个<span
+class="math inline">\(k\)</span>点<span
+class="math inline">\(h_{AB}(k)=0\)</span>，此时(<a
+href="#eq:winding-number-hab">5</a>)式的被积函数没有定义。
+因此对于半金属的能带结构，我们无法定义绕数。
+事实上，当我们通过调整哈密顿量中的参数来使得能隙关闭又打开时，绕数<span
+class="math inline">\(w\)</span>很可能发生变化。</p>
+<h2 id="平带哈密顿量与绕数">平带哈密顿量与绕数</h2>
+<p>在第5.1节中，我们曾经提到过平带哈密顿量（flatband
+Hamiltonian）的概念：
+对于绝缘体哈密顿量，我们可以将哈密顿量连续变形，使得所有导带的能量都为+1，而价带的能量都为<span
+class="math inline">\(-1\)</span>（假定费米能为零）；
+而这种连续变形没有关闭能隙，因此并不改变能带的拓扑性质。
+所以我们可以以这类平带哈密顿量为代表来研究绝缘体能带的拓扑分类。
+平带哈密顿量有一个很简单的数学描述：一个厄米矩阵<span
+class="math inline">\(H\)</span>的本征值均为<span
+class="math inline">\(\pm1\)</span>等价于<span
+class="math inline">\(H^2=1\)</span>。 因此，平带哈密顿量的条件可以写成
+<span class="math display">\[H(k)^2=1.\]</span></p>
+<p>对于SSH模型的能带，将(<a
+href="#eq:ssh-Hq1">4</a>)式中的哈密顿量代入，我们得到平带的充分必要条件为<span
+class="math inline">\(|h_{AB}(k)|^2=1\)</span>，即<span
+class="math inline">\(h_{AB}(k)\)</span>为幺模的复数。
+也就是说，我们可以将(<a
+href="#eq:ssh-Hq1">4</a>)式中的哈密顿量连续地变形，使得其非对角元的模长为1。
+这种连续变形可以通过保持每个动量点上的<span
+class="math inline">\(h_{AB}(k)\)</span>的相位不变，而将其模长连续变为1来得到。
+数学上，这对应于拓扑空间<span class="math inline">\(X=\mathbb
+C-{0}\)</span>同伦等价于复平面上的单位圆，<span
+class="math inline">\(X\sim S^1\)</span>。 我们定义<span
+class="math inline">\(h_{AB}(k)\)</span>的相位为 <span
+class="math display">\[q(k)=\frac{h_{AB}(k)}{|h_{AB}(k)|},\]</span>
+而平带哈密顿量的形式为 <span id="eq:ssh-Hq1f" class="eqnos"><span
+class="math display">\[H(\boldsymbol
+k)=\begin{pmatrix}0&amp;q(\boldsymbol k)\\q(\boldsymbol
+k)^\ast&amp;0\end{pmatrix}.
+\]</span><span class="eqnos-number">(6)</span></span>
+由于在研究拓扑性质时，每个能带都可以用一个对应的平带来代表，能带的拓扑性质也就应该只依赖于<span
+class="math inline">\(q(k)\)</span>。 事实上，(<a
+href="#eq:winding-number-hab">5</a>)式中的绕数确实不依赖于<span
+class="math inline">\(h_{AB}(k)\)</span>的绝对值；它可以用<span
+class="math inline">\(q(k)\)</span>表示为
+<span id="eq:winding-number-q" class="eqnos"><span
+class="math display">\[w=\frac1{2\pi
+i}\int_0^{2\pi}dk\,q(k)^{-1}\frac{dq(k)}{dk}.
+\]</span><span class="eqnos-number">(7)</span></span> </p>
+<p>最后，利用这个绕数公式，我们可以计算SSH模型(<a
+href="#eq:ssh-H1">2</a>)的拓扑性质。 具体的计算就留给读者作为练习。
+计算的结果为：当<span
+class="math inline">\(t=t&#39;\)</span>时，系统能隙关闭（事实上，此时AB子格没有区别，因此原胞变成原来的一半；这样半填满的能带自然是无能隙的），这也是一个拓扑相变点。
+当<span
+class="math inline">\(t&gt;t&#39;\)</span>时，绕数为0，模型为拓扑平庸的；
+当<span
+class="math inline">\(t&lt;t&#39;\)</span>时，绕数为1，模型为拓扑非平庸。</p>
+</body>
+</html>

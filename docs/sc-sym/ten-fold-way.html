@@ -4,11 +4,13 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>反幺正对称性的十个对称分类</title>
+  <title>绝缘体和超导体的十个对称类型</title>
   <style>
     html {
       line-height: 2;
-      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”, “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro Hei”,sans-serif;;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
       font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -159,20 +161,206 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
 </head>
 <body>
 <header id="title-block-header">
-<h1 class="title">反幺正对称性的十个对称分类</h1>
+<h1 class="title">绝缘体和超导体的十个对称类型</h1>
 </header>
 <nav class="breadcrumb">
   <ul>
         <li>金属、绝缘体和超导体中的对称性</li>
-        <li>反幺正对称性的十个对称分类</li>
+        <li>绝缘体和超导体的十个对称类型</li>
       </ul>
 </nav>
-
+<p>在本节中，我们总结前面讲解的时间反演对称性、粒子空穴对称性和手征对称性，并以此列出自由费米子体系的十种对称性类型（symmetry
+classes）。
+这十种对称性类型构成了自由费米子拓扑分类的基础：在后面的章节中，我们将分别介绍这十个对称性类型在不同空间维度下的拓扑分类的结果。</p>
+<p>在第??节中，我们讨论了时间反演对称性<span
+class="math inline">\(\mathcal T\)</span>。
+这是一个反幺正对称性，并且它保持哈密顿量不变： <span
+class="math display">\[\mathcal TH\mathcal T^{-1}=H.\]</span>
+作为一个反幺正对称性，它和费米子奇偶对称性之间的扩张关系存在两种可能性：
+<span class="math inline">\(\mathcal T^2=\pm1\)</span>。
+如前所述，这里的<span
+class="math inline">\(-1\)</span>应当理解为费米子奇偶对称性操作<span
+class="math inline">\(P_f\)</span>。
+因此，一个自由费米子体系可能具有<span class="math inline">\(\mathcal
+T^2=+1\)</span>的时间反演对称性、可能具有<span
+class="math inline">\(\mathcal
+T^2=-1\)</span>的时间反演对称性，也可能不具有时间反演对称性。
+为了简洁起见，我们将这三种可能性分别记作<span
+class="math inline">\(\mathcal T^2=\pm1,0\)</span>。</p>
+<p>在第??节中，我们讨论了粒子空穴对称性<span
+class="math inline">\(\mathcal C\)</span>。
+在一次量子化的表达形式下，这也是一个反幺正对称性。 它会将哈密顿量反号：
+<span class="math display">\[\mathcal CH\mathcal C^{-1}=-H.\]</span>
+同样地，作为一个反幺正对称性，它和费米子奇偶对称性之间的扩张关系也存在两种可能性：
+<span class="math inline">\(\mathcal C^2=\pm1\)</span>。
+因此，一个自由费米子体系的粒子空穴对称性也存在三种可能：<span
+class="math inline">\(\mathcal C^2=\pm1,0\)</span>。</p>
+<p>最后，在第三节中我们讨论了手征对称性<span
+class="math inline">\(S=\mathcal T\mathcal C\)</span>。
+它是一个幺正对称性，但是会将哈密顿量反号（即和哈密顿量反对易）： <span
+class="math display">\[SHS^{-1}=-H.\]</span>
+作为一个幺正对称性，它和费米子奇偶对称性之间不存在非平庸的扩张关系。</p>
+<p>根据一个自由费米子系统是否具有这三种对称性、以及两种反幺正对称性和费米子奇偶对称性之间的扩张关系，可以把它归入十个对称性类型之一。
+对于两种反幺正对称性<span class="math inline">\(\mathcal
+T\)</span>和<span class="math inline">\(\mathcal
+C\)</span>，它们各自具有<span
+class="math inline">\(\pm1,0\)</span>三种可能性，因此排列组合之后共有<span
+class="math inline">\(3\times3=9\)</span>种可能性。 此外，当<span
+class="math inline">\(\mathcal T^2=\mathcal
+C^2=0\)</span>，即该系统不具备<span class="math inline">\(\mathcal
+T\)</span>和<span class="math inline">\(\mathcal
+C\)</span>时，它还可能具备手征对称性<span
+class="math inline">\(S=\mathcal T\mathcal C\)</span>。
+这给出了最后一种对称性类型。 因此对称性类型的总数为<span
+class="math inline">\(3\times3+1=10\)</span>。
+我们将这十种可能的对称性按<span class="math inline">\(\mathcal
+T^2\)</span>、<span class="math inline">\(\mathcal C^2\)</span>和<span
+class="math inline">\(S\)</span>列在表 <a href="#tbl:ten-foldway">1</a>
+中。</p>
+<div id="tbl:ten-foldway" class="tablenos">
+<table id="tbl:ten-foldway">
+<caption><span>Table 1:</span> 十种对称性类型的列表。 </caption>
+<thead>
+<tr class="header">
+<th>对称性类型</th>
+<th><span class="math inline">\(\mathcal T^2\)</span></th>
+<th><span class="math inline">\(\mathcal C^2\)</span></th>
+<th><span class="math inline">\(S\)</span></th>
+<th>系数类型</th>
+<th>q</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb C\)</span></td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>AIII</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td><span class="math inline">\(\mathbb C\)</span></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td>0</td>
+<td>+1</td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>DIII</td>
+<td><span class="math inline">\(-1\)</span></td>
+<td>+1</td>
+<td>1</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>AII</td>
+<td><span class="math inline">\(-1\)</span></td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>CII</td>
+<td><span class="math inline">\(-1\)</span></td>
+<td><span class="math inline">\(-1\)</span></td>
+<td>1</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>0</td>
+<td><span class="math inline">\(-1\)</span></td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>CI</td>
+<td>+1</td>
+<td><span class="math inline">\(-1\)</span></td>
+<td>1</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>AI</td>
+<td>+1</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td>BDI</td>
+<td>+1</td>
+<td>+1</td>
+<td>1</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>表<a
+href="#tbl:ten-foldway">1</a>中其余各列的作用主要是方便本书后续章节讲到相应的概念时读者可以回来查阅。
+第一列中的对称性类型是最早在随机矩阵（random
+matrix）领域的理论研究中首次给出这些对称性类型时起的名字；这些名字在现在的拓扑物态研究中被广泛采用，因此本书也像文献里一样使用这些记号来标记这十个对称性类型。
+这些标记的具体涵义读者可以不必深究。
+表格第五列的“系数类型”表示我们可以大致将十个对称性类型分成两大系列：其中A和AIII两个复数类型都不具有任何反幺正对称性；而剩余的八个实数类型的对称性类型都具有至少一个反幺正对称性。
+这个划分方法对应于后文第??章中会讲到的概念：它实际上表示了描述该对称性的能带结构的克利福德（Clifford）代数的系数是实数还是复数。
+而表格的第六列：<span
+class="math inline">\(q\)</span>，为复数和实数两大系列中的每个对称性类型都赋予了一个编号。
+两个复数对称性类型：A和AIII，分别对应于<span
+class="math inline">\(q=0,1\)</span>；
+而八个实数对称性类型分别对应于<span
+class="math inline">\(q=0,\ldots,7\)</span>。
+这个编号的排序原则将在后文第??章中揭晓，此处不再进一步阐述。
+但现在我们可以从表格中看到一个简单的规律：
+无论是复数还是实数对称性类型，当<span
+class="math inline">\(q\)</span>为偶数时，该对称性类型中没有手征对称性<span
+class="math inline">\(S\)</span>；而当<span
+class="math inline">\(q\)</span>为奇数时，该对称性中有手征对称性<span
+class="math inline">\(S\)</span>。
+我们称前者为非手征（nonchiral）的对称性类型；而后者为手征的对称性类型。</p>
+<p>在十种对称性类型中，很多对称性类型的物理实现比较明显：
+A类型由于没有任何对称性，描述的是没有额外对称性的绝缘体。
+如上一节所述，AIII类型可以描述具有手征对称性（即子格对称性）的绝缘体哈密顿量，或者具有时间反演对称性和U(1)自旋旋转对称性的超导体。
+D类型由于只有一个（物理的）粒子-空穴对称性，描述的是没有额外对称性的超导体。
+DIII类型描述的是具有物理的时间反演对称性的超导体。
+AII类型描述的是具有物理的时间反演对称性的绝缘体；通常所说的拓扑绝缘体就属于这个对称性类型。</p>
+<p>AI和BDI类型比较“奇怪”：它们拥有非物理的<span
+class="math inline">\(\mathcal T^2=+1\)</span>的时间反演对称性。
+我们可以设想一种无自旋费米子构成的物理系统，其中的时间反演对称性并不改变电子的量子数，也就是说<span
+class="math inline">\(\mathcal T=\mathcal K\)</span>就是复共轭操作。
+这样的时间反演对称性就满足<span class="math inline">\(\mathcal
+T^2=+1\)</span>。 相应的绝缘体和超导体体系分别由对称性AI和BDI来描述。
+这样的费米子体系很难在材料中实现，但是它们（特别是其中的BDI类型）对于研究拓扑分类的理论具有重要意义。</p>
+<p>最后，以C开头的三个对称性分类，C、CI和CII都具有<span
+class="math inline">\(\mathcal
+C^2=-1\)</span>的粒子-空穴对称性，因而不是通常意义上的超导体BdG哈密顿量。
+在下一节中，我们将讲解C和CII可以用来描述具有SU(2)对称性的超导体BdG哈密顿量。
+而CI的物理实现比较复杂，它可以用来描述一些具有子格对称性和时间反演对称性的绝缘体能带结构，我们这里就不再赘述了。</p>
 </body>
 </html>

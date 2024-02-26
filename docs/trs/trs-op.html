@@ -8,7 +8,9 @@
   <style>
     html {
       line-height: 2;
-      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”, “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro Hei”,sans-serif;;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
       font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -159,7 +161,9 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -181,30 +185,266 @@
         <li>时间反演对称性</li>
       </ul>
 </nav>
-<p>时间反演对称性是量子力学体系普遍具备的一类对称性。时间反演对称性的破缺对于我们理解磁性系统非常重要。 时间反演对称性也在拓扑物态的研究中扮演着不可或缺的角色：例如我们熟知的拓扑绝缘体就必须由一个时间反演对称性保护。 如果时间反演对称性被破缺了，拓扑绝缘体与平庸的绝缘体的区别也就随之消失了。 在本节中，我们详细介绍时间反演对称性这一对称操作，特别是它独特的反幺正性质。 这些知识将帮助我们理解接下来两节介绍的磁群及其共表示(corepresentation)的数学结构，以及后面章节中的反幺正对称性及其保护的拓扑物态。 本节介绍的时间反演的性质其实就是量子力学中的标准内容，并不涉及固体物理或材料中的应用。 因此，已经熟悉这些知识的读者也可以跳过本节。</p>
+<p>时间反演对称性是量子力学体系普遍具备的一类对称性。时间反演对称性的破缺对于我们理解磁性系统非常重要。
+时间反演对称性也在拓扑物态的研究中扮演着不可或缺的角色：例如我们熟知的拓扑绝缘体就必须由一个时间反演对称性保护。
+如果时间反演对称性被破缺了，拓扑绝缘体与平庸的绝缘体的区别也就随之消失了。
+在本节中，我们详细介绍时间反演对称性这一对称操作，特别是它独特的反幺正性质。
+这些知识将帮助我们理解接下来两节介绍的磁群及其共表示(corepresentation)的数学结构，以及后面章节中的反幺正对称性及其保护的拓扑物态。
+本节介绍的时间反演的性质其实就是量子力学中的标准内容，并不涉及固体物理或材料中的应用。
+因此，已经熟悉这些知识的读者也可以跳过本节。</p>
 <h2 id="时间反演的反幺正特性">时间反演的反幺正特性</h2>
-<p>在给出数学定义之前，我们先来看一下直观上时间反演操作应该是什么样子的。 我们通常熟悉的对称操作都会把一些量子态映射成另外一些量子态。 为了引入这些映射规则，我们往往会考虑标记量子态的量子数，如坐标、动量、自旋等，并且考虑这些量子数在对称操作下的变换规则。 我们还是以一个二重旋转操作<span class="math inline">\(c_2\)</span>为例：它会将坐标<span class="math inline">\(\boldsymbol r\)</span>变成<span class="math inline">\(R\boldsymbol R\)</span>，因此会将坐标空间的基矢<span class="math inline">\(|\boldsymbol r\rangle\)</span>变成<span class="math inline">\(|R\boldsymbol r\rangle\)</span>。 相应地，我们期待时间反演操作<span class="math inline">\(\mathcal T\)</span>会保持坐标不变：<span class="math inline">\(\mathcal T|\boldsymbol r\rangle = |\boldsymbol r\rangle\)</span>；将动量<span class="math inline">\(\boldsymbol k\)</span>变成<span class="math inline">\(-\boldsymbol k\)</span>：<span class="math inline">\(\mathcal T|\boldsymbol k\rangle = |-\boldsymbol k\rangle\)</span>；将自旋向上的量子态变成自旋向下的量子态：<span class="math inline">\(\mathcal T|\uparrow\rangle=|\downarrow\rangle\)</span>；等等。</p>
-<p>对于通常的对称操作，例如我们之前看到的空间群对称性，它们在量子态上面的这些变换规则可以写成一个幺正矩阵。 但是时间反演有它独特的性质：它是一个反幺正操作。 我们熟知，在量子力学中一个能量本征态的时间演化可以写成 <span class="math display">\[|\psi(t)\rangle = e^{-iEt/\hbar}|\psi(0)\rangle,\]</span> 其中<span class="math inline">\(E\)</span>是本征态的能量。 我们考虑最简单的情形：假设时间反演操作<span class="math inline">\(\mathcal T\)</span>保持0时刻的初态<span class="math inline">\(|\psi(0)\rangle\)</span>不变。 因此，当我们逆转时间之后，这个时间演化应该变成 <span class="math display">\[\mathcal T|\psi(t)\rangle=|\psi(-t)\rangle=e^{+iEt/\hbar}|\psi(0)\rangle.\]</span> 由此我们推断，时间反演应该把时间演化的相因子<span class="math inline">\(e^{-iEt/\hbar}\)</span>变成<span class="math inline">\(e^{-iEt/\hbar}\)</span>。 但是直观上看，时间反演下能量理应保持不变。因此此处唯一合理的选择就是要求时间反演把虚数单位<span class="math inline">\(i\)</span>变成<span class="math inline">\(-i\)</span>。 因此，时间反演会把量子态之间的复数叠加系数都变成它们的复共轭。 我们一般把具有这种性质的算符称为“反幺正(antiunitary)”算符。</p>
+<p>在给出数学定义之前，我们先来看一下直观上时间反演操作应该是什么样子的。
+我们通常熟悉的对称操作都会把一些量子态映射成另外一些量子态。
+为了引入这些映射规则，我们往往会考虑标记量子态的量子数，如坐标、动量、自旋等，并且考虑这些量子数在对称操作下的变换规则。
+我们还是以一个二重旋转操作<span
+class="math inline">\(c_2\)</span>为例：它会将坐标<span
+class="math inline">\(\boldsymbol r\)</span>变成<span
+class="math inline">\(R\boldsymbol
+R\)</span>，因此会将坐标空间的基矢<span
+class="math inline">\(|\boldsymbol r\rangle\)</span>变成<span
+class="math inline">\(|R\boldsymbol r\rangle\)</span>。
+相应地，我们期待时间反演操作<span class="math inline">\(\mathcal
+T\)</span>会保持坐标不变：<span class="math inline">\(\mathcal
+T|\boldsymbol r\rangle = |\boldsymbol r\rangle\)</span>；将动量<span
+class="math inline">\(\boldsymbol k\)</span>变成<span
+class="math inline">\(-\boldsymbol k\)</span>：<span
+class="math inline">\(\mathcal T|\boldsymbol k\rangle = |-\boldsymbol
+k\rangle\)</span>；将自旋向上的量子态变成自旋向下的量子态：<span
+class="math inline">\(\mathcal
+T|\uparrow\rangle=|\downarrow\rangle\)</span>；等等。</p>
+<p>对于通常的对称操作，例如我们之前看到的空间群对称性，它们在量子态上面的这些变换规则可以写成一个幺正矩阵。
+但是时间反演有它独特的性质：它是一个反幺正操作。
+我们熟知，在量子力学中一个能量本征态的时间演化可以写成 <span
+class="math display">\[|\psi(t)\rangle =
+e^{-iEt/\hbar}|\psi(0)\rangle,\]</span> 其中<span
+class="math inline">\(E\)</span>是本征态的能量。
+我们考虑最简单的情形：假设时间反演操作<span
+class="math inline">\(\mathcal T\)</span>保持0时刻的初态<span
+class="math inline">\(|\psi(0)\rangle\)</span>不变。
+因此，当我们逆转时间之后，这个时间演化应该变成 <span
+class="math display">\[\mathcal
+T|\psi(t)\rangle=|\psi(-t)\rangle=e^{+iEt/\hbar}|\psi(0)\rangle.\]</span>
+由此我们推断，时间反演应该把时间演化的相因子<span
+class="math inline">\(e^{-iEt/\hbar}\)</span>变成<span
+class="math inline">\(e^{-iEt/\hbar}\)</span>。
+但是直观上看，时间反演下能量理应保持不变。因此此处唯一合理的选择就是要求时间反演把虚数单位<span
+class="math inline">\(i\)</span>变成<span
+class="math inline">\(-i\)</span>。
+因此，时间反演会把量子态之间的复数叠加系数都变成它们的复共轭。
+我们一般把具有这种性质的算符称为“反幺正(antiunitary)”算符。</p>
 <h2 id="时间反演的矩阵表示">时间反演的矩阵表示</h2>
-<p>我们接下来详细介绍时间反演这一反幺正操作的数学表达形式。 初次接触反幺正算符的读者可能还没有意识到问题的严重性，特别是为什么我们需要大费周章地引入新的数学概念（如标题中的“实结构”）来描述时间反演对称性。 事实上，时间反演具有很奇怪的数学性质。如果不认真处理的话，在研究具体问题的时候很容易“踩雷”。 我们通常研究的量子力学算符首先都是复向量空间上的线性算符（当然对称性操作还是希尔伯特空间上的幺正算符，这个我们后面再说），而整个量子力学的数学描述都是建立在复向量空间的基底不变性上的。 特别地，线性空间上的线性算符<span class="math inline">\(\hat O\)</span>必须满足如下的关键性质： <span class="math display">\[\hat O(\alpha|\phi\rangle) = \alpha\hat O|\phi\rangle,\forall \alpha\in\mathbb C.\]</span> 也就是说，我们可以将任意的系数（对于复数域上的线性空间，是任意的复数）<span class="math inline">\(\alpha\)</span>从算符作用里面提出来。 但是时间反演操作<span class="math inline">\(\mathcal T\)</span>并不满足上面的线性性质，而是满足下面的性质： <span id="eq:antilinear" class="eqnos"><span class="math display">\[\mathcal T(\alpha|\phi\rangle) = \alpha^\ast\mathcal T|\phi\rangle,\forall \alpha\in\mathbb C.\]</span><span class="eqnos-number">(1)</span></span>  因此，时间反演操作<span class="math inline">\(\mathcal T\)</span>甚至不对应于一个向量空间上的线性算符。 （这里需要说明一点，这里的“线性”指的是基于复数域的线性空间上的线性性质，或者数学上称之为<span class="math inline">\(\mathbb C\)</span>-线性性质。如果我们把这个复向量空间看成一个具有复结构的实系数向量空间，<span class="math inline">\(\hat T\)</span>在这个实向量空间上就是线性算符了。我们在第??节中，讨论拓扑绝缘体和拓扑超导体的分类时会讲解这种观点。） 事实上，我们将满足(<a href="#eq:antilinear">1</a>)式的算符称为反线性(antilinear)算符。 在本书中，我们将用花体字母表示反线性算符。 在线性代数中我们知道，当我们选定特定的基底之后，线性空间之间线性映射可以用矩阵来描述； 而线性映射实际上是不依赖于基底的选择的，这点体现在它的矩阵形式在基底变换下满足相应的协变规律。 具体地说，我们考虑一个希尔伯特空间到自己的线性映射<span class="math inline">\(\hat O\)</span>。 对于一组取定的正交归一基底<span class="math inline">\(|\alpha\rangle\)</span>，我们可以将<span class="math inline">\(\hat O\)</span>表示成一个矩阵的形式： <span id="eq:linear-component" class="eqnos"><span class="math display">\[\hat O = \sum_{\alpha\beta}O_{\alpha\beta}|\alpha\rangle\langle\beta|,
-O_{\alpha\beta} = \langle\alpha|\hat O|\beta\rangle.\]</span><span class="eqnos-number">(2)</span></span>  利用这个表达形式，我们可以计算<span class="math inline">\(\hat O\)</span>在任意一个量子态<span class="math inline">\(|\psi\rangle = \sum_{\alpha}\psi_\alpha|\alpha\rangle\)</span>上的作用形式： <span id="eq:O-psi" class="eqnos"><span class="math display">\[\hat O|\psi\rangle = \sum_\beta O_{\alpha\beta}\psi_\beta|\alpha\rangle
-=\sum_\beta\left(O\psi\right)_\alpha|\alpha\rangle,\]</span><span class="eqnos-number">(3)</span></span>  这里作用之后得到的量子态可以表示成矩阵<span class="math inline">\(O\)</span>和向量<span class="math inline">\(\psi\)</span>的乘积。 当我们知道某组基底下<span class="math inline">\(\hat O\)</span>的矩阵表达形式之后，在另外一组正交归一基底<span class="math inline">\(|\tilde\alpha\rangle\)</span>下的矩阵表达形式就可以通过两组基底之间的幺正变换得到。 假设两组基底之间可以通过如下的幺正变换得到： <span class="math display">\[|\tilde \alpha\rangle = U_{\alpha\beta}|\beta\rangle,\]</span> 则<span class="math inline">\(\hat O\)</span>在新基底下的矩阵形式为 <span id="eq:linear-transf" class="eqnos"><span class="math display">\[\tilde O_{\alpha\beta} = \sum_{\alpha&#39;\beta&#39;}U_{\alpha\alpha&#39;} O_{\alpha&#39;\beta&#39;}U_{\beta\beta&#39;}^\ast = \left(UOU^\dagger\right)_{\alpha\beta}.\]</span><span class="eqnos-number">(4)</span></span>  这些是我们熟悉的线性算符的矩阵表达形式的使用方法及协变规律。</p>
-<p>但是，反线性算符不满足这样的协变规律。 对于反线性算符<span class="math inline">\(\hat T\)</span>，我们仍然可以按(<a href="#eq:linear-component">2</a>)将其写成矩阵形式： <span id="eq:antilinear-component" class="eqnos"><span class="math display">\[\hat T = \sum_{\alpha\beta}T_{\alpha\beta}|\alpha\rangle\langle\beta|,
-T_{\alpha\beta} = \langle\alpha|\hat O|\beta\rangle.\]</span><span class="eqnos-number">(5)</span></span>  然而，这样的矩阵并不满足(<a href="#eq:O-psi">3</a>)和(<a href="#eq:linear-transf">4</a>)的关系。 根据(<a href="#eq:antilinear">1</a>)的反线性关系，<span class="math inline">\(\hat T\)</span>在量子态的作用方式是 <span id="eq:T-psi" class="eqnos"><span class="math display">\[\hat T|\psi\rangle
+<p>我们接下来详细介绍时间反演这一反幺正操作的数学表达形式。
+初次接触反幺正算符的读者可能还没有意识到问题的严重性，特别是为什么我们需要大费周章地引入新的数学概念（如标题中的“实结构”）来描述时间反演对称性。
+事实上，时间反演具有很奇怪的数学性质。如果不认真处理的话，在研究具体问题的时候很容易“踩雷”。
+我们通常研究的量子力学算符首先都是复向量空间上的线性算符（当然对称性操作还是希尔伯特空间上的幺正算符，这个我们后面再说），而整个量子力学的数学描述都是建立在复向量空间的基底不变性上的。
+特别地，线性空间上的线性算符<span class="math inline">\(\hat
+O\)</span>必须满足如下的关键性质： <span class="math display">\[\hat
+O(\alpha|\phi\rangle) = \alpha\hat O|\phi\rangle,\forall
+\alpha\in\mathbb C.\]</span>
+也就是说，我们可以将任意的系数（对于复数域上的线性空间，是任意的复数）<span
+class="math inline">\(\alpha\)</span>从算符作用里面提出来。
+但是时间反演操作<span class="math inline">\(\mathcal
+T\)</span>并不满足上面的线性性质，而是满足下面的性质：
+<span id="eq:antilinear" class="eqnos"><span
+class="math display">\[\mathcal T(\alpha|\phi\rangle) =
+\alpha^\ast\mathcal T|\phi\rangle,\forall \alpha\in\mathbb
+C.\]</span><span class="eqnos-number">(1)</span></span>
+因此，时间反演操作<span class="math inline">\(\mathcal
+T\)</span>甚至不对应于一个向量空间上的线性算符。
+（这里需要说明一点，这里的“线性”指的是基于复数域的线性空间上的线性性质，或者数学上称之为<span
+class="math inline">\(\mathbb
+C\)</span>-线性性质。如果我们把这个复向量空间看成一个具有复结构的实系数向量空间，<span
+class="math inline">\(\hat
+T\)</span>在这个实向量空间上就是线性算符了。我们在第??节中，讨论拓扑绝缘体和拓扑超导体的分类时会讲解这种观点。）
+事实上，我们将满足(<a
+href="#eq:antilinear">1</a>)式的算符称为反线性(antilinear)算符。
+在本书中，我们将用花体字母表示反线性算符。
+在线性代数中我们知道，当我们选定特定的基底之后，线性空间之间线性映射可以用矩阵来描述；
+而线性映射实际上是不依赖于基底的选择的，这点体现在它的矩阵形式在基底变换下满足相应的协变规律。
+具体地说，我们考虑一个希尔伯特空间到自己的线性映射<span
+class="math inline">\(\hat O\)</span>。 对于一组取定的正交归一基底<span
+class="math inline">\(|\alpha\rangle\)</span>，我们可以将<span
+class="math inline">\(\hat O\)</span>表示成一个矩阵的形式：
+<span id="eq:linear-component" class="eqnos"><span
+class="math display">\[\hat O =
+\sum_{\alpha\beta}O_{\alpha\beta}|\alpha\rangle\langle\beta|,
+O_{\alpha\beta} = \langle\alpha|\hat
+O|\beta\rangle.\]</span><span class="eqnos-number">(2)</span></span>
+利用这个表达形式，我们可以计算<span class="math inline">\(\hat
+O\)</span>在任意一个量子态<span class="math inline">\(|\psi\rangle =
+\sum_{\alpha}\psi_\alpha|\alpha\rangle\)</span>上的作用形式：
+<span id="eq:O-psi" class="eqnos"><span class="math display">\[\hat
+O|\psi\rangle = \sum_\beta O_{\alpha\beta}\psi_\beta|\alpha\rangle
+=\sum_\beta\left(O\psi\right)_\alpha|\alpha\rangle,\]</span><span class="eqnos-number">(3)</span></span>
+这里作用之后得到的量子态可以表示成矩阵<span
+class="math inline">\(O\)</span>和向量<span
+class="math inline">\(\psi\)</span>的乘积。 当我们知道某组基底下<span
+class="math inline">\(\hat
+O\)</span>的矩阵表达形式之后，在另外一组正交归一基底<span
+class="math inline">\(|\tilde\alpha\rangle\)</span>下的矩阵表达形式就可以通过两组基底之间的幺正变换得到。
+假设两组基底之间可以通过如下的幺正变换得到： <span
+class="math display">\[|\tilde \alpha\rangle =
+U_{\alpha\beta}|\beta\rangle,\]</span> 则<span
+class="math inline">\(\hat O\)</span>在新基底下的矩阵形式为
+<span id="eq:linear-transf" class="eqnos"><span
+class="math display">\[\tilde O_{\alpha\beta} =
+\sum_{\alpha&#39;\beta&#39;}U_{\alpha\alpha&#39;}
+O_{\alpha&#39;\beta&#39;}U_{\beta\beta&#39;}^\ast =
+\left(UOU^\dagger\right)_{\alpha\beta}.\]</span><span class="eqnos-number">(4)</span></span>
+这些是我们熟悉的线性算符的矩阵表达形式的使用方法及协变规律。</p>
+<p>但是，反线性算符不满足这样的协变规律。 对于反线性算符<span
+class="math inline">\(\hat T\)</span>，我们仍然可以按(<a
+href="#eq:linear-component">2</a>)将其写成矩阵形式：
+<span id="eq:antilinear-component" class="eqnos"><span
+class="math display">\[\hat T =
+\sum_{\alpha\beta}T_{\alpha\beta}|\alpha\rangle\langle\beta|,
+T_{\alpha\beta} = \langle\alpha|\hat
+O|\beta\rangle.\]</span><span class="eqnos-number">(5)</span></span>
+然而，这样的矩阵并不满足(<a href="#eq:O-psi">3</a>)和(<a
+href="#eq:linear-transf">4</a>)的关系。 根据(<a
+href="#eq:antilinear">1</a>)的反线性关系，<span
+class="math inline">\(\hat T\)</span>在量子态的作用方式是
+<span id="eq:T-psi" class="eqnos"><span class="math display">\[\hat
+T|\psi\rangle
 =\hat T\left(\sum_\alpha\psi_\alpha|\alpha\rangle\right)
 =\sum_{\alpha\beta}\psi_\alpha^\ast T_{\alpha\beta}|\beta\rangle
-=\sum_\beta\left(T\psi^\ast\right)_\beta|\beta\rangle.\]</span><span class="eqnos-number">(6)</span></span>  也就是说，当<span class="math inline">\(\hat T\)</span>和<span class="math inline">\(|\psi\rangle\)</span>分别被表示成矩阵<span class="math inline">\(T\)</span>和向量<span class="math inline">\(\psi\)</span>之后，前者在后者上的作用方式是<span class="math inline">\(T\psi^\ast\)</span>而非<span class="math inline">\(T\psi\)</span>。 类似地，(<a href="#eq:linear-transf">4</a>)式中的协变规律也会发生相应的变化： <span id="eq:antilinear-transf" class="eqnos"><span class="math display">\[\tilde T_{\alpha\beta} = \sum_{\alpha&#39;\beta&#39;}U_{\alpha\alpha&#39;} T_{\alpha&#39;\beta&#39;}U_{\beta\beta&#39;} =
-\left(UTU^T\right)_{\alpha\beta}.\]</span><span class="eqnos-number">(7)</span></span>  也就是说，算符的矩阵形式<span class="math inline">\(T\)</span>变成了<span class="math inline">\(UTU^T=UT(U^\dagger)^\ast\)</span>而不是<span class="math inline">\(UOU^\dagger\)</span>。</p>
-<p>综上所述，尽管我们还是可以将反线性算符<span class="math inline">\(\hat T\)</span>在一组正交归一基底上的作用形式写成一个矩阵<span class="math inline">\(T\)</span>，但是这个矩阵的使用方式和协变规律都和一般的线性算符不同。 因此，我们在使用这个矩阵形式的时候要特别小心。</p>
-<p>在很多文献和教材里，为了强调和方便记忆上述矩阵形式的特殊性质，会在其中显式地引入一个复共轭操作。 如果我们观察(<a href="#eq:T-psi">6</a>)式和(<a href="#eq:antilinear-transf">7</a>)式，会发现和线性算符的(<a href="#eq:O-psi">3</a>)式和(<a href="#eq:linear-transf">4</a>)式相比，在反线性算符对应的矩阵<span class="math inline">\(T\)</span>右侧的矩阵和向量都出现了额外的复共轭操作。 这个复共轭操作的来源就是<span class="math inline">\(\hat T\)</span>的反线性性质(<a href="#eq:antilinear">1</a>)。 因此，我们可以将反线性算符<span class="math inline">\(\hat T\)</span>写成如下形式： <span id="eq:TK" class="eqnos"><span class="math display">\[\hat T = T\mathcal K\]</span><span class="eqnos-number">(8)</span></span>  这里的<span class="math inline">\(\mathcal K\)</span>就是一个复共轭操作。 关于这个式子其实有下面两种不同的理解方式。 这也是初学者第一次接触反线性算符时容易感到困惑的原因。</p>
-<p>首先，我们可以忘掉抽象的量子态希尔伯特空间和基矢的选择，将(<a href="#eq:TK">8</a>)直接理解成一个在矩阵和列向量上的操作。 这样的话，<span class="math inline">\(\mathcal K\)</span>的作用就是对所有出现在它后面的复数（包括矩阵和向量的复数矩阵元和分量）取复共轭。 这也是(<a href="#eq:TK">8</a>)式最简单的理解方式。</p>
-<p>其次，如果考虑到希尔伯特空间上基矢的选择的话，我们注意到<span class="math inline">\(\hat T\)</span>的矩阵形式一定是针对某个固定的基矢选择才能写下来的。 也就是说，<span class="math inline">\(T\)</span>的形式是依赖于基矢的选择的。 相应地，我们自然能够想到<span class="math inline">\(\mathcal K\)</span>的作用方式一定也是依赖于基矢的选择的。 事实上，根据我们上面对<span class="math inline">\(\mathcal K\)</span>在矩阵上的作用形式的理解，<span class="math inline">\(\mathcal K\)</span>应当保持基矢不变：<span class="math inline">\(\mathcal K|\alpha\rangle = |\alpha\rangle\)</span>。 这种形式的复共轭操作明显是依赖于基矢选择的。 事实上，我们完全可以在某个基矢<span class="math inline">\(\alpha\)</span>上加上一个相位，将它变成成<span class="math inline">\(e^{i\phi}|\alpha\rangle\)</span>。 上面的<span class="math inline">\(\mathcal K\)</span>会将它变成<span class="math inline">\(K(e^{i\phi}|\alpha\rangle)=e^{-i\phi}|\alpha\rangle\)</span>。 因此，这个<span class="math inline">\(\mathcal K\)</span>在<span class="math inline">\(e^{i\phi}|\alpha\rangle\)</span>上面的作用就不再是对角的了。 由此可见，复共轭操作<span class="math inline">\(\mathcal K\)</span>的定义必须依赖于复线性空间基底的选择。</p>
+=\sum_\beta\left(T\psi^\ast\right)_\beta|\beta\rangle.\]</span><span class="eqnos-number">(6)</span></span>
+也就是说，当<span class="math inline">\(\hat T\)</span>和<span
+class="math inline">\(|\psi\rangle\)</span>分别被表示成矩阵<span
+class="math inline">\(T\)</span>和向量<span
+class="math inline">\(\psi\)</span>之后，前者在后者上的作用方式是<span
+class="math inline">\(T\psi^\ast\)</span>而非<span
+class="math inline">\(T\psi\)</span>。 类似地，(<a
+href="#eq:linear-transf">4</a>)式中的协变规律也会发生相应的变化：
+<span id="eq:antilinear-transf" class="eqnos"><span
+class="math display">\[\tilde T_{\alpha\beta} =
+\sum_{\alpha&#39;\beta&#39;}U_{\alpha\alpha&#39;}
+T_{\alpha&#39;\beta&#39;}U_{\beta\beta&#39;} =
+\left(UTU^T\right)_{\alpha\beta}.\]</span><span class="eqnos-number">(7)</span></span>
+也就是说，算符的矩阵形式<span
+class="math inline">\(T\)</span>变成了<span
+class="math inline">\(UTU^T=UT(U^\dagger)^\ast\)</span>而不是<span
+class="math inline">\(UOU^\dagger\)</span>。</p>
+<p>综上所述，尽管我们还是可以将反线性算符<span
+class="math inline">\(\hat
+T\)</span>在一组正交归一基底上的作用形式写成一个矩阵<span
+class="math inline">\(T\)</span>，但是这个矩阵的使用方式和协变规律都和一般的线性算符不同。
+因此，我们在使用这个矩阵形式的时候要特别小心。</p>
+<p>在很多文献和教材里，为了强调和方便记忆上述矩阵形式的特殊性质，会在其中显式地引入一个复共轭操作。
+如果我们观察(<a href="#eq:T-psi">6</a>)式和(<a
+href="#eq:antilinear-transf">7</a>)式，会发现和线性算符的(<a
+href="#eq:O-psi">3</a>)式和(<a
+href="#eq:linear-transf">4</a>)式相比，在反线性算符对应的矩阵<span
+class="math inline">\(T\)</span>右侧的矩阵和向量都出现了额外的复共轭操作。
+这个复共轭操作的来源就是<span class="math inline">\(\hat
+T\)</span>的反线性性质(<a href="#eq:antilinear">1</a>)。
+因此，我们可以将反线性算符<span class="math inline">\(\hat
+T\)</span>写成如下形式： <span id="eq:TK" class="eqnos"><span
+class="math display">\[\hat T = T\mathcal
+K\]</span><span class="eqnos-number">(8)</span></span> 这里的<span
+class="math inline">\(\mathcal K\)</span>就是一个复共轭操作。
+关于这个式子其实有下面两种不同的理解方式。
+这也是初学者第一次接触反线性算符时容易感到困惑的原因。</p>
+<p>首先，我们可以忘掉抽象的量子态希尔伯特空间和基矢的选择，将(<a
+href="#eq:TK">8</a>)直接理解成一个在矩阵和列向量上的操作。
+这样的话，<span class="math inline">\(\mathcal
+K\)</span>的作用就是对所有出现在它后面的复数（包括矩阵和向量的复数矩阵元和分量）取复共轭。
+这也是(<a href="#eq:TK">8</a>)式最简单的理解方式。</p>
+<p>其次，如果考虑到希尔伯特空间上基矢的选择的话，我们注意到<span
+class="math inline">\(\hat
+T\)</span>的矩阵形式一定是针对某个固定的基矢选择才能写下来的。
+也就是说，<span
+class="math inline">\(T\)</span>的形式是依赖于基矢的选择的。
+相应地，我们自然能够想到<span class="math inline">\(\mathcal
+K\)</span>的作用方式一定也是依赖于基矢的选择的。
+事实上，根据我们上面对<span class="math inline">\(\mathcal
+K\)</span>在矩阵上的作用形式的理解，<span class="math inline">\(\mathcal
+K\)</span>应当保持基矢不变：<span class="math inline">\(\mathcal
+K|\alpha\rangle = |\alpha\rangle\)</span>。
+这种形式的复共轭操作明显是依赖于基矢选择的。
+事实上，我们完全可以在某个基矢<span
+class="math inline">\(\alpha\)</span>上加上一个相位，将它变成成<span
+class="math inline">\(e^{i\phi}|\alpha\rangle\)</span>。 上面的<span
+class="math inline">\(\mathcal K\)</span>会将它变成<span
+class="math inline">\(K(e^{i\phi}|\alpha\rangle)=e^{-i\phi}|\alpha\rangle\)</span>。
+因此，这个<span class="math inline">\(\mathcal K\)</span>在<span
+class="math inline">\(e^{i\phi}|\alpha\rangle\)</span>上面的作用就不再是对角的了。
+由此可见，复共轭操作<span class="math inline">\(\mathcal
+K\)</span>的定义必须依赖于复线性空间基底的选择。</p>
 <h2 id="复空间的实结构">复空间的实结构</h2>
-<p>从上面的讨论中我们可以看出，复线性空间上的复共轭操作实际上是非常复杂而有趣的一个数学概念。 上面我们引入的复共轭操作<span class="math inline">\(\mathcal K\)</span>明显依赖于基底的选择。 一般地，复线性空间上并不存在一个自然的复共轭操作。 这是因为要定义复共轭操作，我们必须指定哪些向量是“实”的，也就是在复共轭操作下不变。 这个信息在一个任意的复线性空间上是不存在的。 事实上，这个信息（或者复共轭操作）构成复线性空间上的一个附加的数学结构，称为复线性空间的实结构(real structure)。</p>
-<p>数学上，一个复线性空间<span class="math inline">\(\mathcal V\)</span>上的实结构可以定义为一个满足<span class="math inline">\(\mathcal C^2=1\)</span>的反线性映射<span class="math inline">\(\mathcal C\)</span>。 每个实结构都会给出一个“实”的向量空间：<span class="math inline">\(\mathcal V_r=\{v\in\mathcal V|\mathcal C v=v\}\)</span>。 容易证明，<span class="math inline">\(\mathcal V_r\)</span>是一个实线性空间（即实数域上的线性空间）；并且它可以看成<span class="math inline">\(\mathcal V\)</span>的“实部”：<span class="math inline">\(\mathcal V\simeq\mathcal V_r\oplus i\mathcal V_r\)</span>。 这也是为什么<span class="math inline">\(\phi\)</span>被称为“实结构”的原因。</p>
-<p>从上面的定义可以看出，复共轭操作<span class="math inline">\(\mathcal K\)</span>就是希尔伯特空间的实结构。 反过来，对于任意一个实结构，我们取相应的<span class="math inline">\(V_r\)</span>上的一组正交归一的基底，这个实结构就是这组基底下的复共轭操作。 因此，复共轭操作等价于一个实结构。 这也解释了为什么我们前面难以将<span class="math inline">\(\mathcal T\)</span>写成正常的矩阵的形式。 事实上，如果希尔伯特空间上有一个实结构<span class="math inline">\(\mathcal K\)</span>，它也可以看成一个反线性算符。 因此，<span class="math inline">\(\mathcal T\mathcal K\)</span>就是一个线性算符，从而可以写成一个符合(<a href="#eq:O-psi">3</a>)式和(<a href="#eq:linear-transf">4</a>)式的矩阵<span class="math inline">\(T\)</span>。 这样<span class="math inline">\(\mathcal T\)</span>也就可以写成<span class="math inline">\(\mathcal T = T\mathcal K\)</span>了。</p>
+<p>从上面的讨论中我们可以看出，复线性空间上的复共轭操作实际上是非常复杂而有趣的一个数学概念。
+上面我们引入的复共轭操作<span class="math inline">\(\mathcal
+K\)</span>明显依赖于基底的选择。
+一般地，复线性空间上并不存在一个自然的复共轭操作。
+这是因为要定义复共轭操作，我们必须指定哪些向量是“实”的，也就是在复共轭操作下不变。
+这个信息在一个任意的复线性空间上是不存在的。
+事实上，这个信息（或者复共轭操作）构成复线性空间上的一个附加的数学结构，称为复线性空间的实结构(real
+structure)。</p>
+<p>数学上，一个复线性空间<span class="math inline">\(\mathcal
+V\)</span>上的实结构可以定义为一个满足<span
+class="math inline">\(\mathcal C^2=1\)</span>的反线性映射<span
+class="math inline">\(\mathcal C\)</span>。
+每个实结构都会给出一个“实”的向量空间：<span
+class="math inline">\(\mathcal V_r=\{v\in\mathcal V|\mathcal C
+v=v\}\)</span>。 容易证明，<span class="math inline">\(\mathcal
+V_r\)</span>是一个实线性空间（即实数域上的线性空间）；并且它可以看成<span
+class="math inline">\(\mathcal V\)</span>的“实部”：<span
+class="math inline">\(\mathcal V\simeq\mathcal V_r\oplus i\mathcal
+V_r\)</span>。 这也是为什么<span
+class="math inline">\(\phi\)</span>被称为“实结构”的原因。</p>
+<p>从上面的定义可以看出，复共轭操作<span class="math inline">\(\mathcal
+K\)</span>就是希尔伯特空间的实结构。
+反过来，对于任意一个实结构，我们取相应的<span
+class="math inline">\(V_r\)</span>上的一组正交归一的基底，这个实结构就是这组基底下的复共轭操作。
+因此，复共轭操作等价于一个实结构。 这也解释了为什么我们前面难以将<span
+class="math inline">\(\mathcal T\)</span>写成正常的矩阵的形式。
+事实上，如果希尔伯特空间上有一个实结构<span
+class="math inline">\(\mathcal K\)</span>，它也可以看成一个反线性算符。
+因此，<span class="math inline">\(\mathcal T\mathcal
+K\)</span>就是一个线性算符，从而可以写成一个符合(<a
+href="#eq:O-psi">3</a>)式和(<a
+href="#eq:linear-transf">4</a>)式的矩阵<span
+class="math inline">\(T\)</span>。 这样<span
+class="math inline">\(\mathcal T\)</span>也就可以写成<span
+class="math inline">\(\mathcal T = T\mathcal K\)</span>了。</p>
 <h2 id="费米子系统中的时间反演对称性">费米子系统中的时间反演对称性</h2>
-<p>最后，我们讨论作用在费米子上的时间反演对称性。 直观上看，当时间反演作用在经典系统上时，它作用两次之后应该相当于一个恒等操作，即<span class="math inline">\(\mathcal T^2=1\)</span>。 这是因为时间反演把<span class="math inline">\(t\)</span>变成<span class="math inline">\(-t\)</span>，因此再作用一次就又变回来了。 这个直观的结果也适用于量子力学系统中的玻色子（根据??节中介绍的自旋-统计定理，玻色子指的也就是整数自旋的准粒子激发）。 但是，对于携带半整数自旋的费米子激发，时间反演作用要更复杂一些。</p>
-<p>此时，时间反演作用需要翻转自旋的三个分量。 满足要求的时间反演操作在<span class="math inline">\(\sigma^z\)</span>的本征态下可以写成如下的形式： <span id="eq:trs-spin" class="eqnos"><span class="math display">\[\mathcal T = -i\sigma^y\mathcal K.\]</span><span class="eqnos-number">(9)</span></span>  也就是说，在这组基底下，对应的矩阵为<span class="math inline">\(TR=-i\sigma^y\)</span>（即二阶全反称张量）。 容易验证，这样定义的时间反演操作满足 <span class="math display">\[\mathcal T\sigma^i\mathcal T^{-1}=T(\sigma^i)^\ast T^{-1}=-\sigma^i.\]</span> 从(<a href="#eq:trs-spin">9</a>)式我们可以得到 <span id="eq:tsq" class="eqnos"><span class="math display">\[\mathcal T^2=TT^\ast=-I.\]</span><span class="eqnos-number">(10)</span></span>  也就是大家通常所说的<span class="math inline">\(\mathcal T^2=-1\)</span>。 当然，根据??节中的理解，这里的<span class="math inline">\(-1\)</span>应该理解成费米子奇偶对称性操作<span class="math inline">\(P_f\)</span>，而(<a href="#eq:tsq">10</a>)应该理解成时间反演对称性在<span class="math inline">\(\mathbb Z_2^f\)</span>上有一个非平凡的扩张。 因此，在费米子系统中，<span class="math inline">\(\mathcal T\)</span>并不是一个平方等于一的群操作（因而它也不是一个希尔伯特空间上的复结构）。 在第??章中，我们还将回到<span class="math inline">\(\mathcal T^2=-1\)</span>这个性质上。在那里，我们会看到它在拓扑分类中扮演着重要的角色。</p>
+<p>最后，我们讨论作用在费米子上的时间反演对称性。
+直观上看，当时间反演作用在经典系统上时，它作用两次之后应该相当于一个恒等操作，即<span
+class="math inline">\(\mathcal T^2=1\)</span>。 这是因为时间反演把<span
+class="math inline">\(t\)</span>变成<span
+class="math inline">\(-t\)</span>，因此再作用一次就又变回来了。
+这个直观的结果也适用于量子力学系统中的玻色子（根据??节中介绍的自旋-统计定理，玻色子指的也就是整数自旋的准粒子激发）。
+但是，对于携带半整数自旋的费米子激发，时间反演作用要更复杂一些。</p>
+<p>此时，时间反演作用需要翻转自旋的三个分量。
+满足要求的时间反演操作在<span
+class="math inline">\(\sigma^z\)</span>的本征态下可以写成如下的形式：
+<span id="eq:trs-spin" class="eqnos"><span
+class="math display">\[\mathcal T = -i\sigma^y\mathcal
+K.\]</span><span class="eqnos-number">(9)</span></span>
+也就是说，在这组基底下，对应的矩阵为<span
+class="math inline">\(TR=-i\sigma^y\)</span>（即二阶全反称张量）。
+容易验证，这样定义的时间反演操作满足 <span
+class="math display">\[\mathcal T\sigma^i\mathcal
+T^{-1}=T(\sigma^i)^\ast T^{-1}=-\sigma^i.\]</span> 从(<a
+href="#eq:trs-spin">9</a>)式我们可以得到
+<span id="eq:tsq" class="eqnos"><span class="math display">\[\mathcal
+T^2=TT^\ast=-I.\]</span><span class="eqnos-number">(10)</span></span>
+也就是大家通常所说的<span class="math inline">\(\mathcal
+T^2=-1\)</span>。 当然，根据??节中的理解，这里的<span
+class="math inline">\(-1\)</span>应该理解成费米子奇偶对称性操作<span
+class="math inline">\(P_f\)</span>，而(<a
+href="#eq:tsq">10</a>)应该理解成时间反演对称性在<span
+class="math inline">\(\mathbb Z_2^f\)</span>上有一个非平凡的扩张。
+因此，在费米子系统中，<span class="math inline">\(\mathcal
+T\)</span>并不是一个平方等于一的群操作（因而它也不是一个希尔伯特空间上的复结构），而是一个四阶的操作。
+我们将这个非平凡扩张得到的四阶对称群记作<span
+class="math inline">\(\mathbb Z_4^T\)</span>。
+它包含四个元素：单位元<span
+class="math inline">\(1\)</span>、生成元<span
+class="math inline">\(\mathcal T\)</span>、<span
+class="math inline">\(\mathcal T^2=P_f\)</span>、<span
+class="math inline">\(\mathcal T^3=P_f\mathcal T\)</span>。
+在第??章中，我们还将回到<span class="math inline">\(\mathcal
+T^2=-1\)</span>这个性质上。在那里，我们会看到它在拓扑分类中扮演着重要的角色。</p>
 </body>
 </html>

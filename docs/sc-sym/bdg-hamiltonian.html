@@ -167,6 +167,13 @@
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
 </head>
 <body>
 <header id="title-block-header">
@@ -182,18 +189,192 @@
 (BdG)哈密顿量。
 这部分内容在许多固体理论、高等量子力学等教材中都有详细的介绍。
 对本部分内容熟悉的读者可以直接跳过本节。</p>
+<h2 id="s-波超导体">s-波超导体</h2>
 <p>我们的出发点是超导体的Bardeen–Cooper–Schrieffer
-(BCS)理论中使用的简化的有效哈密顿量： <span class="math display">\[H =
+(BCS)理论中使用的简化的有效哈密顿量：
+<span id="eq:BdG:Hamiltonian" class="eqnos"><span
+class="math display">\[\hat H =
 \sum_k(\epsilon_k-\mu)c_{k\sigma}^\dagger c_{k\sigma}
 -V\sum_{kk&#39;q,\sigma\sigma&#39;}c_{k+q,\sigma}^\dagger
-c_{k&#39;-q,\sigma&#39;}^\dagger
-c_{k&#39;\sigma&#39;}c_{k\sigma},\]</span> 其中<span
+c_{k&#39;-q,\sigma&#39;}^\dagger c_{k&#39;\sigma&#39;}c_{k\sigma},
+\]</span><span class="eqnos-number">(1)</span></span> 其中<span
 class="math inline">\(c_{k\sigma}\)</span>是动量为<span
 class="math inline">\(\boldsymbol k\)</span>、自旋为<span
 class="math inline">\(\sigma\)</span>的电子的湮灭算符；<span
 class="math inline">\(\epsilon_k\)</span>是电子的能量（色散关系）；<span
 class="math inline">\(V\)</span>是一个短程吸引相互作用。
 为了简单起见，我们先考虑一个简单的没有动量依赖关系的吸引相互作用，它会导致最简单的<span
-class="math inline">\(s\)</span>波超导配对。</p>
+class="math inline">\(s\)</span>波超导配对。 如果我们假设(<a
+href="#eq:BdG:Hamiltonian">1</a>)具有时间反演或者空间反演对称性，那么费米面相对布里渊区的零点（<span
+class="math inline">\(\Gamma\)</span>点）是对称的：<span
+class="math inline">\(\epsilon_k=\epsilon_{-k}\)</span>。
+因此，根据BCS理论，在费米面上<span class="math inline">\(\pm\boldsymbol
+k\)</span>两点的电子会形成库珀对（Cooper pair）。
+在平均场理论中，我们引入描述库珀对的序参量：
+<span id="eq:BdG:op" class="eqnos"><span class="math display">\[\Delta =
+-\frac VN\sum_k\langle
+c_{k\uparrow}c_{-k\downarrow}-c_{k\downarrow}c_{-k\uparrow}\rangle.
+\]</span><span class="eqnos-number">(2)</span></span>
+用这个序参量进行平均场分解，(<a
+href="#eq:BdG:Hamiltonian">1</a>)式的哈密顿量会变成如下的平均场哈密顿量，即BdG哈密顿量：
+<span id="eq:BdG:BdGH" class="eqnos"><span class="math display">\[\hat
+H_{\text{BdG}} = \sum_k(\epsilon_k-\mu)c_{k\sigma}^\dagger c_{k\sigma}
++\sum_k \left(\Delta c_{-k\downarrow}^\dagger c_{k\uparrow}^\dagger +
+\Delta^\ast c_{k\uparrow}c_{-k\downarrow}
+-|\Delta|^2/V\right).
+\]</span><span class="eqnos-number">(3)</span></span>
+这个哈密顿量可以描述超导态中的准粒子激发的能谱，通常被称为Bogoliubov-de
+Gennes (BdG)哈密顿量。 其中最后一项<span
+class="math inline">\(|\Delta|^2/V\)</span>并不会影响准粒子能谱，只是影响最后系统的能量。
+因此我们这里可以将它忽略。</p>
+<p>在BCS理论中，我们可以将上述BdG哈密顿量通过一个Bogoliubov变换对角化，从而得到超导态中的准粒子激发及其能谱。
+为此，我们首先将(<a href="#eq:BdG:BdGH">3</a>)写成如下矩阵形式：
+<span id="eq:BdG:H22" class="eqnos"><span class="math display">\[\hat
+H_{\text{BdG}}=\sum_k
+\begin{pmatrix}c_{k\uparrow}^\dagger&amp; c_{-k\downarrow}\end{pmatrix}
+\begin{pmatrix}
+\epsilon_k-\mu &amp; \Delta\\
+\Delta^\ast &amp;-\epsilon_k+\mu
+\end{pmatrix}
+\begin{pmatrix}c_{k\uparrow}\\c_{-k\downarrow}^\dagger\end{pmatrix}.
+\]</span><span class="eqnos-number">(4)</span></span>
+这里我们将动量为<span class="math inline">\(\boldsymbol
+k\)</span>、自旋向上的电子和动量为<span
+class="math inline">\(-\boldsymbol
+k\)</span>、自旋向下的空穴组合成一个两分量的费米子，记作<span
+class="math inline">\(\psi_k=\begin{pmatrix}c_{k\uparrow} &amp;
+c_{-k\downarrow}^\dagger\end{pmatrix}^T\)</span>。
+这组费米子基底被称为南部基底（Nambu basis）。
+利用这组基底，我们可以将(<a href="#eq:BdG:H22">4</a>)进一步写成
+<span id="eq:BdG:pHp" class="eqnos"><span class="math display">\[\hat
+H_{\text{BdG}}=\sum_k\psi_k^\dagger H(\boldsymbol k)\psi_k,
+\]</span><span class="eqnos-number">(5)</span></span> 其中
+<span id="eq:BdG:Hk" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=\begin{pmatrix}
+\epsilon_k-\mu &amp; \Delta\\
+\Delta^\ast &amp;-\epsilon_k+\mu
+\end{pmatrix}.\]</span><span class="eqnos-number">(6)</span></span>
+而Bogoliubov变换就是一个将<span class="math inline">\(H(\boldsymbol
+k)\)</span>对角化的幺正变换。 因此，<span
+class="math inline">\(H(\boldsymbol
+k)\)</span>的本征值和本征向量分别对应于准粒子激发的能量和波函数。
+由于南部基底<span
+class="math inline">\(\psi_k\)</span>的两个分量分别代表粒子和空穴，当矩阵<span
+class="math inline">\(H(\boldsymbol k)\)</span>的非对角元<span
+class="math inline">\(\Delta\neq0\)</span>时，准粒子激发是粒子和空穴的线性叠加。
+这代表了库珀对（Cooper
+pair）凝聚后，动量、自旋相反的粒子和空穴可以通过产生和湮灭库珀对相互转化的物理过程。
+这也解释了为什么我们需要用同时包含粒子和空穴算符的BdG哈密顿量描述准粒子激发：由于准粒子是粒子和空穴的线性叠加态，在哈密顿量中我们必须对粒子和空穴算符等量齐观。</p>
+<p>在BCS理论中，我们可以进一步从准粒子激发的能谱和波函数出发，计算(<a
+href="#eq:BdG:op">2</a>)式中的序参量，并得到平均场自洽方程。
+求解自洽方程就可以得到BCS平均场理论的各项结果，如能隙随温度的依赖关系、超导临界温度等等。
+在本章中，我们将主要关注上述BdG平均场哈密顿量及它所描述的准粒子能带的拓扑分类；这些进一步的计算与本书中所要讨论的准粒子能带的拓扑分类无关，因此就不再赘述了。</p>
+<h2 id="p-波超导体">p-波超导体</h2>
+<p>接下来，我们讨论一个无自旋费米子模型中的p-波超导。
+上面的s-波超导中库珀对由两个自旋相反的电子构成，因此需要体系具有某种自旋对称性。
+对于没有额外的自旋对称性的费米子系统，我们从无自旋费米子模型出发进行讨论更加合适。
+这一点我们在接下来的几节里会进行更深入的讨论。</p>
+<p>这里我们考虑如下的无自旋费米子相互作用模型：
+<span id="eq:BdG:H-spinless" class="eqnos"><span
+class="math display">\[\hat H = \sum_k(\epsilon_k-\mu)c_k^\dagger c_k
+-\sum_{kk&#39;q}V(\boldsymbol k,\boldsymbol k&#39;)c_{k+q}^\dagger
+c_{k&#39;-q}^\dagger c_{k&#39;}c_{k},
+\]</span><span class="eqnos-number">(7)</span></span> 与前面的(<a
+href="#eq:BdG:Hamiltonian">1</a>)相比，这里的哈密顿量中不仅去掉了电子的自旋角标，我们也给相互作用系数<span
+class="math inline">\(V\)</span>加上了额外的动量依赖性。
+其中第二点区别是因为这里的相互作用项在<span
+class="math inline">\(\boldsymbol k\)</span>与<span
+class="math inline">\(\boldsymbol
+k&#39;\)</span>交换时会变号；因此如果<span
+class="math inline">\(V\)</span>是一个常数的话，相互作用在对动量求和之后会严格地等于零。</p>
+<p>基于类似的考虑，对于无自旋费米子，我们也不能简单地照搬(<a
+href="#eq:BdG:op">2</a>)式中的s-波配对序参量。 如果简单地去掉(<a
+href="#eq:BdG:op">2</a>)式中的自旋指标，我们得到<span
+class="math inline">\(\Delta_k=\langle
+c_kc_{-k}\rangle\)</span>。容易验证，由于费米子算符反对易的性质，这个平均值对于电子动量<span
+class="math inline">\(\boldsymbol k\)</span>是一个奇函数：<span
+class="math inline">\(\Delta_k=-\Delta_{-k}\)</span>。因此我们不能简单地假设<span
+class="math inline">\(\Delta_k\)</span>是一个与<span
+class="math inline">\(\boldsymbol
+k\)</span>无关的常数，而必须考虑它的<span
+class="math inline">\(\boldsymbol k\)</span>依赖关系。
+为简单起见，我们假设系统具有空间旋转对称性，而费米面是一个简单的球面。
+在BCS理论中，配对序参量的大小<span
+class="math inline">\(|\Delta_k|\)</span>远小于费米能。
+在这种条件下，超导配对主要发生在费米面附近<span
+class="math inline">\(|\Delta_k|\)</span>的能量范围之内。
+因此，我们只需要考虑<span class="math inline">\(k\simeq
+k_F\)</span>时的<span class="math inline">\(\Delta_k\)</span>即可。
+也就是说，只需要考虑<span
+class="math inline">\(\Delta_k\)</span>在费米面上随角度变化的形式。
+对于球对称系统，<span
+class="math inline">\(\Delta_k\)</span>必然构成SO(3)空间旋转对称群的表示。
+因此我们可以利用球谐函数构造各种可能的<span
+class="math inline">\(\Delta_k\)</span>： <span
+class="math display">\[\Delta_k^{l,m}=\Delta_0P_l^m(\cos\theta)e^{im\phi},\]</span>
+其中<span class="math inline">\(\theta\)</span>和<span
+class="math inline">\(\phi\)</span>是球坐标下的两个角度变量；<span
+class="math inline">\(P_l^m\)</span>代表第<span
+class="math inline">\(l\)</span>阶勒让德（Legendre）多项式。 当<span
+class="math inline">\(l=m=0\)</span>时，就回到前面讨论的s-波超导配对序参量。
+容易验证，当<span
+class="math inline">\(l\)</span>为偶数（奇数）时，<span
+class="math inline">\(\Delta_k\)</span>是<span
+class="math inline">\(\boldsymbol k\)</span>的偶函数（奇函数）。
+对于无自旋费米子，<span class="math inline">\(\Delta_k=\langle
+c_kc_{-k}\rangle\)</span>要求这里<span
+class="math inline">\(l\)</span>只能取奇数。
+因此我们这里考虑最简单的<span
+class="math inline">\(l=1\)</span>的情形。此时<span
+class="math inline">\(\Delta_k\)</span>的表示的角动量等于1，就是我们这里要讨论的p波超导。
+此时<span
+class="math inline">\(m=0,\pm1\)</span>构成SO(3)群的一个三维不可约表示。
+如果将<span class="math inline">\(\theta=0\)</span>的方向记作<span
+class="math inline">\(x\)</span>轴，<span
+class="math inline">\(l=1,m=0\)</span>的配对函数<span
+class="math inline">\(\Delta_k=\Delta_0\cos\theta\)</span>的形式就是通常所说的<span
+class="math inline">\(p_x\)</span>轨道；因此我们将相应的配对对称性称为<span
+class="math inline">\(p_x\)</span>配对对称性。 这个配对函数在<span
+class="math inline">\(\theta=\pi/2\)</span>的大圆处有一条节线（即在此处<span
+class="math inline">\(\Delta_k=0\)</span>），因此不属于拓扑超导体的讨论范畴（我们后面会详细介绍，拓扑超导体需要能隙在整个费米面上处处非零）。
+相应地，如果将<span class="math inline">\(\theta=\pi/2\)</span>；<span
+class="math inline">\(\phi=0\)</span>的方向取作<span
+class="math inline">\(y\)</span>轴，那么<span
+class="math inline">\(p_y\)</span>轨道对应的配对函数就是<span
+class="math inline">\(\Delta_k=\Delta_0\sin\theta\)</span>，被称为<span
+class="math inline">\(p_y\)</span>对称性。
+如果将两者做一个线性叠加，得到<span
+class="math inline">\(\Delta_k=\cos\theta+i\sin\theta=e^{i\theta}\)</span>，就是<span
+class="math inline">\(p_x+ip_y\)</span>对称性，或者简称<span
+class="math inline">\(p+ip\)</span>对称性。
+这个配对对称性是处处非零（也就是没有节点）的。在本书的后面我们会看到，<span
+class="math inline">\(p+ip\)</span>配对对称性确实会给出拓扑超导体。</p>
+<p>如前所述，对于无自旋费米子形成的p波超导体，我们需要考虑<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(\Delta_k\)</span>的<span
+class="math inline">\(\boldsymbol k\)</span>依赖性。 因此，(<a
+href="#eq:BdG:op">2</a>)式中序参量的定义需要作如下修改：
+<span id="eq:BdG:opp" class="eqnos"><span
+class="math display">\[\Delta_k = -\frac 1N\sum_{k&#39;}V(\boldsymbol
+k,\boldsymbol k&#39;)\langle c_{k&#39;}c_{-k&#39;}\rangle.
+\]</span><span class="eqnos-number">(8)</span></span>
+利用这个平均场序参量对(<a
+href="#eq:BdG:H-spinless">7</a>)作平均场分解，就可以得到如下的BdG哈密顿量：
+<span id="eq:BdG:BdGHp" class="eqnos"><span class="math display">\[\hat
+H_{\text{BdG}} = \sum_k(\epsilon_k-\mu)c_{k\sigma}^\dagger c_{k\sigma}
++\sum_k \left(\Delta_k c_{-k}^\dagger c_k^\dagger + \Delta_k^\ast
+c_kc_{-k}\right).
+\]</span><span class="eqnos-number">(9)</span></span>
+与前面类似，我们这里只保留了与准粒子能谱有关的项。</p>
+<p>这个BdG哈密顿量也可以写成(<a href="#eq:BdG:H22">4</a>)中的矩阵形式，
+其中<span class="math inline">\(\psi_k=\begin{pmatrix}c_k &amp;
+c_{-k}^\dagger\end{pmatrix}^T\)</span>是一个两分量的费米子算符；<span
+class="math inline">\(H(\boldsymbol k)\)</span>是如下矩阵：
+<span id="eq:BdG:Hkp" class="eqnos"><span class="math display">\[
+H(\boldsymbol k)=\begin{pmatrix}
+\epsilon_k-\mu &amp; \Delta_k\\
+\Delta_k^\ast &amp; -\epsilon_k+\mu
+\end{pmatrix}.
+\]</span><span class="eqnos-number">(10)</span></span> </p>
 </body>
 </html>

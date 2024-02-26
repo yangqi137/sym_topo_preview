@@ -8,7 +8,9 @@
   <style>
     html {
       line-height: 2;
-      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”, “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro Hei”,sans-serif;;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
       font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -159,7 +161,9 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -174,11 +178,48 @@
         <li>空间群的不可约表示</li>
       </ul>
 </nav>
-<p>在本章的最后，我们来综合前几节的知识，构造整个空间群的不可约表示。 这些不可约表示可以用来标记电子、声子等准粒子在晶格中运动的量子态。 是我们研究固体物理非常有用的工具。</p>
+<p>在本章的最后，我们来综合前几节的知识，构造整个空间群的不可约表示。
+这些不可约表示可以用来标记电子、声子等准粒子在晶格中运动的量子态。
+是我们研究固体物理非常有用的工具。</p>
 <h3 id="空间群不可约表示的一般结构">空间群不可约表示的一般结构</h3>
-<p>首先，我们可以考虑用一个准动量<span class="math inline">\(\boldsymbol k\)</span>标记的平移群的不可约表示。 其实在很多研究中，如果不是必须要考虑点群对称性的作用，利用准动量标记量子态也就足够了。 特别地，对于布里渊区中一般的Wyckoff位置，对应的小旁群中没有非平凡的对称操作。因此，晶体的点群对称性只是告诉我们该准动量所属的波矢星中所有的准动量可以通过点群对称操作相互联系起来，因此具有相同的性质（如能量等）。 因此，在传统的固体物理中，我们一般不需要特别考虑除了准动量之外其它空间群不可约表示的量子数。</p>
-<p>当然，进一步考虑点群对称性的表示性质还是有其作用的。对于布里渊区中对称性较高的Wyckoff位置，我们需要进一步考虑小旁群的不可约表示。如果小旁群是非阿贝尔群，或者其中包含非点式对称操作，它可能会有高维的表示（包括线性和投影表示）。如果电子等准粒子激发携带高维表示，意味着在该动量点上存在空间群对称性保护的能级简并现象。 这种能级简并现象不仅对于我们分析能带结构具有指导意义，更在近年来对拓扑物态的研究中起着重要作用。 这方面的应用我们将在后续章节中进一步阐述。</p>
-<p>下面我们进一步考虑点群对称性在量子态上的作用。 如第1.3节中所述，我们需要考虑小旁群<span class="math inline">\(PG_k\subset PG\)</span>的表示。 在构造空间群的不可约表示的时候，我们选定一个小旁群的不可约表示<span class="math inline">\(r\)</span>，并将相应的量子态的希尔伯特空间记作<span class="math inline">\(\mathcal V_{kr}\)</span>。 此外，点群<span class="math inline">\(PG\)</span>中不属于小旁群<span class="math inline">\(PG_k\)</span>的那一部分对称性会把准动量<span class="math inline">\(\boldsymbol k\)</span>变成它所属的波矢星<span class="math inline">\(\boldsymbol k^\ast\)</span>中的其它准动量。 因此，整个空间群的不可约表示对应的希尔伯特空间可以看成波矢星中所有动量对应的不可约表示空间的直和： <span class="math display">\[\mathcal V_{k^\ast,r}=\bigoplus_{k\in k^\ast}\mathcal V_{kr}.\]</span></p>
-<h3 id="空间群不可约表示的计算与查询方法">空间群不可约表示的计算与查询方法</h3>
+<p>首先，我们可以考虑用一个准动量<span class="math inline">\(\boldsymbol
+k\)</span>标记的平移群的不可约表示。
+其实在很多研究中，如果不是必须要考虑点群对称性的作用，利用准动量标记量子态也就足够了。
+特别地，对于布里渊区中一般的Wyckoff位置，对应的小旁群中没有非平凡的对称操作。因此，晶体的点群对称性只是告诉我们该准动量所属的波矢星中所有的准动量可以通过点群对称操作相互联系起来，因此具有相同的性质（如能量等）。
+因此，在传统的固体物理中，我们一般不需要特别考虑除了准动量之外其它空间群不可约表示的量子数。</p>
+<p>当然，进一步考虑点群对称性的表示性质还是有其作用的。对于布里渊区中对称性较高的Wyckoff位置，我们需要进一步考虑小旁群的不可约表示。如果小旁群是非阿贝尔群，或者其中包含非点式对称操作，它可能会有高维的表示（包括线性和投影表示）。如果电子等准粒子激发携带高维表示，意味着在该动量点上存在空间群对称性保护的能级简并现象。
+这种能级简并现象不仅对于我们分析能带结构具有指导意义，更在近年来对拓扑物态的研究中起着重要作用。
+这方面的应用我们将在后续章节中进一步阐述。</p>
+<p>下面我们进一步考虑点群对称性在量子态上的作用。
+如第1.3节中所述，我们需要考虑小旁群<span
+class="math inline">\(PG_k\subset PG\)</span>的表示。
+在构造空间群的不可约表示的时候，我们选定一个小旁群的不可约表示<span
+class="math inline">\(r\)</span>，并将相应的量子态的希尔伯特空间记作<span
+class="math inline">\(\mathcal V_{kr}\)</span>。 此外，点群<span
+class="math inline">\(PG\)</span>中不属于小旁群<span
+class="math inline">\(PG_k\)</span>的那一部分对称性会把准动量<span
+class="math inline">\(\boldsymbol k\)</span>变成它所属的波矢星<span
+class="math inline">\(\boldsymbol k^\ast\)</span>中的其它准动量。
+因此，整个空间群的不可约表示对应的希尔伯特空间可以看成波矢星中所有动量对应的不可约表示空间的直和：
+<span class="math display">\[\mathcal V_{k^\ast,r}=\bigoplus_{k\in
+k^\ast}\mathcal V_{kr}.\]</span></p>
+<h3
+id="空间群不可约表示的计算与查询方法">空间群不可约表示的计算与查询方法</h3>
+<p>按照本书中讲解的原则，空间群的不可约表示可以先选定布里渊区中的一个准动量<span
+class="math inline">\(\boldsymbol
+k\)</span>，再考虑该点的小旁群的不可约表示，最后再把该点的波矢星中所有动量的相应不可约表示空间全部加起来得到。
+但是，在实际计算中，这种计算方式并不方便。
+特别地，在本章第三节中我们提到，当小旁群中包含非点式对称操作时，我们可能需要考虑小旁群的某类特定的投影表示，而非其简单的线性表示。
+而计算一个群的投影表示是一件不太容易的事情。
+因此，在人们实际计算空间群的不可约表示的时候，一般并不会真的使用上面的理论框架，而是会选用其它的数学方法进行计算。
+这里常用的计算方法涉及到一些群论的知识，它们在物理学研究中很少用到，和本书其他部分也没有什么关系。
+因此这里就不再深入介绍了。 感兴趣的读者可以阅读文献<span
+class="citation"
+data-cites="aroyoBilbaoCrystallographicServer2006"> [<strong>aroyoBilbaoCrystallographicServer2006?</strong>]</span>。</p>
+<p>在实际科研中，我们可以在晶体学数据库中直接查询空间群不可约表示的信息。
+除了传统的纸质文献之外，现在比较方便的方式是利用Bilbao晶体学数据库服务器<a
+href="https://www.cryst.ehu.es/"
+class="uri">https://www.cryst.ehu.es/</a>。
+例如空间群不可约表示可以使用Bilbao数据库中的REPRES程序查询。</p>
 </body>
 </html>

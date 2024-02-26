@@ -8,7 +8,9 @@
   <style>
     html {
       line-height: 2;
-      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”, “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro Hei”,sans-serif;;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
       font-size: 20px;
       color: #1a1a1a;
       background-color: #fdfdfd;
@@ -159,7 +161,9 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" type="text/javascript"></script>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -181,63 +185,283 @@
         <li>二维和三维晶体对称群</li>
       </ul>
 </nav>
-<p>晶体对称群是二维和三维空间上一系列等距变换（isometry）构成的一个离散子群。数学上看，它是相应的<span class="math inline">\(n\)</span>维空间的等距变换群<span class="math inline">\(E(n)\)</span>的一个无穷阶离散子群。在物理中，我们通常考虑二维和三维空间上的晶体对称群，尽管在数学上这类对称群可以推广到任意维的欧式空间。这当然是因为对于一维的情形，晶体对称群过于简单，而对于四维或者更高维的情况并没有很简单的物理实现。</p>
+<p>晶体对称群是二维和三维空间上一系列等距变换（isometry）构成的一个离散子群。数学上看，它是相应的<span
+class="math inline">\(n\)</span>维空间的等距变换群<span
+class="math inline">\(E(n)\)</span>的一个无穷阶离散子群。在物理中，我们通常考虑二维和三维空间上的晶体对称群，尽管在数学上这类对称群可以推广到任意维的欧式空间。这当然是因为对于一维的情形，晶体对称群过于简单，而对于四维或者更高维的情况并没有很简单的物理实现。</p>
 <h3 id="等距变换群">等距变换群</h3>
-<p>在上面的数学定义中，一个等距变换指的是保持空间任意两点间距离不变的变换。在三维欧氏空间中，简单的等距变换的例子包括平移变换、旋转变换、反演变换和镜面反射变换等。其中平移变换可以用一个矢量<span class="math inline">\(\boldsymbol r_0\)</span>来描述：<span class="math inline">\(\boldsymbol r\mapsto\boldsymbol r+\boldsymbol r_0\)</span>；旋转变换、反演变换和镜面反射变换可以用一个正交变换群<span class="math inline">\(O(3)\)</span>里的元素<span class="math inline">\(R\)</span>来描述：<span class="math inline">\(\boldsymbol r\mapsto R\cdot\boldsymbol r\)</span>。</p>
-<p>事实上，三维欧氏空间中任意一个等距变换都可以写成一个平移变换和一个正交变换的组合：<span class="math inline">\(\boldsymbol r\mapsto R\cdot\boldsymbol r + \boldsymbol r_0\)</span>。我们将这样的等距变换记作<span class="math inline">\((R|\boldsymbol r_0)\)</span>。仿照线性代数中利用增广矩阵表示仿射变换的方法（这里正交变换是一般的线性变换的特例，因而等距变换也是仿射变换的特例），我们也可以用一个4维矩阵表示这个等距变换。在这种表示方法下，我们将空间坐标<span class="math inline">\(\boldsymbol r\)</span>写成一个4维列矢量<span class="math inline">\((r_1,r_2,r_3,1)^t\)</span>。相应地，<span class="math inline">\((R|\boldsymbol r_0)\)</span>可以写成如下的4维矩阵： <span class="math display">\[\begin{pmatrix}
+<p>在上面的数学定义中，一个等距变换指的是保持空间任意两点间距离不变的变换。在三维欧氏空间中，简单的等距变换的例子包括平移变换、旋转变换、反演变换和镜面反射变换等。其中平移变换可以用一个矢量<span
+class="math inline">\(\boldsymbol r_0\)</span>来描述：<span
+class="math inline">\(\boldsymbol r\mapsto\boldsymbol r+\boldsymbol
+r_0\)</span>；旋转变换、反演变换和镜面反射变换可以用一个正交变换群<span
+class="math inline">\(O(3)\)</span>里的元素<span
+class="math inline">\(R\)</span>来描述：<span
+class="math inline">\(\boldsymbol r\mapsto R\cdot\boldsymbol
+r\)</span>。</p>
+<p>事实上，三维欧氏空间中任意一个等距变换都可以写成一个平移变换和一个正交变换的组合：<span
+class="math inline">\(\boldsymbol r\mapsto R\cdot\boldsymbol r +
+\boldsymbol r_0\)</span>。我们将这样的等距变换记作<span
+class="math inline">\((R|\boldsymbol
+r_0)\)</span>。仿照线性代数中利用增广矩阵表示仿射变换的方法（这里正交变换是一般的线性变换的特例，因而等距变换也是仿射变换的特例），我们也可以用一个4维矩阵表示这个等距变换。在这种表示方法下，我们将空间坐标<span
+class="math inline">\(\boldsymbol r\)</span>写成一个4维列矢量<span
+class="math inline">\((r_1,r_2,r_3,1)^t\)</span>。相应地，<span
+class="math inline">\((R|\boldsymbol
+r_0)\)</span>可以写成如下的4维矩阵： <span
+class="math display">\[\begin{pmatrix}
 R &amp; \boldsymbol r_0\\
 0 &amp; 1
-\end{pmatrix}.\]</span> 这种表达方式的好处是可以帮助我们利用4维矩阵的乘法计算两个等距变换的乘法。很多计算软件里都利用这种方法将等距变换群表达为一个矩阵群。</p>
+\end{pmatrix}.\]</span>
+这种表达方式的好处是可以帮助我们利用4维矩阵的乘法计算两个等距变换的乘法。很多计算软件里都利用这种方法将等距变换群表达为一个矩阵群。</p>
 <h3 id="常见的晶体对称操作">常见的晶体对称操作</h3>
 <p>下面，我们介绍一些常见的晶体对称操作的矩阵表达形式。</p>
 <ol type="1">
 <li>平移</li>
 </ol>
-<p>如前所述，平移操作可以用一个平移矢量描述。因此，它对应<span class="math inline">\((I|\boldsymbol r_0)\)</span>，其中<span class="math inline">\(I\)</span>表示单位矩阵。 一个三维的晶格可以用三个方向的最小平移操作（对应平移一个晶格常数）生成，因此平移群（我们将其记作<span class="math inline">\(T\)</span>）同构于<span class="math inline">\(\mathbb Z^3\)</span>。</p>
+<p>如前所述，平移操作可以用一个平移矢量描述。因此，它对应<span
+class="math inline">\((I|\boldsymbol r_0)\)</span>，其中<span
+class="math inline">\(I\)</span>表示单位矩阵。
+一个三维的晶格可以用三个方向的最小平移操作（对应平移一个晶格常数）生成，因此平移群（我们将其记作<span
+class="math inline">\(T\)</span>）同构于<span
+class="math inline">\(\mathbb Z^3\)</span>。</p>
 <ol start="2" type="1">
 <li>旋转</li>
 </ol>
-<p>旋转操作和下面列出的其他点群操作（空间反演、镜面反射、旋转倒反）都对应<span class="math inline">\(\boldsymbol r=0\)</span>，因此可以只用一个正交矩阵<span class="math inline">\(R\)</span>表示。 沿<span class="math inline">\(z\)</span>轴方向旋转<span class="math inline">\(\theta\)</span>角度的旋转变换对应的矩阵<span class="math inline">\(R=R_z(\theta)\)</span>具有如下形式： <span class="math display">\[R_z(\theta) = \begin{pmatrix}
+<p>旋转操作和下面列出的其他点群操作（空间反演、镜面反射、旋转倒反）都对应<span
+class="math inline">\(\boldsymbol
+r=0\)</span>，因此可以只用一个正交矩阵<span
+class="math inline">\(R\)</span>表示。 沿<span
+class="math inline">\(z\)</span>轴方向旋转<span
+class="math inline">\(\theta\)</span>角度的旋转变换对应的矩阵<span
+class="math inline">\(R=R_z(\theta)\)</span>具有如下形式： <span
+class="math display">\[R_z(\theta) = \begin{pmatrix}
 \cos\theta &amp; -\sin\theta &amp; 0\\
 \sin\theta &amp; \cos\theta &amp; 0\\
-0&amp;0&amp;1\end{pmatrix}.\]</span> 类似地，沿<span class="math inline">\(x\)</span>轴方向和<span class="math inline">\(y\)</span>轴方向的旋转对应的矩阵具有如下形式： <span class="math display">\[R_x(\theta) = \begin{pmatrix}1&amp;0&amp;0\\
+0&amp;0&amp;1\end{pmatrix}.\]</span> 类似地，沿<span
+class="math inline">\(x\)</span>轴方向和<span
+class="math inline">\(y\)</span>轴方向的旋转对应的矩阵具有如下形式：
+<span class="math display">\[R_x(\theta) =
+\begin{pmatrix}1&amp;0&amp;0\\
 0 &amp; \cos\theta &amp; -\sin\theta\\
 0 &amp; \sin\theta &amp; \cos\theta\end{pmatrix};\quad
 R_y(\theta) = \begin{pmatrix}
 \cos\theta &amp; 0 &amp; \sin\theta\\
 0 &amp; 1 &amp; 0\\
--\sin\theta &amp; 0 &amp; \cos\theta\end{pmatrix}.\]</span> 其它的旋转操作可以通过上面三个基本的旋转操作组合得到。 事实上，任何一个SO(3)群的元素都可以表示成上述三个旋转操作相乘得到的一个旋转操作。</p>
-<p>如果一个旋转操作的角度为<span class="math inline">\(2\pi/n\)</span>，它满足<span class="math inline">\(R^n=I\)</span>。因此我们称之为一个<span class="math inline">\(n\)</span>重旋转； 相应的旋转轴称为一个<span class="math inline">\(n\)</span>重轴。 文献中往往将这个旋转操作记作<span class="math inline">\(n\)</span>。 由于这个记号太容易与整数的记号相混淆，当我们在本书中讨论这个旋转操作作为群元素的代数性质的时候，会将其记为<span class="math inline">\(c_n\)</span>。 这样，它满足的代数关系可以写成<span class="math inline">\((c_n)^n=I\)</span>而不是看上去非常奇怪的<span class="math inline">\(n^n=I\)</span>。</p>
-<p>这个旋转操作生成一个<span class="math inline">\(n\)</span>阶阿贝尔群，其群结构同构于<span class="math inline">\(\mathbb Z_n\)</span>群。 我们将这个对称群记为<span class="math inline">\(C_n\)</span>。 在固体物理中一个熟知的结论是：在晶体对称性中只能存在二重、三重、四重和六重旋转操作。 这是因为数学上可以证明，只有这4种旋转对称性能够和平移对称性兼容。 注意一重旋转操作就是对称群的单位元。根据上面的记号，我们将这个对称操作记作<span class="math inline">\(1\)</span>，这也正好和群论中单位元的记号相符合。</p>
+-\sin\theta &amp; 0 &amp; \cos\theta\end{pmatrix}.\]</span>
+其它的旋转操作可以通过上面三个基本的旋转操作组合得到。
+事实上，任何一个SO(3)群的元素都可以表示成上述三个旋转操作相乘得到的一个旋转操作。</p>
+<p>如果一个旋转操作的角度为<span
+class="math inline">\(2\pi/n\)</span>，它满足<span
+class="math inline">\(R^n=I\)</span>。因此我们称之为一个<span
+class="math inline">\(n\)</span>重旋转； 相应的旋转轴称为一个<span
+class="math inline">\(n\)</span>重轴。 文献中往往将这个旋转操作记作<span
+class="math inline">\(n\)</span>。
+由于这个记号太容易与整数的记号相混淆，当我们在本书中讨论这个旋转操作作为群元素的代数性质的时候，会将其记为<span
+class="math inline">\(c_n\)</span>。 这样，它满足的代数关系可以写成<span
+class="math inline">\((c_n)^n=I\)</span>而不是看上去非常奇怪的<span
+class="math inline">\(n^n=I\)</span>。</p>
+<p>这个旋转操作生成一个<span
+class="math inline">\(n\)</span>阶阿贝尔群，其群结构同构于<span
+class="math inline">\(\mathbb Z_n\)</span>群。 我们将这个对称群记为<span
+class="math inline">\(C_n\)</span>。
+在固体物理中一个熟知的结论是：在晶体对称性中只能存在二重、三重、四重和六重旋转操作。
+这是因为数学上可以证明，只有这4种旋转对称性能够和平移对称性兼容。
+注意一重旋转操作就是对称群的单位元。根据上面的记号，我们将这个对称操作记作<span
+class="math inline">\(1\)</span>，这也正好和群论中单位元的记号相符合。</p>
 <ol start="3" type="1">
 <li>空间反演</li>
 </ol>
-<p>空间反演操作也是一个点群操作，对应的正交矩阵为<span class="math inline">\(R=-I\)</span>。我们注意到这里的<span class="math inline">\(R\)</span>矩阵的行列式为<span class="math inline">\(-1\)</span>，这对应着空间反演操作是个逆转空间定向的操作。事实上，O(3)群一共有两个联通分支：分别包含行列式为<span class="math inline">\(+1\)</span>的矩阵，即SO(3)矩阵；以及行列式为<span class="math inline">\(-1\)</span>的矩阵。前者和后者分别对应保持和逆转空间定向的对称操作。 文献中往往将空间反演操作记作<span class="math inline">\(\bar1\)</span>，这是因为空间反演操作就是下面介绍的旋转倒反操作中的一重反轴。 由于<span class="math inline">\(\bar1^2=1\)</span>，它生成的群同构于<span class="math inline">\(\mathbb Z_2\)</span>。</p>
+<p>空间反演操作也是一个点群操作，对应的正交矩阵为<span
+class="math inline">\(R=-I\)</span>。我们注意到这里的<span
+class="math inline">\(R\)</span>矩阵的行列式为<span
+class="math inline">\(-1\)</span>，这对应着空间反演操作是个逆转空间定向的操作。事实上，O(3)群一共有两个联通分支：分别包含行列式为<span
+class="math inline">\(+1\)</span>的矩阵，即SO(3)矩阵；以及行列式为<span
+class="math inline">\(-1\)</span>的矩阵。前者和后者分别对应保持和逆转空间定向的对称操作。
+文献中往往将空间反演操作记作<span
+class="math inline">\(\bar1\)</span>，这是因为空间反演操作就是下面介绍的旋转倒反操作中的一重反轴。
+由于<span
+class="math inline">\(\bar1^2=1\)</span>，它生成的群同构于<span
+class="math inline">\(\mathbb Z_2\)</span>。</p>
 <ol start="4" type="1">
 <li>镜面反射</li>
 </ol>
-<p>与空间反演类似，镜面反射也是一个逆转空间定向的点群操作。因此也可以用一个行列式为<span class="math inline">\(-1\)</span>的矩阵<span class="math inline">\(R\)</span>来表示。例如以<span class="math inline">\(xy\)</span>平面为镜面的镜面反射可以表示为 <span class="math display">\[R=\begin{pmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;-1\end{pmatrix}.\]</span></p>
-<p>一般地，我们可以用法向量<span class="math inline">\(\hat{\boldsymbol n}\)</span>来标记一个镜面。任何一个向量<span class="math inline">\(\boldsymbol r\)</span>都可以分解成一个垂直于镜面的分量<span class="math inline">\(\boldsymbol r_\perp=(\boldsymbol r\cdot\hat{\boldsymbol n})\hat{\boldsymbol n}\)</span>和一个平行于镜面的分量<span class="math inline">\(\boldsymbol r_\parallel = \boldsymbol r-\boldsymbol r_\perp\)</span>。 在镜面反射操作下，<span class="math inline">\(\boldsymbol r_\perp\)</span>反号而<span class="math inline">\(\boldsymbol r_\parallel\)</span>保持不变。 因此镜面反射将<span class="math inline">\(\boldsymbol r\)</span>变为<span class="math inline">\(\boldsymbol r-2(\boldsymbol r\cdot\hat{\boldsymbol n})\hat{\boldsymbol n}\)</span>。这个变换形式可以表述成如下矩阵： <span class="math display">\[R=I - 2\hat{\boldsymbol n}\hat{\boldsymbol n}^T.\]</span> 这里我们将<span class="math inline">\(\hat{\boldsymbol n}\)</span>看成一个列向量，因此<span class="math inline">\(\hat{\boldsymbol n}\hat{\boldsymbol n}^T\)</span>是一个矩阵。</p>
-<p>我们将镜面反射操作记作<span class="math inline">\(m\)</span>。由于<span class="math inline">\(m^2=1\)</span>，它生成的群同构于<span class="math inline">\(\mathbb Z_2\)</span>。</p>
+<p>与空间反演类似，镜面反射也是一个逆转空间定向的点群操作。因此也可以用一个行列式为<span
+class="math inline">\(-1\)</span>的矩阵<span
+class="math inline">\(R\)</span>来表示。例如以<span
+class="math inline">\(xy\)</span>平面为镜面的镜面反射可以表示为 <span
+class="math display">\[R=\begin{pmatrix}1&amp;0&amp;0\\0&amp;1&amp;0\\0&amp;0&amp;-1\end{pmatrix}.\]</span></p>
+<p>一般地，我们可以用法向量<span class="math inline">\(\hat{\boldsymbol
+n}\)</span>来标记一个镜面。任何一个向量<span
+class="math inline">\(\boldsymbol
+r\)</span>都可以分解成一个垂直于镜面的分量<span
+class="math inline">\(\boldsymbol r_\perp=(\boldsymbol
+r\cdot\hat{\boldsymbol n})\hat{\boldsymbol
+n}\)</span>和一个平行于镜面的分量<span class="math inline">\(\boldsymbol
+r_\parallel = \boldsymbol r-\boldsymbol r_\perp\)</span>。
+在镜面反射操作下，<span class="math inline">\(\boldsymbol
+r_\perp\)</span>反号而<span class="math inline">\(\boldsymbol
+r_\parallel\)</span>保持不变。 因此镜面反射将<span
+class="math inline">\(\boldsymbol r\)</span>变为<span
+class="math inline">\(\boldsymbol r-2(\boldsymbol r\cdot\hat{\boldsymbol
+n})\hat{\boldsymbol n}\)</span>。这个变换形式可以表述成如下矩阵： <span
+class="math display">\[R=I - 2\hat{\boldsymbol n}\hat{\boldsymbol
+n}^T.\]</span> 这里我们将<span class="math inline">\(\hat{\boldsymbol
+n}\)</span>看成一个列向量，因此<span
+class="math inline">\(\hat{\boldsymbol n}\hat{\boldsymbol
+n}^T\)</span>是一个矩阵。</p>
+<p>我们将镜面反射操作记作<span
+class="math inline">\(m\)</span>。由于<span
+class="math inline">\(m^2=1\)</span>，它生成的群同构于<span
+class="math inline">\(\mathbb Z_2\)</span>。</p>
 <ol start="5" type="1">
 <li>反轴</li>
 </ol>
-<p>一个<span class="math inline">\(n\)</span>重旋转操作<span class="math inline">\(R\)</span>和一个空间反演操作的复合，<span class="math inline">\(R&#39;=R\cdot (-I)=-R\)</span>，是一个逆转空间定向的点群操作。我们称其为一个旋转倒反操作。相应的旋转轴称为一个<span class="math inline">\(n\)</span>重反轴。我们将这个旋转倒反操作记作<span class="math inline">\(\bar n\)</span>，生成的群记为<span class="math inline">\(S_n\)</span>（注意不要和数学上的对称群<span class="math inline">\(S_n\)</span>混淆）。当<span class="math inline">\(n\)</span>为偶数时，<span class="math inline">\(S_n\)</span>的群结构同构于<span class="math inline">\(\mathbb Z_n\)</span>；当<span class="math inline">\(n\)</span>为奇数时，它同构于<span class="math inline">\(\mathbb Z_{2n}\)</span>。</p>
-<p>我们往往只考虑四重反轴。这是因为只有四重旋转倒反操作可以是一个独立的对称群生成元（这时相应的4重旋转操作和反演操作各自都不是对称性，而二者的复合才是一个对称操作），而其它的<span class="math inline">\(n\)</span>重反轴都可以很方便地写成其它对称性操作的组合：二重反轴本身就是一个镜面反射操作；三重反轴对称性意味着体系中一定还有一个三重旋转对称性和一个反演对称性，而三重旋转倒反是二者的乘积；六重反轴对称性意味着体系中一定还有一个镜面反射对称性，而六重旋转倒反是镜面反射对称性和一个三重旋转对称性的乘积。</p>
+<p>一个<span class="math inline">\(n\)</span>重旋转操作<span
+class="math inline">\(R\)</span>和一个空间反演操作的复合，<span
+class="math inline">\(R&#39;=R\cdot
+(-I)=-R\)</span>，是一个逆转空间定向的点群操作。我们称其为一个旋转倒反操作。相应的旋转轴称为一个<span
+class="math inline">\(n\)</span>重反轴。我们将这个旋转倒反操作记作<span
+class="math inline">\(\bar n\)</span>，生成的群记为<span
+class="math inline">\(S_n\)</span>（注意不要和数学上的对称群<span
+class="math inline">\(S_n\)</span>混淆）。当<span
+class="math inline">\(n\)</span>为偶数时，<span
+class="math inline">\(S_n\)</span>的群结构同构于<span
+class="math inline">\(\mathbb Z_n\)</span>；当<span
+class="math inline">\(n\)</span>为奇数时，它同构于<span
+class="math inline">\(\mathbb Z_{2n}\)</span>。</p>
+<p>我们往往只考虑四重反轴。这是因为只有四重旋转倒反操作可以是一个独立的对称群生成元（这时相应的4重旋转操作和反演操作各自都不是对称性，而二者的复合才是一个对称操作），而其它的<span
+class="math inline">\(n\)</span>重反轴都可以很方便地写成其它对称性操作的组合：二重反轴本身就是一个镜面反射操作；三重反轴对称性意味着体系中一定还有一个三重旋转对称性和一个反演对称性，而三重旋转倒反是二者的乘积；六重反轴对称性意味着体系中一定还有一个镜面反射对称性，而六重旋转倒反是镜面反射对称性和一个三重旋转对称性的乘积。</p>
 <ol start="6" type="1">
 <li>螺旋轴</li>
 </ol>
-<p>下面我们介绍两种基本的非点式对称(nonsymmorphic symmetry)操作。非点式对称操作指的是一个同时包含非平庸的<span class="math inline">\(R\)</span>和<span class="math inline">\(\boldsymbol r_0\)</span>的对称操作。数学上，这样的对称操作当然可以写成一个点群操作<span class="math inline">\(R\)</span>和一个平移操作<span class="math inline">\(\boldsymbol r_0\)</span>的乘积。我们讨论的非点式对称操作指的是相应的点群操作和平移操作都不是晶体的对称性；而只有二者组合起来才是晶体的对称性。 相应地，一个包含非点式对称操作的空间群也被称为非点式空间群(nonsymmorphic space group)。反之，可以由点群对称性和平移对称性生成的空间群被称为点式(symmorphic)空间群。</p>
-<p>螺旋轴(skew axis)对称操作是一个<span class="math inline">\(n\)</span>重旋转操作和沿该旋转轴的一个平移操作的乘积（注意这两个对称操作对易）。由于螺旋轴操作的<span class="math inline">\(n\)</span>次幂是一个平移操作，这个平移矢量的长度<span class="math inline">\(r_0\)</span>的<span class="math inline">\(n\)</span>倍必然是该方向的晶格常数<span class="math inline">\(a_0\)</span>的整数倍。如果<span class="math inline">\(nr_0\)</span>是晶格常数的<span class="math inline">\(m\)</span>倍，也就是说<span class="math inline">\(r_0=\frac mna_0\)</span>，我们将这个螺旋轴操作记作<span class="math inline">\(n_m\)</span>。容易证明，我们只需要考虑在<span class="math inline">\(1\)</span>和<span class="math inline">\(n-1\)</span>之间的<span class="math inline">\(m\)</span>就可以。</p>
-<p>包括螺旋轴在内，所有的非点式对称操作都是无穷阶群元素。相应地，<span class="math inline">\(n_m\)</span>生成的群同构于<span class="math inline">\(\mathbb Z\)</span>。</p>
+<p>下面我们介绍两种基本的非点式对称(nonsymmorphic
+symmetry)操作。非点式对称操作指的是一个同时包含非平庸的<span
+class="math inline">\(R\)</span>和<span
+class="math inline">\(\boldsymbol
+r_0\)</span>的对称操作。数学上，这样的对称操作当然可以写成一个点群操作<span
+class="math inline">\(R\)</span>和一个平移操作<span
+class="math inline">\(\boldsymbol
+r_0\)</span>的乘积。我们讨论的非点式对称操作指的是相应的点群操作和平移操作都不是晶体的对称性；而只有二者组合起来才是晶体的对称性。
+相应地，一个包含非点式对称操作的空间群也被称为非点式空间群(nonsymmorphic
+space
+group)。反之，可以由点群对称性和平移对称性生成的空间群被称为点式(symmorphic)空间群。</p>
+<p>螺旋轴(skew axis)对称操作是一个<span
+class="math inline">\(n\)</span>重旋转操作和沿该旋转轴的一个平移操作的乘积（注意这两个对称操作对易）。由于螺旋轴操作的<span
+class="math inline">\(n\)</span>次幂是一个平移操作，这个平移矢量的长度<span
+class="math inline">\(r_0\)</span>的<span
+class="math inline">\(n\)</span>倍必然是该方向的晶格常数<span
+class="math inline">\(a_0\)</span>的整数倍。如果<span
+class="math inline">\(nr_0\)</span>是晶格常数的<span
+class="math inline">\(m\)</span>倍，也就是说<span
+class="math inline">\(r_0=\frac
+mna_0\)</span>，我们将这个螺旋轴操作记作<span
+class="math inline">\(n_m\)</span>。容易证明，我们只需要考虑在<span
+class="math inline">\(1\)</span>和<span
+class="math inline">\(n-1\)</span>之间的<span
+class="math inline">\(m\)</span>就可以。</p>
+<p>包括螺旋轴在内，所有的非点式对称操作都是无穷阶群元素。相应地，<span
+class="math inline">\(n_m\)</span>生成的群同构于<span
+class="math inline">\(\mathbb Z\)</span>。</p>
 <ol start="7" type="1">
 <li>滑移面</li>
 </ol>
-<p>滑移面(glide plane)是一个镜面反射操作和一个沿着平行于镜面的方向的平移操作的乘积。与螺旋轴类似，滑移面操作的平方是一个平移操作。因此，滑移面中的平移长度必然是半个晶格常数。</p>
+<p>滑移面(glide
+plane)是一个镜面反射操作和一个沿着平行于镜面的方向的平移操作的乘积。与螺旋轴类似，滑移面操作的平方是一个平移操作。因此，滑移面中的平移长度必然是半个晶格常数。</p>
 <h3 id="空间群与点群的一般结构">空间群与点群的一般结构</h3>
-<p>将不同的对称操作组合在一起，一个晶体具备的所有对称操作构成该晶体的空间群。 我们一般会把空间群分解成平移群和点群两部分考虑。 数学上，平移群<span class="math inline">\(T\)</span>是空间群<span class="math inline">\(SG\)</span>的一个正规子群。我们将二者的商群定义为该空间群的点群： <span class="math display">\[PG = SG / T.\]</span> 一般地，空间群<span class="math inline">\(SG\)</span>并不是平移群<span class="math inline">\(T\)</span>和和点群<span class="math inline">\(PG\)</span>的简单直积；它们三者之间的关系可以用数学上群扩张的概念来描述： <span id="eq:gext" class="eqnos"><span class="math display">\[1\rightarrow T\rightarrow SG\rightarrow PG\rightarrow1.\]</span><span class="eqnos-number">(1)</span></span>  对群扩张的概念不熟悉的读者，可以参考附录??中的描述。</p>
-<p>对于点式(symmorphic)空间群，上面的群扩张是一个分裂(split)的扩张，这意味着<span class="math inline">\(SG\)</span>是<span class="math inline">\(PG\)</span>和<span class="math inline">\(T\)</span>的半直积：<span class="math inline">\(SG = T\rtimes PG\)</span>。 这时，<span class="math inline">\(PG\)</span>中的每个点群对称操作<span class="math inline">\(R\)</span>都对应于一个空间群<span class="math inline">\(SG\)</span>中的点群对称操作<span class="math inline">\((R|0)\)</span>。 而每个空间群操作<span class="math inline">\((R|\boldsymbol r_0)\)</span>都可以写成一个点群操作<span class="math inline">\(R\in PG\)</span>和一个平移操作<span class="math inline">\(\boldsymbol r_0\in T\)</span>的乘积：<span class="math inline">\((R|\boldsymbol r_0)=(I|\boldsymbol r_0)\cdot(R|0)\)</span>。 这里半直积的意思是，当我们将两个群元素<span class="math inline">\((R_1|\boldsymbol r_1)\)</span>和<span class="math inline">\((R_2|\boldsymbol r_2)\)</span>相乘时，并不是简单地将<span class="math inline">\(R_{1,2}\)</span>相乘并将<span class="math inline">\(\boldsymbol r_{1,2}\)</span>相加，而是要做一个修正了的乘法： <span class="math display">\[(R_1|\boldsymbol r_1)\cdot(R_2|\boldsymbol r_2) = (R_1R_2|\boldsymbol r_1+R_1\boldsymbol r_2).\]</span></p>
-<p>对于非点式(nonsymmorphic)空间群，上面的群扩张不是一个简单的分裂扩张。 由于空间群中存在非点式对称操作<span class="math inline">\((R|\boldsymbol r_0)\)</span>，其中<span class="math inline">\(\boldsymbol r_0\)</span>不是一个晶格平移对称性的基矢。 因而模掉平移群之后，这类操作的等价类还是可以用一个点群操作<span class="math inline">\(R\)</span>来标记，但是在实际的晶格中并没有相应的点群对称性。 比如一个螺旋轴<span class="math inline">\(n_m\)</span>在模掉平移对称后得到的点群<span class="math inline">\(PG\)</span>中对应一个<span class="math inline">\(n\)</span>重旋转操作，一个滑移面对应点群中的一个镜面反射操作；但是实际晶格（或者说空间群）并没有相应的旋转或者镜面反射对称性。 因此，在讨论晶格的点群对称性的时候，我们要特别注意这类情形：晶格的点群中的旋转轴和反射面不一定真的对应晶格的旋转轴和反射面；如果晶格空间群是非点式空间群，它们可能对应晶格的螺旋轴和滑移面。</p>
-<p>数学上，这表现在(<a href="#eq:gext">1</a>)式中的群扩张对应于一个非平庸的二阶群上同调等价类：<span class="math inline">\(\omega\in H^2(PG, T)\)</span>。 这里的二阶群上同调类可以这样理解： 和上面对于点式空间群的讨论类似，我们还是考虑构造一个从点群<span class="math inline">\(PG\)</span>到空间群<span class="math inline">\(SG\)</span>的映射<span class="math inline">\(\phi:PG\rightarrow SG\)</span>。 考虑<span class="math inline">\(PG\)</span>中的一个对称操作<span class="math inline">\(R\)</span>。 如果它来自于空间群一个点式操作，我们可以很自然地把它映射到<span class="math inline">\(\phi(R) = (R|0)\)</span>。 如果它来自于空间群中的一个非点式操作，那么在空间群中就并不存在一个相对应的点群操作<span class="math inline">\((R|0)\)</span>。 因此，我们需要（任意地）指定一个非点式操作作为它的像：<span class="math inline">\(\phi(R) = (R|\boldsymbol r_R)\in SG\)</span>。 比如对于螺旋轴<span class="math inline">\(n_m\)</span>，这里的<span class="math inline">\(\boldsymbol r_R\)</span>可以取成旋转轴方向晶格基矢的<span class="math inline">\(m\)</span>分之一；对于滑移面，<span class="math inline">\(\boldsymbol r_R\)</span>可以取成滑移方向晶格基矢的一半。 这里的<span class="math inline">\(\boldsymbol r_R\)</span>的选取存在任意性，因为在<span class="math inline">\(\boldsymbol r_R\)</span>上加上任意一个晶格矢量都是一个合适的<span class="math inline">\(\boldsymbol r_R\)</span>的选择。 在下面的讨论中，我们需要对每个<span class="math inline">\(R\)</span>指定一个<span class="math inline">\(\boldsymbol r_R\)</span>，并在整个讨论过程中保持不变。 接下来，我们注意到这样构造的<span class="math inline">\(\phi\)</span>并不是两个群之间的群同态。一般地，<span class="math inline">\(\phi(R_1)\phi(R_2)\)</span>并不等于<span class="math inline">\(\phi(R_1R_2)\)</span>：二者之间可以相差一个平移操作。 我们可以用一个二元函数<span class="math inline">\(\omega(R_1, R_2)\)</span>来标记这两者之间的差别： <span id="eq:omega" class="eqnos"><span class="math display">\[\phi(R_1)\phi(R_2) = \omega(R_1, R_2)\phi(R_1R_2).\]</span><span class="eqnos-number">(2)</span></span>  这个二元函数<span class="math inline">\(\omega(R_1,R_2)\)</span>就是附录??中介绍的描述这个群扩张的二阶群上同调类。 作为一个例子，我们考虑一个滑移面：它对应的镜面反射操作可以用一个O(3)矩阵<span class="math inline">\(R_g\)</span>来表示，而它的滑移向量为<span class="math inline">\(\frac12\boldsymbol a_1\)</span>。 因此，在点群中，它对应于一个二阶的镜面反射操作：<span class="math inline">\(R_g^2 = I\)</span>。 但是在空间群中，两次滑移操作得到的是平移操作<span class="math inline">\(T_1\)</span>，而不是单位元。 这对应于(<a href="#eq:omega">2</a>)式中的<span class="math inline">\(\omega(R_g, R_g) = T_1\)</span>。</p>
+<p>将不同的对称操作组合在一起，一个晶体具备的所有对称操作构成该晶体的空间群。
+我们一般会把空间群分解成平移群和点群两部分考虑。 数学上，平移群<span
+class="math inline">\(T\)</span>是空间群<span
+class="math inline">\(SG\)</span>的一个正规子群。我们将二者的商群定义为该空间群的点群：
+<span class="math display">\[PG = SG / T.\]</span> 一般地，空间群<span
+class="math inline">\(SG\)</span>并不是平移群<span
+class="math inline">\(T\)</span>和和点群<span
+class="math inline">\(PG\)</span>的简单直积；它们三者之间的关系可以用数学上群扩张的概念来描述：
+<span id="eq:gext" class="eqnos"><span
+class="math display">\[1\rightarrow T\rightarrow SG\rightarrow
+PG\rightarrow1.\]</span><span class="eqnos-number">(1)</span></span>
+对群扩张的概念不熟悉的读者，可以参考附录??中的描述。</p>
+<p>对于点式(symmorphic)空间群，上面的群扩张是一个分裂(split)的扩张，这意味着<span
+class="math inline">\(SG\)</span>是<span
+class="math inline">\(PG\)</span>和<span
+class="math inline">\(T\)</span>的半直积：<span class="math inline">\(SG
+= T\rtimes PG\)</span>。 这时，<span
+class="math inline">\(PG\)</span>中的每个点群对称操作<span
+class="math inline">\(R\)</span>都对应于一个空间群<span
+class="math inline">\(SG\)</span>中的点群对称操作<span
+class="math inline">\((R|0)\)</span>。 而每个空间群操作<span
+class="math inline">\((R|\boldsymbol
+r_0)\)</span>都可以写成一个点群操作<span class="math inline">\(R\in
+PG\)</span>和一个平移操作<span class="math inline">\(\boldsymbol r_0\in
+T\)</span>的乘积：<span class="math inline">\((R|\boldsymbol
+r_0)=(I|\boldsymbol r_0)\cdot(R|0)\)</span>。
+这里半直积的意思是，当我们将两个群元素<span
+class="math inline">\((R_1|\boldsymbol r_1)\)</span>和<span
+class="math inline">\((R_2|\boldsymbol
+r_2)\)</span>相乘时，并不是简单地将<span
+class="math inline">\(R_{1,2}\)</span>相乘并将<span
+class="math inline">\(\boldsymbol
+r_{1,2}\)</span>相加，而是要做一个修正了的乘法： <span
+class="math display">\[(R_1|\boldsymbol r_1)\cdot(R_2|\boldsymbol r_2) =
+(R_1R_2|\boldsymbol r_1+R_1\boldsymbol r_2).\]</span></p>
+<p>对于非点式(nonsymmorphic)空间群，上面的群扩张不是一个简单的分裂扩张。
+由于空间群中存在非点式对称操作<span class="math inline">\((R|\boldsymbol
+r_0)\)</span>，其中<span class="math inline">\(\boldsymbol
+r_0\)</span>不是一个晶格平移对称性的基矢。
+因而模掉平移群之后，这类操作的等价类还是可以用一个点群操作<span
+class="math inline">\(R\)</span>来标记，但是在实际的晶格中并没有相应的点群对称性。
+比如一个螺旋轴<span
+class="math inline">\(n_m\)</span>在模掉平移对称后得到的点群<span
+class="math inline">\(PG\)</span>中对应一个<span
+class="math inline">\(n\)</span>重旋转操作，一个滑移面对应点群中的一个镜面反射操作；但是实际晶格（或者说空间群）并没有相应的旋转或者镜面反射对称性。
+因此，在讨论晶格的点群对称性的时候，我们要特别注意这类情形：晶格的点群中的旋转轴和反射面不一定真的对应晶格的旋转轴和反射面；如果晶格空间群是非点式空间群，它们可能对应晶格的螺旋轴和滑移面。</p>
+<p>数学上，这表现在(<a
+href="#eq:gext">1</a>)式中的群扩张对应于一个非平庸的二阶群上同调等价类：<span
+class="math inline">\(\omega\in H^2(PG, T)\)</span>。
+这里的二阶群上同调类可以这样理解：
+和上面对于点式空间群的讨论类似，我们还是考虑构造一个从点群<span
+class="math inline">\(PG\)</span>到空间群<span
+class="math inline">\(SG\)</span>的映射<span
+class="math inline">\(\phi:PG\rightarrow SG\)</span>。 考虑<span
+class="math inline">\(PG\)</span>中的一个对称操作<span
+class="math inline">\(R\)</span>。
+如果它来自于空间群一个点式操作，我们可以很自然地把它映射到<span
+class="math inline">\(\phi(R) = (R|0)\)</span>。
+如果它来自于空间群中的一个非点式操作，那么在空间群中就并不存在一个相对应的点群操作<span
+class="math inline">\((R|0)\)</span>。
+因此，我们需要（任意地）指定一个非点式操作作为它的像：<span
+class="math inline">\(\phi(R) = (R|\boldsymbol r_R)\in SG\)</span>。
+比如对于螺旋轴<span class="math inline">\(n_m\)</span>，这里的<span
+class="math inline">\(\boldsymbol
+r_R\)</span>可以取成旋转轴方向晶格基矢的<span
+class="math inline">\(m\)</span>分之一；对于滑移面，<span
+class="math inline">\(\boldsymbol
+r_R\)</span>可以取成滑移方向晶格基矢的一半。 这里的<span
+class="math inline">\(\boldsymbol
+r_R\)</span>的选取存在任意性，因为在<span
+class="math inline">\(\boldsymbol
+r_R\)</span>上加上任意一个晶格矢量都是一个合适的<span
+class="math inline">\(\boldsymbol r_R\)</span>的选择。
+在下面的讨论中，我们需要对每个<span
+class="math inline">\(R\)</span>指定一个<span
+class="math inline">\(\boldsymbol
+r_R\)</span>，并在整个讨论过程中保持不变。
+接下来，我们注意到这样构造的<span
+class="math inline">\(\phi\)</span>并不是两个群之间的群同态。一般地，<span
+class="math inline">\(\phi(R_1)\phi(R_2)\)</span>并不等于<span
+class="math inline">\(\phi(R_1R_2)\)</span>：二者之间可以相差一个平移操作。
+我们可以用一个二元函数<span class="math inline">\(\omega(R_1,
+R_2)\)</span>来标记这两者之间的差别：
+<span id="eq:omega" class="eqnos"><span
+class="math display">\[\phi(R_1)\phi(R_2) = \omega(R_1,
+R_2)\phi(R_1R_2).\]</span><span class="eqnos-number">(2)</span></span>
+这个二元函数<span
+class="math inline">\(\omega(R_1,R_2)\)</span>就是附录??中介绍的描述这个群扩张的二阶群上同调类。
+作为一个例子，我们考虑一个滑移面：它对应的镜面反射操作可以用一个O(3)矩阵<span
+class="math inline">\(R_g\)</span>来表示，而它的滑移向量为<span
+class="math inline">\(\frac12\boldsymbol a_1\)</span>。
+因此，在点群中，它对应于一个二阶的镜面反射操作：<span
+class="math inline">\(R_g^2 = I\)</span>。
+但是在空间群中，两次滑移操作得到的是平移操作<span
+class="math inline">\(T_1\)</span>，而不是单位元。 这对应于(<a
+href="#eq:omega">2</a>)式中的<span class="math inline">\(\omega(R_g,
+R_g) = T_1\)</span>。</p>
 </body>
 </html>

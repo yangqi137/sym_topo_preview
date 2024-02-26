@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>陈数与电子极化泵浦效应</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">陈数与电子极化泵浦效应</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>陈绝缘体与整数量子霍尔效应</li>
+        <li>陈数与电子极化泵浦效应</li>
+      </ul>
+</nav>
+<p>在本节中，我们通过计算二维陈绝缘体在穿入磁通量过程中的电荷泵浦量，来论证其霍尔电导和陈数之间的关系。
+为了讨论电荷泵浦过程，我们首先引入一维能带的瓦尼尔（Wannier）波函数及其电荷中心（centre
+of charge）的概念，并推导瓦尼尔波函数电荷中心与贝里相位之间的关系。
+对于绝缘体，占据态的瓦尼尔波函数电荷中心反映了绝缘体的电荷分布，因此又被称为该能带的电荷极化（charge
+polarization）。
+在此基础上，我们将二维陈绝缘体看成一系列具有不同参数<span
+class="math inline">\(k_y\)</span>的准一维系统。
+在穿入磁通量时，由于磁矢势的引入，一维能带波函数会发生相应的变化。
+通过计算此时电荷极化相应的变化，就可以得到在该过程中被泵浦的电荷。
+根据上一节讲解的劳扶林论证，从电荷泵浦效应的结果可以直接得到陈绝缘体的霍尔电导。
+这种推导方式不仅绕过了久保公式等线性响应理论的铺垫，其中推导的电荷中心公式还将在后续章节中推导具有时间反演对称性的拓扑绝缘体的拓扑不变量时发挥重要的作用。</p>
+<h2 id="瓦尼尔wannier波函数">瓦尼尔（Wannier）波函数</h2>
+<p>我们首先简单地回顾一下布洛赫（Bloch）波函数和瓦尼尔（Wannier）波函数这两个固体物理中重要的概念。
+根据能带的布洛赫定理，布洛赫波函数<span
+class="math inline">\(\psi_{\boldsymbol
+k\alpha}\)</span>可以写成如下的形式： <span
+class="math display">\[\psi_{\boldsymbol k\alpha}(\boldsymbol
+x)=\frac1{\sqrt N}e^{i\boldsymbol k\cdot\boldsymbol x}u_{\boldsymbol
+k\alpha}(\boldsymbol x),
+\]</span> 其中<span class="math inline">\(u_{\boldsymbol
+k\alpha}\)</span>是满足元胞周期性条件的波函数。
+在本书其他章节中，我们一般更倾向于使用狄拉克态矢符号而不是波函数来表示量子态。
+但是正如前面第??章中讨论的那样，我们一般将布洛赫波函数定义在整个实空间上，而将元胞周期性波函数定义在一个元胞之内。
+这样的话，两者实际上处于不同的希尔伯特空间。
+如果将两者都用狄拉克态矢符号表示，就会引起一些混淆。
+因此，我们还是只用狄拉克态矢表示满足元胞周期性条件的波函数构成的希尔伯特空间里的向量（量子态），而将定义在整个实空间上的量子态（包括布洛赫和瓦尼尔态）用波函数直接表示。
+根据这一原则，我们将上式写成如下的形式： <span
+class="math display">\[\psi_{\boldsymbol k\alpha}(\boldsymbol
+x)=\frac1{\sqrt N}e^{i\boldsymbol k\cdot\boldsymbol x}
+\langle \boldsymbol x|u[\boldsymbol k]_\alpha\rangle,
+\]</span> 其中<span class="math inline">\(|\boldsymbol
+x\rangle\)</span>表示坐标表象下的本征态；<span
+class="math inline">\(|u[\boldsymbol
+k]_\alpha\rangle\)</span>表示元胞周期性波函数对应的量子态。
+在第??章中，能带上的贝里联络就是用<span
+class="math inline">\(|u[\boldsymbol
+k]_\alpha\rangle\)</span>计算的。</p>
+<p>将布洛赫波函数进行傅里叶变换就会得到瓦尼尔（Wannier）波函数，
+<span id="eq:charge-polar:Bloch-Wannier" class="eqnos"><span
+class="math display">\[\Phi_{i\alpha}(\boldsymbol x) =
+\sum_k\psi_{k\alpha}(\boldsymbol x)e^{i\boldsymbol k\cdot\boldsymbol
+R_i},
+\]</span><span class="eqnos-number">(1)</span></span> 其中<span
+class="math inline">\(i\)</span>用来标记晶格上元胞的位置；<span
+class="math inline">\(\boldsymbol R_i\)</span>是第<span
+class="math inline">\(i\)</span>个元胞原点的位置矢量。</p>
+<h2 id="电荷中心和电荷极化">电荷中心和电荷极化</h2>
+<p>在固体物理中，我们知道瓦尼尔波函数可以看成局域化在第<span
+class="math inline">\(i\)</span>个元胞附近的波函数。
+相应地，我们可以通过计算这个波函数上位置算符<span
+class="math inline">\(\boldsymbol
+x\)</span>的平均值来得到该瓦尼尔态电荷中心位置。
+特别地，我们将在原点附近的第0个元胞对应的瓦尼尔态的<span
+class="math inline">\(\boldsymbol
+x\)</span>的平均值定义为该能带的电荷中心： <span
+class="math display">\[\boldsymbol P_\alpha=\int d\boldsymbol x\,
+\Phi_{0\alpha}^\ast(\boldsymbol x)\boldsymbol
+x\Phi_{0\alpha}(\boldsymbol x).
+\]</span> 将(<a
+href="#eq:charge-polar:Bloch-Wannier">1</a>)式代入并注意到<span
+class="math inline">\(\boldsymbol R_0=0\)</span>，我们得到 <span
+class="math display">\[P_\alpha=\frac1N\sum_{kk&#39;}\int dx\,
+u_{k&#39;\alpha}^\ast(x)e^{-ik&#39;x}xe^{ikx}u_{k\alpha}(x).
+\]</span> 接下来，我们注意到，在积分号下的<span
+class="math inline">\(x\)</span>可以写成对<span
+class="math inline">\(e^{ikx}\)</span>中对<span
+class="math inline">\(k\)</span>求导数：<span
+class="math inline">\(xe^{ikx}=-i\partial_k(e^{ikx})\)</span>.
+之后，利用分部积分将微分转移到波函数上，我们得到 <span
+class="math display">\[P_\alpha=-\frac iN\sum_{kk&#39;}\int dx\,
+u_{k&#39;\alpha}^\ast(x)e^{-i(k&#39;-k)x}\partial_ku_{k\alpha}(x).
+\]</span> 我们注意到<span
+class="math inline">\(u_{k&#39;\alpha}^\ast(x)\)</span>和<span
+class="math inline">\(\partial_ku_{k\alpha}(x)\)</span>都是满足元胞周期性条件的波函数。
+因此，根据??章中公式(??)的结论，上式中的空间积分会给出一个形如<span
+class="math inline">\(\delta_{kk&#39;}\)</span>的<span
+class="math inline">\(\delta\)</span>函数，从而可以化简为 <span
+class="math display">\[P_\alpha=-i\int\frac{dk}{2\pi}\int_0^1
+dx\,u_{k\alpha}^\ast(x)\partial_ku_{k\alpha}(x),
+\]</span> 其中对<span
+class="math inline">\(x\)</span>的积分变为在一个元胞内部进行。
+因此我们将上式改为利用狄拉克态矢表达： <span
+class="math display">\[P_\alpha=-i\int\frac{dk}{2\pi}\langle
+u_\alpha[k]|\partial_k|u_\alpha[k]\rangle.
+\]</span>
+不难看出，上式中的被积函数就是第??节中定义的贝里联络的对角元：<span
+class="math inline">\(i\langle
+u_\alpha[k]|\partial_k|u_\alpha[k]\rangle=\mathcal
+A_{\alpha\alpha}\)</span>；相应地，这个积分的结果可以用绕一维布里渊区一周积累的贝里相位表达出来：
+<span class="math display">\[P_\alpha=-\frac1{2\pi}\int dk \mathcal
+A_{\alpha\alpha}.
+\]</span> 如果对所有占据的能带<span
+class="math inline">\(\alpha\)</span>求和，就得到所有占据态瓦尼尔轨道的总电荷中心<span
+class="math inline">\(P=\sum_\alpha
+P_\alpha\)</span>。它可以用??节中(??)式定义的贝里相位表达出来： <span
+class="math display">\[P=-\frac1{2\pi}\int dk\,\mathrm{tr}\, \mathcal
+A=-\frac{\gamma}{2\pi}.\]</span></p>
+<h2 id="二维绝缘体的电荷泵浦">二维绝缘体的电荷泵浦</h2>
+<p>接下来，我们利用上面得到的一维绝缘体的电荷中心的表达式，推导二维绝缘体的电荷泵浦效应。
+对于二维自由费米子体系，电子的动量是一个好量子数，因此在前文中，我们看到哈密顿量可以分解成不同动量上的哈密顿量<span
+class="math inline">\(H_k\)</span>。 类似地，我们也可以固定<span
+class="math inline">\(k_y\)</span>，将哈密顿量分解成一系列一维能带的哈密顿量<span
+class="math inline">\(H_{k_y}\)</span>。</p>
+</body>
+</html>

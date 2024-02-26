@@ -253,18 +253,19 @@ class="math inline">\(MSG\)</span>中的幺正和反幺正操作正好各占一�
 为了看出这一点，我们可以引入一个标记反幺正元素的<span
 class="math inline">\(\mathbb Z_2\)</span>分级（<span
 class="math inline">\(\mathbb Z_2\)</span> grading）： 我们用<span
-class="math inline">\(s(g)=\pm1\)</span>来表示<span
+class="math inline">\(s(g)=0,1\)</span>来表示<span
 class="math inline">\(g\in MSG\)</span>是幺正（反幺正）操作。
 由于两个反幺正操作的乘积是一个幺正操作、一个幺正操作和一个反幺正操作的乘积是一个反幺正操作，我们可以验证
-<span class="math inline">\(s(g_1)s(g_2)=s(g_1\cdot g_2)\)</span>。
-也就是说，<span class="math inline">\(s:MSG\rightarrow\mathbb
-Z_2\)</span>是一个群同态。 对于第一类磁空间群，这个群同态<span
+<span class="math inline">\(s(g_1)+s(g_2)=s(g_1\cdot g_2) \mod
+2\)</span>。 也就是说，<span
+class="math inline">\(s:MSG\rightarrow\mathbb Z_2\)</span>是一个群同态。
+对于第一类磁空间群，这个群同态<span
 class="math inline">\(s\)</span>是平庸的，对应于所有群元素都是幺正的。
 而对于其它类型的磁空间群（包括上面介绍的第二类和下面要介绍的第三类、第四类），这个群同态都是非平庸的，即<span
 class="math inline">\(s\)</span>的象是整个<span
 class="math inline">\(\mathbb Z_2\)</span>群。 因此，<span
 class="math inline">\(MSG\)</span>中所有的幺正元素组成了<span
-class="math inline">\(\ker s=s^{-1}(+1)\)</span>，它是<span
+class="math inline">\(\ker s=s^{-1}(0)\)</span>，它是<span
 class="math inline">\(MSG\)</span>的一个正规子群。
 由于其中包含了一些平移操作，这个正规子群也是230个空间群中的一个。
 按照数学上对<span class="math inline">\(\mathbb
@@ -277,7 +278,7 @@ class="math inline">\(SG\)</span>。 此外，<span
 class="math inline">\(MSG\)</span>中所有的反幺正元素组成了<span
 class="math inline">\(-1\)</span>在<span
 class="math inline">\(s\)</span>下的原象<span
-class="math inline">\(s^{-1}(-1)\)</span>，我们将它记作<span
+class="math inline">\(s^{-1}(1)\)</span>，我们将它记作<span
 class="math inline">\(MSG_1\)</span>。 它是<span
 class="math inline">\(MSG / MSG_0\)</span>的（除<span
 class="math inline">\(MSG_0\)</span>外）另一个陪集。
@@ -304,12 +305,37 @@ class="math inline">\(\mathbb Z_2\)</span>分级<span
 class="math inline">\(s\)</span>的不同。
 这样，我们就证明了一个磁空间群总是同构于一个空间群<span
 class="math inline">\(MSG&#39;\)</span>。</p>
-<p>第三类和第四类之间的区别就在于<span
+<p>如前所述，磁空间群这个概念的来源是磁性长程序相破缺了原有晶格的一部分对称性之后剩余的对称群。
+通过上面介绍的<span class="math inline">\(\mathbb
+Z_2\)</span>分级，我们可以对上面这个说法有更精确的理解。
+假设我们想象从具有<span class="math inline">\(MSG=MSG_0\cup
+MSG_1\)</span>对称性的磁性长程序态出发，恢复因磁性长程序而破缺掉的时间反演对称性<span
+class="math inline">\(\mathcal T\)</span>。
+对于第三、第四类磁空间群，由此得到的对称群将会包括<span
+class="math inline">\(MSG_{0,1}\)</span>和<span
+class="math inline">\(\mathcal TMSG_{0,1}\)</span>中的所有元素。
+容易证明，这四者的并集即为<span
+class="math inline">\(MSG&#39;\times\mathbb Z_2^T\)</span>。
+因此，从数学上讲，我们可以认为<span
+class="math inline">\(MSG\)</span>是由顺磁态对称群<span
+class="math inline">\(MSG&#39;\times\mathbb
+Z_2^T\)</span>破缺掉一部分反幺正对称性得到的。
+当然，对于实际系统，一个具有<span
+class="math inline">\(MSG\)</span>对称性的磁性长程序态对应的高温顺磁相的对称性可能比<span
+class="math inline">\(MSG&#39;\mathbb
+Z_2^T\)</span>还要大。这是因为磁性相变除了破缺一个二阶反幺正对称性之外，可能还破缺了其它的幺正对称性。
+上面的讨论只是告诉我们磁群<span
+class="math inline">\(MSG\)</span>理论上的一种实现方式。</p>
+<p>基于上述讨论，我们来具体介绍第三类和第四类磁空间群。
+二者之间的区别就在于<span
 class="math inline">\(MSG_1\)</span>中包含的反幺正元素的种类：
 对于前者，<span
 class="math inline">\(MSG_1\)</span>中不包含纯粹的平移元素与时间反演的复合；对于后者，<span
 class="math inline">\(MSG_1\)</span>中包含纯粹的平移元素与时间反演的复合。
-因此，当恢复时间反演对称性时，第三类磁空间群的晶格原胞保持不变，而第四类磁空间群的原胞会减半。
+因此，当恢复时间反演对称性时（即从<span
+class="math inline">\(MSG\)</span>回到<span
+class="math inline">\(MSG&#39;\times\mathbb
+Z_2^T\)</span>时），第三类磁空间群的晶格原胞保持不变，而第四类磁空间群的原胞会减半。
 反过来说，从高温的顺磁相进入低温的磁性长程序相时，第三类磁空间群的晶格原胞保持不变，而第四类空间群的原胞会扩大一倍。
 这是对这两类磁空间群最直观的理解。 我们下面对二者分别进行讨论。</p>
 <ol start="3" type="1">
@@ -317,16 +343,34 @@ class="math inline">\(MSG_1\)</span>中包含纯粹的平移元素与时间反�
 </ol>
 <p>在第三类磁空间群中，<span
 class="math inline">\(MSG_1\)</span>不包含像<span
-class="math inline">\(\{1|\boldsymbol
-t\}\)</span>这样的纯粹的平移元素（与时间反演对称性的复合）。
-也就是说，所有的平移操作都是<span
+class="math inline">\(\mathcal T\{1|\boldsymbol
+t\}\)</span>这样的纯粹的平移元素。 也就是说，所有的平移操作都是<span
 class="math inline">\(MSG_0\)</span>中的幺正操作。 如前所述，由于<span
 class="math inline">\(MSG&#39;\)</span>的平移群全部在<span
 class="math inline">\(MSG_0\)</span>中，二者的布拉伐格子是完全一致的。
-因此，第三类磁空间群又被称为“没有布拉伐格子的黑白群”(Black and white
-groups without black and white Bravais lattices)。</p>
+因此，第三类磁空间群又被称为“没有黑白布拉伐格子的黑白群”(Black and white
+groups without black and white Bravais lattices)。
+这里黑、白指的是幺正、反幺正对称操作。
+由于二者在对称群中正好各占一半，恰如国际象棋棋盘的黑白格子，因此用黑白来称谓。
+由此，黑白群指的是对称群中幺正、反幺正元素各占一半；而所有的平移操作都是幺正操作，故而布拉伐格子没有黑白二色。</p>
 <ol start="4" type="1">
 <li>第四类磁空间群</li>
 </ol>
+<p>在第四类磁空间群中，<span
+class="math inline">\(MSG_1\)</span>包含像<span
+class="math inline">\(\mathcal T\{1|\boldsymbol
+t\}\)</span>这样的纯粹的平移元素。
+由于这样一个反幺正平移操作的平方就是一个<span
+class="math inline">\(MSG_0\)</span>中的幺正平移操作，这个平移矢量<span
+class="math inline">\(\boldsymbol t\)</span>一定是半个晶格基矢。
+也就是说，这类磁空间群包括平移半个基矢并进行时间反演的复合对称操作。
+这种对称操作将会把体系的总磁矩<span class="math inline">\(\boldsymbol
+M\)</span>变成<span class="math inline">\(-\boldsymbol M\)</span>。
+因此，具有第四类磁空间群的体系一定是反铁磁序。
+（相应地，第一类、第三类磁空间群均既可能是铁磁、亚铁磁序，也可能是反铁磁序；而第二类磁空间群没有磁性。）
+此时，<span class="math inline">\(MSG&#39;\)</span>相比<span
+class="math inline">\(MSG_0\)</span>具有多一倍的平移操作，因此其原胞是后者的一半。
+因此，第四类磁空间群又被称为“具有黑白布拉伐格子的黑白群”(Black and white
+groups with black and white Bravais lattices)。</p>
 </body>
 </html>

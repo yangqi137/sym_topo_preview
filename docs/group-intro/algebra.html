@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>环与域：抽象代数简介</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">环与域：抽象代数简介</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>群论和抽象代数简介</li>
+        <li>环与域：抽象代数简介</li>
+      </ul>
+</nav>
+<p>在本节中，我们为不熟悉抽象代数知识的读者，简要介绍环和域的概念。</p>
+<h2 id="环">环</h2>
+<p>环的概念可以看成整数的推广。
+在上一节中我们已经看到，整数在加法下构成一个群。
+但是除了加法之外，整数上还有乘法。 整数在乘法下构成一个幺半群。</p>
+<p>一般地，一个环（ring） <span
+class="math inline">\(R\)</span>上有两种运算：加法和乘法。 <span
+class="math inline">\(R\)</span>在加法下构成一个阿贝尔群；在乘法下构成一个幺半群。
+此外，乘法和加法之间满足分配律： <span class="math display">\[\forall
+a,b,c\in R, a(b+c)=ab+ac; (a+b)c=ac+bc.\]</span>
+如果一个环的乘法是交换的，我们称其为交换环。</p>
+<p>例：上一节中介绍的<span class="math inline">\(\mathbb
+Z_n\)</span>在加法和乘法下构成一个交换环。</p>
+<p>一个一般的环可能有一种和整数环很不一样的有点“奇怪”的性质：其中非零元素的某个整数倍数可能会等于零。
+例如<span class="math inline">\(\mathbb Z_n\)</span>中所有元素的<span
+class="math inline">\(n\)</span>倍就都为零。 我们将满足<span
+class="math inline">\(\forall a\in R\)</span>, <span
+class="math inline">\(na=0\)</span>的最小的<span
+class="math inline">\(n\)</span>称为环<span
+class="math inline">\(R\)</span>的特征（characteristic）。
+如果对于环<span
+class="math inline">\(R\)</span>不存在满足上述条件的整数，则称<span
+class="math inline">\(R\)</span>的特征为0。
+例如整数环的特征就是零；<span class="math inline">\(\mathbb
+Z_n\)</span>的特征为<span class="math inline">\(n\)</span>。
+在物理学的应用中，我们一般只会遇到特征为零的环。</p>
+<p>一类重要的构造非平庸的环的方式是在一个环<span
+class="math inline">\(R\)</span>中加入若干新的生成元<span
+class="math inline">\(x_1, \ldots, x_n\)</span>，通过对<span
+class="math inline">\(R\)</span>中的元素和这些新的生成元之间进行加法和乘法运算得到一个新的环。
+我们将这样得到的环记作<span class="math inline">\(R[x_1, \ldots,
+x_n]\)</span>，或者如果生成元构成的集合为<span
+class="math inline">\(X\)</span>，我们将这样得到的环记作<span
+class="math inline">\(R[X]\)</span>。</p>
+<p>例：根据上面的定义，<span
+class="math inline">\(R[x]\)</span>表示以<span
+class="math inline">\(R\)</span>为系数、<span
+class="math inline">\(x\)</span>为变量的多项式构成的环（称为多项式环）。</p>
+<p>例：<span class="math inline">\(\mathbb Z[i]\)</span>（<span
+class="math inline">\(i\)</span>是虚数单位）构成一个环，称为高斯整数环。</p>
+<p>例：如果<span class="math inline">\(G\)</span>是一个群，<span
+class="math inline">\(\mathbb Z[G]\)</span>构成一个环，称为<span
+class="math inline">\(G\)</span>的群环（group ring）。当<span
+class="math inline">\(G\)</span>是非阿贝尔群时，<span
+class="math inline">\(\mathbb Z[G]\)</span>是一个非交换环。</p>
+<h2 id="域">域</h2>
+<p>域的概念可以看成有理数、实数、复数等概念的推广。
+事实上，本书中主要用到的域就是实数域<span class="math inline">\(\mathbb
+R\)</span>和复数域<span class="math inline">\(\mathbb C\)</span>。
+在交换环的基础上，域（field）进一步要求其中除了零（即加法下的零元）之外所有元素都可逆，即一个域<span
+class="math inline">\(k\)</span>中所有非零元素（记作<span
+class="math inline">\(k^\times\)</span>）在乘法下构成一个阿贝尔群。</p>
+<p>例：有理数<span class="math inline">\(\mathbb Q\)</span>、实数<span
+class="math inline">\(\mathbb R\)</span>、复数<span
+class="math inline">\(\mathbb C\)</span>都构成域。</p>
+<p>例：当<span class="math inline">\(p\)</span>为质数时，<span
+class="math inline">\(\mathbb Z_p\)</span>构成一个域；而当<span
+class="math inline">\(n\)</span>为合数时，<span
+class="math inline">\(\mathbb Z_n\)</span>不构成一个域。</p>
+<p>例：在有理数中加入1的<span
+class="math inline">\(n\)</span>次方根<span
+class="math inline">\(\zeta_n=e^{i2\pi/n}\)</span>进行扩张得到的所有形如<span
+class="math inline">\(a+b\zeta_n\)</span> (<span
+class="math inline">\(a,b\in\mathbb Q\)</span>)
+的数构成一个域，记作<span class="math inline">\(\mathbb
+Q[\zeta_n]\)</span>，称为<span
+class="math inline">\(n\)</span>次分圆域。</p>
+<p>和环一样，我们可以定义一个域的特征。
+在本书中，我们只考虑特征为零的域。</p>
+<p>复数域的一个重要性质是代数基本定理，即一个<span
+class="math inline">\(n\)</span>次方程在复数域上必然至少有1个根（很容易证明，如果每个<span
+class="math inline">\(n\)</span>次方程至少有1个根，那么每个<span
+class="math inline">\(n\)</span>次方程必有<span
+class="math inline">\(n\)</span>个根）。
+数学上将这个性质抽象为域的代数封闭性：如果一个域<span
+class="math inline">\(k\)</span>上的任一<span
+class="math inline">\(n\)</span>次方程必然至少有1个根，则称<span
+class="math inline">\(k\)</span>为代数封闭域。 根据代数基本定理，<span
+class="math inline">\(\mathbb C\)</span>是代数封闭域。 而<span
+class="math inline">\(\mathbb R\)</span>和<span
+class="math inline">\(\mathbb Q\)</span>都非代数封闭域：方程<span
+class="math inline">\(x^2+1=0\)</span>在二者上都没有根。
+在后面讨论群的表示的时候，我们将看到一个域是否代数封闭将对其上面的表示论产生重要的影响。</p>
+<p>在线性代数中，我们学习过一个域<span
+class="math inline">\(k\)</span>上的线性空间的概念。
+在本书中，我们主要会用到实数域<span class="math inline">\(\mathbb
+R\)</span>和复数域<span class="math inline">\(\mathbb
+C\)</span>上的线性空间（二者分别被称为实线性空间和复线性空间）。
+对于线性空间相关概念不熟悉的读者，可以参考相应的教材。</p>
+</body>
+</html>

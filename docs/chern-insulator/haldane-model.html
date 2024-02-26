@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>霍尔丹模型</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">霍尔丹模型</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>陈绝缘体与整数量子霍尔效应</li>
+        <li>霍尔丹模型</li>
+      </ul>
+</nav>
+<p>在本节中，我们介绍霍尔丹（F. D. M.
+Haldane）在1988年提出的霍尔丹模型<span class="citation"
+data-cites="haldaneModelQuantumHall1988"> [1]</span>。
+霍尔丹因为他在拓扑物态方面的理论工作，获得2016年的诺贝尔物理学奖。
+我们将看到，这个模型的陈数<span
+class="math inline">\(c_1=1\)</span>，因此它是一个拓扑非平庸的二维能带。</p>
+<h2 id="霍尔丹模型">霍尔丹模型</h2>
+<p>霍尔丹模型可以从本书前面第4.2节中讲解的六角晶格最近邻紧束缚模型中添加幅度为虚数的次近邻跃迁项得到。
+在图??中，我们画出了二维六角晶格的一个六角形原胞。
+六角形的边界上实线所标记的就是最近邻格点之间的键；我们假定每对最近邻格点之间都存在跃迁项，其跃迁矩阵元为<span
+class="math inline">\(-t\)</span>，其中<span
+class="math inline">\(t&gt;0\)</span>为正实数。
+如果只有这些最近邻跃迁项，这样的紧束缚模型就是第4.2节中举例讲解过的模型。
+如前文所述，该模型的哈密顿量在实空间、二次量子化下具有如下的形式：
+<span id="eq:haldane-model:Ht" class="eqnos"><span
+class="math display">\[\hat H=-t\sum_kc_{kA}^\dagger
+c_{kB}\left(1+e^{ik_1}+e^{-ik_2}\right)+\text{h.c.},
+\]</span><span class="eqnos-number">(1)</span></span>
+相应地，经过傅里叶变换之后，在动量空间可以写成如下的一次量子化的哈密顿量：
+<span id="eq:haldane-model:honey-Hk" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=\begin{pmatrix}
+0 &amp; -t(1+e^{ik_1}+e^{-ik_2})\\
+-t(1+e^{-ik_1}+e^{ik_2}) &amp; 0
+\end{pmatrix}.
+\]</span><span class="eqnos-number">(2)</span></span>
+事实上，这个模型也很好地描述了石墨烯（graphene）的能带结构，这也是霍尔丹文章中从该模型出发构造新的拓扑能带模型的一个考虑；但是，后来的研究表明，霍尔丹模型与拓扑能带在真实材料中的物理实现并没有非常直接的关系。
+因此，我们在本章中也并不会过多地考虑该模型与实际材料之间的联系。
+另一方面，(<a
+href="#eq:haldane-model:honey-Hk">2</a>)式描述的能带结构在布里渊区中存在两个狄拉克点；这个能带结构也是石墨烯最重要的特征。
+这个结构对于本节中计算霍尔丹模型的陈数十分关键，因此在此处我们详细讲解一下。
+首先，我们注意到哈密顿量的非对角元正比于<span
+class="math inline">\(\xi_k=1+e^{ik_1}+e^{-ik_2}\)</span>；而其本征值为<span
+class="math inline">\(E_k=\pm t|\xi_k|\)</span>。 <span
+class="math inline">\(\xi_k\)</span>是三个复数：1，<span
+class="math inline">\(e^{ik_1}\)</span>与<span
+class="math inline">\(e^{-ik_2}\)</span>之和。
+因此，它相当于复平面上三个幺模向量的和。
+不难看出，当且仅当三个向量相互之间形成120度夹角时，三者之和为零。
+因此，<span
+class="math inline">\(\xi_k\)</span>在布里渊区中有两个零点：<span
+class="math inline">\(K=(2\pi/3, 2\pi/3)\)</span>和<span
+class="math inline">\(-K=(-2\pi/3, -2\pi/3)\)</span>。
+在其它动量点上<span
+class="math inline">\(\xi_k\)</span>均非零，因此哈密顿量有一正一负两个本征值；而在<span
+class="math inline">\(\pm
+K\)</span>两点上，哈密顿量有两个简并且为零的本征值。
+由此可见，当费米能为零时，该模型描述了一个半金属的能带结构：它包含一条费米面之上的能带和一条费米面之下的能带（事实上，两条能带关于费米能为零的平面形成镜像对称，这点可以利用第4.2节中讲解的粒子-空穴对称性证明）；这两条能带在<span
+class="math inline">\(\pm K\)</span>能隙关闭，形成简并。
+接下来，我们论证能带在<span class="math inline">\(\pm
+K\)</span>点附近可以近似看成狄拉克费米子。 不失一般性，我们先以<span
+class="math inline">\(K\)</span>点为例进行论证。 为此，我们将<span
+class="math inline">\(\xi_k\)</span>在<span
+class="math inline">\(K\)</span>点附近进行泰勒展开：我们定义从<span
+class="math inline">\(K\)</span>点量起的动量<span
+class="math inline">\(\boldsymbol q=\boldsymbol k-\boldsymbol
+K\)</span>，<span class="math inline">\(\xi_k\)</span>可以近似展开为
+<span id="eq:haldane-model:expansion" class="eqnos"><span
+class="math display">\[\xi_k=\xi_{K+q}\simeq 1+e^{2\pi
+i/3}(1+iq_1)+e^{-2\pi i/3}(1-iq_2)
+=\left(-\frac{\sqrt3}2+\frac i2\right)q_1+\left(-\frac{\sqrt3}2-\frac
+i2\right)q_2.
+\]</span><span class="eqnos-number">(3)</span></span> 由此可见，在<span
+class="math inline">\(K\)</span>点附近，<span
+class="math inline">\(\xi_k\)</span>随<span
+class="math inline">\(q\)</span>线性变化。
+因此，此处能带的色散关系也是线性的。
+事实上，一般来讲，在能带的二重简并点附近进行展开，往往都会得到线性的色散关系和相应的狄拉克点能带结构。
+此处的线性色散关系可能略显奇怪，其主要原因是我们这里采用的是和4.2节中一致的斜坐标系。
+为了得到文献中通常采用的狄拉克费米子的哈密顿量形式，我们可以做一个坐标变换，利用直角坐标系下的动量分量表达哈密顿量。
+事实上，任何狄拉克费米子哈密顿量都可以在取定合适的坐标系和轨道基底之后，写成如下的形式：
+<span class="math display">\[H(\boldsymbol
+q)=v_xq_x\tau^x+v_yq_y\tau^y;\]</span> 其中<span
+class="math inline">\(\tau^x\)</span>和<span
+class="math inline">\(\tau^y\)</span>是两个泡利矩阵；<span
+class="math inline">\(v_{x,y}\)</span>是两个方向上的费米子特征速度。
+由于六角晶格<span
+class="math inline">\(K\)</span>点的小旁群中包含三重旋转对称性，该点附近的狄拉克费米子的速度一定是各向同性的；即一定有<span
+class="math inline">\(v_x=v_y\)</span>。由此，我们可以将上式改写成
+<span id="eq:haldane-model:dirac" class="eqnos"><span
+class="math display">\[H(\boldsymbol q)=v(q_x\tau^x+q_y\tau^y).
+\]</span><span class="eqnos-number">(4)</span></span>
+下面，我们就针对(<a
+href="#eq:haldane-model:expansion">3</a>)式的形式，对动量进行坐标变换，以将(<a
+href="#eq:haldane-model:honey-Hk">2</a>)中的哈密顿量改写成(<a
+href="#eq:haldane-model:dirac">4</a>)式中的形式。
+接下来这段推导计算比较繁琐，和接下来的讨论其实也没有太大关系。
+因此对此不感兴趣的读者如果愿意相信这点的话，可以略去此段。</p>
+<p>在图??中，实空间晶格的两个基矢<span class="math inline">\(\hat
+e_{1,2}\)</span>并不正交（即彼此垂直），而是形成了一个120度的夹角。
+因此，与其对偶的倒空间晶格的基矢也不正交。
+为了得到在这个斜坐标系下的动量分量<span
+class="math inline">\(q_{1,2}\)</span>和正交坐标系下的东两分量之间的关系，我们首先推导基矢<span
+class="math inline">\(\hat e_{1,2}\)</span>与正交基矢<span
+class="math inline">\(\hat e_{x,y}\)</span>之间的关系。
+注意到在图??中，<span class="math inline">\(\hat
+e_1\)</span>指向图中的水平方向。 因此，我们不妨将图中的水平方向取为<span
+class="math inline">\(x\)</span>方向、垂直方向取为<span
+class="math inline">\(y\)</span>方向。 由此，我们可以将<span
+class="math inline">\(\hat e_{1,2}\)</span>用正交基矢<span
+class="math inline">\(\hat e_{x,y}\)</span>表示出来： <span
+class="math display">\[\hat e_1=\hat e_x;\quad \hat e_2=-\frac12\hat
+e_x+\frac{\sqrt3}2\hat e_y.\]</span> 根据动量分量与基矢的关系，<span
+class="math inline">\(q_a=\boldsymbol q\cdot\hat
+e_a\)</span>，我们可以将<span
+class="math inline">\(q_{1,2}\)</span>用<span
+class="math inline">\(q_{x,y}\)</span>表示出来： <span
+class="math display">\[q_1=q_x;\quad
+q_2=-\frac12q_x+\frac{\sqrt3}2q_y.\]</span> 将它代入(<a
+href="#eq:haldane-model:expansion">3</a>)式中，我们得到 <span
+class="math display">\[\xi_{K+q}\simeq
+\left(-\frac{\sqrt3}4q_x-\frac34q_y\right)
++i\left(-\frac34q_x+\frac{\sqrt3}4q_y\right).\]</span>
+不难看出，这个结果还可以进一步简化。 我们可以取一组和<span
+class="math inline">\(\hat e_{x,y}\)</span>成120度角的基底<span
+class="math inline">\(\hat
+e_{x&#39;,y&#39;}\)</span>，相应的动量分量<span
+class="math inline">\(q_{x&#39;,y&#39;}\)</span>由<span
+class="math inline">\(q_{x,y}\)</span>经过如下的正交变换得到： <span
+class="math display">\[\begin{pmatrix}q_{x&#39;}\\q_{y&#39;}\end{pmatrix}
+=\begin{pmatrix}-\frac12 &amp;
+-\frac{\sqrt3}2\\\frac{\sqrt3}2&amp;-\frac12\end{pmatrix}
+\begin{pmatrix}q_x\\q_y\end{pmatrix}.
+\]</span> 利用这组新的动量分量，我们得到 <span
+class="math display">\[\xi_{K+q}=\frac{\sqrt3}2\left(q_{x&#39;}-iq_{y&#39;}\right).\]</span>
+相应地，(<a href="#eq:haldane-model:honey-Hk">2</a>)式中哈密顿量在<span
+class="math inline">\(K\)</span>点附近可以近似地写成
+<span id="eq:haldane-model:diracK" class="eqnos"><span
+class="math display">\[H(\boldsymbol K+\boldsymbol
+q)=\frac{\sqrt3}2t\left(q_{x&#39;}\tau^x-q_{y&#39;}\tau^y\right).
+\]</span><span class="eqnos-number">(5)</span></span> 这基本上就是(<a
+href="#eq:haldane-model:dirac">4</a>)式中二维狄拉克哈密顿量的形式了。
+当然，(<a href="#eq:haldane-model:diracK">5</a>)式中的<span
+class="math inline">\(\tau^y\)</span>项前面系数的符号和(<a
+href="#eq:haldane-model:dirac">4</a>)式中相反。
+这个区别很容易通过重新定义<span
+class="math inline">\(-q_y\)</span>为<span
+class="math inline">\(q_y\)</span>消除掉。
+由此可见，这个区别可以认为式在得到标准的狄拉克哈密顿量形式时，二维坐标系的<span
+class="math inline">\(x\)</span>轴和<span
+class="math inline">\(y\)</span>轴形成反时针还是顺时针的关系。
+因此我们通常称这个性质为狄拉克点的“手性”：我们约定如果动量空间坐标系的<span
+class="math inline">\(x\)</span>轴和<span
+class="math inline">\(y\)</span>轴形成反时针的关系，那么(<a
+href="#eq:haldane-model:dirac">4</a>)式中狄拉克点的手性为正，而(<a
+href="#eq:haldane-model:diracK">5</a>)式中狄拉克点的手性为负。
+在下文中我们将看到，狄拉克点的手性将影响贝利曲率、陈数等拓扑性质的符号：手性为负的狄拉克点的拓扑性质与手性为正的狄拉克点正好差一个负号。</p>
+<p>与上面的分析类似，我们也可以在<span
+class="math inline">\(-K\)</span>点对哈密顿量进行展开。
+在经过类似的坐标变换之后，我们会得到一个手性为正的狄拉克哈密顿量。
+这个推导我们就不展开详述了，感兴趣的读者可以自行进行。
+简单来说，由于<span class="math inline">\(\pm
+K\)</span>点的动量相反，相应的动量相因子差了一个复共轭。
+因此，最后得到的哈密顿量也相差一个复共轭。 由于<span
+class="math inline">\(\tau^y\)</span>的矩阵元是纯虚的，就会得到下面这样手性手性为正的狄拉克哈密顿量
+<span id="eq:haldane-model:dirac-K" class="eqnos"><span
+class="math display">\[H(-\boldsymbol K+\boldsymbol
+q)=\frac{\sqrt3}2t\left(q_{x&#39;}\tau^x+q_{y&#39;}\tau^y\right).
+\]</span><span class="eqnos-number">(6)</span></span> </p>
+<p>接下来，霍尔丹在上面的石墨烯最近邻紧束缚模型基础上增加次近邻跃迁矩阵元<span
+class="math inline">\(t_2\)</span>，就得到了霍尔丹模型。
+霍尔丹模型的一个关键特征是其次近邻跃迁矩阵元是虚数。
+他之所以这么设计，是因为要想得到一个具有非零陈数的拓扑非平庸的能带，必须破缺时间反演对称性。
+在上一章中，我们看到陈数是能带贝里曲率在布里渊区上的积分；而贝里曲率由于公式中有<span
+class="math inline">\(i\)</span>，在时间反演下会反号。
+因此，陈数在时间反演下也会反号。
+这就意味着一个非零的陈数必然破缺时间反演对称性；反之，一个时间反演不变的能带的陈数必然为零。
+所以，要想得到一个具有非零陈数的能带，霍尔丹模型中必然有某些地方破缺时间反演对称性。
+霍尔丹选择的做法是令次近邻跃迁矩阵元<span
+class="math inline">\(t_2\)</span>为虚数：<span
+class="math inline">\(t_2\neq t_2^\ast\)</span>。
+事实上，在霍尔丹原始的工作中，他考虑了具有一个任意相位的<span
+class="math inline">\(t_2\)</span>；并且证明只要它不是实数，一般来讲就会得到一个非零的陈数。
+但是，如果只是为了给出一个具有非零陈数的能带的例子，我们在这里只考虑<span
+class="math inline">\(t_2\)</span>为纯虚数这样一个最简单的情形也足够了。
+其实霍尔丹模型与实际材料的关系并不大，所以我们也没必要讨论最一般的<span
+class="math inline">\(t_2\)</span>取值。 在下文中，我们假设<span
+class="math inline">\(t_2=it^\prime\)</span>，其中<span
+class="math inline">\(t&#39;&gt;0\)</span>为正实数。</p>
+<p>下面，我们写出霍尔丹模型的哈密顿量。
+我们注意到在图??中，次近邻跃迁总是在同一套子格之间发生。
+每个格点有六个次近邻格点，分别位于相距<span
+class="math inline">\(\pm\hat e_1\)</span>、<span
+class="math inline">\(\pm\hat e_2\)</span>以及<span
+class="math inline">\(\pm(\hat e_1+\hat e_2)\)</span>处。 由于<span
+class="math inline">\(t_2\)</span>为虚数，此处需要注意次近邻跃迁的方向：按图中箭头方向的跃迁矩阵元为<span
+class="math inline">\(-t_2\)</span>，而沿反方向的跃迁矩阵元则为<span
+class="math inline">\(-t_2^\ast\)</span>。
+因此，次近邻跃迁项对应的哈密顿量如下： <span
+class="math display">\[\begin{split}\hat H_2=
+-it&#39;\sum_{n_1n_2}&amp;\left(c_{(n_1,n_2)A}^\dagger
+c_{(n_1+1,n_2)A}+c_{(n_1,n_2)A}^\dagger c_{(n_1,n_2+1)A}
++c_{(n_1,n_2)A}^\dagger c_{(n_1-1,n_2-1)A}\right.\\
+&amp;\left.-c_{(n_1,n_2)B}^\dagger
+c_{(n_1+1,n_2)B}-c_{(n_1,n_2)B}^\dagger
+c_{(n_1,n_2+1)B}-c_{(n_1,n_2)B}^\dagger
+c_{(n_1-1,n_2-1)B}\right)+\text{h.c.}.\end{split}\]</span>
+对此进行傅里叶变换，我们可以得到与之对应的动量空间哈密顿量；与(<a
+href="#eq:haldane-model:honey-Hk">2</a>)式中最近邻跃迁项的<span
+class="math inline">\(H(\boldsymbol
+k)\)</span>相比，由于次近邻跃迁项都在同子格之间，因此相应的矩阵元都在对角的位置上。
+通过计算不难得到，包含最近邻和次近邻跃迁项的<span
+class="math inline">\(H(\boldsymbol k)\)</span>形式如下
+<span id="eq:haldane-model:Hk12" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=\begin{pmatrix}
+2t&#39;[\sin k_1+\sin k_2-\sin(k_1+k_2)] &amp;
+-t(1+e^{ik_1}+e^{-ik_2})\\
+-t(1+e^{-ik_1}+e^{ik_2}) &amp; -2t&#39;[\sin k_1+\sin k_2-\sin(k_1+k_2)]
+\end{pmatrix}.
+\]</span><span class="eqnos-number">(7)</span></span>
+原则上来说，通过求解这个哈密顿量，我们可以得到其基态波函数并计算相应的贝里联络，再在布里渊区上积分就可以得到能带的陈数。
+但是，这个计算一般会涉及到数值积分。
+这样的计算虽然能告诉我们该模型具有一个非平庸的陈数，但是无法给我们更多的物理直觉，特别是到底什么样的能带会具有非零陈数。
+同时，这样一个繁琐的数值计算也不适合在书本上进一步讲解。
+因此，我们接下来将利用物理直觉，给出一个该模型陈数的直观证明。
+我们将看到，只要<span
+class="math inline">\(t&#39;\neq0\)</span>，霍尔丹模型的能带总是有能隙的。
+根据我们上一章的结论，当我们连续地改变<span
+class="math inline">\(t&#39;\)</span>时，陈数作为一个拓扑不变量应当保持不变。
+因此，我们将首先在<span class="math inline">\(t&#39;\ll
+t\)</span>时计算陈数；这样得到的陈数将可以适用于任意的<span
+class="math inline">\(t&#39;\)</span>取值。</p>
+<p>如果考虑<span class="math inline">\(t&#39;\ll
+t\)</span>的情形，在大多数动量点上，<span
+class="math inline">\(H(\boldsymbol
+k)\)</span>的对角元相较于其非对角元可以看成微扰。
+而这种微扰对贝里联络和陈数的贡献应当可以忽略。 但是在<span
+class="math inline">\(\pm K\)</span>这两个狄拉克点附近，由于<span
+class="math inline">\(H(\boldsymbol
+k)\)</span>的非对角项消失，此时对角项的贡献是不可以忽略的。
+所以，我们像前面分析非对角项那样，将对角项也在<span
+class="math inline">\(\pm K\)</span>点附近展开。 事实上，由于<span
+class="math inline">\(t&#39;\ll
+t\)</span>，我们此时只关心展开的零阶项（即常数项）。
+这是因为展开的一阶项如果和最近邻跃迁的一阶项相比是可以忽略的；只有零阶项由于最近邻跃迁中缺失，所以才需要予以保留。
+如果只需要零阶项，这个“泰勒展开”其实就是计算对角项在<span
+class="math inline">\(\pm K\)</span>点的值。 我们得到 <span
+class="math display">\[H(\pm\boldsymbol
+K)=\pm\sqrt3t&#39;\tau^z.\]</span> 将它与(<a
+href="#eq:haldane-model:diracK">5</a>)和(<a
+href="#eq:haldane-model:dirac-K">6</a>)相组合，我们得到两个狄拉克点附近的哈密顿量：
+<span id="eq:haldane-model:Hkq" class="eqnos"><span
+class="math display">\[H(\pm\boldsymbol K+\boldsymbol
+q)=\frac{\sqrt3}2t\left(q_{x&#39;}\tau^x\mp
+q_{y&#39;}\tau^y\right)\pm\sqrt3t&#39;\tau^z.
+\]</span><span class="eqnos-number">(8)</span></span>
+这是两个标准的有质量狄拉克费米子的哈密顿量：此处<span
+class="math inline">\(\tau^z\)</span>前面的系数<span
+class="math inline">\(\pm\sqrt3t&#39;\)</span>就是质量项。
+我们注意到，两个狄拉克点的质量项符号是相反的。
+此外，除了质量项之外，两个狄拉克点的哈密顿量形式也有所不同： <span
+class="math inline">\(K\)</span>点的哈密顿量中对应两个动量的泡利矩阵分别为<span
+class="math inline">\(\tau^x\)</span>和<span
+class="math inline">\(\tau^y\)</span>，而<span
+class="math inline">\(-K\)</span>点的哈密顿量中对应两个动量的泡利矩阵分别为<span
+class="math inline">\(\tau^x\)</span>和<span
+class="math inline">\(-\tau^y\)</span>。
+一般来说，如果我们将哈密顿量写成如下的形式： <span
+class="math display">\[H(\boldsymbol
+k)=k_x\Gamma_x+k_y\Gamma_y+m\Gamma_0,\]</span> 其中的三个矩阵<span
+class="math inline">\(\Gamma_{x,y,0}\)</span>应满足<span
+class="math inline">\(\Gamma_x\Gamma_y=\pm i\Gamma_0\)</span>。
+由于这里的正负号表明了三个矩阵作为泡利矩阵在赝自旋空间形成左手还是右手坐标系，我们将它称为狄拉克点的“手性”：
+在本书中，我们约定当<span
+class="math inline">\(\Gamma_x\Gamma_y=i\Gamma_0\)</span>时，狄拉克点的手性为+1；而当<span
+class="math inline">\(\Gamma_x\Gamma_y=-i\Gamma_0\)</span>时，狄拉克点的手性为<span
+class="math inline">\(-1\)</span>。 根据这个约定，(<a
+href="#eq:haldane-model:Hkq">8</a>)式中<span class="math inline">\(\pm
+K\)</span>点狄拉克费米子的手性分别为<span
+class="math inline">\(\mp1\)</span>。</p>
+<p>事实上，霍尔丹模型的陈数完全可以通过分析这两个狄拉克费米子哈密顿量得到。
+为此，我们接下来重点研究一下狄拉克费米子的陈数。</p>
+<h2 id="狄拉克费米子的陈数">狄拉克费米子的陈数</h2>
+<p>在本节中，我们研究一个（有质量的）二维狄拉克费米子能带的陈数。
+特别地，我们考虑下面的狄拉克哈密顿量：
+<span id="eq:haldane-model:dirac0" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=k_x\tau^x+k_y\tau^y+m\tau^z.
+\]</span><span class="eqnos-number">(9)</span></span>
+利用泡利矩阵的性质，不难证明<span class="math inline">\(H(\boldsymbol
+k)^2=(k_x^2+k_y^2+m^2)\tau^0\)</span>，其中<span
+class="math inline">\(\tau^0\)</span>代表2乘2的单位矩阵。
+由此，我们得到<span class="math inline">\(H(\boldsymbol
+k)\)</span>的两个本征值为<span class="math inline">\(\pm E_k=\pm
+\sqrt{k_x^2+k_y^2+m^2}\)</span>。 这说明只要<span
+class="math inline">\(m\neq0\)</span>，该能带就是处处有能隙的。
+我们可以计算本征值为<span
+class="math inline">\(-E_k\)</span>的占据态能带的陈数。 相比于(<a
+href="#eq:haldane-model:Hk12">7</a>)式中的哈密顿量，这个狄拉克哈密顿量的形式要简单很多。
+因此如果我们根据陈数的定义，直接计算贝里曲率并积分，就可以解析地计算陈数。
+但是，与前面的情形类似，这样的计算还是不够直观；因而我们留给有兴趣的读者自行推导。
+在下文中，我们给出一种更加直观（但也许略微有点迂回）的论证方法。</p>
+<p>为了给出一种直观的理解，我们注意到(<a
+href="#eq:haldane-model:dirac0">9</a>)式中的哈密顿量包含三个泡利矩阵<span
+class="math inline">\(\tau^{x,y,z}\)</span>。
+在原始的霍尔丹模型中，哈密顿量中两个费米子自由度分别对应六角晶格的AB两套子格。
+但是，在这里，我们可以将它们真的看成某种“赝自旋”自由度，而三个泡利矩阵也就对应赝自旋空间上的泡利矩阵。
+进一步地，我们可以将<span class="math inline">\(-k_x\)</span>，<span
+class="math inline">\(-k_y\)</span>和<span
+class="math inline">\(-m\)</span>分别看成三个方向的磁场：<span
+class="math inline">\(\boldsymbol
+h=\begin{pmatrix}-k_x&amp;-k_y&amp;-m\end{pmatrix}\)</span>。
+于是狄拉克哈密顿量可以看成外场下的自旋<span
+class="math inline">\(1/2\)</span>自由度的哈密顿量：
+<span id="eq:haldane-model:H-pseudoh" class="eqnos"><span
+class="math display">\[H=-\boldsymbol
+h\cdot\boldsymbol\tau=-\sum_{a=x,y,z}h_a\tau^a.
+\]</span><span class="eqnos-number">(10)</span></span>
+因此，该哈密顿量的基态就是自旋与<span class="math inline">\(\boldsymbol
+h\)</span>平行的状态，而基态能量就是该磁场下的塞曼能量：<span
+class="math inline">\(E_k=-|\boldsymbol h(\boldsymbol k)|\)</span>。</p>
+<p>在上一章中，我们介绍了平带哈密顿量的概念，以及为什么在讨论能带的拓扑性质的时候，我们可以将一个绝缘体能带平带化。
+这里，我们同样可以进行平带化操作。
+这对应于将（赝）磁场变成单位长度的向量<span
+class="math inline">\(\boldsymbol n=\boldsymbol h/|\boldsymbol
+h|\)</span>。
+经过平带化操作之后，虽然基态能量发生了变化，但是基态波函数没有改变；因此能带的拓扑性质，包括其陈数，都是不变的。
+此时，单位向量<span class="math inline">\(\boldsymbol
+n\)</span>对应的基态就是指向<span class="math inline">\(\boldsymbol
+n\)</span>方向的自旋态，我们将其记作<span
+class="math inline">\(|\boldsymbol n\rangle\)</span>。
+这个自旋态对应于二维布洛赫球（Bloch sphere）上的一个点<span
+class="math inline">\(\boldsymbol n\)</span>。 因此，从<span
+class="math inline">\(\boldsymbol k\)</span>到<span
+class="math inline">\(\boldsymbol n\)</span>的映射，即<span
+class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>这个函数，可以看成二维平面到布洛赫球的一个连续映射。</p>
+<p>由于<span class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>可以唯一地决定<span class="math inline">\(\boldsymbol
+k\)</span>点的能带结构，我们应该能用它来表达贝里曲率<span
+class="math inline">\(F_{xy}\)</span>（这个模型只有一个价带，因此贝里联络、贝里曲率等都是标量）。
+这里要注意，<span class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>可以唯一地决定<span class="math inline">\(\boldsymbol
+k\)</span>点的贝里曲率，但是并不能决定该点的贝里联络。
+这是因为即使确定了<span class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>，我们也不能唯一地确定该点的基态量子态<span
+class="math inline">\(|\boldsymbol
+n\rangle\)</span>：该量子态的选择还可以差一个任意的U(1)相位。
+这就是我们在前文（第??节）讨论过的规范变换。 因此，贝里联络还依赖于<span
+class="math inline">\(|\boldsymbol n(\boldsymbol
+k)\rangle\)</span>中的规范选取。 但是贝里曲率是规范不变的。
+因此，它可以由<span class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>唯一地决定。</p>
+<p>为了计算贝里曲率<span class="math inline">\(F_{xy}(\boldsymbol
+k)\)</span>，我们需要选定一个规范，即确定<span
+class="math inline">\(|\boldsymbol n(\boldsymbol
+k)\rangle\)</span>的具体形式。 由于<span
+class="math inline">\(|\boldsymbol n\rangle\)</span>是指向<span
+class="math inline">\(\boldsymbol
+n\)</span>方向的自旋态，我们通过将自旋旋转变换作用到指向<span
+class="math inline">\(z\)</span>方向的自旋态<span
+class="math inline">\(|\uparrow\rangle\)</span>来得到这个自旋态。
+我们用球面坐标的两个角度：极化角（polar angle, 即<span
+class="math inline">\(\boldsymbol n\)</span>和<span
+class="math inline">\(z\)</span>轴的夹角，或球面上的纬度）<span
+class="math inline">\(\theta\)</span>和方位角（azimuth angle, 即<span
+class="math inline">\(\boldsymbol n\)</span>在赤道平面的投影和<span
+class="math inline">\(x\)</span>轴的夹角，或球面上的经度）<span
+class="math inline">\(\varphi\)</span>来表示向量<span
+class="math inline">\(\boldsymbol n\)</span>： <span
+class="math display">\[\boldsymbol n =
+\begin{pmatrix}\sin\theta\cos\varphi &amp; \sin\theta\sin\varphi &amp;
+\cos\theta\end{pmatrix}.\]</span> 为了得到<span
+class="math inline">\(|\boldsymbol n\rangle\)</span>，我们先将<span
+class="math inline">\(|\uparrow\rangle\)</span>绕<span
+class="math inline">\(x\)</span>轴旋转<span
+class="math inline">\(\theta\)</span>，从而将自旋方向指向正确的极化角，这步对应的自旋旋转算符为<span
+class="math inline">\(e^{-i\sigma_x\theta/2}\)</span>；之后，再绕<span
+class="math inline">\(z\)</span>轴旋转<span
+class="math inline">\(\varphi\)</span>，从而将自旋方向指向正确的方位角，这步对应的自旋旋转算符为<span
+class="math inline">\(e^{-i\sigma_z\varphi/2}\)</span>。
+因此，我们将<span class="math inline">\(|\boldsymbol
+n\rangle\)</span>取为
+<span id="eq:haldane-model:nvec" class="eqnos"><span
+class="math display">\[|\boldsymbol
+n\rangle=e^{-i\sigma_z\varphi/2}e^{-i\sigma_x\theta/2}|\uparrow\rangle.
+\]</span><span class="eqnos-number">(11)</span></span>
+利用泡利矩阵指数函数的如下性质： <span
+class="math display">\[e^{i\theta\sigma^a}=\cos\theta +
+i\sin\theta\sigma^a,
+\]</span> （上面这个等式可以将左右两边进行泰勒展开，并利用<span
+class="math inline">\((\sigma^a)^2=1\)</span>证明，也可以先取将<span
+class="math inline">\(\sigma^a\)</span>对角化的基底，再直接计算等式左边来进行证明。）
+我们可以将<span class="math inline">\(|\boldsymbol
+n\rangle\)</span>计算出来： <span class="math display">\[|\boldsymbol
+n\rangle
+=\cos\frac\theta2e^{-i\phi/2}|\uparrow\rangle
++\sin\frac\theta2e^{i\phi/2}|\downarrow\rangle.
+\]</span> 利用这个表达式，我们可以直接计算贝里联络： <span
+class="math display">\[\mathcal A=i\langle\boldsymbol
+n|\nabla|\boldsymbol n\rangle=\frac12\cos\theta\nabla\phi.
+\]</span>
+接下来，从这个贝里联络中，我们就能得到之前想要的，规范不变而只依赖于<span
+class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>的贝里曲率了：
+<span id="eq:haldane-model:Fxy0" class="eqnos"><span
+class="math display">\[F_{xy}=\partial_x\mathcal A_y-\partial y\mathcal
+A_x
+=-\frac12\sin\theta(\partial_x\theta\partial_y\phi
+-\partial_y\theta\partial_x\phi).
+\]</span><span class="eqnos-number">(12)</span></span> 上式中的<span
+class="math inline">\(\theta\)</span>和<span
+class="math inline">\(\phi\)</span>随动量<span
+class="math inline">\(\boldsymbol k\)</span>变化的函数形式都可以从<span
+class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>中得到，因此原则上说，我们已经得到了利用<span
+class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>表达贝里曲率<span
+class="math inline">\(F_{xy}\)</span>的形式。
+但是，这个表达式看上去还比较复杂。
+这里如果采用三维空间上的球坐标系，我们可以注意到(<a
+href="#eq:haldane-model:Fxy0">12</a>)式中的<span
+class="math inline">\((\partial_x\theta\partial_y\phi
+-\partial_y\theta\partial_x\phi)\)</span>部分涉及到了两个球面坐标<span
+class="math inline">\((\theta,\phi)\)</span>的梯度。
+由此我们可以猜到，这个结果可以利用球面上的体积元表达出来。
+事实上，利用球面坐标系的三个基矢：<span class="math inline">\(\hat
+n=\boldsymbol n\)</span>，<span
+class="math inline">\(\hat\theta=\partial_\theta\boldsymbol
+n\)</span>和<span
+class="math inline">\(\hat\phi=\frac1{\sin\theta}\partial_\phi\boldsymbol
+n\)</span>，不难计算得到如下的关系式： <span
+class="math display">\[F_{xy}=-\frac12\boldsymbol
+n\cdot(\partial_x\boldsymbol n\times\partial_y\boldsymbol n).\]</span>
+在上式中，<span class="math inline">\(\partial_x\boldsymbol
+n\times\partial_y\boldsymbol n\)</span>这个向量的长度等于<span
+class="math inline">\(\partial_x\boldsymbol n\)</span>和<span
+class="math inline">\(\partial_y\boldsymbol
+n\)</span>构成的平行四边形的面积； 而<span
+class="math inline">\(\partial_x\boldsymbol n\times\partial_y\boldsymbol
+n\)</span>这个向量的方向平行于<span class="math inline">\(\boldsymbol
+n\)</span>（这是因为<span class="math inline">\(\partial_x\boldsymbol
+n\)</span>和<span class="math inline">\(\partial_y\boldsymbol
+n\)</span>这两个向量都和<span class="math inline">\(\boldsymbol
+n\)</span>垂直）。 因此，上式中的混合积<span
+class="math inline">\(\boldsymbol n\cdot(\partial_x\boldsymbol
+n\times\partial_y\boldsymbol n)\)</span>等于<span
+class="math inline">\(\partial_x\boldsymbol n\)</span>和<span
+class="math inline">\(\partial_y\boldsymbol
+n\)</span>构成的平行四边形的面积。 由此可见，如果考虑贝里曲率<span
+class="math inline">\(F_{xy}\)</span>在布里渊区内一个面积微元上的积分，我们得到
+<span class="math display">\[F_{xy}\Delta x\Delta y=
+-\frac12\boldsymbol n\cdot(\Delta_x\boldsymbol n\times
+\Delta_y\boldsymbol n),\]</span> 其中<span
+class="math inline">\(\Delta_{x,y}\boldsymbol n\)</span>表示<span
+class="math inline">\(\boldsymbol n(\boldsymbol k)\)</span>在<span
+class="math inline">\(k_x,k_y\)</span>两个方向上的变化量。
+因此，这个面积微元上的贝里曲率的积分等于<span
+class="math inline">\(-\frac12\)</span>乘上<span
+class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>将该微元映射到球面上的面积。
+相应地，如果将贝里曲率在整个布里渊区上积分，得到的结果就是<span
+class="math inline">\(-\frac12\)</span>乘上<span
+class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>将整个布里渊区映射到球面上的面积。
+而上一章中定义的陈数则可以表示为
+<span id="eq:haldane-model:c-winding" class="eqnos"><span
+class="math display">\[
+c=-\frac1{4\pi}\int d_{k_x}d_{k_y}
+\boldsymbol n\cdot(\partial_x\boldsymbol n\times\partial_y\boldsymbol n)
+=-W[\boldsymbol n(\boldsymbol k)],
+\]</span><span class="eqnos-number">(13)</span></span> 其中<span
+class="math inline">\(W[\boldsymbol n(\boldsymbol k)]\)</span>代表<span
+class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>将整个布里渊区映射到球面上的面积除以<span
+class="math inline">\(4\pi\)</span>。 由于球面的面积就是<span
+class="math inline">\(4\pi\)</span>，<span
+class="math inline">\(W[\boldsymbol n(\boldsymbol k)]\)</span>就是<span
+class="math inline">\(\boldsymbol n(\boldsymbol
+k)\)</span>这个映射覆盖球面的次数，因此也被称为该映射的绕数（winding
+number）。
+这样我们就得到了一个计算两带模型陈数的直观方法：通过将两个能带看成一个赝自旋自由度，我们可以将能带哈密顿量表示成从布里渊区到赝自旋布洛赫球上的一个连续映射，而陈数就由该映射的绕数给出。（根据本书中的符号约定，陈数和绕数之间还差一个负号。但是此处的符号约定并不影响我们对能带拓扑性质的判断：只要在计算中全程保持一致的符号约定，在陈数的定义中加上一个额外的负号也不会改变任何物理的结果。）</p>
+<p>利用(<a
+href="#eq:haldane-model:c-winding">13</a>)式的结果，我们可以直观地得到狄拉克费米子的陈数。
+根据(<a href="#eq:haldane-model:H-pseudoh">10</a>)式的形式，(<a
+href="#eq:haldane-model:dirac0">9</a>)式中的能带对应于 <span
+class="math display">\[\boldsymbol n(\boldsymbol k)=
+\frac1{\sqrt{\boldsymbol k^2+m^2}}(-k_x, -k_y, -m).\]</span>
+我们不妨先假设<span class="math inline">\(m&gt;0\)</span>。
+不难看出，此时该映射将布里渊区映射到布洛赫球的下半球面（南半球），且映射得到的下半球面的定向与布里渊区正好相反。
+因此，该映射的绕数为<span class="math inline">\(W[\boldsymbol
+n]=-\frac12\)</span>。 由此我们得到(<a
+href="#eq:haldane-model:dirac0">9</a>)式的陈数为<span
+class="math inline">\(\frac12\)</span>。 类似地，当<span
+class="math inline">\(m&lt;0\)</span>时，该映射将布里渊区映射到布洛赫球的上半球面（北半球），此时(<a
+href="#eq:haldane-model:dirac0">9</a>)式的陈数为<span
+class="math inline">\(-\frac12\)</span>。 因此，(<a
+href="#eq:haldane-model:dirac0">9</a>)式的陈数可以统一地写作
+<span id="eq:haldane-model:cnum-12" class="eqnos"><span
+class="math display">\[c=\frac12\frac m{|m|}.
+\]</span><span class="eqnos-number">(14)</span></span> </p>
+<p>细心的读者一定已经注意到：上面狄拉克费米子陈数为<span
+class="math inline">\(\pm\frac12\)</span>的结论与上一章中陈数总是整数的普遍结果相矛盾。
+因此，这个结论恐怕是有问题的。 事实上，(<a
+href="#eq:haldane-model:dirac0">9</a>)式并不能给出一个完整的布里渊区上的能带：
+我们通常考虑的布里渊区，不论是满足周期性边界条件的二维环面，还是上一章中考虑的二维球面，都是封闭的有限大小的空间（准确地说，是紧致的空间）。
+而(<a
+href="#eq:haldane-model:dirac0">9</a>)式中动量的取值范围是整个二维平面，它是一个无限大的空间。
+更糟糕的是，其中的<span class="math inline">\(H(\boldsymbol
+k)\)</span>当<span
+class="math inline">\(k\)</span>从不同方向趋于无穷大时，并没有一个确定的极限。
+因此，这个二维平面无法通过在无穷远点做单点紧化变成紧致的球面。
+这也就解释了为什么该映射可以只覆盖半个球面，从而得到<span
+class="math inline">\(\pm\frac12\)</span>的陈数。</p>
+<p>为了避免上述非整数陈数的问题，我们需要修改<span
+class="math inline">\(H(\boldsymbol k)\)</span>使其在<span
+class="math inline">\(k\)</span>趋于无穷大时拥有一个一致的极限，从而对二维平面进行单点紧化。
+这个要求对应于如上一章中所述，在真实的能带中如果不考虑弱拓扑态，哈密顿量在布里渊区边界上应当有一致的形式。
+为此，我们可以将哈密顿量(<a
+href="#eq:haldane-model:dirac0">9</a>)中加上一个<span
+class="math inline">\(k^2\)</span>项：
+<span id="eq:haldane-model:dirac0-k2" class="eqnos"><span
+class="math display">\[H(\boldsymbol
+k)=k_x\tau^x+k_y\tau^y+m\tau^z-k^2\tau^z.
+\]</span><span class="eqnos-number">(15)</span></span> 在<span
+class="math inline">\(\boldsymbol k=0\)</span>点附近，<span
+class="math inline">\(k^2\)</span>项与其余各项相比较可以忽略，因此这项并不会影响狄拉克费米子在原点附近的贝里曲率；而当<span
+class="math inline">\(k\rightarrow\infty\)</span>时，其余各项与这项相比可以忽略，因此这个哈密顿量在无穷远点有着确定的极限<span
+class="math inline">\(-\tau^z\)</span>。
+这样我们就可以通过对平面进行单点紧化，将(<a
+href="#eq:haldane-model:dirac0-k2">15</a>)看成一个球面布里渊区上的哈密顿量。
+相应地，其绕数和陈数也就是整数了： 当<span
+class="math inline">\(m&gt;0\)</span>时，原点（<span
+class="math inline">\(\boldsymbol
+k=0\)</span>）和无穷远点对应的布洛赫球上的点分别为南北两极，因此能带对应的映射覆盖了整个布洛赫球一次，对应陈数为1；
+当<span
+class="math inline">\(m&lt;0\)</span>时，由于原点和无穷远点对应的都是南极，因此能带对应的映射覆盖了整个布洛赫球零次，对应陈数为0。</p>
+<p>从上面的讨论我们可以看到：(<a
+href="#eq:haldane-model:cnum-12">14</a>)式中陈数非整数的问题需要用(<a
+href="#eq:haldane-model:dirac0-k2">15</a>)式中的<span
+class="math inline">\(-k^2\)</span>项来修正；但是这项修正并不影响(<a
+href="#eq:haldane-model:cnum-12">14</a>)式中当<span
+class="math inline">\(m\)</span>变号时，陈数变化为1的结论。
+事实上，当<span
+class="math inline">\(m\)</span>在零附近的变化主要影响布里渊区原点附近的贝里曲率，而此处的贝里曲率可以用(<a
+href="#eq:haldane-model:dirac0-k2">15</a>)式的能带描述。
+接下来，我们以霍尔丹模型为例，演示如何利用狄拉克费米子质量项变号时陈数变化1的结论方便地判断能带的陈数。</p>
+<h2 id="霍尔丹模型的陈数">霍尔丹模型的陈数</h2>
+<p>如前所述，当<span class="math inline">\(t&#39;\ll
+t\)</span>时，霍尔丹模型零能量附近的能带结构可以近似看成狄拉克费米子。
+因此，我们可以利用上一段推导的狄拉克费米子的陈数来得到霍尔丹模型的陈数。
+由于狄拉克费米子的陈数公式只能得到当狄拉克费米子质量变号时其陈数的变化量，
+我们将首先推导当<span
+class="math inline">\(t&#39;\)</span>取值使得霍尔丹模型的能带变得拓扑平庸时的陈数（此时陈数为零），再通过质量变号时陈数的变化规律得到其它<span
+class="math inline">\(t&#39;\)</span>取值时的陈数。</p>
+<div id="refs" class="references csl-bib-body" role="doc-bibliography">
+<div id="ref-haldaneModelQuantumHall1988" class="csl-entry"
+role="doc-biblioentry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">F.
+D. M. Haldane, <em><a
+href="https://doi.org/10.1103/PhysRevLett.61.2015">Model for a Quantum
+Hall Effect Without Landau Levels: Condensed-Matter Realization of the
+<span>“Parity Anomaly”</span></a></em>, Phys. Rev. Lett.
+<strong>61</strong>, 2015 (1988).</div>
+</div>
+</div>
+</body>
+</html>
