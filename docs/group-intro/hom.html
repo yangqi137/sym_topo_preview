@@ -161,6 +161,9 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -175,6 +178,306 @@
         <li>群同态、正规子群与商群</li>
       </ul>
 </nav>
-
+<p>在本节中，我们讨论群同态及相关概念。
+数学对象（一般是具有某种数学结构的集合，如群环域等等）间的同态映射是近现代数学中的核心概念之一。
+例如范畴论中并不直接研究数学对象之内的元素，而是将对象之间的态射作为核心研究对象。
+在本节和下一节中，我们将看到，对群同态之间的研究会自然地引出一系列重要的概念，这些概念在物理中也有各种重要的应用。</p>
+<h2 id="群同态">群同态</h2>
+<p>两个群<span class="math inline">\(G\)</span>和<span
+class="math inline">\(H\)</span>之间的一个群同态（group
+homomorphism）<span class="math inline">\(f:G\rightarrow
+H\)</span>指的是二者之间的一个（集合论意义上）的映射，且<span
+class="math inline">\(f\)</span>保持群的乘法运算结构不变，即其满足如下条件：
+<span class="math display">\[\forall g, h\in G,
+f(g\cdot h) = f(g)\cdot f(h).
+\]</span> 这个条件也可以表述为<span
+class="math inline">\(f\)</span>与乘法对易。
+上面的这个定义也是数学上定义同态映射的一般方法：即要求两个数学对象之间的映射保持二者的数学结构不变（或者说与相应的数学结构相容）。
+正如上节中我们借用<span
+class="math inline">\(\subset\)</span>而不是发明一个新的记号来表示子群一样，在本书中我们也遵循数学文献中的做法，借用<span
+class="math inline">\(f:G\rightarrow H\)</span>的记号来代表群同态。
+这是因为在两个群之间，我们一般只考虑同态映射，而不会去考虑不构成同态的集合论上的映射。</p>
+<h3 id="同态映射的核与像">同态映射的核与像</h3>
+<p>与集合论中的映射类似，我们可以定义两个群同态<span
+class="math inline">\(f:G\rightarrow H\)</span>和<span
+class="math inline">\(g:H\rightarrow K\)</span>之间的复合映射<span
+class="math inline">\(g\circ f\)</span>。 容易验证，<span
+class="math inline">\(g\circ f:G\rightarrow K\)</span>也是一个群同态。
+同样的，对于一个群同态<span class="math inline">\(f:G\rightarrow
+H\)</span>，我们可以定义其核<span class="math inline">\(\ker
+f\)</span>与像<span class="math inline">\(\text{img}\,
+f\)</span>，其定义与集合论中映射的核与像一致。 可以证明，<span
+class="math inline">\(\ker f\)</span>与<span
+class="math inline">\(\text{img}\,
+f\)</span>都构成群（此处需要证明二者在群乘法和求逆运算下封闭）。</p>
+<h3 id="正合列">正合列</h3>
+<p>利用核与像，我们可以引入正合列的概念。
+如下式所示，一系列群同态首尾相接： <span
+class="math display">\[G_1\xrightarrow{f_1}
+G_2\xrightarrow{f_2}G_3\rightarrow\cdots,
+\]</span> 如果每个映射的像都等于下一个映射的核，即<span
+class="math inline">\(\text{img}\,f_i=\ker
+f_{i+1}\)</span>，则称上式为一个正合列（exact sequence）。
+特别地，如下的由5项构成的正合列被称为一个短正合列（short exact
+sequence）： <span class="math display">\[1\rightarrow N\rightarrow
+G\rightarrow Q\rightarrow1
+\]</span> 其中的<span
+class="math inline">\(1\)</span>代表仅包含单位元的平庸群（前文中我们也用<span
+class="math inline">\(\mathbb Z_1\)</span>代表它）。</p>
+<p>映射的很多概念都可以用正合列表示。 如正合列 <span
+class="math display">\[1\rightarrow G\xrightarrow{f} H\]</span>
+表示<span class="math inline">\(f\)</span>是单射（即<span
+class="math inline">\(\ker f=1\)</span>）。 正合列 <span
+class="math display">\[G\xrightarrow{f} H\rightarrow 1\]</span>
+表示<span class="math inline">\(f\)</span>是满射（即<span
+class="math inline">\(\text{img}\,f=H\)</span>）。 正合列 <span
+class="math display">\[1\rightarrow K\rightarrow
+G\xrightarrow{f}H,\]</span> 表示<span class="math inline">\(K=\ker
+f\)</span>。</p>
+<h2 id="群同构">群同构</h2>
+<p>数学对象之间的同构（isomorphism）可以用其同态映射来定义。
+这种方法可以用来定义群之间的同构。 假设两个群<span
+class="math inline">\(G\)</span>和<span
+class="math inline">\(H\)</span>之间存在相互的群同态：<span
+class="math inline">\(f:G\rightarrow H\)</span>和<span
+class="math inline">\(g:H\rightarrow G\)</span>，并且<span
+class="math inline">\(g\circ f=\mathrm{id}_G\)</span>; <span
+class="math inline">\(f\circ g=\mathrm{id}_H\)</span>（其中<span
+class="math inline">\(\mathrm{id}_G\)</span>）代表群<span
+class="math inline">\(G\)</span>到自己的单位映射），则称<span
+class="math inline">\(G\)</span>与<span
+class="math inline">\(H\)</span>同构，记作<span
+class="math inline">\(G\simeq H\)</span>。
+如果两个群同构，那么二者的元素之间存在一一对应的关系，且二者的乘法运算结构在这种一一对应的关系下保持一致。
+因此，我们可以认为这两个群是“一样”的。
+在物理研究中，我们往往并不严格地区分两个同构的群，即如果两个群同构，我们就认为它们是一个群。
+例如，我们在前文中介绍过<span
+class="math inline">\(n\)</span>阶循环群<span
+class="math inline">\(\langle a|a^n\rangle\)</span>，并指出整数模<span
+class="math inline">\(n\)</span>的余数在加法下也构成<span
+class="math inline">\(n\)</span>阶循环群<span
+class="math inline">\(\mathbb Z_n\)</span>。
+事实上，严格地讲，通过这两种方法得到的是两个不同的群；它们之间是同构关系：<span
+class="math inline">\(\langle a|a^n\rangle\simeq \mathbb Z_n\)</span>。
+这个同构的映射关系为<span class="math inline">\(a^m\leftrightarrow
+m\)</span>。</p>
+<h2 id="正规子群与商群">正规子群与商群</h2>
+<p>接下来，我们介绍正规子群与商群的概念。</p>
+<h3 id="正规子群">正规子群</h3>
+<p>引入正规子群这一概念的动机可以从同态映射的角度来理解。
+如前所述，<span class="math inline">\(f:G\rightarrow
+G&#39;\)</span>的核构成一个群； 我们将其记作<span
+class="math inline">\(H=\ker f\)</span>。 根据<span
+class="math inline">\(\ker f\)</span>的定义，它显然是<span
+class="math inline">\(G\)</span>的一个子群。
+我们现在来考虑一个问题：<span class="math inline">\(H=\ker
+f\)</span>除了是一个子群之外，还有没有其它的特殊性质？
+换句话说，对于哪些子群<span class="math inline">\(H\subset
+G\)</span>才存在映射<span class="math inline">\(f\)</span>，使得<span
+class="math inline">\(H=\ker f\)</span>？
+我们将看到，这个问题的答案是<span
+class="math inline">\(H\)</span>为<span
+class="math inline">\(G\)</span>的正规子群。</p>
+<p>首先，我们注意到<span class="math inline">\(H=\ker
+f\)</span>的一个性质：如果<span class="math inline">\(h\in
+H\)</span>，那么对于群<span
+class="math inline">\(G\)</span>中的任意一个元素<span
+class="math inline">\(g\in G\)</span>，<span
+class="math inline">\(ghg^{-1}\)</span>也是<span
+class="math inline">\(H\)</span>中的元素。
+这个性质很容易利用群同态映射与乘法对易的性质证明：<span
+class="math inline">\(h\in H=\ker f\)</span>说明<span
+class="math inline">\(f(h)=1\)</span>，从而<span
+class="math inline">\(f(ghg^{-1})=f(g)f(g^{-1})=1\)</span>；因此<span
+class="math inline">\(ghg^{-1}\in H=\ker f\)</span>。</p>
+<p>利用上节中引入的陪集的记号，我们可以将形如<span
+class="math inline">\(ghg^{-1}\)</span>的元素构成的集合记为<span
+class="math inline">\(gHg^{-1}\)</span>。 利用上面的性质，容易证明<span
+class="math inline">\(gHg^{-1}=H\)</span>，即<span
+class="math inline">\(H\)</span>在<span
+class="math inline">\(g\)</span>的作用下不变。
+我们称具有如上性质的子群为正规子群，即： 如果<span
+class="math inline">\(H\subset G\)</span>满足<span
+class="math inline">\(gHg^{-1}=H\)</span>，则称<span
+class="math inline">\(H\)</span>为<span
+class="math inline">\(G\)</span>的正规子群，记作<span
+class="math inline">\(H\triangleleft G\)</span>。</p>
+<p>根据这个定义，<span class="math inline">\(\ker f\)</span>一定是<span
+class="math inline">\(G\)</span>的正规子群。为了回答前面的那个问题，我们还需要论证是否<span
+class="math inline">\(G\)</span>的每个正规子群都可以作为一个映射的核？下面商群的构造将对这一问题给出肯定的答案。</p>
+<h3 id="商群">商群</h3>
+<p>在上一节中我们看到，对于<span
+class="math inline">\(G\)</span>的一个子群<span
+class="math inline">\(H\)</span>，我们可以构造一个由陪集构成的商集<span
+class="math inline">\(G/H\)</span>。但是，这个商集本身并不具备群的结构。
+事实上，如果我们将两个陪集<span class="math inline">\(aH\)</span>和<span
+class="math inline">\(bH\)</span>中的所有元素相乘，得到的集合一般是若干个陪集的并集（读者可以自行举例验证这一点）。</p>
+<p>但是，当<span
+class="math inline">\(H\)</span>是一个正规子群时，其陪集之间的乘法会大大简化。
+首先，容易验证，对于一个正规子群，其左陪集和右陪集是一样的。
+这是因为根据定义，对<span class="math inline">\(\forall a\in
+G\)</span>都有<span class="math inline">\(aHa^{-1}=H\)</span>；
+在此式两边同时右乘<span class="math inline">\(a\)</span>，即得<span
+class="math inline">\(aH=Ha\)</span>。 （也就是说，对于正规子群<span
+class="math inline">\(H\triangleleft
+G\)</span>，我们不需要区分左右陪集，也不需要区分<span
+class="math inline">\(G/H\)</span>和<span
+class="math inline">\(H\backslash G\)</span>。）
+根据这一点，当我们考虑两个陪集<span
+class="math inline">\(aH\)</span>和<span
+class="math inline">\(bH\)</span>的乘积时，我们可以利用<span
+class="math inline">\(bH=Hb\)</span>，转而考虑<span
+class="math inline">\(aH\cdot bH=aH\cdot Hb\)</span>。
+根据群乘法的封闭性，可以得到<span class="math inline">\(H\cdot
+H=H\)</span>。因此，我们得到<span class="math inline">\(aH\cdot
+bH=abH\)</span>；即如果两个代表元分别为<span
+class="math inline">\(a\)</span>和<span
+class="math inline">\(b\)</span>的陪集相乘，得到的就是代表元为<span
+class="math inline">\(ab\)</span>的陪集。
+利用这样定义的陪集之间的乘法，我们可以赋予商集<span
+class="math inline">\(G/H\)</span>一个群结构（读者可以自行证明幺元和逆元的存在）。
+这样得到的群<span class="math inline">\(G/H\)</span>称为（<span
+class="math inline">\(G\)</span>模掉<span
+class="math inline">\(H\)</span>的）商群（quotient group）。</p>
+<p>例：阿贝尔群的所有子群都是正规子群。 上一节中给出的<span
+class="math inline">\(n\mathbb Z\subset\mathbb Z\)</span>的例子中，<span
+class="math inline">\(n\mathbb Z\)</span>也是一个正规子群。
+其商群就是<span class="math inline">\(\mathbb Z_n\)</span>。
+事实上，很多数学文献中就把<span class="math inline">\(\mathbb
+Z_n\)</span>记作<span class="math inline">\(\mathbb Z/n\mathbb
+Z\)</span>。</p>
+<p>例：考虑<span class="math inline">\(\mathbb D_n=\langle a,b|a^n, b^2,
+baba\rangle\)</span>，其中<span
+class="math inline">\(a\)</span>生成的<span
+class="math inline">\(\mathbb Z_n^a=\langle
+a|a^n\rangle\)</span>是一个正规子群：<span class="math inline">\(\mathbb
+Z_n^a\triangleleft\mathbb D_n\)</span>。 其商群为<span
+class="math inline">\(\mathbb D_n/\mathbb Z_n^a=\mathbb Z_2^b=\langle
+b|b^2\rangle\)</span>。</p>
+<h3 id="商群的映射与短正合列">商群的映射与短正合列</h3>
+<p>我们假设<span class="math inline">\(N\triangleleft
+G\)</span>是一个正规子群；<span
+class="math inline">\(Q=G/N\)</span>是相应的商群。
+根据集合论中商映射（quotient map）的概念，我们可以构造从<span
+class="math inline">\(G\)</span>到<span
+class="math inline">\(Q=G/N\)</span>的商映射<span
+class="math inline">\(f: G\rightarrow Q\)</span>。 这个映射将<span
+class="math inline">\(g\in G\)</span>映射到它所属的陪集：<span
+class="math inline">\(f: g\mapsto gN\)</span>。
+容易验证，这个映射也是一个群同态。</p>
+<p>接下来，我们验证<span class="math inline">\(\ker f=N\)</span>。
+这是因为<span class="math inline">\(Q\)</span>中的单位元是包含（<span
+class="math inline">\(G\)</span>中）单位元<span
+class="math inline">\(e\)</span>的陪集<span
+class="math inline">\(eN=N\)</span>， 而其原像就是<span
+class="math inline">\(f^{-1}(eN)=N\)</span>。
+而根据商映射的构造方式，它一定是一个满射。 因此，<span
+class="math inline">\(N\)</span>，<span
+class="math inline">\(G\)</span>和<span
+class="math inline">\(Q\)</span>构成如下短正合列： <span
+class="math display">\[1\rightarrow N\rightarrow G
+\xrightarrow{f}Q\rightarrow1.\]</span>
+反之，如果三个群构成如上的短正合列，则必有<span
+class="math inline">\(N\triangleleft G\)</span>、<span
+class="math inline">\(Q=G/N\)</span>。</p>
+<p>在下一节中，我们将进一步深入研究这个短正合列表示的三个群的关系。</p>
+<h3
+id="共轭操作与群在另一个群上的作用">共轭操作与群在另一个群上的作用</h3>
+<p>在正规子群的定义中，我们见到了<span
+class="math inline">\(ghg^{-1}\)</span>这样的群元素乘法组合。
+这种操作组合在群论中非常常见，因此我们给它一个名字：称为<span
+class="math inline">\(h\)</span>在<span
+class="math inline">\(g\)</span>下的共轭操作，并记作<span
+class="math inline">\({}^gh\)</span>。
+事实上，线性代数中的相似变换就是一个共轭操作：如果两个矩阵<span
+class="math inline">\(A\)</span>和<span
+class="math inline">\(B\)</span>都可逆，它们就是一般线性群<span
+class="math inline">\(\mathrm{GL}(n, k)\)</span>中的元素。<span
+class="math inline">\(B\)</span>的相似变换<span
+class="math inline">\(ABA^{-1}\)</span>按照上面的定义就可以写成<span
+class="math inline">\({}^AB\)</span>。</p>
+<p>如果将<span class="math inline">\(g\)</span>和<span
+class="math inline">\(h\)</span>看成两个对称性操作，<span
+class="math inline">\({}^gh\)</span>有一个很直观的解释： 它代表<span
+class="math inline">\(h\)</span>对应的对称性操作在<span
+class="math inline">\(g\)</span>的作用下变换得到的新的对称性操作。
+上面这段话写得比较拗口，其涵义用例子可以很容易地说明： 例如<span
+class="math inline">\(g=T_x\)</span>是<span
+class="math inline">\(x\)</span>方向单位长度的平移操作；<span
+class="math inline">\(h\)</span>是绕原点<span
+class="math inline">\(O\)</span>、角度为<span
+class="math inline">\(\theta\)</span>的一个旋转操作； 那么<span
+class="math inline">\({}^gh\)</span>就是将旋转中心做<span
+class="math inline">\(T_x\)</span>的平移，得到以<span
+class="math inline">\(T_xO=(1,0)\)</span>为原点、角度为<span
+class="math inline">\(\theta\)</span>的旋转操作。 再例如<span
+class="math inline">\(g\)</span>是绕原点旋转<span
+class="math inline">\(\theta\)</span>的旋转操作；<span
+class="math inline">\(h\)</span>是沿<span
+class="math inline">\(x\)</span>轴的反射操作，那么<span
+class="math inline">\({}^gh\)</span>就是将<span
+class="math inline">\(x\)</span>轴旋转<span
+class="math inline">\(\theta\)</span>得到的反射轴。
+以上几个例子很容易直接进行验证。 为了普遍地证明这一点，我们可以将<span
+class="math inline">\(g\)</span>和<span
+class="math inline">\(h\)</span>分别替换成为相应对称操作的变换矩阵。
+如上所述，此时<span class="math inline">\({}^gh=ghg^{-1}\)</span>是<span
+class="math inline">\(h\)</span>作了<span
+class="math inline">\(g\)</span>矩阵表示的相似变换的结果。
+根据线性代数中相似变换的几何解释，<span
+class="math inline">\(ghg^{-1}\)</span>就是<span
+class="math inline">\(h\)</span>对称操作在<span
+class="math inline">\(g\)</span>的作用下变换得到的新操作。</p>
+<p>根据线性代数中相似变换的经验，当固定元素<span
+class="math inline">\(g\)</span>时，共轭操作<span
+class="math inline">\(h\mapsto{}^gh\)</span>相当于对所有对称操作进行了一个坐标变换。
+因此，这个变换应该保持对称群的结构不变，即它诱导了一个群之间的同构。
+一般地，假设<span class="math inline">\(H\subset G\)</span>是一个子群。
+任意<span class="math inline">\(g\in G\)</span>在<span
+class="math inline">\(H\)</span>上的共轭操作<span
+class="math inline">\(h\mapsto {}^gh\)</span>都给出了群<span
+class="math inline">\(H\)</span>到<span
+class="math inline">\(gHg^{-1}\)</span>的一个群同构，我们将这个同构映射记为<span
+class="math inline">\(c_g\)</span>。 当<span
+class="math inline">\(gHg^{-1}=H\)</span>时（如当<span
+class="math inline">\(H\)</span>是一个正规子群时），<span
+class="math inline">\(c_g:H\rightarrow H\)</span>是<span
+class="math inline">\(H\)</span>到自身的一个同构映射。 此时，<span
+class="math inline">\(c_g:h\mapsto {}^gh\)</span>可以看成<span
+class="math inline">\(g\)</span>在<span
+class="math inline">\(H\)</span>元素上的一种“乘法”操作，或者<span
+class="math inline">\(g\)</span>在<span
+class="math inline">\(H\)</span>上的一个作用（action）。
+注意这里的“乘法”操作与群元素之间的乘法<span class="math inline">\(g\cdot
+h\)</span>显然是不同的。 为避免混淆，本书中使用<span
+class="math inline">\({}^gh\)</span>代表共轭作用，用<span
+class="math inline">\(g\star
+h\)</span>代表一个一般的群在另一个群上的作用。但是请读者注意，在有些文献（主要是数学文献）中，会用点乘<span
+class="math inline">\(g\cdot
+h\)</span>来代表这种群在另一个群上的作用。</p>
+<p>为了数学上严格地表述群在另一个群上的作用，我们需要引入群的自同构群的概念。
+如前所述，群<span
+class="math inline">\(H\)</span>的一个自同构（automorphism）映射指的是<span
+class="math inline">\(H\)</span>到其自身的一个同构映射。
+容易证明，群的所有自同构映射也构成一个群（其单位元为恒等映射<span
+class="math inline">\(\mathrm{id}_H\)</span>，乘法为映射的复合，逆元为逆映射），称为<span
+class="math inline">\(H\)</span>的自同构群，记作<span
+class="math inline">\(\mathrm{Aut}\,H\)</span>。 一般地，群<span
+class="math inline">\(G\)</span>在<span
+class="math inline">\(H\)</span>上的一个作用指的是<span
+class="math inline">\(G\)</span>到<span
+class="math inline">\(\mathrm{Aut}\,H\)</span>的一个群同态：<span
+class="math inline">\(\phi:G\rightarrow\mathrm{Aut}\,H\)</span>。
+对于任意的<span class="math inline">\(g\in G\)</span>，它在<span
+class="math inline">\(H\)</span>上的作用方式由<span
+class="math inline">\(\phi(g)\in\mathrm{Aut}\,H\)</span>这一自同态映射给出，即<span
+class="math inline">\(g\star_\phi h=\phi(g)(h)\)</span>。 而<span
+class="math inline">\(\phi\)</span>是群同态的要求保证了这种作用满足结合律：<span
+class="math inline">\(g_1\star_\phi(g_2\star_\phi h)=(g_1g_2)\star_\phi
+h\)</span>等性质。 例如，当<span class="math inline">\(H\triangleleft
+G\)</span>时，<span class="math inline">\(c_g:h\mapsto
+{}^gh\)</span>给出了<span class="math inline">\(G\)</span>在<span
+class="math inline">\(H\)</span>上的一个作用。
+(读者可以尝试证明这一点。)</p>
 </body>
 </html>

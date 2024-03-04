@@ -161,9 +161,19 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
 </head>
 <body>
 <header id="title-block-header">
@@ -175,6 +185,334 @@
         <li>群扩张简介</li>
       </ul>
 </nav>
-
+<p>在本节中，我们进一步讨论短正合列 <span
+class="math display">\[1\rightarrow N\rightarrow G\rightarrow
+Q\rightarrow1.\]</span> 的代数关系。
+如上一节中所述，这个短正合列表示<span
+class="math inline">\(N\triangleleft G\)</span>，<span
+class="math inline">\(Q=G/N\)</span>。 由于<span
+class="math inline">\(Q\)</span>是<span
+class="math inline">\(G\)</span>模掉<span
+class="math inline">\(N\)</span>的商群，我们可以认为群<span
+class="math inline">\(G\)</span>被“分解”成了正规子群<span
+class="math inline">\(N\)</span>和商群<span
+class="math inline">\(Q\)</span>的某种“乘积”。
+这种“乘积”关系在数学中被称为群扩张（group extension）：
+如果上述短正合列成立，我们称<span
+class="math inline">\(G\)</span>是群<span
+class="math inline">\(Q\)</span>在<span
+class="math inline">\(N\)</span>上的扩张（有些文献在表述群扩张时把<span
+class="math inline">\(Q\)</span>和<span
+class="math inline">\(N\)</span>反过来说，所以对这里的术语用法不用太在意）。
+通过群扩张，我们可以将比较简单的群组合起来，构造更加复杂的群。
+因此，群扩张是我们理解群结构的重要工具。</p>
+<p>在研究群扩张时，我们将<span class="math inline">\(N\)</span>看成<span
+class="math inline">\(G\)</span>的一个正规子群；相应地，从<span
+class="math inline">\(N\)</span>到<span
+class="math inline">\(G\)</span>的群同态就是<span
+class="math inline">\(N\)</span>到<span
+class="math inline">\(G\)</span>的包含（inclusion）映射，因此我们将其记为<span
+class="math inline">\(i\)</span>。 而从<span
+class="math inline">\(G\)</span>到<span
+class="math inline">\(Q\)</span>的映射可以看成商掉<span
+class="math inline">\(N\)</span>的投影（projection）映射，因此我们将其记成<span
+class="math inline">\(\pi\)</span>。利用这些记号，该短正合列可以写成：
+<span class="math display">\[1\rightarrow
+N\xrightarrow{i}G\xrightarrow{\pi}Q\rightarrow1.
+\]</span></p>
+<p>在本节中，我们将只讨论<span
+class="math inline">\(N\)</span>是阿贝尔群这一比较简单的情形。
+事实上，在本书中，我们也只会用到<span
+class="math inline">\(N\)</span>是阿贝尔群的群扩张。
+因此，我们总是假设<span
+class="math inline">\(N\)</span>是阿贝尔群，并将其上的乘法记为加法。
+相应地，我们将<span
+class="math inline">\(N\)</span>上的幺元写成0，而短正合列中最左边的平庸群也写作0：
+<span class="math display">\[0\rightarrow
+N\xrightarrow{i}G\xrightarrow{\pi}Q\rightarrow1.\]</span>
+注意我们将<span
+class="math inline">\(N\)</span>中的乘法记为加法，而<span
+class="math inline">\(G\)</span>中的乘法还是乘法。
+例如根据我们的记号，<span class="math inline">\(i\)</span>满足<span
+class="math inline">\(i(a)\cdot i(b)=i(a+b)\)</span>。</p>
+<h2 id="分裂的群扩张">分裂的群扩张</h2>
+<p>在本节中，我们的总体思路是探究如何从<span
+class="math inline">\(N\)</span>和<span
+class="math inline">\(Q\)</span>中重构扩张之后的群<span
+class="math inline">\(G\)</span>。 为此，我们希望将<span
+class="math inline">\(N\)</span>和<span
+class="math inline">\(Q\)</span>中的元素“映射”到<span
+class="math inline">\(G\)</span>中。 从短正合列中可以看到，<span
+class="math inline">\(N\)</span>作为<span
+class="math inline">\(G\)</span>的子群，其中的元素可以很自然地被认为是<span
+class="math inline">\(G\)</span>中的元素（严格地说，可以用<span
+class="math inline">\(i\)</span>映射将<span
+class="math inline">\(N\)</span>嵌入<span
+class="math inline">\(G\)</span>中）。 而<span
+class="math inline">\(Q\)</span>到<span
+class="math inline">\(G\)</span>的映射就不那么容易构造。 这是因为从<span
+class="math inline">\(G\)</span>到<span
+class="math inline">\(Q\)</span>的投影映射<span
+class="math inline">\(\pi\)</span>把<span
+class="math inline">\(G\)</span>中每个陪集映射成了<span
+class="math inline">\(Q\)</span>中的一个元素。 如果试图构造<span
+class="math inline">\(\pi\)</span>的逆映射，那么如何选择每个<span
+class="math inline">\(Q\)</span>中元素的原像就成为了一个非平庸的问题。
+我们将看到，这个问题也是理解群扩张的关键所在。</p>
+<p>我们首先讨论比较简单的一类群扩张：分裂（split）的群扩张。
+在这种简单的情形中，<span
+class="math inline">\(\pi\)</span>存在一个性质很好的、自然的逆映射的选择。
+严格地说，如果存在一个群同态<span class="math inline">\(s:Q\rightarrow
+G\)</span>，使得<span class="math inline">\(\pi\circ
+s=\mathrm{id}_Q\)</span>，则称这个短正合列分裂（the short exact sequence
+splits）。 我们也可以说这个短正合列表示的群扩张分裂。 利用<span
+class="math inline">\(s\)</span>和<span
+class="math inline">\(i\)</span>，我们可以用<span
+class="math inline">\(N\)</span>和<span
+class="math inline">\(Q\)</span>中的元素相互组合，构造出<span
+class="math inline">\(G\)</span>中的所有元素： 对于任意的<span
+class="math inline">\(a\in N\)</span>和<span class="math inline">\(g\in
+Q\)</span>，我们定义<span class="math inline">\((a,g)=i(a)\cdot
+s(g)\)</span>。 可以证明，<span
+class="math inline">\(G\)</span>中所有元素都可以通过这种方式表达出来。
+（事实上，根据拉格朗日定理，<span
+class="math inline">\(|G|=|N|\cdot|Q|\)</span>，因此元素的个数可以对上。）</p>
+<p>接下来，我们推导<span
+class="math inline">\((a,g)\)</span>的乘法规则。 对于任意的<span
+class="math inline">\(a,b\in N\)</span>和<span
+class="math inline">\(g,h\in Q\)</span>，根据我们的定义，<span
+class="math inline">\((a,g)\)</span>和<span
+class="math inline">\((b,h)\)</span>的乘积可以如下计算：
+<span id="eq:group-ext:agbh1" class="eqnos"><span
+class="math display">\[(a,g)\cdot(b,h)=i(a)\cdot s(g)\cdot i(b)\cdot
+s(h).
+\]</span><span class="eqnos-number">(1)</span></span>
+我们希望将二者的乘积也写成<span
+class="math inline">\((a,g)\)</span>的形式。
+为此，我们希望将上式中的<span class="math inline">\(s(g)\)</span>与<span
+class="math inline">\(i(b)\)</span>交换，使得<span
+class="math inline">\(i(a)\)</span>与<span
+class="math inline">\(i(b)\)</span>可以凑到一起。
+当然，我们知道这两个元素一般来讲并不对易，不能简单地交换。
+因此，我们可以利用下面的推导：
+<span id="eq:group-ext:agbh2" class="eqnos"><span
+class="math display">\[(a,g)\cdot(b,h)=i(a)\cdot s(g)i(b)s(g)^{-1}\cdot
+s(gh).
+\]</span><span class="eqnos-number">(2)</span></span>
+在上面的推导中，我们利用了<span
+class="math inline">\(s\)</span>是群同态的假定，即<span
+class="math inline">\(s(g)s(h)=s(gh)\)</span>。 这里我们看到，将<span
+class="math inline">\(i(b)\)</span>和<span
+class="math inline">\(s(g)\)</span>交换的代价是前者变成了<span
+class="math inline">\(s(g)i(b)s(g)^{-1}\)</span>。 由于<span
+class="math inline">\(N\triangleleft G\)</span>（更准确地说，是<span
+class="math inline">\(i(N)\triangleleft
+G\)</span>，根据正规子群的定义，<span
+class="math inline">\(s(g)i(b)s(g)^{-1}={}^{s(g)}i(b)\)</span>还是落在正规子群<span
+class="math inline">\(i(N)\)</span>中。 因此，我们可以找到<span
+class="math inline">\(N\)</span>中的一个元素（由于<span
+class="math inline">\(i\)</span>是单射，这个元素一旦存在就是唯一确定的），使得其在<span
+class="math inline">\(i\)</span>下的像为<span
+class="math inline">\({}^{s(g)}i(b)\)</span>。 我们将这个元素记为<span
+class="math inline">\(g\star b\in N\)</span>，即：
+<span id="eq:group-ext:Qact" class="eqnos"><span
+class="math display">\[i\left(g\star b\right)={}^{s(g)}i(b).
+\]</span><span class="eqnos-number">(3)</span></span> 容易验证，<span
+class="math inline">\(\phi(g):a\mapsto g\star a\)</span>是<span
+class="math inline">\(N\)</span>上的一个自同构，并且<span
+class="math inline">\(\phi: g\mapsto\phi(g)\)</span>构成一个<span
+class="math inline">\(Q\rightarrow \mathrm{Aut}\,N\)</span>的群同态。
+因此，如上定义的<span class="math inline">\(\star\)</span>为<span
+class="math inline">\(Q\)</span>在<span
+class="math inline">\(N\)</span>上的一个作用。</p>
+<p>利用这个<span class="math inline">\(Q\)</span>在<span
+class="math inline">\(N\)</span>上的作用，(<a
+href="#eq:group-ext:agbh2">2</a>)可以化简为：
+<span id="eq:group-ext:agbh-split" class="eqnos"><span
+class="math display">\[(a,g)\cdot(b,h)=(a+g\star b, gh).
+\]</span><span class="eqnos-number">(4)</span></span>
+这个式子完全确定了群的乘法规则。</p>
+<p>所以，如果一个群扩张分裂，我们可以首先确定<span
+class="math inline">\(Q\)</span>在<span
+class="math inline">\(N\)</span>上的作用<span
+class="math inline">\(a\mapsto g\star
+a\)</span>，这个群作用可以唯一地确定群扩张之后的群结构。
+我们将这样的群记作<span class="math inline">\(N\rtimes Q\)</span>。
+（准确地说，<span class="math inline">\(G\simeq N\rtimes Q\)</span>。）
+特别地，如果这个群作用也是平庸的：<span class="math inline">\(g\star
+a=a\)</span>，那么群扩张得到的群<span
+class="math inline">\(G\)</span>具有简单的乘法规则：
+<span id="eq:group-ext:agbh-direct" class="eqnos"><span
+class="math display">\[(a,g)\cdot(b,h)=(a+b, gh).
+\]</span><span class="eqnos-number">(5)</span></span>
+我们称这样的群<span class="math inline">\(G\)</span>为（同构于）<span
+class="math inline">\(N\)</span>与<span
+class="math inline">\(Q\)</span>的直积，并记作<span
+class="math inline">\(G=N\times Q\)</span>。</p>
+<p>例：我们沿用之前例子中<span class="math inline">\(\mathbb
+D_n\)</span>及其子群<span class="math inline">\(\mathbb
+Z_n^a\)</span>和<span class="math inline">\(\mathbb
+Z_2^b\)</span>的记号。 <span class="math inline">\(b\)</span>在<span
+class="math inline">\(\mathbb Z_n^a\)</span>上有一个非平庸的作用：<span
+class="math inline">\(b\star a=a^{-1}\)</span>。 相应地，<span
+class="math inline">\(\mathbb D_n=\mathbb Z_n^a\rtimes\mathbb
+Z_2^b\)</span>。</p>
+<h2 id="一般的群扩张">一般的群扩张</h2>
+<p>接下来，我们考虑更一般的情形： 如果不能找到一个<span
+class="math inline">\(Q\)</span>到<span
+class="math inline">\(G\)</span>的群同态<span
+class="math inline">\(s\)</span>作为<span
+class="math inline">\(\pi\)</span>的逆映射（即满足<span
+class="math inline">\(\pi\circ s=\mathrm{id}_Q\)</span>，
+我们退而求其次， 总可以找到一个集合之间的映射<span
+class="math inline">\(s:Q\rightarrow G\)</span>（注意此处<span
+class="math inline">\(s\)</span>不是群同态，不保持群的乘法结构，即一般来说<span
+class="math inline">\(s(g)s(h)\neq s(gh)\)</span>），使得<span
+class="math inline">\(\pi\circ s=\mathrm{id}_Q\)</span>。 虽然<span
+class="math inline">\(s\)</span>的性质不如分裂时好，不满足<span
+class="math inline">\(s(g)s(h)=s(gh)\)</span>，但是左右两边的差别并“没有那么大”：等式两边在<span
+class="math inline">\(\pi\)</span>上的投影还是相同的，即<span
+class="math inline">\(\pi(s(g)s(h))=\pi(s(gh))=gh\)</span>。
+所以，二者之间的差距只能是一个<span class="math inline">\(\ker
+\pi=N\)</span>中的元素。 我们将之记为<span
+class="math inline">\(\omega_2(g, h)\in N\)</span>：
+<span id="eq:group-ext:w2" class="eqnos"><span
+class="math display">\[s(g)s(h)=\omega_2(g, h)s(gh).
+\]</span><span class="eqnos-number">(6)</span></span> </p>
+<p>在指定了<span
+class="math inline">\(s\)</span>之后，我们仍然可以利用(<a
+href="#eq:group-ext:Qact">3</a>)构造<span
+class="math inline">\(Q\)</span>在<span
+class="math inline">\(N\)</span>上的作用。 这是因为(<a
+href="#eq:group-ext:w2">6</a>)中的<span
+class="math inline">\(\omega_2(g, h)\in N\)</span>在<span
+class="math inline">\(N\)</span>上的作用是平庸的。</p>
+<p>接下来，我们可以复制上一小节中的做法，将<span
+class="math inline">\(G\)</span>中的元素表示为<span
+class="math inline">\((a, g)=i(a)\cdot
+s(g)\)</span>，并且计算元素之间的乘法。 利用(<a
+href="#eq:group-ext:Qact">3</a>)和(<a
+href="#eq:group-ext:w2">6</a>)，我们得到：
+<span id="eq:group-ext:agbh-w2" class="eqnos"><span
+class="math display">\[(a,g)\cdot(b, h)=(a+g\star b+\omega_2(g,h), gh).
+\]</span><span class="eqnos-number">(7)</span></span> </p>
+<h2 id="群扩张与群的上同调">群扩张与群的上同调</h2>
+<p>在上一小节中我们看到，<span class="math inline">\(\omega_2(g,
+h)\)</span>在决定群扩张的结构中扮演了重要的角色。
+接下来，一个自然的问题是：什么样的<span
+class="math inline">\(\omega_2(g,h)\)</span>可以自洽地给出一个群扩张？
+哪些<span class="math inline">\(\omega_2(g,
+h)\)</span>给出的群扩张是等价的？
+在本节中，我们将看到，群扩张中用到的不等价的<span
+class="math inline">\(\omega_2\)</span>对应于群的二阶上同调群<span
+class="math inline">\(H^2(G, N)\)</span>。
+在本书中，我们不会详细地介绍群的上同调群的概念；因此，下文中一些术语会显得有些突兀。
+对相关概念感兴趣的读者，可以进一步阅读相关的资料和教材。</p>
+<p>在群的上同调理论中，我们称<span class="math inline">\(\omega_2(g,
+h)\)</span>为一个2-上链（2-cochain）。 在一个自洽的群扩张中，<span
+class="math inline">\(\omega_2\)</span>需要满足下面推导的性质：
+我们考虑三个群元素<span class="math inline">\((a,g)\)</span>、<span
+class="math inline">\((b, h)\)</span>和<span class="math inline">\((c,
+k)\)</span>，它们的乘法需要满足结合律： <span
+class="math display">\[((a,g)\cdot(b,h))\cdot(c,k)
+=(a,g)\cdot((b, h)\cdot(c,k)).\]</span> 利用(<a
+href="#eq:group-ext:agbh-w2">7</a>)，我们可以分别计算上式的左右两边。
+对于左手边（Left-Hand Side, LHS），我们得到： <span
+class="math display">\[\text{LHS}=
+(a+g\star b+gh\star c+\omega_2(g, h)+\omega_2(gh, k), ghk);
+\]</span> 对于右手边（Right-Hand Side, RHS），我们得到： <span
+class="math display">\[\text{RHS}=
+(a+g\star b+gh\star c+g\star\omega_2(h, k)+\omega_2(g, hk), ghk).
+\]</span> 比较上面两式的结果，我们得到<span
+class="math inline">\(\omega_2\)</span>需要满足的条件： <span
+class="math display">\[g\star\omega_2(h, k)-\omega_2(gh, k)+\omega_2(g,
+hk)
+-\omega_2(g, h)=0
+\]</span> 满足这个方程的2-上链被称为2-上闭链（2-cocycle）。
+我们将2-上闭链的集合记作<span class="math inline">\(Z^2(Q, N)\)</span>。
+因此，为了得到一个满足乘法结合律的群扩张，<span
+class="math inline">\(\omega_2\)</span>必须是<span
+class="math inline">\(Z^2(Q, N)\)</span>的元素。</p>
+<p>接下来，我们考虑哪些不同的<span
+class="math inline">\(\omega_2\)</span>得到的群扩张是相同的。
+这种冗余性的来源是我们一开始选择<span
+class="math inline">\(s:Q\rightarrow G\)</span>的时候的任意性。
+由于我们只要求了<span class="math inline">\(\pi\circ
+s=\mathrm{id}_Q\)</span>，对于每个<span class="math inline">\(g\in
+Q\)</span>，我们可以在陪集<span
+class="math inline">\(\pi^{-1}(g)\)</span>中任意选择一个元素作为<span
+class="math inline">\(s(g)\)</span>。
+因此，我们完全可以选择该陪集中的另一个元素作为<span
+class="math inline">\(s(g)\)</span>。
+根据陪集的定义，其它的选择可以写成<span
+class="math inline">\(s&#39;(g)=i(\alpha(g))*s(g)\)</span>，其中<span
+class="math inline">\(\alpha_(g)\in N\)</span>。 这里<span
+class="math inline">\(\alpha_1(g)\)</span>被称为一个1-上链（1-cochain）。
+当我们将<span class="math inline">\(s(g)\)</span>换成<span
+class="math inline">\(s&#39;(g)\)</span>时，(<a
+href="#eq:group-ext:w2">6</a>)式中的因子<span
+class="math inline">\(\omega_2(g, h)\)</span>也会相应地变为如下的<span
+class="math inline">\(\omega_2^\prime(g, h)\)</span>： <span
+class="math display">\[\omega_2^\prime(g, h)=
+\omega_2(g, h)+g\star\alpha_1(h)-\alpha_1(gh)+\alpha_1(g).
+\]</span> 而<span class="math inline">\(\omega_2\)</span>与<span
+class="math inline">\(\omega_2&#39;\)</span>的区别只是不同的<span
+class="math inline">\(s:Q\rightarrow
+G\)</span>的选择引起的，它们表示的是同样的群扩张。
+因此，在讨论群扩张时，我们需要模掉它们之间的区别，即形如<span
+class="math inline">\(g\star\alpha_1(h)-\alpha_1(gh)+\alpha_1(g)\)</span>的2-上链。
+我们把这样的2-上链称作2-上边界，并将所有2-上边界构成的集合记作<span
+class="math inline">\(B^2(Q, N)\)</span>。
+利用上边界和上闭链的定义容易验证，所有的2-上边界都是2-上闭链，即<span
+class="math inline">\(B^2(Q, N)\subset C^2(Q, N)\)</span>。
+二者都在加法下构成阿贝尔群，并且前者构成后者的正规子群（阿贝尔群的所有子群都是正规子群）。
+因此，我们可以构造二者的商群，称为群<span
+class="math inline">\(G\)</span>的以<span
+class="math inline">\(N\)</span>为系数的二阶上同调群，记作： <span
+class="math display">\[H^2(Q, N)=\frac{C^2(Q, N)}{B^2(Q, N)}
+\]</span> <span class="math inline">\(H^2(Q,
+N)\)</span>中的等价类被称为上同调类，每个不同的上同调类都对应于一个不同的群扩张。
+特别地，当<span
+class="math inline">\(\omega_2\)</span>属于平庸的同调类（即包含<span
+class="math inline">\(\omega_2(g,
+h)=0\)</span>的等价类）时，得到的就是分裂的群扩张<span
+class="math inline">\(N\rtimes Q\)</span>。 当<span
+class="math inline">\(\omega_2\)</span>属于非平庸的同调类时，得到的时不分裂的群扩张。
+文献中往往将这样的群扩张记为<span class="math inline">\(G\simeq
+N\rtimes_{\omega_2}Q\)</span>。</p>
+<p>我们需要强调一下，在上闭链和上边界的定义中，都显示地出现了群<span
+class="math inline">\(Q\)</span>在<span
+class="math inline">\(N\)</span>上的作用。
+因此，上同调群的计算结果不仅依赖于<span
+class="math inline">\(Q\)</span>和<span
+class="math inline">\(N\)</span>的群结构，也依赖于<span
+class="math inline">\(Q\)</span>在<span
+class="math inline">\(N\)</span>上的作用。 在<span
+class="math inline">\(H^2(Q, N)\)</span>的记号中，<span
+class="math inline">\(N\)</span>不仅是一个阿贝尔群，而且是一个具有特定<span
+class="math inline">\(Q\)</span>作用的阿贝尔群（在数学上，通常称这样的<span
+class="math inline">\(N\)</span>为一个<span
+class="math inline">\(Q\)</span>-模或<span class="math inline">\(\mathbb
+ZQ\)</span>-模）。</p>
+<h2 id="群扩张的分类">群扩张的分类</h2>
+<p>综上所述，给定一个阿贝尔群<span
+class="math inline">\(N\)</span>和一个群<span
+class="math inline">\(Q\)</span>，我们可以按照如下的步骤构造各种可能的群扩张<span
+class="math inline">\(G\)</span>：</p>
+<ol type="1">
+<li><p>计算所有可能的<span class="math inline">\(Q\)</span>在<span
+class="math inline">\(N\)</span>上的作用。可以先计算<span
+class="math inline">\(N\)</span>的自同构群<span
+class="math inline">\(\mathrm{Aut}\,N\)</span>，再计算所有可能的群同态<span
+class="math inline">\(\phi: Q\rightarrow\mathrm{Aut}\,N\)</span>。
+每个群同态都可以给出一种可能的群作用<span class="math inline">\(g\star
+a=\phi(g)(a)\)</span>。</p></li>
+<li><p>对于给定的群作用，计算二阶上同调群<span
+class="math inline">\(H^2(Q, N)\)</span>。</p></li>
+<li><p>在每个上同调类中，选择一个2-上链<span
+class="math inline">\(\omega_2(g, h)\)</span>；和相应的群作用一起代入(<a
+href="#eq:group-ext:agbh-w2">7</a>)中即可得到扩张之后的群<span
+class="math inline">\(N\rtimes_{\omega_2}Q\)</span>。</p></li>
+</ol>
 </body>
 </html>
