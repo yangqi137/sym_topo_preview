@@ -161,6 +161,9 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -175,6 +178,212 @@
         <li>子群、陪集空间与对称性破缺</li>
       </ul>
 </nav>
-
+<p>在本节中，我们讲解子群和陪集的概念，并介绍群论中的拉格朗日定理。
+我们将看到，陪集的概念可以用来描述凝聚态物理中的对称性破缺现象。</p>
+<h2 id="子群与陪集">子群与陪集</h2>
+<h3 id="子群">子群</h3>
+<p>数学研究中经常考虑某个数学结构（如群、环、域、线性空间、拓扑空间，等等）的具有相容结构的子集，如子群、子环、子域、子线性空间、子拓扑空间等等。
+在群论中，我们自然地会考虑子群的概念。 简单地说，如果群<span
+class="math inline">\(G\)</span>的一个子集<span
+class="math inline">\(H\)</span>在群上的乘法下也构成一个群，我们就称<span
+class="math inline">\(H\)</span>为<span
+class="math inline">\(G\)</span>的一个子群（subgroup）。 由于<span
+class="math inline">\(H\)</span>直接继承了<span
+class="math inline">\(G\)</span>的乘法，这个乘法运算自然就是满足结合律的。
+因此，为了验证<span
+class="math inline">\(H\)</span>构成一个子群，我们只需要验证<span
+class="math inline">\(H\)</span>在乘法和求逆运算下封闭即可。</p>
+<p>由于在群论中我们一般只考虑群，而不会考虑群的不构成子群的子集，在数学文献中往往不再引入新的符号代表子群，而是借用子集的符号：利用<span
+class="math inline">\(H\subset G\)</span>代表<span
+class="math inline">\(H\)</span>是<span
+class="math inline">\(G\)</span>的子群；本书也沿用这一符号。
+注意我们约定<span class="math inline">\(H\subset
+G\)</span>并不意味着<span class="math inline">\(H\)</span>是<span
+class="math inline">\(G\)</span>的真子群（proper
+subgroup），即不排除<span
+class="math inline">\(H=G\)</span>的可能性；也就是说我们并不想使用<span
+class="math inline">\(\subseteq\)</span>这一符号。</p>
+<p>例：考虑整数在加法下构成的群<span class="math inline">\(\mathbb
+Z\)</span>；对于一个固定的整数<span
+class="math inline">\(n\)</span>，其倍数<span
+class="math inline">\(n\mathbb Z=\{mn|m\in\mathbb Z\}\)</span>构成<span
+class="math inline">\(\mathbb Z\)</span>的一个子群。</p>
+<p>例：为了后面讨论子群和正规子群，我们给出一个非阿贝尔群的例子。
+考虑二面体群<span class="math inline">\(\mathbb D_n=\langle
+a,b|a^n,b^2,bab^{-1}a\rangle\)</span>；容易验证，<span
+class="math inline">\(b\)</span>生成的一个二阶循环群<span
+class="math inline">\(\mathbb Z_2^b=\langle
+b|b^2\rangle=\{e,b\}\)</span>是<span class="math inline">\(\mathbb
+D_n\)</span>的一个子群，<span class="math inline">\(\mathbb Z_2^b\subset
+\mathbb D_n\)</span>。</p>
+<h3 id="陪集">陪集</h3>
+<p>在数学研究中，当我们有了一个子集、子空间等结构后，经常会考虑原集合（或原空间等）对子集、子空间的商集、商空间等结构。
+相应地，当<span class="math inline">\(H\subset
+G\)</span>时，我们也可以考虑二者的某种商。
+这个商集中的元素被称为陪集（coset）；相应地，这个商集可以被称为陪集空间。</p>
+<p>为了得到商集的数学结构，我们需要在群<span
+class="math inline">\(G\)</span>上定义一个等价关系<span
+class="math inline">\(\sim_H\)</span>： 商掉<span
+class="math inline">\(H\)</span>这个操作可以理解为将<span
+class="math inline">\(H\)</span>中的元素都“看成”平庸的元素（即单位元）：如果两个<span
+class="math inline">\(G\)</span>中的元素相差一个<span
+class="math inline">\(H\)</span>中的元素，我们就认为二者对应商集中的同一个点，即认为二者在<span
+class="math inline">\(\sim_H\)</span>下等价。 因此，我们将<span
+class="math inline">\(\sim_H\)</span>定义为： 对于<span
+class="math inline">\(g_{1,2}\in G\)</span>，<span
+class="math inline">\(g_1\sim_Hg_2\)</span>当且仅当存在<span
+class="math inline">\(h\in H\)</span>，使得<span
+class="math inline">\(g_2=g_1h\)</span>。
+这个条件也可以等价地表示为<span
+class="math inline">\(g_1\sim_Hg_2\)</span>当且仅当<span
+class="math inline">\(g_1^{-1}g_2\in H\)</span>。
+容易验证，上述定义的<span
+class="math inline">\(\sim_H\)</span>确实是满足集合论中反身性、对称性和传递性要求的等价关系。
+因此，我们可以利用这个等价关系构造商集<span
+class="math inline">\(G/\sim_H\)</span>；我们将之记作<span
+class="math inline">\(G/H\)</span>。</p>
+<p>商集<span class="math inline">\(G/H\)</span>中的每个元素代表一个<span
+class="math inline">\(\sim_H\)</span>下的等价类。 根据<span
+class="math inline">\(\sim_H\)</span>的定义，不难看出<span
+class="math inline">\(g\in G\)</span>所在的等价类中包含所有形如<span
+class="math inline">\(gh\)</span>, <span class="math inline">\(h\in
+H\)</span>的元素。 因此，我们将这个等价类记作<span
+class="math inline">\(gH\)</span>，即<span
+class="math inline">\(g\)</span>乘上整个群<span
+class="math inline">\(H\)</span>的意思。 这样一个等价类称为<span
+class="math inline">\(g\)</span>的一个陪集（coset）。</p>
+<p>例：考虑<span class="math inline">\(n\mathbb Z\subset\mathbb
+Z\)</span>，对应的商集<span class="math inline">\(\mathbb Z/n\mathbb
+Z\)</span>中共有<span
+class="math inline">\(n\)</span>个陪集，分别是模<span
+class="math inline">\(n\)</span>余<span
+class="math inline">\(m\)</span>的数（<span class="math inline">\(m=0,
+1, \ldots, n-1\)</span>）：<span class="math inline">\(m + n\mathbb
+Z=\{kn+m|k\in\mathbb Z\}\)</span>。
+在这个例子中，由于群是阿贝尔群，其“乘法”被写作加法；因此，我们也相应地将陪集的记号由<span
+class="math inline">\(g\)</span>乘<span
+class="math inline">\(H\)</span>改成<span
+class="math inline">\(g\)</span>加<span
+class="math inline">\(H\)</span>的形式。</p>
+<p>例：考虑前面的二面体群的二阶子群的例子：<span
+class="math inline">\(\mathbb Z_2^b\subset \mathbb D_n\)</span>。</p>
+<h3 id="左陪集与右陪集">左陪集与右陪集</h3>
+<p>细心的读者不难发现，前面对于等价关系<span
+class="math inline">\(\sim_H\)</span>的定义中有个左右不对称的地方：我们假定当某个元素从左边乘到<span
+class="math inline">\(H\)</span>中的元素上、而不是从右边乘上去时，二者等价：即<span
+class="math inline">\(g\sim_H gh\)</span>而不是<span
+class="math inline">\(g\sim_H
+hg\)</span>。这里选择从左边乘而不是从右边乘是一个任意的选择。</p>
+<p>也就是说，我们完全可以定义一个从右边乘的等价关系：<span
+class="math inline">\(g\sim_H^\prime hg\)</span>。
+这个等价关系同样可以给出一个商集，其中的元素都是形如<span
+class="math inline">\(Hg=\{hg|\forall h\in H\}\)</span>的陪集。
+前面定义的陪集<span class="math inline">\(gH\)</span>像是将群元素<span
+class="math inline">\(g\)</span>从左边乘到<span
+class="math inline">\(H\)</span>上；而<span
+class="math inline">\(Hg\)</span>像是将群元素<span
+class="math inline">\(g\)</span>从右边乘到<span
+class="math inline">\(H\)</span>上。 因此，我们将前者称为左陪集（left
+coset），而将后者称为右陪集（right coset）。
+为了与左陪集构成的商集相区分，我们将由<span
+class="math inline">\(\sim_H^\prime\)</span>得到的，由右陪集构成的商集用反斜杠表示：
+<span class="math display">\[H\backslash G=G/\sim_H^\prime=\{Hg|g\in
+G\}.
+\]</span> 这个记号反映了右陪集构成的商集可以看成将<span
+class="math inline">\(G\)</span>中的子群<span
+class="math inline">\(H\)</span>从“左边”模掉而得到。</p>
+<p>左陪集和右陪集的性质是完全对称的；在本节的讨论中，我们一般以左陪集为例，这些讨论可以很简单地推广到右陪集上面。</p>
+<h3 id="拉格朗日定理">拉格朗日定理</h3>
+<p>从陪集的定义可以看出，每个陪集包含的元素个数都是相同的，且等于<span
+class="math inline">\(H\)</span>的元素个数：<span
+class="math inline">\(|gH|=|H|\)</span>（事实上，单位元的陪集<span
+class="math inline">\(eH=H\)</span>）。
+因此，陪集构成的商集相当于把群<span
+class="math inline">\(G\)</span>划分成若干个大小相等的陪集。
+简单的计数告诉我们，<span
+class="math inline">\(G\)</span>的元素个数等于<span
+class="math inline">\(H\)</span>的元素个数乘上陪集的个数。
+我们通常将群的元素|G|个数称为群的阶（order）；我们将<span
+class="math inline">\(G/H\)</span>中陪集的个数称作<span
+class="math inline">\(H\)</span>在<span
+class="math inline">\(G\)</span>中的指标（index），并记作<span
+class="math inline">\([G:H]\)</span>。上面的计数结果可以写成： <span
+class="math display">\[|G|=[G:H]\cdot |H|.
+\]</span> 由此我们可以得到一个推论：当<span
+class="math inline">\(G\)</span>是有限群时，其子群的阶数一定可以整除<span
+class="math inline">\(G\)</span>的阶数。
+这个结果被称为（群论中的）拉格朗日定理。</p>
+<p>当<span class="math inline">\(|G|\)</span>和<span
+class="math inline">\(|H|\)</span>都是无限群时，有时二者的商集可以是有限的；此时<span
+class="math inline">\([G:H]\)</span>仍然可以是一个有限大小的数。
+例如在前面的子群例子中，<span class="math inline">\([\mathbb Z:n\mathbb
+Z]=n\)</span>。 又例如对于矩阵群，一个熟知的事实是<span
+class="math inline">\(\mathrm{SO}(n)\subset \mathrm
+O(n)\)</span>，并且<span class="math inline">\([\mathrm
+O(n):\mathrm{SO}(n)]=2\)</span>； 但是<span
+class="math inline">\([\mathrm
+U(n):\mathrm{SU}(n)]\)</span>就是无限大的。</p>
+<h2 id="子群陪集与对称性破缺">子群、陪集与对称性破缺</h2>
+<p>统计物理中的朗道范式（Laudan
+paradigm）指出，对称性破缺分类了不同的物态。
+例如固态（晶体）破缺了空间平移和旋转对称性、铁磁体破缺了自旋旋转对称性、超导体破缺了电荷守恒对称性等等。
+一般地，对称性破缺指的是体系的基态波函数（或者有限温度下统计分布的密度矩阵）的对称性低于体系哈密顿量的对称性。
+如果将前者的对称群记为<span
+class="math inline">\(H\)</span>、后者的对称群记为<span
+class="math inline">\(G\)</span>，不难看出<span
+class="math inline">\(H\)</span>是<span
+class="math inline">\(G\)</span>的一个子群。
+相应地，我们可以构造二者的商集<span
+class="math inline">\(G/H\)</span>。</p>
+<p>这个商集可以用来描述对称性破缺的情况：其中每个陪集对应一种可能的对称性破缺态。
+为了证明这一点，我们引入如下的抽象记号：
+我们将系统的某个物理状态（如零温时的基态波函数或者有限温度时的密度矩阵）记作<span
+class="math inline">\(\Phi\)</span>； 一般地，一个对称操作<span
+class="math inline">\(g\in G\)</span>会将<span
+class="math inline">\(\Phi\)</span>变成另外一个状态，我们将其记作<span
+class="math inline">\(g\cdot\Phi\)</span>。
+事实上，这里我们在试图回避严格地描述群的表示这一数学概念（这个概念会在后面的章节介绍）。
+这里没有使用群表示（或者有群作用的希尔伯特空间）的严格记号并不会影响下面讨论的严谨性。
+利用上述记号，我们考虑一个对称性破缺的状态<span
+class="math inline">\(\Phi\)</span>。 由于它仍然具有<span
+class="math inline">\(H\)</span>中的所有对称性，因此任意<span
+class="math inline">\(H\)</span>中的元素<span
+class="math inline">\(h\)</span>都将保持<span
+class="math inline">\(\Phi\)</span>不变：<span
+class="math inline">\(h\cdot\Phi=\Phi\)</span>。 而<span
+class="math inline">\(G\)</span>中的其它元素将会把<span
+class="math inline">\(\Phi\)</span>变成其它的状态。 容易证明，<span
+class="math inline">\(g_1\Phi\neq g_2\Phi\)</span>当且仅当<span
+class="math inline">\(g_1\)</span>和<span
+class="math inline">\(g_2\)</span>属于同一个（左）陪集：<span
+class="math inline">\(g_2=g_1\Phi\)</span>。
+因此，系统的所有可能的对称性破缺状态一一对应于<span
+class="math inline">\(G/H\)</span>中的各个陪集： 陪集<span
+class="math inline">\(gH\in G/H\)</span>对应的状态即为<span
+class="math inline">\(g\cdot\Phi\)</span>。</p>
+<p>特别地，当<span
+class="math inline">\([G:H]\)</span>为一个有限的整数时，体系破缺的是一个离散对称性，可能的对称性破缺态的个数即为为<span
+class="math inline">\([G:H]\)</span>。 而当<span
+class="math inline">\([G:H]\)</span>为不可数的无限大时，<span
+class="math inline">\(G/H\)</span>往往具有某种流型的结构（如果<span
+class="math inline">\(G\)</span>是一个微分流型，如李群，<span
+class="math inline">\(G/H\)</span>的微分结构由商空间的微分结构给出）。
+此时，<span
+class="math inline">\(G/H\)</span>可以被称为陪集空间。在量子系统中，我们往往将这个陪集空间称为基态流型（ground-state
+manifold），该流型上的每个点对应一种可能的对称性破缺状态。</p>
+<p>例：伊辛模型的对称群<span class="math inline">\(G=\mathbb
+Z_2\)</span>；其铁磁态破缺了这个自旋对称性，因此相应的对称子群为<span
+class="math inline">\(H=\mathbb
+Z_1\)</span>（这是只包含单位元的平庸群）。 此时<span
+class="math inline">\([G:H]=2\)</span>，说明有两个可能的对称性破缺铁磁态（分别对应自旋朝上和自旋朝下）。</p>
+<p>例：自旋各向同性的海森堡模型的对称群<span
+class="math inline">\(G=\mathrm
+O_3\)</span>；其铁磁态具有特定的自旋指向，因此破缺了自旋对称性。
+但是，铁磁态仍然具有围绕该自旋指向的旋转对称性。
+因此，其剩余的自旋对称性为<span class="math inline">\(H=\mathrm
+O(2)\)</span>。 此时的陪集空间或基态流型为<span
+class="math inline">\(G/H=\mathrm O(3)/\mathrm
+O(2)=S^2\)</span>，即二维球面。
+该球面上每个点即对应于自旋指向该方向的铁磁状态。</p>
 </body>
 </html>
