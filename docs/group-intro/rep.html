@@ -161,9 +161,19 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
 </head>
 <body>
 <header id="title-block-header">
@@ -175,6 +185,415 @@
         <li>群表示与量子力学中的对称性</li>
       </ul>
 </nav>
-
+<p>在本节中，我们简单介绍群表示的概念及其基本性质，特别是有限群和离散群的表示的性质。
+同时，我们将介绍群表示在物理学，特别是量子力学中的应用。
+我们将看到，量子力学课程中对称性量子数、对称性保护的简并度等概念都可以用群的表示理论做出完整严谨的理解。</p>
+<h2 id="群的表示">群的表示</h2>
+<p>简单地说，群的表示（representation，注意与群的presentation相区别）与前面介绍的群在另一个群上的作用类似，是群在一个线性空间上的作用。
+在??节中，群<span class="math inline">\(G\)</span>在另一个群<span
+class="math inline">\(H\)</span>上的作用被定义为<span
+class="math inline">\(G\)</span>到<span
+class="math inline">\(H\)</span>的自同构群的一个群同态<span
+class="math inline">\(\phi: G\rightarrow\mathrm{Aut}\, H\)</span>。
+与之类似，考虑域<span
+class="math inline">\(k\)</span>（在本书中，我们只考虑<span
+class="math inline">\(k=\mathbb R\)</span>或<span
+class="math inline">\(k=\mathbb C\)</span>）上的一个线性空间<span
+class="math inline">\(V\)</span>，我们将<span
+class="math inline">\(G\)</span>在<span
+class="math inline">\(V\)</span>上的一个作用定义为<span
+class="math inline">\(G\)</span>到<span
+class="math inline">\(V\)</span>的自同构群<span
+class="math inline">\(\mathrm{Aut}\,V\)</span>的一个群同态<span
+class="math inline">\(\phi:
+G\rightarrow\mathrm{Aut}\,V\)</span>，并将其称为群的一个表示。
+在线性代数中，我们知道一个线性空间的自同构群就是该空间上的一般线性群，即<span
+class="math inline">\(\mathrm{Aut} V=\mathrm{GL}(V)\)</span>。
+因此，我们将群<span class="math inline">\(G\)</span>在线性空间<span
+class="math inline">\(V\)</span>上的表示（representation of
+group）定义为如下的群同态： <span class="math display">\[\phi:
+G\rightarrow\mathrm{GL}(V).
+\]</span> 由于群表示需要同时指定线性空间<span
+class="math inline">\(V\)</span>和群同态<span
+class="math inline">\(\phi\)</span>，我们往往也称二者的组合<span
+class="math inline">\((V, \phi)\)</span>为一个群表示。
+事实上，二者的组合应当理解成一个具备了群作用的线性空间。
+因此，当群作用没有歧义时，我们往往更强调<span
+class="math inline">\(V\)</span>，将其称为一个表示空间。</p>
+<p>在一个表示<span
+class="math inline">\((V,\phi)\)</span>中，对于每个<span
+class="math inline">\(g\in G\)</span>，<span
+class="math inline">\(\phi(g)\)</span>都是一个<span
+class="math inline">\(V\)</span>上的线性变换。 群同态的性质要求<span
+class="math inline">\(\phi\)</span>满足
+<span id="eq:rep:phi-linear" class="eqnos"><span
+class="math display">\[\phi(g)\phi(h)=\phi(gh),
+\]</span><span class="eqnos-number">(1)</span></span>
+<span id="eq:rep:phi-1G" class="eqnos"><span
+class="math display">\[\phi(1_G)=\mathrm{id}_V.
+\]</span><span class="eqnos-number">(2)</span></span> 其中<span
+class="math inline">\(1_G\)</span>表示<span
+class="math inline">\(G\)</span>中的单位元；<span
+class="math inline">\(\mathrm{id}_V\)</span>表示<span
+class="math inline">\(V\)</span>上的恒等映射（即<span
+class="math inline">\(\mathrm{Aut}\,V\)</span>的单位元）。 (<a
+href="#eq:rep:phi-linear">1</a>)与(<a
+href="#eq:rep:phi-1G">2</a>)也往往被作为群表示的定义。</p>
+<p>如果我们为线性空间<span
+class="math inline">\(V\)</span>取定一组线性独立的基底，其上的线性变换就可以写成矩阵的形式。
+相应地，对于<span class="math inline">\(\forall g\in G\)</span>，<span
+class="math inline">\(\phi(g)\)</span>都可以表示成一个矩阵，被称为元素<span
+class="math inline">\(g\)</span>的表示矩阵。
+特别地，不论基底选择为何，<span
+class="math inline">\(\mathrm{id}_V\)</span>总是被表示成一个单位矩阵<span
+class="math inline">\(I_n\)</span>（<span class="math inline">\(n=\dim
+V\)</span>）。 因此，(<a href="#eq:rep:phi-1G">2</a>)往往被写作<span
+class="math inline">\(\phi(1_G)=I_n\)</span>。</p>
+<h3 id="幺正表示与正交表示">幺正表示与正交表示</h3>
+<p>在希尔伯特空间（Hilbert space），即具有范数的复线性空间（<span
+class="math inline">\(k=\mathbb
+C\)</span>）上，有幺正变换及幺正矩阵的概念：幺正变换<span
+class="math inline">\(\phi\)</span>满足<span
+class="math inline">\(\phi\phi^\dagger=\phi^\dagger\phi=\mathrm{id}_V\)</span>。
+在一组正交归一的基底下，幺正变换可以被表示为一个幺正矩阵。 <span
+class="math inline">\(V\)</span>上的幺正变换构成幺正变换群，记作<span
+class="math inline">\(U(V)\)</span>。
+与线性空间上的群表示类似，希尔伯特空间<span
+class="math inline">\(V\)</span>上的群作用指的是群同态<span
+class="math inline">\(\phi: G\rightarrow
+U(V)\)</span>；我们将一个具备了群作用的希尔伯特空间称为群的一个幺正表示。</p>
+<p>如果<span
+class="math inline">\(G\)</span>是一个有限群，可以证明，<span
+class="math inline">\(G\)</span>的一个复表示空间<span
+class="math inline">\(V\)</span>上总可以定义一个范数（即指定一组正交归一的基底），使得<span
+class="math inline">\(V\)</span>是一个幺正表示。
+（但是对于李群这个结果并不对：有些李群，如洛伦兹对称群，存在非幺正的表示）。
+因此，虽然在量子力学中我们往往要求群的表示是幺正的，但在本书中，对于有限群我们并不强调群表示的幺正性，而是只考虑复表示的要求就够了。
+但是，对于无限群（如后面讲解的空间群），我们将只考虑其幺正表示。</p>
+<p>类似地，在具有范数的实线性空间（<span class="math inline">\(k=\mathbb
+R\)</span>）上，有正交变换和正交矩阵的概念。<span
+class="math inline">\(V\)</span>上的正交变换构成正交变换群<span
+class="math inline">\(O(V)\)</span>。 群<span
+class="math inline">\(G\)</span>的正交表示指的是群同态<span
+class="math inline">\(\phi: G\rightarrow O(V)\)</span>。
+同样地，如果<span
+class="math inline">\(G\)</span>是一个有限群，可以证明，<span
+class="math inline">\(G\)</span>的一个实表示<span
+class="math inline">\(V\)</span>总可以选定范数，使得其成为一个正交表示。
+同时在后文中我们还将看到，本书中考虑实表示时，也并不要求表示的正交性。
+因此，我们在本书中并不讨论正交表示。</p>
+<h2 id="表示的直和分解与不可约表示">表示的直和分解与不可约表示</h2>
+<p>如果<span class="math inline">\((V_1,\phi_1)\)</span>和<span
+class="math inline">\((V_2,\phi_2)\)</span>是<span
+class="math inline">\(G\)</span>的两个表示，那么其直和<span
+class="math inline">\((V_1\oplus V_2,
+\phi_1\oplus\phi_2)\)</span>也是<span
+class="math inline">\(G\)</span>的一个表示。 （此处<span
+class="math inline">\(\phi_1\oplus\phi_2\)</span>表示对任意<span
+class="math inline">\(g\in G\)</span>，都有<span
+class="math inline">\(\phi_1\oplus\phi_2(g)=\phi_1(g)\oplus\phi_2(g)\)</span>）。
+与前面的符号类似，如果表示空间上群作用的定义比较明确无歧义，我们往往省掉<span
+class="math inline">\(\phi_{1,2}\)</span>的记号，将两个表示的直和记作<span
+class="math inline">\(V_1\oplus V_2\)</span>。</p>
+<p>如果读者对线性空间和线性映射的直和的概念不熟悉，理解上面的直和构造有困难，可以考虑对两个线性空间分别取定一组基底。</p>
+<p>如果<span class="math inline">\(V=V_1\oplus
+V_2\)</span>，那么前者可以看成是<span
+class="math inline">\(V_{1,2}\)</span>的简单组合。
+因此，我们希望将一个一般的表示通过这种直和分解的方式，拆解成一系列“基本”的表示来分别研究。
+可以证明，群的幺正表示总可以做这样的直和分解，并且可以唯一地分解为若干基本的（不可再拆分的）表示的直和。
+我们称每个不可再拆分的表示为不可约表示（irreducible
+representation）。</p>
+<p>表示论（即对表示的研究）是数学和数学物理中非常重要的概念。
+一般来讲，表示的直和分解具有比较复杂的结构，并不一定能够像上面所说的那样，将每个表示都唯一地拆分成若干个不可约表示。
+但是由于我们只关心幺正表示，而幺正表示的直和分解性质很好。
+因此，如果只是在物理中应用群论和群表示的概念，可以不必深究可约表示的精确定义（如表示可约和完全可约的区别）。
+对此不感兴趣的读者，可以略去下面的讨论和后文中相应的用到下面讨论内容的证明。</p>
+<p>对于感兴趣的读者，我们简单介绍可约表示和不可约表示的定义，以及幺正表示直和分解性质证明的大致思路。
+如果一个表示空间中存在一个非零<span
+class="math inline">\(G\)</span>不变真子空间（即存在<span
+class="math inline">\(V\)</span>的非零线性真子空间<span
+class="math inline">\(U\subsetneq V\)</span>，使得<span
+class="math inline">\(\forall g\in G\)</span>，<span
+class="math inline">\(\phi(g)(U)\subset U\)</span>，则称<span
+class="math inline">\(V\)</span>为一个可约表示，反之称<span
+class="math inline">\(V\)</span>为不可约表示。 如果<span
+class="math inline">\(V\)</span>是可约表示，且对于其每个<span
+class="math inline">\(G\)</span>不变子空间<span
+class="math inline">\(U\)</span>，都能找到另一个不变子空间<span
+class="math inline">\(U&#39;\)</span>，使得<span
+class="math inline">\(V=U\oplus
+U&#39;\)</span>（作为表示空间的之和），则称<span
+class="math inline">\(V\)</span>为完全可约。
+利用希尔伯特空间正交补的概念，可以证明每个可约的幺正表示都完全可约。
+其大致思路如下：假设<span
+class="math inline">\(V\)</span>为幺正表示，<span
+class="math inline">\(U\subset V\)</span>为其<span
+class="math inline">\(G\)</span>不变子空间。我们可以将<span
+class="math inline">\(U&#39;\)</span>取为<span
+class="math inline">\(U\)</span>在<span
+class="math inline">\(V\)</span>上的正交补。 由于每个幺正变换都保持<span
+class="math inline">\(U\)</span>和<span
+class="math inline">\(U&#39;\)</span>不变，利用表示的幺正性，可以证明<span
+class="math inline">\(U&#39;\)</span>也在<span
+class="math inline">\(G\)</span>的作用下不变。
+因此，对于可约幺正表示，我们可以通过构造正交补的方式，将其中的不可约表示一个一个地拆分出来，将其分解为一系列不可约表示的之和。</p>
+<h3 id="表示的等价关系">表示的等价关系</h3>
+<p>在研究群的表示时，我们往往需要研究两个群表示是否“相同”。
+特别地，我们想达到的效果是：如果两个群表示（在某组基底下）的表示矩阵相同，或者所有群元素的表示矩阵相差同一个相似变换，那么这两个群表示就是“相同”的。
+严格来说，如果两个群表示空间不同，那么它们就是不同的群表示。
+如果按照这个标准，那我们就没有办法分类“不同”的群表示了。
+因此，我们需要像前文研究群同态和群同构那样，研究表示空间之间的同态和同构映射，并用这些概念刻画群表示之间的包含和相等关系。</p>
+<p>在数学中，两个对象之间的态射定义为二者之间的一个映射，并且要求这个映射保持二者上的数学结构不变。
+因此，我们考虑同一个群<span
+class="math inline">\(G\)</span>的两个表示<span
+class="math inline">\((V_1,\phi_1)\)</span>和<span
+class="math inline">\((V_2,
+\phi_2)\)</span>，以及二者之间的一个映射<span class="math inline">\(f:
+V_1\rightarrow V_2\)</span>。 我们要求<span
+class="math inline">\(f\)</span>是一个线性映射，并且保持群作用不变：
+<span id="eq:rep:intertwiner" class="eqnos"><span
+class="math display">\[\forall g\in G, f\circ\phi_1(g)=\phi_2(g)\circ f.
+\]</span><span class="eqnos-number">(3)</span></span>
+上式也可以看成要求<span class="math inline">\(f\)</span>与群作用可交换。
+因此，我们将满足这个要求的两个群表示之间的线性映射称为两个表示之间的交结映射（intertwining
+map）。
+如果两个表示之间存在互为逆映射的交结映射，我们称这两个表示为等价表示。</p>
+<p>交结映射的概念在数学中的表示论里扮演着核心角色，但是在物理学的相关教材和文献中往往并不会按照上面的数学方式来表述这个概念。
+在物理学应用中，我们往往对表示空间取定一组基底（对于幺正表示，取一组正交归一的基底）。
+在这组基底下，交结映射被表示为一个矩阵<span
+class="math inline">\(M\)</span>。 容易验证，(<a
+href="#eq:rep:intertwiner">3</a>)的条件可以表示为<span
+class="math inline">\(M\)</span>和所有表示矩阵对易：
+<span id="eq:rep:intertwiner-M" class="eqnos"><span
+class="math display">\[\forall g\in G, M\phi_1(g)=\phi_2(g)M.
+\]</span><span class="eqnos-number">(4)</span></span>
+这个条件经常出现在物理教材和文献中；它实际上表示的就是<span
+class="math inline">\(M\)</span>对应的线性映射是一个交结映射。
+利用上面的矩阵对易条件，容易证明：如果两个表示中所有群元素的表示矩阵均相差同一个相似变换，那么这个相似变换就构成二者之间的一个可逆的交结映射，即二者构成等价表示。
+因此，交结映射及相应的等价表示的关系就是我们想要的表示之间的包含和相等关系。</p>
+<h3 id="舒尔schur引理">舒尔（Schur）引理</h3>
+<p>接下来，我们介绍群表示论中非常常用的结论：舒尔引理（Schur Lemma）。
+舒尔引理讨论的是群表示之间的交结映射的性质；
+因此，如前所述，在物理学教材和文献中，其前提条件往往表述为一个满足 (<a
+href="#eq:rep:intertwiner-M">4</a>)式条件的矩阵。
+这和本文中用交结映射表述的内容实际是一样的。</p>
+<p>我们首先介绍第一舒尔引理。 假设<span
+class="math inline">\((V_1,\phi_1)\)</span>，<span
+class="math inline">\((V_2, \phi_2)\)</span>是群<span
+class="math inline">\(G\)</span>的两个不可约表示；<span
+class="math inline">\(f: V_1\rightarrow
+V_2\)</span>是二者之间的一个交结映射。那么当<span
+class="math inline">\(V_1\)</span>与<span
+class="math inline">\(V_2\)</span>不等价时，<span
+class="math inline">\(f=0\)</span>；反之，如果<span
+class="math inline">\(f\neq0\)</span>，则二者必等价。</p>
+<p>该引理证明的大致思路如下： 考虑<span
+class="math inline">\(f\)</span>作为线性映射的核空间<span
+class="math inline">\(U=\ker f\)</span>。 利用交结映射的定义(<a
+href="#eq:rep:intertwiner">3</a>)，容易验证<span
+class="math inline">\(U\)</span>是<span
+class="math inline">\(V_1\)</span>的<span
+class="math inline">\(G\)</span>不变子空间。 因此，根据<span
+class="math inline">\(V_1\)</span>不可约的假设，必有<span
+class="math inline">\(U=V_1\)</span>或<span
+class="math inline">\(U=0\)</span>。 类似地，可以证明<span
+class="math inline">\(f\)</span>的像空间<span
+class="math inline">\(\mathrm{img}\,f\subset V_2\)</span>也是一个<span
+class="math inline">\(G\)</span>不变子空间，故而<span
+class="math inline">\(\mathrm{img}\,f=0\)</span>或<span
+class="math inline">\(V_2\)</span>。
+将上述可能性排列组合，可以得到两种可能的情况： 要么<span
+class="math inline">\(\ker f=V_1; \mathrm{img}\,
+f=0\)</span>，这说明<span class="math inline">\(f=0\)</span>；要么<span
+class="math inline">\(\ker f=0;
+\mathrm{img}\,f=V_2\)</span>，这说明<span
+class="math inline">\(f\)</span>是一个双射，因而两个不可约表示等价。</p>
+<p>接下来，我们介绍第二舒尔引理。 假设<span class="math inline">\((V,
+\phi)\)</span>是群<span
+class="math inline">\(G\)</span>的不可约表示；<span
+class="math inline">\(f: V\rightarrow V\)</span>是<span
+class="math inline">\(V\)</span>到自身的一个交结映射。 那么<span
+class="math inline">\(f\)</span>一定是一个标量映射：<span
+class="math inline">\(f=\lambda\cdot\mathrm{id}_V\)</span>，其中<span
+class="math inline">\(\lambda\in\mathbb C\)</span>是一个标量；<span
+class="math inline">\(\mathrm{id}_V\)</span>是<span
+class="math inline">\(V\)</span>上的恒等映射。
+在物理教材和文献中，这个引理通常表述为：如果一个矩阵和不可约表示中所有的表示矩阵都对易，那么这个矩阵一定正比于单位矩阵。</p>
+<p>该引理证明的大致思路如下： 我们可以考虑<span
+class="math inline">\(f\)</span>的本征值和本征向量。 事实上，<span
+class="math inline">\(f\)</span>一定存在至少一个本征值<span
+class="math inline">\(\lambda\)</span>和相应的本征向量<span
+class="math inline">\(v\in V\)</span>，使得<span
+class="math inline">\(fv=\lambda\cdot v\)</span>。 这是因为在<span
+class="math inline">\(V\)</span>上取定一组基底后，<span
+class="math inline">\(f\)</span>可以被表示为一个矩阵<span
+class="math inline">\(M\)</span>。 其本征值即为本征方程<span
+class="math inline">\(\det (M-\lambda I)=0\)</span>的解。
+由于复数域<span class="math inline">\(\mathbb
+C\)</span>代数封闭，该本征方程至少有一个根。 接下来，考虑映射<span
+class="math inline">\(f&#39;=f-\lambda\cdot\mathrm{id}_V\)</span>。
+容易验证，<span class="math inline">\(f&#39;: V\rightarrow
+V\)</span>也是一个交结映射（下文中我们将看到，两个交结映射的线性组合也是一个交结映射；而<span
+class="math inline">\(\mathrm{id}_V\)</span>总是一个交结映射）。
+根据<span class="math inline">\(f&#39;\)</span>的构造方式，<span
+class="math inline">\(v\in\ker f&#39;\)</span>，因此<span
+class="math inline">\(\ker f&#39;\)</span>非空。
+利用第一舒尔引理中的论证方法，可以得到<span class="math inline">\(\ker
+f&#39;=V\)</span>，即<span class="math inline">\(f&#39;=0\)</span>。
+因此<span class="math inline">\(f=\lambda\cdot\mathrm{id}_V\)</span></p>
+<p>从舒尔引理的证明过程中可以看出，第一引理也适用于实数域上的表示；而第二引理用到了复数域代数封闭的条件，因而对实数域上的表示（即实表示）并不成立。
+这一点通过一个简单的例子就能看出来： 考虑<span
+class="math inline">\(G=\mathbb Z_2=\langle
+a|a^2\rangle\)</span>的一个二维实表示： <span
+class="math display">\[a\mapsto
+i\sigma^y=\begin{pmatrix}0&amp;1\\-1&amp;0\end{pmatrix}.\]</span>
+注意此处<span
+class="math inline">\(i\sigma^y\)</span>只是一种简洁地表示实矩阵的方式。
+这个二维表示在实数域上是不可约的，因为<span
+class="math inline">\(i\sigma^y\)</span>在实数域上是不能被对角化的（其特征根为复数；特征方程<span
+class="math inline">\(\lambda^2+1=0\)</span>在实数域上无解）。
+但是，<span
+class="math inline">\(M=i\sigma^y\)</span>显然和所有表示矩阵对易。
+因此，第二舒尔引理对这个实表示不成立。</p>
+<p>接下来的一个自然的问题就是，对于实表示，如果一般的交结映射并不正比于单位映射，它们满足什么样的性质？
+为了回答这个问题，我们需要转而考虑所有交结映射构成的集合。
+首先，两个交结映射<span class="math inline">\(f_1\)</span>和<span
+class="math inline">\(f_2\)</span>的实系数线性组合<span
+class="math inline">\(af_1+bf_2\)</span>也是一个交结映射。
+因此，所有交结映射构成一个<span class="math inline">\(\mathbb
+R\)</span>-线性空间。 其次，两个交结映射的复合也是一个交结映射。
+因此，如果把复合操作看成这个线性空间上的乘法，所有交结映射构成一个<span
+class="math inline">\(\mathbb R\)</span>-代数（algebra）。
+最后，由于每个非零交结映射都是可逆的，这个代数里的每个非零元素都存在逆元。
+因此，所有交接映射<span class="math inline">\(f:\mathcal
+V\rightarrow\mathcal V\)</span>构成一个实系数的可除代数（division
+algebra），我们将这个可除代数记作<span class="math inline">\(C_{\mathcal
+V}\)</span>。 由于实数域上的可除代数只有三种，分别为实数域<span
+class="math inline">\(\mathbb R\)</span>、复数域<span
+class="math inline">\(\mathbb C\)</span>和四元数<span
+class="math inline">\(\mathbb
+H\)</span>（quaternion），这个可除代数<span
+class="math inline">\(C_{\mathcal V}\)</span>一定同构于这三者之一。
+根据<span class="math inline">\(C_{\mathcal
+V}\)</span>的结构不同，我们可以将不可约实表示分为三类： 分别对应于<span
+class="math inline">\(C_{\mathcal V}\)</span>同构于<span
+class="math inline">\(\mathbb R\)</span>、<span
+class="math inline">\(\mathbb C\)</span>和<span
+class="math inline">\(\mathbb H\)</span>。</p>
+<h2 id="量子力学中的对称性">量子力学中的对称性</h2>
+<p>在量子力学中，所有可能的量子态构成一个复数域上的希尔伯特空间。
+而对称群中的每个元素对应的对称操作在该希尔伯特空间上表现为一个幺正变换。
+自然地，我们要求希尔伯特空间<span class="math inline">\(\mathcal
+H\)</span>构成对称群<span
+class="math inline">\(G\)</span>的一个幺正表示；
+这个表示中每个群元素<span
+class="math inline">\(g\)</span>对应的幺正变换记作<span
+class="math inline">\(\phi(g)\)</span>。</p>
+<p>模型的一个哈密顿量<span class="math inline">\(\hat
+H\)</span>是该希尔伯特空间上的一个厄米算符。 在量子力学中，我们学过<span
+class="math inline">\(\hat H\)</span>在对称性操作<span
+class="math inline">\(g\)</span>下会按相应的<span
+class="math inline">\(\phi(g)\)</span>作幺正变换，即变为： <span
+class="math display">\[{}^g\hat H=\phi(g)\hat H\phi(g)^{-1}.\]</span>
+因此，<span class="math inline">\(\hat H\)</span>在<span
+class="math inline">\(g\)</span>下不变（即<span
+class="math inline">\({}^g\hat H=\hat H\)</span>）的条件等价于<span
+class="math inline">\(\phi(g)\hat H=\hat H\phi(g)\)</span>，即<span
+class="math inline">\(H\)</span>和<span
+class="math inline">\(\phi(g)\)</span>对易。 相应地，如果<span
+class="math inline">\(\hat H\)</span>在整个群<span
+class="math inline">\(G\)</span>作用下不变，根据(<a
+href="#eq:rep:intertwiner-M">4</a>)式的条件，<span
+class="math inline">\(\hat H\)</span>对应于<span
+class="math inline">\(\mathcal H\)</span>上的一个交结映射。
+根据舒尔引理，<span class="math inline">\(\hat
+H\)</span>呈现分块对角的形式：我们可将<span
+class="math inline">\(\mathcal H\)</span>分解成若干<span
+class="math inline">\(G\)</span>的不可约表示，<span
+class="math inline">\(\hat H\)</span>在不可约表示上分块对角。
+因此，每个不可约表示都代表一组能量本征态： <span
+class="math inline">\(G\)</span>的每个一维表示对应非简并的能量本征态；<span
+class="math inline">\(G\)</span>的高维表示对应简并的能量本征态。
+后者的简并度是受对称性保护的：对<span class="math inline">\(\hat
+H\)</span>的任意（满足对称性的）微扰都不能解除这种简并。
+相应地，如果几个一维表示恰好有相同的能量，这种简并被称为偶然简并。</p>
+<p>我们可以将上面的讨论推广到任意的算符（不要求厄米）<span
+class="math inline">\(\hat A\)</span>： 如果<span
+class="math inline">\(\hat A\)</span>在<span
+class="math inline">\(G\)</span>下不变，则它在希尔伯特空间上按照群的不可约表示具有分块对角的形式。
+因此，在考虑如下矩阵元时， <span
+class="math display">\[\langle\beta|\hat A|\alpha\rangle,\]</span>
+如果左右两边的量子态属于不同的不可约表示，则矩阵元一定为零。</p>
+<p>更一般地，我们可以定义群在希尔伯特空间上算符空间的作用： <span
+class="math display">\[{}^g\hat A=\phi(g)\hat A\phi(g)^{-1}.\]</span>
+容易验证，在这个作用下，算符空间（也是一个具有内积的复向量空间）也构成群的一个表示。
+因此，我们也可以讨论<span class="math inline">\(\hat
+A\)</span>所属的表示：<span class="math inline">\(\hat
+A\)</span>在群作用下不变对应于群的平庸表示。 此时，矩阵元<span
+class="math inline">\(\langle\beta|\hat
+A|\alpha\rangle\)</span>非零当且仅当三个表示的张量积的直和分解中包含平庸表示的部分。</p>
+<h2 id="表示的特征标">表示的特征标</h2>
+<p>特征标是计算和判别群的不可约表示的非常重要的工具。
+群表示中的线性映射本身当然是非常抽象的概念，很难直接拿来做计算。
+我们可以给表示空间选定基底，将群表示写成一系列表示矩阵。
+但是这样一来，表示矩阵的形式就依赖于基底的选择。
+这使得判别表示的等价性变得非常麻烦：两个看似不同的表示可能只差一个相似变换。
+而表示的特征标是一个与基底选择无关的工具，对于计算有限群的所有不可约表示和判别两个表示是否相同非常方便。</p>
+<p>考虑群<span class="math inline">\(G\)</span>的表示<span
+class="math inline">\((V, \phi)\)</span>。 对于每个群元素<span
+class="math inline">\(g\in G\)</span>，我们可以取其线性映射<span
+class="math inline">\(\phi(g)\)</span>的迹（取定基底后，<span
+class="math inline">\(\phi(g)\)</span>被表示为一个矩阵，这个迹就是该表示矩阵的迹。由于迹与基底的选择无关，我们可以将其看成这个线性映射的迹），定义为<span
+class="math inline">\(\chi(g)=\mathrm{tr}\,\phi(g)\)</span>。
+相应地，<span class="math inline">\(\chi: g\mapsto
+\chi(g)\)</span>构成群<span class="math inline">\(G\)</span>到<span
+class="math inline">\(\mathbb
+C\)</span>的一个函数，我们将其称为该表示的特征标（character）。</p>
+<p>利用迹在相似变换下不变的性质，不难证明两个等价的表示上的特征标也是一样的。
+在下文中我们将看到，不等价的表示的特征标也是不同的。
+因此，特征标可以用来判别两个表示是否等价。</p>
+<p>同样利用迹在相似变换下不变的性质，不难证明<span
+class="math inline">\(\chi(g)=\chi({}^hg)\)</span>，即两个共轭元素的特征标是一样的。
+我们将两个共轭元素视为等价的，利用这个等价关系可以将群<span
+class="math inline">\(G\)</span>划分为若干等价类，称为共轭类。
+群元素<span class="math inline">\(g\)</span>所属的共轭类记为<span
+class="math inline">\([g]=\{{}^hg|\forall h\in G\}\)</span>。
+由此可以看出，特征标实际是共轭类上的函数。</p>
+<p>容易验证，单位元的特征标就是表示的维度：<span
+class="math inline">\(\chi(1)=\dim V\)</span>。
+此外，可以证明幺正表示中任何一个元素的特征标的绝对值都小于等于表示的维度：<span
+class="math inline">\(|\chi(g)|\leq\dim V\)</span>； 等号仅当<span
+class="math inline">\(\phi(g)\)</span>正比于单位矩阵时成立（证明思路为：注意到幺正矩阵的本征值都为模为一的复数）。</p>
+<p>接下来，我们不加证明地给出几个结论。
+这些结论对于分类和计算有限群的不可约表示及相应的特征标非常有用。
+但是其中一部分结论（主要是表示的完备性）的证明需要用到群代数的概念，而群代数我们安排在后面的章节再讲。
+因此，此处对这些结果不作证明。</p>
+<p>考虑有限群<span
+class="math inline">\(G\)</span>的所有（不等价的）不可约表示，将其记作<span
+class="math inline">\((V_i, \phi_i)\)</span>，<span
+class="math inline">\(i=1,2,\ldots, N\)</span>。
+首先，对于有限群的不可约表示有Burnside定理： <span
+class="math display">\[\sum_i (\dim V_i)^2=|G|.
+\]</span> 我们将表示<span class="math inline">\((V_i,
+\phi_i)\)</span>的特征标记作<span
+class="math inline">\(\chi_i\)</span>。
+特征标之间满足如下的正交归一关系： <span
+class="math display">\[\sum_{g\in G}\chi_i(g)^\ast
+\chi_j(g)=|G|\delta_{ij}.
+\]</span>
+利用特征标之间的正交归一关系，可以得到对表示进行直和分解的方法：
+假设<span class="math inline">\((V, \phi)\)</span>为群<span
+class="math inline">\(G\)</span>的一个表示，从其表示矩阵中我们很容易计算其特征标<span
+class="math inline">\(\chi\)</span>。 假设<span
+class="math inline">\(V\)</span>可以写成若干不可约表示的直和： <span
+class="math display">\[V=\bigoplus_ia_iV_i,\]</span> 其中<span
+class="math inline">\(a_i\)</span>代表第<span
+class="math inline">\(i\)</span>个不可约表示在<span
+class="math inline">\(V\)</span>中出现的重数。
+利用上面的正交归一关系，我们可以推导出如下的计算<span
+class="math inline">\(a_i\)</span>的公式： <span
+class="math display">\[a_i=\frac1{|G|}\sum_g\chi^\ast(g)\chi_i(g).\]</span></p>
+<p>此外，利用特征标可以证明，有限群的不可约表示的个数等于群中共轭类的个数。
+因此，非阿贝尔群一定存在高维不可约表示。</p>
 </body>
 </html>
