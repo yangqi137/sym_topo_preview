@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>代数与模</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">代数与模</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>代数、模与对称性</li>
+        <li>代数与模</li>
+      </ul>
+</nav>
+<p>在本节中，我们将介绍代数（algebra）及其表示的概念。</p>
+<h2 id="代数">代数</h2>
+<p>一个代数（algebra）可以看成一个同时具有环和线性空间结构的数学对象。
+准确地说，域<span class="math inline">\(F\)</span>上的一个代数<span
+class="math inline">\(A\)</span>是一个环，同时也是<span
+class="math inline">\(F\)</span>上的一个线性空间，并且这两个数学结构之间满足如下的相容性条件：
+<span class="math display">\[\forall \lambda\in F, \forall a,b\in A,
+\lambda(a\cdot b)=(\lambda a)\cdot b=a\cdot(\lambda b).\]</span>
+这条性质可以直观地理解为：标量（即<span
+class="math inline">\(F\)</span>中的元素）与<span
+class="math inline">\(A\)</span>中所有元素的乘法都对易。
+一般来说，一个代数上的乘法是不满足交换律的。
+如果一个代数上所有元素之间的乘法都可交换（对易），我们称其为交换代数（commutative
+algebra）。</p>
+<p>上面定义的代数中，元素之间的乘法总是满足结合律的（这个结合律来自于环的定义）。
+在一些数学文献中，需要考虑不满足结合律的代数，因此上面这样定义的满足结合律的代数在文献中又被称为结合代数（associative
+algebra）。</p>
+<p>对于一个代数<span
+class="math inline">\(A\)</span>，我们将其作为线性空间的维度定义为该代数的维度。
+在本书中，我们一般只研究有限维代数。</p>
+<p>在本书中，我们一般只考虑实数域和复数域，即<span
+class="math inline">\(F=\mathbb R, \mathbb C\)</span>。
+一般称实数域上的代数为实代数、复数域上的代数为复代数。</p>
+<p>例：域<span class="math inline">\(F\)</span>上<span
+class="math inline">\(n\times
+n\)</span>的矩阵在矩阵加法和乘法下构成一个<span
+class="math inline">\(n^2\)</span>维的代数，记作<span
+class="math inline">\(M_n(F)\)</span>。
+例：第??节中介绍的实数域上的三种可除代数<span
+class="math inline">\(\mathbb R\)</span>、<span
+class="math inline">\(\mathbb C\)</span>和<span
+class="math inline">\(\mathbb H\)</span>分别是1维、2维和4维的实代数。
+其中<span class="math inline">\(\mathbb
+C\)</span>同时还是复代数（请读者思考为什么<span
+class="math inline">\(\mathbb H\)</span>不构成复代数）。</p>
+<p>例：域<span class="math inline">\(F\)</span>上的多项式环<span
+class="math inline">\(F[x]\)</span>构成一个无穷维代数。</p>
+<h2 id="群代数">群代数</h2>
+<p>接下来，我们重点介绍与群表示论相关的群代数的概念。 对于群<span
+class="math inline">\(G\)</span>，域<span
+class="math inline">\(F\)</span>上的群代数<span
+class="math inline">\(F[G]\)</span>首先是将群元素<span
+class="math inline">\(g\in
+G\)</span>看成线性独立的基底的线性空间，即<span
+class="math inline">\(F[G]\)</span>中的元素为形如<span
+class="math inline">\(\sum_{g\in G}\lambda_g
+g\)</span>的线性组合；而元素之间的乘法由群乘法给出，即 <span
+class="math display">\[\left(\sum_{g\in G}\lambda_g g\right)\cdot
+\left(\sum_{g\in G}\mu_g g\right)
+=\sum_{g\in G}\left(\sum_{h\in
+G}\lambda_h\mu_{h^{-1}g}\right)g.\]</span>
+如上定义的群代数中包括了群<span
+class="math inline">\(G\)</span>的乘法运算关系的信息。
+在下节中，我们将看到，这样定义的群代数可以用来研究群的表示。</p>
+<p>除了通常的群之外，代数中丰富的数学结构还可以表达更复杂的数学关系。
+作为例子，我们考虑投影表示和反幺正对称性操作的代数关系。
+这两个例子在一般的教科书上并不常见，是笔者和合作者用代数方法描述投影表示、反幺正对称性等物理概念的一些粗浅的尝试。</p>
+<h3 id="投影群代数">投影群代数</h3>
+<p>在群的投影表示中，两个群元素的表示矩阵之间满足扭曲（twisted）的乘法关系：
+<span class="math display">\[\phi(g)\phi(h)=\omega_2(g,
+h)\phi(gh),\]</span> 其中<span class="math inline">\(\omega_2(g, h)\in
+H^2[G, \mathrm U(1)]\)</span>是一个群的二阶上同调类。
+相应地，我们可以构造一个被<span
+class="math inline">\(\omega_2\)</span>扭曲过的投影群代数，记作<span
+class="math inline">\(\mathbb C[G]^{\omega_2}\)</span>。
+其中群元素之间满足投影的乘法关系：
+<span id="eq:algrep:dh-w2" class="eqnos"><span
+class="math display">\[g\cdot h=\omega_2(g, h)gh.
+\]</span><span class="eqnos-number">(1)</span></span>
+容易验证，为了满足代数中乘法的结合律，<span
+class="math inline">\(\omega_2\)</span>必须是一个二阶上闭链（2-cocycle）。
+另一方面，如果<span class="math inline">\(\beta\in C^1[G, \mathrm
+U(1)]\)</span>是一个一阶上链，那么<span class="math inline">\(g\mapsto
+\beta(g)g\)</span>给出了<span class="math inline">\(\mathbb
+C[G]^{\omega_2}\)</span>到<span class="math inline">\(\mathbb
+C[G]^{\omega_2+d\beta}\)</span>的一个同构映射。 因此，不等价的<span
+class="math inline">\(\mathbb
+C[G]^{\omega_2}\)</span>可以用群的二阶上同调类描述。</p>
+<p>例：对于<span class="math inline">\(D_2=\mathbb Z_2\times\mathbb
+Z_2=\langle
+x,y|x^2,y^2,xyx^{-1}y^{-1}\rangle\)</span>，我们考虑自旋1/2的费米子的双群对称性对应的非平庸群扩张的<span
+class="math inline">\(\omega_2\)</span>。 相应的投影群代数<span
+class="math inline">\(\mathbb
+C[D_2]^{\omega_2}\)</span>中的乘法满足<span
+class="math inline">\(x^2=y^2=-1\)</span>及<span
+class="math inline">\(xy=-yx\)</span>。 可以证明，该代数同构于<span
+class="math inline">\(M_2(\mathbb
+C)\)</span>，其同构映射可以由如下关系给出： <span
+class="math display">\[x\mapsto i\sigma^x; y\mapsto
+i\sigma^y.\]</span></p>
+<h3 id="反幺正群代数">反幺正群代数</h3>
+<p>一个具有反幺正元素的对称群可以用如下的一个实代数描述： 假设<span
+class="math inline">\(G\)</span>是一个群，<span
+class="math inline">\(s:G\rightarrow\mathbb
+Z_2\)</span>是描述其中元素反幺正性的<span class="math inline">\(\mathbb
+Z_2\)</span>分级。 我们可以将复数域<span class="math inline">\(\mathbb
+C\)</span>看成一个二维的实代数：它的两个（实）基底分别为<span
+class="math inline">\(1\)</span>和虚数单位<span
+class="math inline">\(i\)</span>。 此处<span
+class="math inline">\(i\)</span>满足<span
+class="math inline">\(i^2=-1\)</span>。
+利用后面第??章中引入的Clifford代数的概念，我们可以将<span
+class="math inline">\(\mathbb C\)</span>看成包含一个平方为<span
+class="math inline">\(-1\)</span>的生成元的Clifford代数，<span
+class="math inline">\(\mathrm{Cl}^{1,0}\)</span>。
+接下来，我们可以利用<span
+class="math inline">\(\mathrm{Cl}^{1,0}\)</span>和群代数<span
+class="math inline">\(\mathbb R[G]\)</span>之间的一个<span
+class="math inline">\(\mathbb Z_2\)</span>分级的张量积（记作<span
+class="math inline">\(\mathrm{Cl}^{1,0}\hat\otimes\mathbb
+R[G]\)</span>）来表示该反幺正对称群的代数关系。 其中<span
+class="math inline">\(\mathbb Z_2\)</span>分级的张量积表示<span
+class="math inline">\(i\)</span>和群元素之间满足如下的对易或反对易性质：
+<span id="eq:algrep:ig-s" class="eqnos"><span
+class="math display">\[ig=(-1)^{s(g)}gi.
+\]</span><span class="eqnos-number">(2)</span></span> </p>
+<p>为简洁起见，我们将如上定义的<span
+class="math inline">\(\mathrm{Cl}^{1,0}\hat\otimes\mathbb
+R[G]\)</span>记作<span class="math inline">\(\mathbb C[G]_s\)</span>。
+需要特别注意的是，当<span
+class="math inline">\(s\)</span>为非平凡的<span
+class="math inline">\(\mathbb Z_2\)</span>分级时（即<span
+class="math inline">\(G_0=\ker s\neq G\)</span>），<span
+class="math inline">\(\mathbb
+C[G]_s\)</span>是一个实代数而非复代数（其原因与<span
+class="math inline">\(\mathbb
+H\)</span>不是复代数类似，读者可自行证明）。</p>
+<p>我们可以将上面考虑的<span
+class="math inline">\(\omega_2\)</span>扭曲和<span
+class="math inline">\(s\)</span>分级结合起来，定义更一般的代数<span
+class="math inline">\(\mathbb C[G]_s^{\omega_2}\)</span>：
+其中的乘法关系同时满足(<a href="#eq:algrep:dh-w2">1</a>)和(<a
+href="#eq:algrep:ig-s">2</a>)。 容易验证，此时<span
+class="math inline">\(\omega_2\)</span>所属的上同调群<span
+class="math inline">\(H^2[G,\mathrm U(1)]\)</span>的系数<span
+class="math inline">\(\mathrm U(1)\)</span>包含如下的群作用：<span
+class="math inline">\(g\star e^{i\phi}=e^{s(g)i\phi}.\)</span></p>
+<p>例：<span
+class="math inline">\(T^2=-1\)</span>的费米子时间反演对称性可以用如下的代数<span
+class="math inline">\(\mathbb C[\mathbb
+Z_2]_s^{\omega_2}\)</span>表示：将对称群<span
+class="math inline">\(\mathbb Z_2\)</span>的非平庸元素记为<span
+class="math inline">\(t\)</span>，它满足<span
+class="math inline">\(t^2=-1\)</span>及<span
+class="math inline">\(it=-ti\)</span>。 容易验证，<span
+class="math inline">\(\mathbb C[\mathbb
+Z_2]_s^{\omega_2}\)</span>同构于<span class="math inline">\(\mathbb
+H\)</span>，同构映射为<span class="math inline">\(i\mapsto
+i\)</span>与<span class="math inline">\(t\mapsto j\)</span>。</p>
+<h2 id="代数的模与表示">代数的模与表示</h2>
+<p>与群的表示类似，我们也希望研究代数的表示。</p>
+<p>类比于群的表示，代数<span
+class="math inline">\(A\)</span>的表示也可以定义为一个具有<span
+class="math inline">\(A\)</span>的作用的线性空间<span
+class="math inline">\(V\)</span>：对于<span
+class="math inline">\(A\)</span>中的一个元素<span
+class="math inline">\(a\in A\)</span>，它可以将<span
+class="math inline">\(V\)</span>上的一个元素<span
+class="math inline">\(v\in V\)</span>映射到<span
+class="math inline">\(a\cdot v\)</span>，即<span
+class="math inline">\(A\)</span>中的元素可以左乘到<span
+class="math inline">\(V\)</span>中的元素上。
+（我们还要求这种乘法可以和<span
+class="math inline">\(A\)</span>中的乘法、加法以及<span
+class="math inline">\(V\)</span>中的标量乘法、向量加法交换顺序等等）。
+由于这种左乘的形式，文献中往往也将<span
+class="math inline">\(A\)</span>的表示称为<span
+class="math inline">\(A\)</span>的左模（left
+module），或简称为模（module）。 <span
+class="math inline">\(a\)</span>给出的<span
+class="math inline">\(v\mapsto a\cdot v\)</span>的映射是<span
+class="math inline">\(V\)</span>上的一个自同态映射。 容易验证，<span
+class="math inline">\(V\)</span>上的自同态映射构成一个代数<span
+class="math inline">\(\mathrm{End}\,V\)</span>（对于<span
+class="math inline">\(n\)</span>维线性空间，它同构于<span
+class="math inline">\(M_n(F)\)</span>）。
+如果我们将这个自同态映射记作<span
+class="math inline">\(\phi(a)\)</span>，那么从<span
+class="math inline">\(a\)</span>到<span
+class="math inline">\(\phi(a)\)</span>的映射构成<span
+class="math inline">\(A\)</span>到<span
+class="math inline">\(\mathrm{End}\,V\)</span>的一个代数同态。
+因此代数的表示可以严格地定义为一个二元组<span class="math inline">\((V,
+\phi)\)</span>，其中<span
+class="math inline">\(V\)</span>是一个线性空间，<span
+class="math inline">\(\phi:
+A\rightarrow\mathrm{End}\,V\)</span>是一个代数同态。</p>
+<p>群代数的表示可以用来研究群的表示。 容易证明，群<span
+class="math inline">\(G\)</span>的表示一一对应于其群代数<span
+class="math inline">\(\mathbb
+C[G]\)</span>的表示（它的实表示一一对应于<span
+class="math inline">\(\mathbb R[G]\)</span>的表示）。 从群的表示<span
+class="math inline">\((V, \phi)\)</span>出发，将<span
+class="math inline">\(\phi\)</span>的定义从<span
+class="math inline">\(G\)</span>上线性地拓展到<span
+class="math inline">\(\mathbb C[G]\)</span>上： <span
+class="math display">\[\phi\left(\sum_g\lambda_gg\right)=\sum_g\lambda_g\phi(g),\]</span>
+就可以将<span class="math inline">\(V\)</span>变成<span
+class="math inline">\(\mathbb C[G]\)</span>的表示。</p>
+<p>相应地，投影代数<span class="math inline">\(\mathbb
+C[G]^{\omega_2}\)</span>的表示对应于由上同调类<span
+class="math inline">\(\omega_2\)</span>描述的投影表示；而实代数<span
+class="math inline">\(\mathbb
+C[G]_s\)</span>的表示对应于包含反幺正操作的群<span
+class="math inline">\((G, s)\)</span>的共表示。 更一般地，实代数<span
+class="math inline">\(\mathbb
+C[G]_s^{\omega_2}\)</span>的表示对应于由上同调类<span
+class="math inline">\(\omega_2\)</span>描述的投影共表示。</p>
+</body>
+</html>
