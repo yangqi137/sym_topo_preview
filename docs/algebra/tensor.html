@@ -161,9 +161,19 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
 </head>
 <body>
 <header id="title-block-header">
@@ -175,6 +185,314 @@
         <li>表示的张量积与正交定理</li>
       </ul>
 </nav>
-
+<p>在本节中，我们介绍表示空间的张量积的概念。
+利用张量积的概念，我们不仅可以证明群表示的若干重要定理，如群表示矩阵的正交定理（以及相应的特征标的正交定理）；
+同时表示的张量积也能够用来描述量子力学中相关的对称性性质，特别是量子力学中的维格纳（Wigner）-埃加（Eckart）定理。
+在量子力学中，张量积是一个重要而常见的概念。</p>
+<h2 id="代数的张量积与模的张量积">代数的张量积与模的张量积</h2>
+<p>我们首先给出最一般的张量积的定义。 我们首先回顾线性空间的张量积。
+假设<span class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>是<span
+class="math inline">\(K\)</span>上的两个有限维线性空间，它们的张量积，记作<span
+class="math inline">\(V\otimes W\)</span>，是由<span
+class="math inline">\(\{v\otimes w|\forall v\in V, w\in
+W\}\)</span>张成的线性空间。 这里的张量积满足对向量加法的分配律和 <span
+class="math display">\[\forall \lambda\in K, (\lambda u)\otimes
+v=u\otimes(\lambda v)=\lambda(u\otimes v).\]</span> 如果<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>的基底分别为<span
+class="math inline">\(\{e_i^V\}\)</span>和<span
+class="math inline">\(\{e_i^W\}\)</span>，则<span
+class="math inline">\(V\otimes W\)</span>的一组基底为<span
+class="math inline">\(\{e_i^V\otimes e_j^W\}\)</span>。</p>
+<p>接下来，我们引入代数之间的张量积。 假设<span
+class="math inline">\(A\)</span>和<span
+class="math inline">\(B\)</span>是<span
+class="math inline">\(K\)</span>上的两个有限维代数。
+由于代数首先是线性空间，我们首先构造二者作为线性空间的张量积<span
+class="math inline">\(A\otimes B\)</span>，并赋予其如下的乘法结构：
+<span class="math display">\[(a\otimes b)\cdot (a&#39;\otimes b&#39;)
+=aa&#39;\otimes bb&#39;.\]</span> 容易验证，<span
+class="math inline">\(A\otimes B\)</span>在该乘法下也构成<span
+class="math inline">\(K\)</span>上的一个代数。
+我们称具有上述代数结构的<span class="math inline">\(A\otimes
+B\)</span>为这两个代数之间的张量积。</p>
+<p>接下来，我们考虑<span
+class="math inline">\(K\)</span>上的两个有限维代数<span
+class="math inline">\(A\)</span>和<span
+class="math inline">\(B\)</span>，假设<span
+class="math inline">\(V\)</span>是一个<span
+class="math inline">\(A\)</span>-模；<span
+class="math inline">\(W\)</span>是一个<span
+class="math inline">\(B\)</span>-模。 我们可以构造<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>作为线性空间的张量积<span
+class="math inline">\(V\otimes W\)</span>。 利用如下乘法，<span
+class="math inline">\(V\otimes W\)</span>可以看成一个<span
+class="math inline">\(A\otimes B\)</span>-模： <span
+class="math display">\[\forall a\in A, b\in B, v\in V, w\in W:
+(a\otimes b)\cdot(v\otimes w)
+=av\otimes bw.
+\]</span> 我们称这样的<span class="math inline">\(A\otimes
+B\)</span>-模<span class="math inline">\(V\otimes
+W\)</span>为两个模<span class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>的张量积。</p>
+<p>特别地，假设<span class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>是两个<span
+class="math inline">\(A\)</span>-模（即在上述定义中取<span
+class="math inline">\(B=A\)</span>的特殊情形），上面定义的<span
+class="math inline">\(V\otimes W\)</span>是一个<span
+class="math inline">\(A\otimes A\)</span>-模，而不是我们想要的<span
+class="math inline">\(A\)</span>-模。
+事实上，对于一个一般的（有限维）代数<span
+class="math inline">\(A\)</span>，<span class="math inline">\(V\otimes
+W\)</span>不一定是一个<span class="math inline">\(A\)</span>-模。
+为了赋予<span class="math inline">\(V\otimes W\)</span>一个<span
+class="math inline">\(A\)</span>-模的结构（即赋予它一个<span
+class="math inline">\(A\)</span>的作用），我们需要找到一个代数同态<span
+class="math inline">\(\Delta: A\rightarrow A\otimes A\)</span>。
+这样一个代数同态<span
+class="math inline">\(\Delta\)</span>往往被形象地称为一个“上乘法”（comultiplication）。
+如果能在<span class="math inline">\(A\)</span>上找到一个上乘法<span
+class="math inline">\(\Delta\)</span>，就可以赋予<span
+class="math inline">\(V\otimes W\)</span>一个<span
+class="math inline">\(A\)</span>-模的结构： <span
+class="math display">\[a\cdot (v\otimes w)=\Delta(a)\cdot(v\otimes w).
+\]</span> 此时，对于任意两个<span
+class="math inline">\(A\)</span>-模<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>，其张量积<span
+class="math inline">\(V\otimes W\)</span>也是一个<span
+class="math inline">\(A\)</span>-模。</p>
+<h3 id="群表示的张量积">群表示的张量积</h3>
+<p>对于域<span class="math inline">\(K\)</span>上的群代数<span
+class="math inline">\(A=K[G]\)</span>，我们可以定义如下的上乘法：
+<span id="eq:tensor:KG-comul" class="eqnos"><span
+class="math display">\[\forall g\in G, \Delta(g)=g\otimes g.
+\]</span><span class="eqnos-number">(1)</span></span> 并给出群代数<span
+class="math inline">\(A\)</span>的模（即<span
+class="math inline">\(G\)</span>的表示）之间的张量积，其中群作用如下：
+<span id="eq:tensor:diag-act" class="eqnos"><span
+class="math display">\[g\cdot(v\otimes w)=gv\otimes gw.
+\]</span><span class="eqnos-number">(2)</span></span>
+这样的群作用又被称为对角作用（diagonal action）。
+在这样的上乘法下，两个群的表示的张量积还是该群的表示。</p>
+<p>对于投影群代数<span class="math inline">\(\mathbb
+C[G]^\omega\)</span>，(<a
+href="#eq:tensor:KG-comul">1</a>)给出来的并不是<span
+class="math inline">\(\mathbb C[G]^\omega\)</span>上的一个上乘法。
+事实上，如果<span class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>分别是<span
+class="math inline">\(\mathbb C[G]^\alpha\)</span>和<span
+class="math inline">\(\mathbb C[G]^\beta\)</span>的两个模（表示），(<a
+href="#eq:tensor:diag-act">2</a>)式中给出的对角作用会给出<span
+class="math inline">\(\alpha+\beta\)</span>对应的投影表示。 因此，<span
+class="math inline">\(V\otimes
+W\)</span>（在上面的对角作用下）是一个<span
+class="math inline">\(\mathbb C[G]^{\alpha+\beta}\)</span>-模。
+感兴趣的读者可以自行验证，(<a href="#eq:tensor:KG-comul">1</a>)式是<span
+class="math inline">\(\mathbb C[G]^{\alpha+\beta}\rightarrow\mathbb
+C[G]^\alpha\otimes\mathbb C[G]^\beta\)</span>的代数同态。</p>
+<h2 id="对偶表示">对偶表示</h2>
+<h3 id="代数表示的对偶表示">代数表示的对偶表示</h3>
+<p>接下来，我们引入对偶表示的概念。
+与张量积类似，我们先考虑最一般的代数，再对群代数构造性质更好的对偶表示。
+对于一个一般的代数<span class="math inline">\(A\)</span>，假设<span
+class="math inline">\(V\)</span>是<span
+class="math inline">\(A\)</span>-模，即<span
+class="math inline">\(A\)</span>的表示。 作为一个线性空间，我们考虑<span
+class="math inline">\(V\)</span>的对偶空间<span
+class="math inline">\(V^*=\hom(V, K)\)</span>，即由<span
+class="math inline">\(V\)</span>到域<span
+class="math inline">\(K\)</span>的线性映射构成的线性空间。
+我们可以为<span
+class="math inline">\(V^\ast\)</span>引入如下的代数作用（即与<span
+class="math inline">\(A\)</span>中的元素之间的乘法）：
+<span id="eq:tensor:dual-action" class="eqnos"><span
+class="math display">\[\forall f\in V^*, \forall a\in A, (f\cdot
+a)(v)=f(a\cdot v).
+\]</span><span class="eqnos-number">(3)</span></span>
+细心的读者会发现，上面定义的<span
+class="math inline">\(V^*\)</span>与<span
+class="math inline">\(A\)</span>之间的乘法与我们前面讨论的代数在线性空间上的作用不同：<span
+class="math inline">\(A\)</span>是从右边，而非左边乘到<span
+class="math inline">\(V^\ast\)</span>上去的。
+因此，数学上称具有这样定义的代数作用的<span
+class="math inline">\(V^*\)</span>为<span
+class="math inline">\(A\)</span>的一个右模（right
+module）；相应地，我们之前讨论的<span
+class="math inline">\(A\)</span>模严格意义上说都是<span
+class="math inline">\(A\)</span>的左模（left module）。
+当然，从右边还是左边乘上去只是一个符号的约定；我们当然也可以将<span
+class="math inline">\(f\cdot a\)</span>改写成一个左作用<span
+class="math inline">\(a\star f\)</span>。
+但是这样“硬”写出来的左乘并不满足左模的要求：对于<span
+class="math inline">\(A\)</span>中两个元素<span
+class="math inline">\(a,b\in A\)</span>，二者在<span
+class="math inline">\(f\)</span>上相继作用得到的是<span
+class="math inline">\(a\star(b\star f)=(f\cdot b)\cdot
+a=f\cdot(ba)=(ba)\star f\)</span>而不是<span
+class="math inline">\((ab)\star f\)</span>。 因此，一般地，<span
+class="math inline">\(A\)</span>的一个右模不是<span
+class="math inline">\(A\)</span>的左模。 事实上，对于代数<span
+class="math inline">\(A\)</span>，我们可以定义它的反向代数（opposite
+algebra）<span
+class="math inline">\(A^{\mathrm{op}}\)</span>：它作为一个线性空间和<span
+class="math inline">\(A\)</span>同构，但是其上面的乘法（我们将其记作<span
+class="math inline">\(\star\)</span>）是反过来的： <span
+class="math display">\[a^{\mathrm{op}}\cdot b^{\mathrm{op}}=b\cdot
+a.\]</span> 在这个构造下，<span
+class="math inline">\(A\)</span>的右模是<span
+class="math inline">\(A^{\mathrm{op}}\)</span>的左模。
+因此，我们定义的对偶表示<span
+class="math inline">\(V^\ast\)</span>也是<span
+class="math inline">\(A^{\mathrm{op}}\)</span>的左模。</p>
+<p>在选定基底之后，上面抽象的对偶概念可以表述成矩阵的转置。
+在取定基底之后，如果我们将<span
+class="math inline">\(V\)</span>中的向量写成列向量，那么<span
+class="math inline">\(V^*\)</span>中的元素可以写成行向量。 相应地，(<a
+href="#eq:tensor:dual-action">3</a>)中的表示矩阵可以写成<span
+class="math inline">\(f^T\phi(a)v\)</span>，其中<span
+class="math inline">\(f\)</span>是一个列向量；<span
+class="math inline">\(f^T\)</span>是一个行向量。 <span
+class="math inline">\(A\)</span>在<span
+class="math inline">\(f\)</span>上的作用可以通过转置的方式写成 <span
+class="math display">\[(f^T\phi(A))^T=\phi(A)^Tf.\]</span>
+因此，对偶表示<span
+class="math inline">\(V^*\)</span>可以看成表示矩阵的转置矩阵<span
+class="math inline">\(\phi(a)^T\)</span>构成的表示。
+由于转置操作满足<span
+class="math inline">\(\phi(a)^T\phi(b)^T=(\phi(b)\phi(a))^T=\phi(ba)^T\)</span>，<span
+class="math inline">\(V^*\)</span>确实是<span
+class="math inline">\(A^{\mathrm{op}}\)</span>的表示。
+这里需要注意的是，即使对于复代数，上面定义的对偶表示的表示矩阵也是原表示的转置<span
+class="math inline">\(\phi(a)^T\)</span>，而不是厄米转置<span
+class="math inline">\(\phi(a)^\dagger\)</span>。</p>
+<p>与上面讨论的张量积类似，对于一个一般的代数<span
+class="math inline">\(A\)</span>，它的表示<span
+class="math inline">\(V\)</span>的对偶表示<span
+class="math inline">\(V^*\)</span>也不是<span
+class="math inline">\(A\)</span>的表示，而是<span
+class="math inline">\(A^{\mathrm{op}}\)</span>的表示。 为了让<span
+class="math inline">\(V^*\)</span>也成为<span
+class="math inline">\(A\)</span>的表示，我们需要<span
+class="math inline">\(A\)</span>到<span
+class="math inline">\(A^{\mathrm{op}}\)</span>的一个同态映射<span
+class="math inline">\(S\)</span>，即<span
+class="math inline">\(A\)</span>到自身的一个反同态映射<span
+class="math inline">\(S\)</span>，称为一个对极（antipole）映射。
+这个映射<span class="math inline">\(S\)</span>满足<span
+class="math inline">\(S(ab)=S(b)S(a)\)</span>。 利用<span
+class="math inline">\(S\)</span>，我们可以构造<span
+class="math inline">\(A\)</span>在<span
+class="math inline">\(V^*\)</span>上的作用：
+<span id="eq:tensor:antipole" class="eqnos"><span
+class="math display">\[a\cdot v:=S(a)\star v=v\cdot S(a).
+\]</span><span class="eqnos-number">(4)</span></span> 从而赋予<span
+class="math inline">\(V^*\)</span>一个（左）<span
+class="math inline">\(A\)</span>-模的结构。</p>
+<h3 id="群表示的对偶表示">群表示的对偶表示</h3>
+<p>对于域<span class="math inline">\(K\)</span>上的群代数<span
+class="math inline">\(A=K[G]\)</span>，我们可以定义如下的对极映射<span
+class="math inline">\(S\)</span>： <span
+class="math display">\[S(g)=g^{-1},\forall g\in G.\]</span>
+注意：在上式中，我们对<span
+class="math inline">\(A\)</span>的一组线性独立的基底，即任意的群元素<span
+class="math inline">\(g\)</span>定义了<span
+class="math inline">\(S\)</span>；由于<span
+class="math inline">\(S\)</span>也是一个线性映射，上述定义可以被线性地扩展到整个空间<span
+class="math inline">\(A\)</span>上。 容易验证，这样定义的<span
+class="math inline">\(S\)</span>满足(<a
+href="#eq:tensor:antipole">4</a>)式的要求，构成一个对极映射。</p>
+<p>利用如上定义的对极映射，群<span
+class="math inline">\(G\)</span>的对偶表示也是<span
+class="math inline">\(G\)</span>的表示。 其表示矩阵为 <span
+class="math display">\[\phi_{V^\ast} (g)=\phi_V(S(g))^T
+=\phi_V(g^{-1})^T=\left[\phi_V(g)^{-1}\right]^T.\]</span> 如果<span
+class="math inline">\(V\)</span>是幺正表示，<span
+class="math inline">\(\phi_V(g)^{-1}=\phi_V(g)^\dagger\)</span>，因此其对偶表示矩阵为
+<span class="math display">\[\phi_{V^\ast}(g)=\phi_V(g)^\ast,\]</span>
+即为原表示矩阵的复共轭。</p>
+<h2 id="群表示特征标的正交定理">群表示特征标的正交定理</h2>
+<p>为了让读者体会到张量积和对偶这两个概念的重要性，我们利用前面介绍的张量积和对偶表示的概念，证明第??章中介绍（但未证明的）群表示特征标之间的正交定理。</p>
+<p>为了读者方便，我们首先回顾一下群表示特征标之间的正交定理。 假设<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>为有限群<span
+class="math inline">\(G\)</span>的两个不可约复表示，其特征标分别为<span
+class="math inline">\(\chi_V\)</span>和<span
+class="math inline">\(\chi_W\)</span>。 它们满足如下的正交定理：
+<span id="eq:tensor:chi-orth" class="eqnos"><span
+class="math display">\[\frac1{|G|}\sum_{g\in
+G}\chi_V^\ast(g)\chi_W(g)=\delta_{VW},
+\]</span><span class="eqnos-number">(5)</span></span> 其中<span
+class="math inline">\(\delta_{VW}\)</span>表示<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>是否为同一个不可约表示：当二者相同（等价）时<span
+class="math inline">\(\delta_{VW}=1\)</span>，否则<span
+class="math inline">\(\delta_{VW}=0\)</span>。</p>
+<p>为证明这一点，我们首先将等式左边用表示的张量积和对偶表达出来。
+容易看出，<span class="math inline">\(\chi_V(g)\chi_W(g)=\chi_{V\otimes
+W}(g)\)</span>；以及<span
+class="math inline">\(\chi_V^\ast(g)=\chi_{V^\ast}(g)\)</span>。
+因此，(<a href="#eq:tensor:chi-orth">5</a>)式左边可以写成 <span
+class="math display">\[\text{LHS}=\frac1{|G|}\sum_{g\in
+G}\chi_{V^\ast\otimes W}(g)
+=\mathrm{tr}\,\left(\frac1{|G|}\sum_{g\in G}g\right)_{V^\ast\otimes
+W}.\]</span> 我们定义投影算符 <span class="math display">\[P :=
+\frac1{|G|}\sum_{g\in G}g\in Z(\mathbb C[G]).\]</span> (<a
+href="#eq:tensor:chi-orth">5</a>)式左边可以写成 <span
+class="math display">\[\text{LHS}=\mathrm{tr}\,P_{V^\ast\otimes
+W},\]</span> 其中<span class="math inline">\(P_{V^\ast\otimes
+W}\)</span>表示<span class="math inline">\(P\)</span>在模<span
+class="math inline">\(V^\ast\otimes W\)</span>上的表示矩阵。</p>
+<p>根据舒尔引理，<span
+class="math inline">\(P\)</span>在一个表示上是分块对角的：它在每个不可约表示上都是一个标量；且在不同不可约表示之间为零。
+此外，容易验证<span class="math inline">\(P^2=P\)</span>是一个投影算符。
+因此，<span
+class="math inline">\(P\)</span>在每个不可约表示上的标量值都是0或者1.
+进一步地，可以证明<span
+class="math inline">\(P\)</span>是到平凡表示的投影算符：它在平凡表示（记作<span
+class="math inline">\(V_1\simeq\mathbb
+C\)</span>）上是1；在其它表示上是零。 因此，<span
+class="math inline">\(\mathrm{tr}\,P_{V^\ast\otimes
+W}\)</span>就等于平凡表示在<span class="math inline">\(V^\ast\otimes
+W\)</span>的不可约分解中出现的重数： <span
+class="math display">\[\text{LHS}=\dim\mathrm{Hom}_A(\mathbb C,
+V^\ast\otimes W).\]</span>
+张量积和对偶表示有个很有意思的性质：它可以在线性映射<span
+class="math inline">\(\mathrm{Hom}_A\)</span>的计算中移动位置，如：
+<span class="math display">\[\mathrm{Hom}_A(\mathbb C, V^\ast\otimes W)
+\simeq\mathrm{Hom}_A(V, W).\]</span> 而根据舒尔引理，当<span
+class="math inline">\(V\simeq W\)</span>时，<span
+class="math inline">\(\mathrm{Hom}_A(V, W)\simeq\mathbb
+C\)</span>，其维度为1； 当二者不等价时，<span
+class="math inline">\(\mathrm{Hom}_A(V, W)=0\)</span>，其维度为0。
+因此，<span class="math inline">\(\text{LHS}=\dim\mathrm{Hom}_A(\mathbb
+C, V^\ast\otimes W)=\delta_{VW}\)</span>，这完成了对(<a
+href="#eq:tensor:chi-orth">5</a>)式的证明。</p>
+<p>此外，<span class="math inline">\(\dim\mathrm{Hom}_A(\mathbb C,
+V^\ast\otimes W)=\delta_{VW}\)</span>也指出，平凡表示<span
+class="math inline">\(\mathbb C\)</span>在<span
+class="math inline">\(V^\ast\otimes
+V\)</span>中出现且仅出现一次；而当<span
+class="math inline">\(W\)</span>与<span
+class="math inline">\(V\)</span>不等价时，<span
+class="math inline">\(V^\ast\otimes W\)</span>中并不包含平凡表示。</p>
+<h3 id="共表示特征标的正交定理">共表示特征标的正交定理</h3>
+<p>接下来，我们将上面的计算结果推广到非幺正群的共表示。</p>
+<p>对于非幺正群，其中反幺正元素的表示矩阵不满足</p>
+<h2 id="群表示的正交定理">群表示的正交定理</h2>
+<p>在本节中，我们利用前面介绍的张量积和对偶表示的概念，证明群表示的正交定理。</p>
+<h3 id="有限群线性表示的正交定理">有限群线性表示的正交定理</h3>
+<p>我们首先给出有限群的不可约表示（即群代数<span
+class="math inline">\(K[G]\)</span>的单模）之间的正交定理。</p>
+<p>假设有限群<span class="math inline">\(G\)</span>共有<span
+class="math inline">\(r\)</span>种不等价的不可约表示，分别记作<span
+class="math inline">\(V_1,\ldots,V_r\)</span>。</p>
+<h3 id="投影表示之间的正交性">投影表示之间的正交性</h3>
+<h3 id="共表示的正交定理">共表示的正交定理</h3>
+<h2 id="hopf代数及其表示">Hopf代数及其表示</h2>
+<h2
+id="表示的张量积在量子力学中的应用">表示的张量积在量子力学中的应用</h2>
 </body>
 </html>

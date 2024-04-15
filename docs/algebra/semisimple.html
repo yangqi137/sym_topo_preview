@@ -161,9 +161,19 @@
     .breadcrumb li:first-child::before {
         content: "";
     }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
 </head>
 <body>
 <header id="title-block-header">
@@ -175,6 +185,249 @@
         <li>半单代数及其表示</li>
       </ul>
 </nav>
-
+<p>与群的表示类似，我们也希望将代数的表示分解为一系列不可约表示的直和。
+由于我们上一节中介绍的代数的独特性质：代数<span
+class="math inline">\(A\)</span>本身可以看成一个<span
+class="math inline">\(A\)</span>-模，即<span
+class="math inline">\(A\)</span>自身的表示； 因此，我们可以先研究<span
+class="math inline">\(A\)</span>的直和分解。 我们将看到，<span
+class="math inline">\(A\)</span>的表示的直和分解性质可以被<span
+class="math inline">\(A\)</span>本身的直和分解决定。
+因此，代数及其表示是研究群表示的重要工具。</p>
+<p>在本节中，我们将首先介绍代数直和分解的相关概念，特别是单（simple）代数和半单（semisimple）代数的定义。
+之后，我们介绍描述半单代数的不可约表示（单模）的Artin-Wedderburn定理。
+最后，我们应用本节介绍的数学结果来研究有限群的不可约表示。</p>
+<h2 id="单模半单模与半单代数">单模、半单模与半单代数</h2>
+<p>类比于群表示中的不可约表示及直和分解的概念，我们给出代数的表示（即代数的模）中相应的概念。
+如果我们将代数的表示称为模，相对应的概念被称为单模及半单模。</p>
+<p>如果代数<span class="math inline">\(A\)</span>的一个模<span
+class="math inline">\(V\)</span>没有非平庸（即除去零模和<span
+class="math inline">\(V\)</span>本身）的子模（submodule），则称<span
+class="math inline">\(V\)</span>为<span
+class="math inline">\(A\)</span>的一个单模（simple module）。
+对比第??章中群表示的相应的概念，<span
+class="math inline">\(A\)</span>的单模就是<span
+class="math inline">\(A\)</span>的一个不可约表示。</p>
+<p>如果代数<span class="math inline">\(A\)</span>的一个模<span
+class="math inline">\(V\)</span>可以写成若干个单模的直和， <span
+class="math display">\[V\simeq V_1\oplus V_2\oplus\cdots\oplus
+V_r,\]</span> 则称<span
+class="math inline">\(V\)</span>为一个半单（semisimple）模。</p>
+<p>特别地，代数<span
+class="math inline">\(A\)</span>也可以看成它自身的一个模，因此我们可以利用半单模的概念来描述代数。
+如果代数<span
+class="math inline">\(A\)</span>是它自身的一个半单模，则称它为一个半单代数（semisimple
+algebra）。</p>
+<p>可以证明（文献??的定理4.11），代数<span
+class="math inline">\(A\)</span>是半单代数等价于它的所有模都是半单模（也就是说它的所有表示都可以写成一系列不可约表示的直和）。
+因此，半单代数的表示和群表示一样，都具有半单的良好性质。
+事实上，下文介绍的Maschke定理表明有限群的群代数都是半单代数。
+不仅如此，我们在本书中介绍过的投影群代数<span
+class="math inline">\(\mathbb
+C[G]^{\omega_2}\)</span>、描述磁群的实代数<span
+class="math inline">\(\mathrm{Cl}^{1,0}[G]_s\)</span>以及后文中将研究的Clifford代数全部是半单代数。
+它们的表示（模）也有半单的良好性质。</p>
+<p>例：矩阵代数<span
+class="math inline">\(A=M_n(K)\)</span>是一个半单代数。 如果将<span
+class="math inline">\(V=M_n(K)\)</span>看成一个<span
+class="math inline">\(A\)</span>-模，其半单分解为 <span
+class="math display">\[V\simeq V_1\oplus V_2\oplus\cdots\oplus
+V_n,\]</span> 其中每个单模<span
+class="math inline">\(V_i\)</span>为除第<span
+class="math inline">\(i\)</span>列外所有矩阵元均为零的矩阵。
+注意当我们把<span class="math inline">\(V=A\)</span>看成<span
+class="math inline">\(A\)</span>-模时，就已经“忘记”了它上面的乘法：<span
+class="math inline">\(V\)</span>上的两个元素没有乘法运算；事实上，每个单模<span
+class="math inline">\(V_i\)</span>中的矩阵在矩阵乘法下并不封闭。
+这个例子表明：一个半单代数<span
+class="math inline">\(A\)</span>是它自身的一个半单模，因此它可以拆分成若干单模的直和；但是一般情况下，每个拆分出来的单模都不再是一个代数。</p>
+<h2
+id="半单代数的artinwedderburn分解">半单代数的Artin–Wedderburn分解</h2>
+<p>接下来，我们介绍描述半单代数结构的重要数学定理：Artin-Wedderburn定理。
+该定理指出，域<span
+class="math inline">\(K\)</span>上的一个半单代数<span
+class="math inline">\(A\)</span>一定可以分解成如下形式：
+<span id="eq:artin-wed" class="eqnos"><span
+class="math display">\[A\simeq M_{n_1}(D_1)\oplus
+M_{n_2}(D_2)\oplus\cdots
+\oplus M_{n_r}(D_r),
+\]</span><span class="eqnos-number">(1)</span></span> 其中<span
+class="math inline">\(n_i\)</span>为正整数，<span
+class="math inline">\(D_i\)</span>为<span
+class="math inline">\(K\)</span>上的可除代数。</p>
+<p>根据前文中的例子，上式中的每个分量<span
+class="math inline">\(M_{n_i}(D_i)\)</span>都是<span
+class="math inline">\(K\)</span>上的一个单代数。
+因此，上式给出了半单代数<span
+class="math inline">\(A\)</span>的一个直和分解。</p>
+<p>在本书中，我们一般只考虑<span class="math inline">\(K=\mathbb
+R,\mathbb C\)</span>两种情形。 对于复代数，由于<span
+class="math inline">\(\mathbb
+C\)</span>代数封闭，其上的可除代数只有<span
+class="math inline">\(\mathbb C\)</span>本身。
+因此，一个半单复代数可以分解为若干复数域上的矩阵代数的直和。
+而对于实代数，其上的可除代数有<span class="math inline">\(\mathbb
+R\)</span>、<span class="math inline">\(\mathbb C\)</span>和<span
+class="math inline">\(\mathbb H\)</span>三种。
+因此，一个半单实代数的Artin-Wedderburn分解中可能包含实数、复数或者四元数矩阵代数。</p>
+<p>可以证明，如果一个半单代数的Artin-Wedderburn分解具有(<a
+href="#eq:artin-wed">1</a>)式的形式，则它的单模有<span
+class="math inline">\(r\)</span>个，分别为<span
+class="math inline">\(n_i\)</span>维的<span
+class="math inline">\(D_i\)</span>-线性空间<span
+class="math inline">\(D_i^{n_i}\)</span>。</p>
+<p>例：群代数<span class="math inline">\(\mathbb C[\mathbb
+Z_2]\simeq\mathbb C\oplus\mathbb C\)</span>，两个单模的生成元分别为<span
+class="math inline">\(1\pm g\)</span>。</p>
+<p>例：考虑非幺正群<span class="math inline">\(\mathbb Z_4^T=\{1, t,
+P_f, P_ft\}\)</span>，其中<span class="math inline">\(t^2=P_f\)</span>。
+其标记反幺正操作的<span class="math inline">\(\mathbb
+Z_2\)</span>分级为<span class="math inline">\(s(t)=1\)</span>。
+相应的非幺正群代数<span class="math inline">\(\mathbb C[Z_4^T]_s\simeq
+M_2(\mathbb R)\oplus\mathbb H\)</span>。 相应地，<span
+class="math inline">\(\mathbb
+Z_4^T\)</span>共有两个不可约共表示，其中一个（平凡的）共表示为实二维（复一维）的a类型表示；另一个共表示为四元数一维（复二维）的b类型表示。</p>
+<h3 id="平方和公式">平方和公式</h3>
+<p>通过计算(<a
+href="#eq:artin-wed">1</a>)式左右两边的代数维度，我们可以得到半单代数不可约表示维度的平方和公式：
+<span class="math display">\[\dim A=\sum_{i=1}^rn_i^2\dim D_i,\]</span>
+其中<span class="math inline">\(\dim D_i\)</span>是可除代数<span
+class="math inline">\(D_i\)</span>在<span
+class="math inline">\(K\)</span>上的维度。 例如在实数域上，<span
+class="math inline">\(\dim\mathbb R=1\)</span>；<span
+class="math inline">\(\dim\mathbb C=2\)</span>；<span
+class="math inline">\(\dim\mathbb H=4\)</span>。</p>
+<h3 id="单模的个数">单模的个数</h3>
+<p>通过计算(<a
+href="#eq:artin-wed">1</a>)式左右两边的中心，可以得到半单代数单模（即不可约表示）的个数。
+容易证明，Artin-Wedderburn分解中每个矩阵代数<span
+class="math inline">\(M_n(D)\)</span>的中心都是由单位矩阵生成的一维代数：<span
+class="math inline">\(Z(M_n(D))\simeq D\)</span>。 因此，取(<a
+href="#eq:artin-wed">1</a>)式左右两边的中心，我们得到： <span
+class="math display">\[Z(A)\simeq \oplus_{i=1}^r Z(D_i);\]</span>
+注意对于实代数，<span class="math inline">\(Z(\mathbb R)=Z(\mathbb
+H)=\mathbb R\)</span>但是<span class="math inline">\(Z(\mathbb
+C)=\mathbb C\)</span>。 取两边的维度，我们得到 <span
+class="math display">\[\dim Z(A)=\sum_{i=1}^r\dim
+Z(D_i)=\sum_{i=1}^r\eta_i.\]</span> 其中在实代数上，对于<span
+class="math inline">\(D_i=\mathbb C\)</span>的表示<span
+class="math inline">\(\eta_i=2\)</span>，而对于其它的表示<span
+class="math inline">\(\eta_i=1\)</span>。 特别地，如果<span
+class="math inline">\(K=\mathbb C\)</span>，等式右边的<span
+class="math inline">\(eta_i=1\)</span>，我们得到<span
+class="math inline">\(A\)</span>的不可约表示的个数等于<span
+class="math inline">\(Z(A)=A/[A, A]\)</span>的维度。</p>
+<h2 id="群代数的半单性质">群代数的半单性质</h2>
+<p>首先，我们介绍群表示论中的Maschke定理。
+由于本书中只讨论特征为零的域，我们将该定理简化如下： 假设<span
+class="math inline">\(K\)</span>为特征为零的域（包括<span
+class="math inline">\(\mathbb R\)</span>和<span
+class="math inline">\(\mathbb C\)</span>），<span
+class="math inline">\(G\)</span>是有限群，则<span
+class="math inline">\(K[G]\)</span>为半单代数。
+在文献中，这个定理的证明方式就是利用的前文第??章中证明有限群的可约表示都完全可约的思路。
+因此，我们就不再赘述这个定理的证明了。</p>
+<p>在这个定理的基础上，我们可以进一步推出投影的群代数<span
+class="math inline">\(\mathbb
+C[G]^\omega\)</span>、非幺正群的群代数<span
+class="math inline">\(\mathbb
+C[G]_s\)</span>、以及非幺正的投影群代数<span
+class="math inline">\(\mathbb C[G]_s^\omega\)</span>都是半单代数。</p>
+<p>事实上，如果我们将<span class="math inline">\(A=\mathbb
+C[G]\)</span>看成一个A-模，即一个有群作用的表示空间，那么根据群代数的定义，这个空间的基底可以用群元素来标记（比如可以用狄拉克符号记作<span
+class="math inline">\(|g\rangle\)</span>）。
+这样一个表示在传统的群论或物理中被称为群<span
+class="math inline">\(G\)</span>的一个正则（regular）表示。
+根据Artin-Wedderburn定理，<span
+class="math inline">\(G\)</span>的每个<span
+class="math inline">\(n\)</span>维不可约表示对应于<span
+class="math inline">\(A\)</span>中的一个<span
+class="math inline">\(M_n(\mathbb
+C)\)</span>子代数；而根据前面的例子，这个子代数又可以分解为<span
+class="math inline">\(n\)</span>个相互等价的不可约表示。
+因此，我们得到一个群表示论中的常见结论：有限群的正则表示包含它的所有不可约表示，其中每个<span
+class="math inline">\(n\)</span>维不可约表示都出现了<span
+class="math inline">\(n\)</span>次。</p>
+<h3 id="平方和公式-1">平方和公式</h3>
+<p>利用代数单模的平方和公式，我们可以得到群表示的平方和公式。 假设<span
+class="math inline">\(G\)</span>为有限群，<span
+class="math inline">\(\mathbb C[G]\)</span>的单模一一对应于<span
+class="math inline">\(G\)</span>的复不可约表示。 而<span
+class="math inline">\(\dim\mathbb C[G]=|G|\)</span>，即<span
+class="math inline">\(G\)</span>中元素的个数。
+因此我们得到如下平方和公式：
+<span id="eq:semisimple:sum-n2" class="eqnos"><span
+class="math display">\[|G|=\sum_{i=1}^rn_i^2.
+\]</span><span class="eqnos-number">(2)</span></span> 在实数域上，<span
+class="math inline">\(\mathbb R[G]\)</span>的维数也是<span
+class="math inline">\(|G|\)</span>。 我们得到 <span
+class="math display">\[|G|=\sum_{i=1}^rn_i^2\dim D_i.\]</span>
+同样地，<span class="math inline">\(\mathbb
+C[G]^\omega\)</span>的维度也是<span class="math inline">\(|G|\)</span>。
+因此，<span
+class="math inline">\(\omega\)</span>代表的所有不可约投影表示也满足(<a
+href="#eq:semisimple:sum-n2">2</a>)。 最后，我们考虑非幺正群代数<span
+class="math inline">\(\mathbb C[G]_s\)</span>。
+作为实代数，其维度为<span class="math inline">\(2|G|\)</span>。
+由此，我们得到其不可约共表示的平方和公式： <span
+class="math display">\[2|G|=\sum_{i=1}^rn_i^2\dim D_i.\]</span>
+其中<span class="math inline">\(n_i\)</span>是每个共表示按<span
+class="math inline">\(D_i\)</span>计算的维度。 对于a, b,
+c三种类型的共表示，表示的复维度分别是<span
+class="math inline">\(n_i/2\)</span>, <span
+class="math inline">\(n_i\)</span>和<span
+class="math inline">\(2n_i\)</span>。</p>
+<h3 id="单模的个数-1">单模的个数</h3>
+<p>对于<span class="math inline">\(A=\mathbb C[G]\)</span>，其中心<span
+class="math inline">\(A/[A,A]\)</span>可以看成以<span
+class="math inline">\(G\)</span>的共轭类为基底张成的线性空间。 因此<span
+class="math inline">\(\dim A\)</span>等于<span
+class="math inline">\(G\)</span>中共轭类的个数。
+根据前面讲解的复代数的不可约表示个数的公式，我们可以证明<span
+class="math inline">\(G\)</span>的不可约表示的个数等于<span
+class="math inline">\(G\)</span>中共轭类的个数。
+特别地，结合平方和公式，可以得到非阿贝尔群一定有高维不可约复表示的结论。</p>
+<p>对于投影代数<span class="math inline">\(\mathbb
+C[G]^\omega\)</span>，如果<span
+class="math inline">\(\omega\)</span>导致群元素之间的乘法出现了不对易的情况，那么<span
+class="math inline">\(A/[A,A]\)</span>的维度会变小，相应地，<span
+class="math inline">\(G\)</span>的不可约表示的个数也会变少；结合平方和公式的约束，<span
+class="math inline">\(G\)</span>就会出现高维表示。 例如<span
+class="math inline">\(D_2=\mathbb Z_2\times\mathbb Z_2=\langle
+x,y|x^2,y^2,xyx^{-1}y^{-1}\rangle\)</span>是一个阿贝尔群，其群代数<span
+class="math inline">\(A=\mathbb C[D_2]\)</span>的中心就是<span
+class="math inline">\(A\)</span>，是4维的。 因此它有四个不可约表示。
+而它的非平庸投影群代数<span class="math inline">\(A=\mathbb
+C[G]^\omega\)</span>（即<span class="math inline">\(H^2[D_2,\mathrm
+U(1)]\simeq\mathbb Z_2\)</span>中的非平庸同调类<span
+class="math inline">\(\omega\)</span>产生的投影群代数）中群元素满足如下乘法关系：
+<span class="math display">\[x^2=y^2=-1,\quad xy=-yx.\]</span>
+容易验证，这些生成元之间的对易关系为<span
+class="math inline">\([x,y]=2xy\)</span>, <span
+class="math inline">\([y, xy]=2y\)</span>, <span
+class="math inline">\([xy, x]=2y.\)</span> 因此，<span
+class="math inline">\([A, A]=A\)</span>，而<span
+class="math inline">\(Z(A)=A/[A, A]\simeq \mathbb C\)</span>。
+根据前面证明的<span class="math inline">\(\dim
+Z(A)\)</span>和不可约表示个数之间的关系，我们看到<span
+class="math inline">\(D_2\)</span>应该只有一个不可约表示。
+这与我们前面得到的结论相符合。</p>
+<p>最后，我们讨论非幺正群的共表示的计数问题。 首先，我们考虑<span
+class="math inline">\(\mathbb C[G]_s\)</span>的中心。 我们将<span
+class="math inline">\(G\)</span>拆成<span class="math inline">\(G_0=\ker
+s\)</span>和<span class="math inline">\(G_1=G-G_0\)</span>两个陪集。
+由于<span class="math inline">\(G_1\)</span>中的反幺正元素都和<span
+class="math inline">\(i\)</span>反对易，容易验证<span
+class="math inline">\(Z(\mathbb C[G]_s)=Z(\mathbb R[G_0])\)</span>。
+因此，<span class="math inline">\(Z(\mathbb
+C[G]_s)\)</span>的维度等于<span
+class="math inline">\(G_0\)</span>中共轭类的个数。 而后者又等于<span
+class="math inline">\(G_0\)</span>的不可约复表示（注意是复表示而非实表示）的个数。
+因此，<span class="math inline">\(\mathbb
+C[G]_s\)</span>的ab两种类型共表示的数目加上c类型共表示的数目等于其复表示的数目。
+这和前文中我们给出的对三种共表示的理解一致：a类型的共表示是一个<span
+class="math inline">\(G_0\)</span>的实表示；b类型的共表示包含两个相同的<span
+class="math inline">\(G_0\)</span>的实表示；c类型的共表示由两个互为复共轭的<span
+class="math inline">\(G_0\)</span>的复表示组合而成。</p>
 </body>
 </html>
