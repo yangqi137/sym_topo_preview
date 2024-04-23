@@ -185,7 +185,7 @@
         <li>半单代数及其表示</li>
       </ul>
 </nav>
-<p>与群的表示类似，我们也希望将代数的表示分解为一系列不可约表示的直和。
+<p>与群的表示类似，我们也希望将代数的表示，即代数的模分解为一系列不可约表示的直和。
 由于我们上一节中介绍的代数的独特性质：代数<span
 class="math inline">\(A\)</span>本身可以看成一个<span
 class="math inline">\(A\)</span>-模，即<span
@@ -194,7 +194,7 @@ class="math inline">\(A\)</span>的直和分解。 我们将看到，<span
 class="math inline">\(A\)</span>的表示的直和分解性质可以被<span
 class="math inline">\(A\)</span>本身的直和分解决定。
 因此，代数及其表示是研究群表示的重要工具。</p>
-<p>在本节中，我们将首先介绍代数直和分解的相关概念，特别是单（simple）代数和半单（semisimple）代数的定义。
+<p>在本节中，我们将首先介绍模的直和分解的相关概念，特别是单（simple）模、半单（semisimple）模和半单代数的定义。
 之后，我们介绍描述半单代数的不可约表示（单模）的Artin-Wedderburn定理。
 最后，我们应用本节介绍的数学结果来研究有限群的不可约表示。</p>
 <h2 id="单模半单模与半单代数">单模、半单模与半单代数</h2>
@@ -237,11 +237,79 @@ class="math inline">\(V_i\)</span>为除第<span
 class="math inline">\(i\)</span>列外所有矩阵元均为零的矩阵。
 注意当我们把<span class="math inline">\(V=A\)</span>看成<span
 class="math inline">\(A\)</span>-模时，就已经“忘记”了它上面的乘法：<span
-class="math inline">\(V\)</span>上的两个元素没有乘法运算；事实上，每个单模<span
-class="math inline">\(V_i\)</span>中的矩阵在矩阵乘法下并不封闭。
+class="math inline">\(V\)</span>上的两个元素没有乘法运算；事实上，在矩阵乘法下，<span
+class="math inline">\(V_i\)</span>和<span
+class="math inline">\(V_j\)</span>中的矩阵的乘积一般并不为零，因此上式的分解时模的直和分解而非代数的直和分解。
 这个例子表明：一个半单代数<span
-class="math inline">\(A\)</span>是它自身的一个半单模，因此它可以拆分成若干单模的直和；但是一般情况下，每个拆分出来的单模都不再是一个代数。</p>
+class="math inline">\(A\)</span>是它自身的一个半单模，因此它可以拆分成若干单模的直和；但是一般情况下，这样的单模直和分解并不是代数的直和分解。</p>
 <h3 id="代数模的舒尔引理">代数模的舒尔引理</h3>
+<p>与群表示类似，代数的表示（即代数的模）也有舒尔引理。
+对于代数的模，与群表示的交联映射对应的概念是模同态： 考虑域<span
+class="math inline">\(K\)</span>上的代数<span
+class="math inline">\(A\)</span>，<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>是两个<span
+class="math inline">\(A\)</span>-模。 <span
+class="math inline">\(V\)</span>到<span
+class="math inline">\(W\)</span>的一个<span
+class="math inline">\(A\)</span>-模同态指的是一个线性映射<span
+class="math inline">\(f:V\rightarrow W\)</span>，它保持二者的<span
+class="math inline">\(A\)</span>作用不变，即： <span
+class="math display">\[\forall a\in A,\forall v\in V, a\cdot
+f(v)=f(a\cdot v).\]</span> 这个性质也可以表述为<span
+class="math inline">\(f\)</span>的作用和<span
+class="math inline">\(A\)</span>的作用可以交换。
+由于模同态在表示论中的重要地位，我们将所有模同态构成的集合记作<span
+class="math inline">\(\mathrm{Hom}_A(V, W)\)</span>。 容易看出，<span
+class="math inline">\(\mathrm{Hom}_A(V, W)\)</span>构成一个<span
+class="math inline">\(K\)</span>上的线性空间。 此外，当<span
+class="math inline">\(V=W\)</span>时，<span
+class="math inline">\(\mathrm{Hom}_A(V, V)\)</span>（也可以记作<span
+class="math inline">\(\mathrm{End}_A(V)\)</span>，即<span
+class="math inline">\(V\)</span>的A-模自同态群）构成一个K上的代数，其中的乘法是自同态映射的复合。</p>
+<p>利用上述概念和符号，我们可以表述代数模的舒尔引理。 假设<span
+class="math inline">\(A\)</span>是<span
+class="math inline">\(K\)</span>上的代数，<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>是两个<span
+class="math inline">\(A\)</span>上的单模（即不可约表示），则：</p>
+<ol type="1">
+<li><p>第一舒尔引理：当<span class="math inline">\(V\)</span>与<span
+class="math inline">\(W\)</span>不等价时，<span
+class="math inline">\(\mathrm{Hom}_A(V, W)=0\)</span>。</p></li>
+<li><p>第二舒尔引理：<span
+class="math inline">\(\mathrm{End}_A(V)\)</span>构成一个<span
+class="math inline">\(K\)</span>上的可除代数。我们往往将其称为不可约表示<span
+class="math inline">\(V\)</span>的可除代数。</p></li>
+</ol>
+<p>与群表示的情形类似，舒尔引理证明的核心是对于一个模同态<span
+class="math inline">\(f\in\mathrm{Hom}_A(V, W)\)</span>，考虑<span
+class="math inline">\(\ker f\)</span>与<span
+class="math inline">\(\mathrm{img}\,f\)</span>。 容易证明，<span
+class="math inline">\(\ker f\subset V\)</span>和<span
+class="math inline">\(\mathrm{img}\,f\subset W\)</span>分别是<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>的子模（提示：验证二者在<span
+class="math inline">\(A\)</span>作用下封闭）。 由于单模<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>不存在非平庸的子模，我们可以得出<span
+class="math inline">\(\ker f=0\)</span>或<span
+class="math inline">\(V\)</span>；<span
+class="math inline">\(\mathrm{img}\,f=0\)</span>或<span
+class="math inline">\(W\)</span>。 如果<span
+class="math inline">\(f=0\)</span>，则<span class="math inline">\(\ker
+f=V\)</span>且<span class="math inline">\(\mathrm{img}\,f=0\)</span>。
+因此，如果<span class="math inline">\(f\neq0\)</span>，那么<span
+class="math inline">\(\ker f=0\)</span>且<span
+class="math inline">\(\mathrm{img}\,f=W\)</span>；故而<span
+class="math inline">\(f\)</span>给出了<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>之间的一个同构映射。
+这就证明了第一条舒尔引理。 上面的论证也表明当<span
+class="math inline">\(V=W\)</span>时，<span
+class="math inline">\(\mathrm{End}_A(V)\)</span>中的非零元素一定是可逆映射。
+因此，<span
+class="math inline">\(\mathrm{End}_A(V)\)</span>构成一个可除代数。</p>
 <h2
 id="半单代数的artinwedderburn分解">半单代数的Artin–Wedderburn分解</h2>
 <p>接下来，我们介绍描述半单代数结构的重要数学定理：Artin-Wedderburn定理。
@@ -256,11 +324,6 @@ M_{n_2}(D_2)\oplus\cdots
 class="math inline">\(n_i\)</span>为正整数，<span
 class="math inline">\(D_i\)</span>为<span
 class="math inline">\(K\)</span>上的可除代数。</p>
-<p>根据前文中的例子，上式中的每个分量<span
-class="math inline">\(M_{n_i}(D_i)\)</span>都是<span
-class="math inline">\(K\)</span>上的一个单代数。
-因此，上式给出了半单代数<span
-class="math inline">\(A\)</span>的一个直和分解。</p>
 <p>在本书中，我们一般只考虑<span class="math inline">\(K=\mathbb
 R,\mathbb C\)</span>两种情形。 对于复代数，由于<span
 class="math inline">\(\mathbb
@@ -273,12 +336,13 @@ class="math inline">\(\mathbb H\)</span>三种。
 因此，一个半单实代数的Artin-Wedderburn分解中可能包含实数、复数或者四元数矩阵代数。</p>
 <p>可以证明，如果一个半单代数的Artin-Wedderburn分解具有(<a
 href="#eq:artin-wed">1</a>)式的形式，则它的单模有<span
-class="math inline">\(r\)</span>个，分别为<span
+class="math inline">\(r\)</span>种（同构的单模算一种），分别为<span
 class="math inline">\(n_i\)</span>维的<span
 class="math inline">\(D_i\)</span>-线性空间<span
 class="math inline">\(D_i^{n_i}\)</span>。</p>
 <p>例：群代数<span class="math inline">\(\mathbb C[\mathbb
-Z_2]\simeq\mathbb C\oplus\mathbb C\)</span>，两个单模的生成元分别为<span
+Z_2]\simeq\mathbb C\oplus\mathbb C\)</span>，两个<span
+class="math inline">\(\mathbb C\)</span>的生成元分别为<span
 class="math inline">\(1\pm g\)</span>。</p>
 <p>例：考虑非幺正群<span class="math inline">\(\mathbb Z_4^T=\{1, t,
 P_f, P_ft\}\)</span>，其中<span class="math inline">\(t^2=P_f\)</span>。
