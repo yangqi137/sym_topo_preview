@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>实表示与共表示</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">实表示与共表示</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>代数、模与对称性</li>
+        <li>实表示与共表示</li>
+      </ul>
+</nav>
+<p>在本节中，我们介绍一些与群的实表示和非幺正群的共表示有关的结果。</p>
+<h2
+id="群表示的舒尔-弗罗贝尼乌斯指标schur-frobenius-indicator">群表示的舒尔-弗罗贝尼乌斯指标（Schur-Frobenius
+indicator）</h2>
+<p>我们首先介绍群表示的舒尔-佛罗贝尼乌斯指标（Schur-Frobenius
+indicator）以及相应的实类型、复类型和赝实类型表示的概念。</p>
+<h3 id="自对偶表示">自对偶表示</h3>
+<p>在上一节中，我们引入了群表示<span
+class="math inline">\(V\)</span>的对偶表示<span
+class="math inline">\(V^*\)</span>的概念。
+对于群的幺正表示，对偶表示的表示矩阵为原表示矩阵的复共轭，即
+<span id="eq:real-mod:dual-rep-mat" class="eqnos"><span
+class="math display">\[\phi_{V^*}(g)=\phi_V(g)^\ast.
+\]</span><span class="eqnos-number">(1)</span></span>
+对偶表示的一个标志性特征是：当<span
+class="math inline">\(V\)</span>为不可约表示时，只有<span
+class="math inline">\(V^\ast\)</span>与<span
+class="math inline">\(V\)</span>作张量积后会产生平凡表示，即<span
+class="math inline">\(V\otimes V^\ast\simeq \mathbb
+C\oplus\cdots\)</span>。
+一个很自然的问题是，哪些不可约表示是自己的对偶表示？
+我们称这样的表示为自对偶表示。</p>
+<p>利用(<a
+href="#eq:real-mod:dual-rep-mat">1</a>)以及同一表示的特征标相同的性质，容易证明一个自对偶表示<span
+class="math inline">\(V\)</span>的所有特征标都是实数（注意：自对偶表示的表示矩阵不一定都是实数）。
+相应地，如果不可约<span
+class="math inline">\(V\)</span>的所有特征标都是实数，那么根据特征标之间的正交性可以推出<span
+class="math inline">\(V\simeq V^\ast\)</span>。 因此，<span
+class="math inline">\(V\)</span>的特征标均为实数当且仅当<span
+class="math inline">\(V\simeq V^\ast\)</span>。</p>
+<h3 id="自对偶表示上的二次型">自对偶表示上的二次型</h3>
+<p>接下来，我们证明自对偶表示上一定存在一个对称或反对称的二次型，并以此给出自对偶表示的两种不同类型。
+加上非自对偶的表示，可以将不可约表示分为三类。</p>
+<p>我们注意到，表示<span
+class="math inline">\(V\)</span>是自对偶的意味着存在模同态<span
+class="math inline">\(V\simeq V^\ast\)</span>。 由于<span
+class="math inline">\(\mathrm{Hom}_A(V,
+V^\ast)\simeq\mathrm{Hom}_A(V\otimes V,\mathbb C)\)</span>，
+这样的一个模同态等价于<span
+class="math inline">\(V\)</span>上的一个<span
+class="math inline">\(G\)</span>-不变的二次型<span
+class="math inline">\(B\)</span>：对于任意的<span
+class="math inline">\(u, v\in V\)</span>，<span
+class="math inline">\(B(u, v)\in\mathbb C\)</span>。
+容易证明，在一个不可约表示上，这样的二次型一定是非简并的。
+根据舒尔引理，这样的一个模同态在模掉一个标量的情况下唯一，即两个不同的模同态<span
+class="math inline">\(f,f&#39;\)</span>至多相差一个标量：<span
+class="math inline">\(f=\lambda f&#39;, \lambda\in\mathbb C\)</span>。
+相应地，<span class="math inline">\(V\)</span>上<span
+class="math inline">\(G\)</span>-不变的二次型也在模掉一个标量的情况下唯一，即两个<span
+class="math inline">\(G\)</span>-不变二次型<span
+class="math inline">\(B\)</span>和<span
+class="math inline">\(B&#39;\)</span>之间至多相差一个标量。
+因此，对于一个<span class="math inline">\(G\)</span>-不变的二次型<span
+class="math inline">\(B(u,
+v)\)</span>，考虑交换它的两个参数得到的二次型<span
+class="math inline">\(B&#39;\)</span>：<span
+class="math inline">\(B&#39;(u, v)=B(v, u)\)</span>；
+根据上面的结论，二者至多相差一个标量： <span
+class="math display">\[\exist\lambda\in\mathbb C, B&#39;(u, v)=B(v,
+u)=\lambda B(u, v).\]</span> 注意到将<span
+class="math inline">\(B&#39;\)</span>的宗量再次交换，将又得到<span
+class="math inline">\(B\)</span>。 由此可得<span
+class="math inline">\(\lambda^2=1\)</span>，即<span
+class="math inline">\(\lambda=\pm1\)</span>。 上面的论证表明，<span
+class="math inline">\(V\)</span>上<span
+class="math inline">\(G\)</span>-不变的二次型<span
+class="math inline">\(B\)</span>要么是对称的，要么是反对称的。</p>
+<h3 id="不可约表示的分类">不可约表示的分类</h3>
+<p>根据本小节中的论证，我们发现群的表示共有三种可能性：
+首先，考虑自对偶表示<span class="math inline">\(V\simeq
+V^\ast\)</span>。 此时，<span
+class="math inline">\(V\)</span>上存在一个<span
+class="math inline">\(G\)</span>-不变的二次型，且这个二次型是对称或反对称的。
+如果这个二次型是对称的，我们称<span
+class="math inline">\(V\)</span>为一个实类型的表示（real
+representation）。 如果这个二次型是反对称的，我们称<span
+class="math inline">\(V\)</span>为一个赝实类型的表示（pseudoreal
+representation）。 其次，如果<span
+class="math inline">\(V\)</span>与<span
+class="math inline">\(V^\ast\)</span>是不等价的不可约表示，我们称其为复类型的表示（complex
+representation）。</p>
+<h3
+id="舒尔-弗罗贝尼乌斯指标schur-frobenius-indicator">舒尔-弗罗贝尼乌斯指标（Schur-Frobenius
+indicator）</h3>
+<p>接下来，我们给出利用特征标计算不可约表示分类的方法。</p>
+<p>首先，由于复表示很容易通过特征标判断出来（其特征标中有虚数）。
+我们主要考虑如何区分实表示和赝实表示。 我们注意到，<span
+class="math inline">\(G\)</span>-不变的二次型构成<span
+class="math inline">\(V^\ast\otimes V^\ast\)</span>中的一个平庸表示：
+对于实类型的表示，这个表示是对称的（记作<span
+class="math inline">\((\mathrm{Sym}^2V^\ast)^G\)</span>），
+而对于赝实类型的表示，这个表示是反对称的（记作<span
+class="math inline">\((\Lambda^2V^\ast)^G\)</span>）。
+为了判断这样的二次型是否存在，我们计算相应的特征标。
+为简单起见，我们直接计算 <span
+class="math display">\[\dim(\mathrm{Sym}^2V^\ast)^G=\frac1{|G|}\sum_{g\in
+G}\chi_{\mathrm{Sym}^2V}(g).\]</span> 假设<span
+class="math inline">\(\phi_V(g)\)</span>的一组本征值是<span
+class="math inline">\(\lambda_\alpha\)</span>，相应的基底为<span
+class="math inline">\(|V;\alpha\rangle\)</span>，则<span
+class="math inline">\(\mathrm{Sym}^2V\)</span>的一组基底为<span
+class="math inline">\(|V;\alpha\rangle\otimes|V;\alpha\rangle\)</span>和<span
+class="math inline">\(|V;\alpha\rangle\otimes|V;\beta\rangle+|V;\beta\rangle\otimes|V;\alpha\rangle\)</span>（取遍所有的<span
+class="math inline">\(\alpha&lt;\beta\)</span>）。
+利用这组基底，我们得到 <span
+class="math display">\[\chi_{\mathrm{Sym}^2V}(g)
+=\sum_\alpha\lambda_\alpha^2+\sum_{\alpha&lt;\beta}\lambda_\alpha\lambda_\beta
+=\frac12[\chi_V(g)^2+\chi_V(g^2)].\]</span> 因此，我们得到 <span
+class="math display">\[\dim(\mathrm{Sym}^2V^\ast)^G=\frac1{2|G|}\sum_{g\in
+G}[\chi_V(g)^2+\chi_V(g^2)].\]</span> 对于自对偶表示，根据<span
+class="math inline">\(\chi_V(g)=\chi_V(g)^\ast\)</span>的性质和特征标的正交归一性，我们得到
+<span class="math inline">\(\sum_g\chi_V(g)^2=|G|\)</span>。
+代入上式，即得 <span
+class="math display">\[\dim(\mathrm{Sym}^2V^\ast)^G=\frac12\left(\frac1{|G|}\sum_{g\in
+G}\chi_V(g^2)+1\right).\]</span>
+我们定义舒尔-弗罗贝尼乌斯指标（Schur-Frobenius indicator） <span
+class="math display">\[\sigma(V):=\frac1{|G|}\sum_{g\in
+G}\chi_V(g^2).\]</span> 对于实类型的表示，<span
+class="math inline">\(\dim(\mathrm{Sym}^2V^\ast)^G=1\)</span>，故<span
+class="math inline">\(\sigma(V)=1\)</span>； 对于赝实类型的表示，<span
+class="math inline">\(\dim(\mathrm{Sym}^2V^\ast)^G=0\)</span>，故<span
+class="math inline">\(\sigma(V)=-1\)</span>。
+最后，可以证明（本书不证），对于复类型的表示，如上定义的<span
+class="math inline">\(\sigma(V)=0\)</span>。</p>
+<h3 id="实数域上的不可约表示">实数域上的不可约表示</h3>
+<p>可以证明，复数域上三种类型的表示分别对应于实数域上三种可除代数的表示：
+实表示对应<span class="math inline">\(\mathrm{End}_A(V)\simeq \mathbb
+R\)</span>；复表示对应<span
+class="math inline">\(\mathrm{End}_A(V)\simeq\mathbb
+C\)</span>；赝实表示对应<span
+class="math inline">\(\mathrm{End}_A(V)\simeq\mathbb H\)</span>。</p>
+<h2 id="非幺正群的共表示">非幺正群的共表示</h2>
+<p>在本节中，我们参照<span class="math inline">\(\mathbb
+C[G]\)</span>的表示论的思路，探讨非幺正群的共表示，即实代数<span
+class="math inline">\(\mathbb C[G]_s\)</span>的单模的性质。
+与本书前述章节记号类似，我们在本节中考虑一个非幺正群<span
+class="math inline">\(G\)</span>，其标记非幺正元素的<span
+class="math inline">\(\mathbb Z_2\)</span>分级为<span
+class="math inline">\(s:G\rightarrow\mathbb Z_2\)</span>；<span
+class="math inline">\(G_0=\ker s\)</span>为<span
+class="math inline">\(G\)</span>的幺正元素构成的子群；<span
+class="math inline">\(G_1=G-G_0\)</span>是反幺正元素构成的陪集。
+我们令<span class="math inline">\(A=\mathbb C[G]_s\)</span>。</p>
+<h3
+id="共表示与幺正子群的表示之间的关系">共表示与幺正子群的表示之间的关系</h3>
+<h3 id="共表示的张量积与对偶表示">共表示的张量积与对偶表示</h3>
+<p>对于两个共表示<span class="math inline">\(V\)</span>和<span
+class="math inline">\(W\)</span>，假设二者的复维数分别为<span
+class="math inline">\(n_1\)</span>和<span
+class="math inline">\(n_2\)</span>；如果将二者作为实线性空间进行张量积，得到的<span
+class="math inline">\(V\otimes_{\mathbb R}W\)</span>是一个<span
+class="math inline">\(4n_1n_2\)</span>维的实向量空间，即复<span
+class="math inline">\(2n_1n_2\)</span>维线性空间。
+这显然不是我们想要的结果。 这里维数翻倍的原因是根据<span
+class="math inline">\(\otimes_{\mathbb R}\)</span>的定义，<span
+class="math inline">\(V\)</span>中的虚数单位<span
+class="math inline">\(i\)</span>和<span
+class="math inline">\(W\)</span>中的虚数单位<span
+class="math inline">\(i\)</span>并不相同，即<span
+class="math inline">\(i\otimes1\neq1\otimes i\)</span>。
+而我们想要的张量积应当满足<span class="math inline">\(i\otimes1=1\otimes
+i\)</span>。 因此，我们在<span class="math inline">\(V\otimes
+W\)</span>中模掉<span class="math inline">\(i\otimes1-1\otimes
+i\)</span>张成的一维子空间，即得到<span
+class="math inline">\(V\otimes_{\mathbb C}W\)</span>。
+容易验证，平庸的共表示<span class="math inline">\(\mathbb
+R^2\)</span>在张量积<span class="math inline">\(\otimes_{\mathbb
+C}\)</span>下是单位元： <span class="math display">\[\mathbb
+R^2\otimes_{\mathbb C}V\simeq V\otimes_{\mathbb C}\mathbb R^2\simeq
+V.\]</span></p>
+<p>相应地，如下的上乘法<span class="math inline">\(\Delta:g\mapsto
+g\otimes g\)</span>给出了<span class="math inline">\(A\rightarrow
+A\otimes_{\mathbb C}A\)</span>的一个代数同态。 这里<span
+class="math inline">\(A\otimes_{\mathbb C}A\)</span>指的是在<span
+class="math inline">\(A\otimes_{\mathbb R}A\)</span>中模掉<span
+class="math inline">\(iu\otimes v\sim u\otimes
+iv\)</span>的对角作用（注意与一般的数学教科书不同，这里模掉的是<span
+class="math inline">\(u\otimes v\sim iu\otimes iv\)</span>而非<span
+class="math inline">\(ui\otimes v\sim u\otimes iv\)</span>）。</p>
+<p>接下来，对极映射<span class="math inline">\(S:g\mapsto
+g^{-1}\)</span>给出表示<span
+class="math inline">\(V\)</span>的对偶表示<span
+class="math inline">\(V^\ast\)</span>，其表示矩阵为<span
+class="math inline">\(\phi_{V^\ast}(g)=\phi_V(g)^\ast\)</span>。
+根据对偶空间的性质，我们可以得到 <span
+class="math display">\[\mathrm{Hom}_A(U, V\otimes
+W)\simeq\mathrm{Hom}_A(V^\ast\otimes U, W).\]</span></p>
+<h3 id="共表示的正交定理">共表示的正交定理</h3>
+<p>首先，我们考虑<span
+class="math inline">\(G\)</span>的平凡表示的投影算符。 由于<span
+class="math inline">\(G\)</span>的平凡表示是<span
+class="math inline">\(\mathbb R^2\)</span>，它也对应<span
+class="math inline">\(\mathbb C[G_0]\)</span>的（复）一维平凡表示。
+因此，<span
+class="math inline">\(G\)</span>的平凡表示的投影算符就是<span
+class="math inline">\(\mathbb C[G_0]\)</span>的平凡表示投影算符 <span
+class="math display">\[P_0=\frac1{|G_0|}\sum_{g\in G_0}g.\]</span>
+与上一节的推导类似，我们可以证明 <span
+class="math display">\[\frac1{|G_0|}\sum_g\chi^\ast_V(g)\chi_W(g)
+=\mathrm{tr}\,P_{V^\ast\otimes W}=\dim_{\mathbb R}\mathrm{Hom}_A(V, W)
+=\dim_{\mathbb R}(D_V)\delta_{VW}.\]</span> 与<span
+class="math inline">\(\mathbb
+C[G]\)</span>的情形类似，舒尔引理指出只有当<span
+class="math inline">\(W\simeq V\)</span>时，<span
+class="math inline">\(V^\ast\otimes W\)</span>才包含平凡表示<span
+class="math inline">\(\mathbb R^2\)</span>；
+但是与复数域上的情形不同的是，当<span
+class="math inline">\(V\)</span>的可除代数是<span
+class="math inline">\(\mathbb C\)</span>和<span
+class="math inline">\(\mathbb H\)</span>时，<span
+class="math inline">\(V^\ast\otimes
+W\)</span>中分别包含两个和四个平凡表示<span
+class="math inline">\(\mathbb R^2\)</span>。
+上面的推导给出如下的特征标正交关系： <span class="math display">\[
+\sum_g\chi^\ast_V(g)\chi_W(g)=\frac{\dim_{\mathbb
+R}D_v}2|G|\delta_{VW}.\]</span>
+如果已知一个共表示的特征标，这个关系可以用来判断这个共表示的类型。</p>
+</body>
+</html>

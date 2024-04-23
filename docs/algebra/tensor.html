@@ -413,8 +413,9 @@ class="math inline">\(V\)</span>是幺正表示，<span
 class="math inline">\(\phi_V(g)^{-1}=\phi_V(g)^\dagger\)</span>，因此其对偶表示矩阵为
 <span class="math display">\[\phi_{V^\ast}(g)=\phi_V(g)^\ast,\]</span>
 即为原表示矩阵的复共轭。</p>
-<h2 id="群表示特征标的正交定理">群表示特征标的正交定理</h2>
+<h2 id="群表示的正交定理">群表示的正交定理</h2>
 <p>为了让读者体会到张量积和对偶这两个概念的重要性，我们利用前面介绍的张量积和对偶表示的概念，证明第??章中介绍（但未证明的）群表示特征标之间的正交定理。</p>
+<h3 id="特征标正交定理的证明">特征标正交定理的证明</h3>
 <p>为了读者方便，我们首先回顾一下群表示特征标之间的正交定理。 假设<span
 class="math inline">\(V\)</span>和<span
 class="math inline">\(W\)</span>为有限群<span
@@ -438,8 +439,10 @@ class="math inline">\(\chi_V^\ast(g)=\chi_{V^\ast}(g)\)</span>。
 class="math display">\[\text{LHS}=\frac1{|G|}\sum_{g\in
 G}\chi_{V^\ast\otimes W}(g)
 =\mathrm{tr}\,\left(\frac1{|G|}\sum_{g\in G}g\right)_{V^\ast\otimes
-W}.\]</span> 我们定义投影算符 <span class="math display">\[P :=
-\frac1{|G|}\sum_{g\in G}g\in Z(\mathbb C[G]).\]</span> (<a
+W}.\]</span> 我们定义投影算符 <span id="eq:tensor:P" class="eqnos"><span
+class="math display">\[P := \frac1{|G|}\sum_{g\in G}g\in Z(\mathbb
+C[G]).
+\]</span><span class="eqnos-number">(6)</span></span> (<a
 href="#eq:tensor:chi-orth">5</a>)式左边可以写成 <span
 class="math display">\[\text{LHS}=\mathrm{tr}\,P_{V^\ast\otimes
 W},\]</span> 其中<span class="math inline">\(P_{V^\ast\otimes
@@ -478,21 +481,229 @@ V\)</span>中出现且仅出现一次；而当<span
 class="math inline">\(W\)</span>与<span
 class="math inline">\(V\)</span>不等价时，<span
 class="math inline">\(V^\ast\otimes W\)</span>中并不包含平凡表示。</p>
-<h3 id="共表示特征标的正交定理">共表示特征标的正交定理</h3>
-<p>接下来，我们将上面的计算结果推广到非幺正群的共表示。</p>
-<p>对于非幺正群，其中反幺正元素的表示矩阵不满足</p>
-<h2 id="群表示的正交定理">群表示的正交定理</h2>
-<p>在本节中，我们利用前面介绍的张量积和对偶表示的概念，证明群表示的正交定理。</p>
-<h3 id="有限群线性表示的正交定理">有限群线性表示的正交定理</h3>
-<p>我们首先给出有限群的不可约表示（即群代数<span
-class="math inline">\(K[G]\)</span>的单模）之间的正交定理。</p>
+<h3 id="特征标正交性的推论">特征标正交性的推论</h3>
+<p>从(<a
+href="#eq:tensor:chi-orth">5</a>)式中的正交关系出发，可以直接得到一个重要的推论：有限群的特征标表的每行和每列都是正交的。</p>
+<p>在第??章中，我们介绍过有限群的特征标表的概念。
+特征标表的每行对应一个不可约表示<span
+class="math inline">\(V\)</span>，而每列对应有限群<span
+class="math inline">\(G\)</span>的一个共轭类（这是因为两个共轭元素<span
+class="math inline">\(g\)</span>和<span
+class="math inline">\({}^hg=hgh^{-1}\)</span>的特征标总是相等的：<span
+class="math inline">\(\chi_V(g)=\chi_V({}^hg)\)</span>）。
+在上一节中，我们利用群代数的Artin-Wedderburn分解证明了不可约表示的个数等于共轭类的个数。
+因此，特征标表的行数总是等于其列数，即该表构成一个方阵。 在(<a
+href="#eq:tensor:chi-orth">5</a>)式基础上，我们可以恰当地选择该方阵的归一化系数，将其变为一个正交矩阵。
+具体地，假设群<span class="math inline">\(G\)</span>共有<span
+class="math inline">\(r\)</span>个共轭类和<span
+class="math inline">\(r\)</span>个不可约表示。 我们将共轭类标记为<span
+class="math inline">\([g_i]\)</span>、不可约表示标记为<span
+class="math inline">\(V_i\)</span>，其中<span
+class="math inline">\(i=1,2,\ldots, r\)</span>。 这里我们一般假设<span
+class="math inline">\(g_1=1\)</span>为单位元；<span
+class="math inline">\(V_1\)</span>为群的平凡表示；但除此之外，一般来讲，二者没有什么标准的标记方式，它们之间也没有什么典范的对应关系。
+由此，我们可以将特征标表中的元素写成一个矩阵的矩阵元：<span
+class="math inline">\(\chi_{ij}=\chi_{V_i}(g_j)\)</span>。
+为了将特征标之间的正交关系转化为矩阵的正交关系，我们定义如下重新归一化的矩阵<span
+class="math inline">\(X\)</span>，其矩阵元为： <span
+class="math display">\[X_{ij}=\sqrt{\frac{|[g_j]|}{|G|}}\chi_{ij}=\sqrt{\frac{|[g_j]|}{|G|}}\chi_{V_i}(g_j).\]</span>
+根据(<a href="#eq:tensor:chi-orth">5</a>)式不难得到，<span
+class="math inline">\(X^\dagger X=I\)</span>，即<span
+class="math inline">\(X\)</span>为幺正矩阵。 因此，<span
+class="math inline">\(X\)</span>的所有行向量和列向量分别构成一组正交归一的向量。
+它的行向量之间的正交归一性就是(<a href="#eq:tensor:chi-orth">5</a>)式；
+而它的列向量之间的正交归一性则给出如下的特征标正交定理（又称特征标第二正交定理）：
+<span
+class="math display">\[\frac{\left|[g]\right|}{G}\sum_{i=1}^r\chi_{V_i}(g)^\ast\chi_{V_i}(h)=\delta_{[g],
+[h]},\]</span> 其中<span class="math inline">\(\delta_{[g],
+[h]}\)</span>当<span class="math inline">\(g\)</span>和<span
+class="math inline">\(h\)</span>同属一个共轭类时为1，否则为0。</p>
+<h3 id="群表示矩阵元的正交定理">群表示矩阵元的正交定理</h3>
+<p>在本节中，我们利用前面介绍的张量积和对偶表示的概念，证明群表示矩阵元的正交定理。</p>
 <p>假设有限群<span class="math inline">\(G\)</span>共有<span
 class="math inline">\(r\)</span>种不等价的不可约表示，分别记作<span
-class="math inline">\(V_1,\ldots,V_r\)</span>。</p>
-<h3 id="投影表示之间的正交性">投影表示之间的正交性</h3>
-<h3 id="共表示的正交定理">共表示的正交定理</h3>
-<h2 id="hopf代数及其表示">Hopf代数及其表示</h2>
+class="math inline">\(V_1,\ldots,V_r\)</span>。 我们在每个表示空间<span
+class="math inline">\(V_i\)</span>中取定一组正交归一的基底<span
+class="math inline">\(\{|i;\alpha\rangle\}\)</span>，从而将表示<span
+class="math inline">\(\phi_{V_i}(g)\)</span>写成矩阵的形式：
+我们将相应的矩阵元记为 <span
+class="math display">\[\phi^i_{\alpha\beta}(g)=\langle
+i;\alpha|\phi_{V_i}(g)|i;\beta\rangle.\]</span>
+我们将要证明如下的正交定理：
+<span id="eq:tensor:mat-elem-orth" class="eqnos"><span
+class="math display">\[\frac1{|G|}\sum_{g\in
+G}\phi^i_{\alpha\beta}(g)^\ast\phi^j_{\alpha&#39;\beta&#39;}(g)=\frac1{\dim
+V_i}\delta^{ij}\delta_{\alpha\alpha&#39;}\delta_{\beta\beta&#39;}.
+\]</span><span class="eqnos-number">(7)</span></span> </p>
+<p>我们注意到等式左边可以写成<span
+class="math inline">\(g\)</span>在表示<span
+class="math inline">\(V_i^\ast\otimes V_j\)</span>上面的表示矩阵：
+对于<span class="math inline">\(V_i^\ast\otimes
+V_j\)</span>，我们可以取它的基底为<span
+class="math inline">\(\overline{|i;\alpha\rangle}\otimes|j;\alpha&#39;\rangle\)</span>，其中<span
+class="math inline">\(\overline{|i;\alpha\rangle}=(\langle
+i;\alpha|)^T\)</span>是对偶空间<span
+class="math inline">\(V_i^\ast\)</span>的一组正交归一的基底，这里为了记号清晰起见，我们还是将对偶空间的元素通过转置写成右矢的形式。
+这样，等式左边求和号里的矩阵元可以写成： <span
+class="math display">\[\phi^i_{\alpha\beta}(g)^\ast\phi^j_{\alpha&#39;\beta&#39;}(g)
+=\overline{\langle i;\alpha|}\phi_{V_i}(g)^*\overline{|j;\beta\rangle}
+\cdot\langle i;\alpha&#39;|\phi_{V_i}(g)|i;\beta&#39;\rangle
+=\overline{\langle i;\alpha|}\otimes\langle
+j;\alpha&#39;|\phi_{V_i^\ast\otimes V_j}(g)\overline{|i;\beta\rangle}
+\otimes|j;\beta&#39;\rangle.\]</span> 因此，(<a
+href="#eq:tensor:mat-elem-orth">7</a>)式左边可以表示成(<a
+href="#eq:tensor:P">6</a>)式中定义的投影算符<span
+class="math inline">\(P\)</span>的矩阵元： <span
+class="math display">\[\text{LHS}=\overline{\langle
+i;\alpha|}\otimes\langle j;\alpha&#39;|\phi_{V_i^\ast\otimes
+V_j}(P)\overline{|i;\beta\rangle}
+\otimes|j;\beta&#39;\rangle.\]</span></p>
+<p>根据前面的讨论，<span class="math inline">\(P\)</span>是从<span
+class="math inline">\(V_i^\ast\otimes V_j\)</span>到平凡表示<span
+class="math inline">\(\mathbb C\)</span>的投影算符。 根据<span
+class="math inline">\(\mathrm{Hom}_A(V_i^\ast\otimes V_j,\mathbb
+C)\simeq\mathrm{Hom}_A(V_j, V_i)\)</span>的同构关系，不难得到<span
+class="math inline">\(V_i^\ast\otimes V_j\)</span>中平凡表示为<span
+class="math inline">\(\sum_\alpha\overline{|i;\alpha\rangle}\otimes|j;\alpha\rangle\)</span>张成的一维子空间。
+因此，<span class="math inline">\(P\)</span>在<span
+class="math inline">\(V_i^*\otimes V_j\)</span>的矩阵元为 <span
+class="math display">\[\overline{\langle i;\alpha|}\otimes\langle
+j;\alpha&#39;|
+\phi_{V_i^\ast\otimes V_j}(P)\overline{|i;\beta\rangle}
+\otimes|j;\beta&#39;\rangle=\delta_{\alpha\alpha&#39;}\delta_{\beta\beta&#39;}.\]</span>
+这样就证明了(??)式。</p>
+<p>事实上，在(??)式中令<span
+class="math inline">\(\beta=\alpha&#39;\)</span>，并对<span
+class="math inline">\(\alpha\)</span>、<span
+class="math inline">\(\alpha&#39;\)</span>和<span
+class="math inline">\(\beta&#39;\)</span>求和，即可得到特征标的正交定理。</p>
+<h3 id="不可约表示的投影算符">不可约表示的投影算符</h3>
+<p>在上面的推导中我们看到，(<a href="#eq:tensor:P">6</a>)式中定义的<span
+class="math inline">\(P\)</span>算符是到平凡表示的投影算符。
+利用特征标，我们可以推导到任一不可约表示的投影算符。
+我们沿用本节中的记号，将有限群<span
+class="math inline">\(G\)</span>的不可约表示记作<span
+class="math inline">\(V_i\)</span>，<span class="math inline">\(1\leq
+i\leq r\)</span>。 一般地，假设<span
+class="math inline">\(V\)</span>是<span
+class="math inline">\(G\)</span>的一个表示，那么<span
+class="math inline">\(V\)</span>中包含<span
+class="math inline">\(V_i\)</span>的重数可以利用特征标计算得到： 假设
+<span class="math display">\[V=\bigoplus_{i=1}^rm_iV_i,\]</span>
+根据特征标之间的正交关系，我们可以得到 <span
+class="math display">\[m_i=\frac1{|G|}\sum_g\chi_{V_i}(g)^*\chi_V(g).\]</span>
+根据上式，我们得到 <span
+class="math display">\[m_i=\mathrm{tr}\,\left(\frac1{G}\sum_g\chi_{V_i}(g)\phi_V(g)\right).\]</span>
+这启发我们定义如下的投影算符： <span
+class="math display">\[P_i=\frac1{G}\sum_g\chi_{V_i}(g)g.
+\]</span> 特别地，(<a href="#eq:tensor:P">6</a>)式中定义的<span
+class="math inline">\(P\)</span>就是平凡表示<span
+class="math inline">\(V_1\)</span>对应的投影算符<span
+class="math inline">\(P_1\)</span>。 容易验证，<span
+class="math inline">\(P_i\)</span>是相互正交的投影算符：<span
+class="math inline">\(P_i^2=P_i\)</span>且当<span
+class="math inline">\(i\neq j\)</span>时<span
+class="math inline">\(P_iP_j=0\)</span>。 利用群元素的重排定理和<span
+class="math inline">\(\chi(g)=\chi({}^hg)\)</span>的关系不难验证，<span
+class="math inline">\(P_i\)</span>与群元素对易，即<span
+class="math inline">\(P_i\in Z(\mathbb C[G])\)</span>。 这表明<span
+class="math inline">\(P_i\)</span>作用在一个<span
+class="math inline">\(A\)</span>-模上一定给出一个模同态。
+根据舒尔引理，<span
+class="math inline">\(P_i\)</span>具有分块对角的形式：在每个不可约表示上它都是常数，而在两个不等价的不可约表示之间为零。
+利用特征标的正交归一关系，不难验证<span
+class="math inline">\(P_i\)</span>就是到<span
+class="math inline">\(V_i\)</span>的投影算符。</p>
+<p>例：利用投影算符，我们可以从有限群<span
+class="math inline">\(G\)</span>的不可约表示计算其Artin-Wedderburn分解中对应的子代数。</p>
+<h2
+id="投影表示的张量积对偶与正交性">投影表示的张量积、对偶与正交性*</h2>
 <h2
 id="表示的张量积在量子力学中的应用">表示的张量积在量子力学中的应用</h2>
+<p>量子态之间的张量积是在量子力学中经常出现的概念。</p>
+<h3 id="wigner-eckart定理">Wigner-Eckart定理</h3>
+<p>在量子力学中，我们经常需要计算某个算符的矩阵元：<span
+class="math inline">\(\langle\psi|\hat O|\phi\rangle.\)</span>
+假设系统的对称群为<span
+class="math inline">\(G\)</span>，我们可将左右两边的量子态和中间的算符都分解到群的不可约表示上。
+因此，我们需要计算如下的矩阵元： <span class="math display">\[\langle
+i;\alpha|\hat O^j_\beta|k;\gamma\rangle,\]</span> 其中<span
+class="math inline">\(i, j, k\)</span>标记了三个不可约表示<span
+class="math inline">\(V_i, V_j, V_k\)</span>；而<span
+class="math inline">\(\alpha,\beta,\gamma\)</span>标记了三个不可约表示空间的基底。</p>
+<p>根据前面对表示张量积和对偶表示的讨论，我们可以将上面的矩阵元组成的矩阵看成是从<span
+class="math inline">\(V_j\otimes V_k\)</span>到<span
+class="math inline">\(V_i\)</span>的<span
+class="math inline">\(G\)</span>-不变的映射： <span
+class="math display">\[f: \hat
+O^j_\beta|k;\gamma\rangle\mapsto\sum_{\alpha}\langle i;\alpha|\hat
+O^j_\beta|k;\gamma\rangle|i;\alpha\rangle,\quad
+f\in\mathrm{Hom}_G(V_j\otimes V_k, V_i).\]</span> 根据Schur引理，<span
+class="math inline">\(\mathrm{Hom}_G(V_j\otimes V_k,
+V_i)\)</span>具有分块对角的形式。 由于<span
+class="math inline">\(V_i\)</span>是不可约表示，这里的分块对角的形式取决于<span
+class="math inline">\(V_j\otimes V_k\)</span>中包含多少个<span
+class="math inline">\(V_i\)</span>： <span
+class="math display">\[V_j\otimes V_k\simeq
+N_{jk}^iV_i\oplus\cdots.\]</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(N_{jk}^i=0\)</span>，即<span
+class="math inline">\(V_j\otimes V_k\)</span>的不可约分解中没有<span
+class="math inline">\(V_i\)</span>，即<span
+class="math inline">\(N_{jk}^i=0\)</span>，则根据Schur引理，<span
+class="math inline">\(f=0\)</span>；故<span
+class="math inline">\(\langle i;\alpha|\hat
+O^j_\beta|k;\gamma\rangle=0\)</span>。</p></li>
+<li><p><span class="math inline">\(N_{jk}^i=1\)</span>，即<span
+class="math inline">\(V_j\otimes
+V_k\)</span>的不可约分解中恰好包含一个<span
+class="math inline">\(V_i\)</span>，此时Schur引理断言<span
+class="math inline">\(f\)</span>为一个常数。 如果将这个常数记为<span
+class="math inline">\(\langle i||\hat O^j||k\rangle\)</span>，则有 <span
+class="math display">\[\langle i;\alpha|\hat O^j_\beta|k;\gamma\rangle
+=\langle i||\hat O^j||k\rangle\cdot \langle
+i;\alpha|(|j\beta\rangle\otimes|k;\gamma\rangle).\]</span>
+其中的系数<span class="math inline">\(\langle
+i;\alpha|(|j\beta\rangle\otimes|k;\gamma\rangle\)</span>，往往也记作<span
+class="math inline">\(\langle
+i;\alpha|jk;\beta\gamma\rangle\)</span>，是量子力学中角动量组合的Clebsch-Gordan系数（CG系数）的推广，由此一般也称为有限群的CG系数。</p></li>
+<li><p><span class="math inline">\(N_{jk}^i&gt;1\)</span>，即<span
+class="math inline">\(V_j\otimes
+V_k\)</span>的不可约分解中包含超过一个<span
+class="math inline">\(V_i\)</span>。 此时Schur引理只能告诉我们，<span
+class="math inline">\(f\)</span>在不同的<span
+class="math inline">\(V_i\)</span>子空间上具有分块对角的形式，而每个子空间都具有不同的约化系数<span
+class="math inline">\(\langle i||\hat O^j||k\rangle\)</span>和CG系数：
+<span class="math display">\[\langle i;\alpha|\hat
+O^j_\beta|k;\gamma\rangle
+=\sum_\rho\langle i||\hat O^j||k\rangle^{(\rho)}\cdot
+\langle
+i(\rho);\alpha|(|j;\beta\rangle\otimes|k;\gamma\rangle).\]</span>
+这种情况比较复杂，我们下面的讨论以上述第二种情形为主。</p></li>
+</ol>
+<p>上述结论在文献中被称为Wigner（维格纳）-Eckart（埃伽）定理。</p>
+<p>根据对偶关系 <span class="math inline">\(\mathrm{Hom}_G(V_j\otimes
+V_k, V_i)\simeq\mathrm{Hom}_G(V_i^\ast\otimes V_j\otimes V_k, \mathbb
+C)\)</span>，
+我们也可以将CG系数写成三个不可约表示张量积上的一个到平凡表示上的交联映射的系数。
+当<span class="math inline">\(N_{jk}^i=1\)</span>时，<span
+class="math inline">\(V_i^\ast\otimes V_j\otimes
+V_k\)</span>的不可约分解中有且仅有一个平凡表示。 假设<span
+class="math inline">\(V_i^\ast\otimes V_j\otimes
+V_k\)</span>到该平凡表示的交联映射形如 <span
+class="math display">\[|i;\alpha\rangle\otimes |j;\beta\rangle\otimes
+|k;\gamma\rangle
+\mapsto
+\begin{pmatrix}i&amp;j&amp;k\\\alpha&amp;\beta&amp;\gamma\end{pmatrix},\]</span>
+则称此处的<span
+class="math inline">\(\begin{pmatrix}i&amp;j&amp;k\\\alpha&amp;\beta&amp;\gamma\end{pmatrix}\in\mathbb
+C\)</span>为Winger 3j符号（symbol）。 容易验证，CG系数和Wigner
+3j符号有如下的关系： <span class="math display">\[\langle
+i;\alpha|jk;\beta\gamma\rangle
+=\begin{pmatrix}i^\ast&amp;j&amp;k\\\alpha^\ast&amp;\beta&amp;\gamma\end{pmatrix},\]</span>
+此处<span class="math inline">\(i^\ast\)</span>代表<span
+class="math inline">\(V_i\)</span>的对偶表示；<span
+class="math inline">\(\alpha^\ast\)</span>代表相对应的基底。</p>
+<h2 id="hopf代数及其表示">Hopf代数及其表示*</h2>
 </body>
 </html>
