@@ -351,10 +351,13 @@ i\)</span>。 因此，我们在<span class="math inline">\(V\otimes
 W\)</span>中模掉<span class="math inline">\(i\otimes1-1\otimes
 i\)</span>张成的一维子空间，即得到<span
 class="math inline">\(V\otimes_{\mathbb C}W\)</span>。
-容易验证，平庸的共表示<span class="math inline">\(\mathbb
-R^2\)</span>在张量积<span class="math inline">\(\otimes_{\mathbb
+也就是说，在讨论张量积和对偶表示时，我们应当将共表示看成复线性空间。
+相应地，我们将平凡的共表示记作<span class="math inline">\(\mathbb
+C\)</span>。</p>
+<p>容易验证，平凡的共表示<span class="math inline">\(\mathbb
+C\)</span>在张量积<span class="math inline">\(\otimes_{\mathbb
 C}\)</span>下是单位元： <span class="math display">\[\mathbb
-R^2\otimes_{\mathbb C}V\simeq V\otimes_{\mathbb C}\mathbb R^2\simeq
+C\otimes_{\mathbb C}V\simeq V\otimes_{\mathbb C}\mathbb C\simeq
 V.\]</span></p>
 <p>相应地，如下的上乘法<span class="math inline">\(\Delta:g\mapsto
 g\otimes g\)</span>给出了<span class="math inline">\(A\rightarrow
@@ -371,8 +374,8 @@ class="math inline">\(V\)</span>的对偶表示<span
 class="math inline">\(V^\ast\)</span>，其表示矩阵为<span
 class="math inline">\(\phi_{V^\ast}(g)=\phi_V(g)^\ast\)</span>。
 根据对偶空间的性质，我们可以得到 <span
-class="math display">\[\mathrm{Hom}_A(U, V\otimes
-W)\simeq\mathrm{Hom}_A(V^\ast\otimes U, W).\]</span></p>
+class="math display">\[\mathrm{Hom}_A(U, V\otimes_{\mathbb C}
+W)\simeq\mathrm{Hom}_A(V^\ast\otimes_{\mathbb C} U, W).\]</span></p>
 <h3 id="共表示的正交定理">共表示的正交定理</h3>
 <p>首先，我们考虑<span
 class="math inline">\(G\)</span>的平凡表示的投影算符。 由于<span
@@ -391,17 +394,90 @@ class="math inline">\(\mathbb
 C[G]\)</span>的情形类似，舒尔引理指出只有当<span
 class="math inline">\(W\simeq V\)</span>时，<span
 class="math inline">\(V^\ast\otimes W\)</span>才包含平凡表示<span
-class="math inline">\(\mathbb R^2\)</span>；
+class="math inline">\(\mathbb C\)</span>；
 但是与复数域上的情形不同的是，当<span
 class="math inline">\(V\)</span>的可除代数是<span
 class="math inline">\(\mathbb C\)</span>和<span
 class="math inline">\(\mathbb H\)</span>时，<span
 class="math inline">\(V^\ast\otimes
 W\)</span>中分别包含两个和四个平凡表示<span
-class="math inline">\(\mathbb R^2\)</span>。
-上面的推导给出如下的特征标正交关系： <span class="math display">\[
-\sum_g\chi^\ast_V(g)\chi_W(g)=\frac{\dim_{\mathbb
-R}D_v}2|G|\delta_{VW}.\]</span>
+class="math inline">\(\mathbb C\)</span>。
+上面的推导给出如下的特征标正交关系：
+<span id="eq:real-mod:corep-char1" class="eqnos"><span
+class="math display">\[
+\sum_g\chi^\ast_V(g)\chi_W(g)=\frac{\dim_{\mathbb R}D_V}2|G|\delta_{VW}.
+\]</span><span class="eqnos-number">(2)</span></span>
 如果已知一个共表示的特征标，这个关系可以用来判断这个共表示的类型。</p>
+<p>与<span class="math inline">\(\mathbb
+C[G]\)</span>的正交定理相比，(<a
+href="#eq:real-mod:corep-char1">2</a>)式中出现了<span
+class="math inline">\(\dim_{\mathbb
+R}D_V\)</span>，因此并不能直接用于判断一个可约共表示中不可约共表示出现的重数。
+这是因为对于b和c类型的共表示<span
+class="math inline">\(V\)</span>，<span class="math inline">\(V\otimes
+V^\ast\)</span>中出现了不止一个平凡表示。
+要实现标准的正交关系，我们希望从中选出一个独特的平凡表示的副本。
+由于<span class="math inline">\(\mathrm{Hom}_A(V\otimes V^\ast, \mathbb
+C)\simeq\mathrm{Hom}_A(V, V)\)</span>， 这等价于在<span
+class="math inline">\(\mathrm{End}_A(V)\)</span>中选择一个独特的一维子空间。
+这让我们回想起在研究共表示的自同态映射时遇到的结论：虽然自同态映射不一定是标量，但是厄米的自同态映射一定是标量。
+因此，<span
+class="math inline">\(\mathrm{End}_A(V)\)</span>中厄米的自同态映射就是我们想要的一维子空间。
+这个思路将给出共表示特征标的一个正交关系。</p>
+<p>为了推导这个正交关系，我们将在<span
+class="math inline">\(V\)</span>上选取一组正交归一的实基底<span
+class="math inline">\(|\alpha\rangle\)</span>。 事实上，为了写下<span
+class="math inline">\(f=f^\dagger\)</span>的条件，我们必须取定一组基底。
+这里实基底指的是我们指定相应的实结构：<span
+class="math inline">\(\mathcal K|\alpha\rangle =
+|\alpha\rangle\)</span>，即这些基底在复共轭操作下不变（可以通俗地理解成它们都是“实的”）。
+相应地，<span class="math inline">\(V^\ast\)</span>的一组基底为<span
+class="math inline">\(\overline{|\alpha\rangle}\)</span>。
+接下来，我们考虑如下形式的“扭曲”的群作用： 对于幺正元素<span
+class="math inline">\(g\in G_0\)</span>，我们定义 <span
+class="math display">\[g\cdot|\alpha\rangle\tilde\otimes\overline{|\beta\rangle}
+=\phi^V_{\alpha&#39;\alpha}(g)\phi^V_{\beta&#39;\beta}(g)^\ast|\alpha&#39;\rangle\otimes\overline{|\beta&#39;\rangle};\]</span>
+而对于反幺正元素<span class="math inline">\(a\in
+G_1\)</span>，我们则定义 <span
+class="math display">\[a\cdot|\alpha\rangle\tilde\otimes\overline{|\beta\rangle}
+=\phi^V_{\alpha&#39;\alpha}(a)\phi^V_{\beta&#39;\beta}(a)^\ast|\beta&#39;\rangle\otimes\overline{|\alpha&#39;\rangle};\]</span>
+注意与幺正元素的作用不同，反幺正元素的作用结果会将<span
+class="math inline">\(V\)</span>和<span
+class="math inline">\(V^\ast\)</span>中的元素相互交换。
+由于这种扭曲的作用，这样得到的<span
+class="math inline">\(V\)</span>与<span
+class="math inline">\(V^\ast\)</span>的“张量积”并不是通常意义上的<span
+class="math inline">\(V\otimes V^\ast\)</span>的表示空间。
+因此我们发明一个新的记号，将其记为<span
+class="math inline">\(V\tilde\otimes V^\ast\)</span>以示区别。
+事实上，容易验证，上面定义的群元素的作用使得<span
+class="math inline">\(V\tilde\otimes V^\ast\)</span>成为一个<span
+class="math inline">\(A&#39;=\mathbb C[G]\)</span>-模，而非<span
+class="math inline">\(A=\mathbb C[G]_s\)</span>-模。 因此，我们在<span
+class="math inline">\(V\tilde\otimes
+V^\ast\)</span>上可以应用上节中推导的（幺正）群的特征标正交定理。
+接下来，读者可以自行证明，<span
+class="math inline">\(\mathrm{End}_A(V)\)</span>（此处<span
+class="math inline">\(A=\mathbb C[G]_s\)</span>）中的厄米映射对应于<span
+class="math inline">\(V\tilde\otimes V^\ast\)</span>中的一个平凡的<span
+class="math inline">\(\mathbb C[G]\)</span>-模。
+根据共表示中厄米版本的舒尔引理，我们得到<span
+class="math inline">\(\dim_{\mathbb
+C}\mathrm{Hom}_{A&#39;}(V\tilde\otimes V^\ast, \mathbb
+C)=1\)</span>。</p>
+<p>最后，我们利用<span
+class="math inline">\(A&#39;\)</span>-模的特征标正交定理计算平凡表示在<span
+class="math inline">\(V\tilde\otimes V^\ast\)</span>中的重数。 <span
+class="math display">\[\dim_{\mathbb
+C}\mathrm{Hom}_{A&#39;}(V\tilde\otimes V^\ast, \mathbb C)=1
+=\frac1{|G|}\sum_{g\in G}\chi_{\mathbb C}(g)^\ast\chi_{V\tilde\otimes
+V^\ast}(g)\]</span> 根据<span class="math inline">\(V\tilde\otimes
+V^\ast\)</span>中群作用的矩阵形式，不难得到： <span
+class="math display">\[\chi_{V\tilde\otimes V^\ast}(g)=|\chi_V(g)|^2;
+\chi_{V\tilde\otimes V^\ast}(a)=\chi_V(a^2).\]</span>
+而平凡表示的特征标为<span class="math inline">\(\chi_{\mathbb
+C}(g)=1\)</span>。 代入上式，我们得到 <span
+class="math display">\[\frac1{|G|}\left(\sum_{g\in
+G_0}|\chi_V(g)|^2+\sum_{a\in G_1}\chi_V(a^2)\right)=1.\]</span></p>
 </body>
 </html>
