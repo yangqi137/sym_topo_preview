@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>费米子十个对称性类型的拓扑分类</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">费米子十个对称性类型的拓扑分类</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>费米子拓扑分类的十重态</li>
+        <li>费米子十个对称性类型的拓扑分类</li>
+      </ul>
+</nav>
+<p>在本节中，我们从上节讲解的十个对称类型的狄拉克哈密顿量出发，
+推导其拓扑分类。</p>
+<h2
+id="狄拉克哈密顿量拓扑非平庸的判据">狄拉克哈密顿量拓扑非平庸的判据</h2>
+<h3 id="单点紧化的问题">单点紧化的问题</h3>
+<p>在上节中，我们未加证明地给出了ABS构造中狄拉克哈密顿量的形式：
+<span id="eq:classification:H-D1" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=
+\sum_{a=1}^d k_a\tilde\Gamma_a+im\Gamma_0.
+\]</span><span class="eqnos-number">(1)</span></span> </p>
+<p>事实上，细心的读者会发现，这个狄拉克哈密顿量无法被拓展到具有周期性边界条件的整个布里渊区上。
+严格地说，这里我们考虑的是底空间为球面，而非环面上的纤维丛问题。
+这对应于前文中阐述的去掉弱拓扑态的拓扑分类。
+等价地说，这个底空间是整个<span
+class="math inline">\(d\)</span>维平面的单点紧化：<span
+class="math inline">\(X=\mathbb R^d\cup\{\infty\}\)</span>。
+这要求哈密顿量在<span class="math inline">\(\boldsymbol
+k\)</span>从不同方向趋近于无穷大时，拥有一致的极限。 而(<a
+href="#eq:classification:H-D1">1</a>)式中的哈密顿量显然不满足这一点。
+为此，我们可以在这个哈密顿量中手加上<span
+class="math inline">\(k\rightarrow\infty\)</span>的一项，成为如下的形式：
+<span id="eq:classification:H-D2" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=
+\sum_{a=1}^d k_a\tilde\Gamma_a+im\Gamma_0+ik^2\Gamma_0&#39;.
+\]</span><span class="eqnos-number">(2)</span></span> 这里新加的<span
+class="math inline">\(k^2\)</span>项在<span
+class="math inline">\(k=0\)</span>点（即<span
+class="math inline">\(\Gamma\)</span>点）附近几乎没有影响，但是当<span
+class="math inline">\(k\rightarrow\infty\)</span>时，会变成主导项：
+<span class="math display">\[H(k\rightarrow\infty)\propto
+i\Gamma_0&#39;.\]</span>
+（注意哈密顿量整体差一个系数不影响基态子空间。）
+这样得到的导带子空间构成的纤维丛在无穷远点就有良好的定义了。</p>
+<h3 id="平庸能带的判据">平庸能带的判据</h3>
+<p>在前面各个章节的例子中我们看到，上述单点紧化步骤不仅可以澄清哈密顿量在布里渊区边界上的定义问题，也可以决定狄拉克哈密顿量的拓扑平庸与否。
+如果不作单点紧化，狄拉克哈密顿量只能决定当质量项变号时拓扑的变化，不能唯一确定哪种质量项是拓扑非平庸的。</p>
+<p>对于一般的狄拉克哈密顿量，我们也有同样的结论。 特别地，当(<a
+href="#eq:classification:H-D2">2</a>)式中<span
+class="math inline">\(\Gamma_0=\Gamma_0&#39;\)</span>时，该哈密顿量是拓扑平庸的。
+要证明这一点，可以连续地将<span
+class="math inline">\(k_a\tilde\Gamma_a\)</span>项的大小调至零；当<span
+class="math inline">\(\Gamma_0=\Gamma_0&#39;\)</span>时在这个过程中哈密顿量不会关闭能隙。
+因此，这个哈密顿量可以连续地变形为<span
+class="math inline">\(H(\boldsymbol
+k)=\Gamma_0\)</span>，而这显然是拓扑平庸的。</p>
+<p>事实上，一个可能拓扑非平庸的哈密顿量形式是<span
+class="math inline">\(\Gamma_0=-\Gamma_0&#39;\)</span>，即质量项在原点相较无穷远处变号。
+这也是我们在前面各章中见到的狄拉克质量项反号带来拓扑变化的情形。
+此时，这个哈密顿量是否拓扑平庸取决于我们能否找到一条连续路径，将<span
+class="math inline">\(\Gamma_0\)</span>变为<span
+class="math inline">\(-\Gamma_0\)</span>。
+数学上，ABS构造中证明了这样的连续路径存在的充分必要条件是：存在另一个质量项<span
+class="math inline">\(\Gamma_{-1}\)</span>，它与其它的<span
+class="math inline">\(\Gamma_a\)</span>和<span
+class="math inline">\(\tilde\Gamma_a\)</span>都反对易，且<span
+class="math inline">\(\Gamma_{-1}^2=-1\)</span>。
+事实上，这个条件的充分性很容易证明：此时我们可以构造如下连续路径 <span
+class="math display">\[\Gamma(\theta)=\Gamma_0\cos\theta+\Gamma_{-1}\sin\theta;\]</span>
+当<span class="math inline">\(\theta\)</span>从0变至<span
+class="math inline">\(\pi\)</span>时，就给出了这样一条连续路径。
+这个条件的必要性的证明要用到数学中的Morse理论，比较复杂，本书中就不再讲解了。
+因此，当(<a href="#eq:classification:H-D2">2</a>)式中可以找到和所有<span
+class="math inline">\(\Gamma\)</span>矩阵反对易的另一个质量项<span
+class="math inline">\(\Gamma_{-1}\)</span>时，它就是拓扑平庸的。</p>
+<p>反之，如果不存在另外一个质量项，那么当我们确定无穷远处的<span
+class="math inline">\(\Gamma_0&#39;\)</span>之后，<span
+class="math inline">\(\Gamma_0\)</span>的选择只有<span
+class="math inline">\(\pm\Gamma_0&#39;\)</span>两种。 由于不存在<span
+class="math inline">\(\pm\Gamma_0\)</span>之间的连续路径，当<span
+class="math inline">\(\Gamma_0=-\Gamma_0&#39;\)</span>时该狄拉克哈密顿量就是非平庸的。</p>
+<p>综上所述，由代数<span
+class="math inline">\(\mathrm{Cl}^{q+1,d}\)</span>的一个表示给出的狄拉克哈密顿量拓扑平庸的条件是，能够找到另外一个生成元，将该表示扩展至<span
+class="math inline">\(\mathrm{Cl}^{q+2,d}\)</span>的表示。</p>
+<h3 id="clifford代数的表示与拓扑分类">Clifford代数的表示与拓扑分类</h3>
+<p>我们可以将上述条件转化为涉及Clifford代数的表示的一个数学问题。</p>
+<p>对于一个半单代数<span
+class="math inline">\(A\)</span>，我们定义加法群<span
+class="math inline">\(N(A)\)</span>为<span
+class="math inline">\(A\)</span>的单模生成的自由加法群。 容易看出，<span
+class="math inline">\(A\)</span>的一个任意的（有限维）模都对应<span
+class="math inline">\(N(A)\)</span>中的一个元素： 由于<span
+class="math inline">\(A\)</span>的模都是半单模，它总可以写成一系列单模（不可约表示）的直和：
+<span class="math display">\[M=\bigoplus_{i=1}^rn_iV_i;\]</span>
+它对应的<span class="math inline">\(N(A)\)</span>中的元素即为<span
+class="math inline">\(n_i[V_i]\)</span>。 但是<span
+class="math inline">\(N(A)\)</span>中还包括系数为负数的元素，它们不对应真实的模（表示）。</p>
+<p>如果<span class="math inline">\(B\subset
+A\)</span>是一个子代数，那么<span
+class="math inline">\(A\)</span>-模一定也是<span
+class="math inline">\(B\)</span>-模。 由此，我们得到一个映射<span
+class="math inline">\(i^\ast: N(A)\rightarrow
+N(B)\)</span>（这个映射记作<span
+class="math inline">\(i^\ast\)</span>，因为它是包含映射<span
+class="math inline">\(i:B\rightarrow A\)</span>的拉回映射）。
+容易验证，<span class="math inline">\(i^\ast\)</span>是群同态。</p>
+<p>利用这些概念，我们可以将对称类型<span
+class="math inline">\(q\)</span>的拓扑分类表示为：
+<span id="eq:classification:Acl" class="eqnos"><span
+class="math display">\[A^{q+1,d}=\frac{N(\mathrm{Cl}^{q+1,d})}
+{i^\ast N(\mathrm{Cl}^{q+2,d})}.
+\]</span><span class="eqnos-number">(3)</span></span> </p>
+<h2 id="clifford代数的表示">Clifford代数的表示</h2>
+<p>接下来，我们介绍数学中Clifford代数的表示分类结果，并以此计算(<a
+href="#eq:classification:Acl">3</a>)中的拓扑分类。</p>
+<h3 id="clifford代数的半单性质">Clifford代数的半单性质</h3>
+<p>首先，可以证明Clifford代数<span
+class="math inline">\(\mathrm{Cl}^{p,q}\)</span>都是半单代数。
+这个证明可以利用Clifford代数的所谓<span
+class="math inline">\(\ast\)</span>-代数结构（见附录？？），也可以利用下面对Clifford代数的分解结果直接验证。
+进一步地，利用其<span
+class="math inline">\(\ast\)</span>-代数结构，可以证明它的每个表示都是幺正的，即可以选取一组基底，使得<span
+class="math inline">\(\Gamma_a\)</span>和<span
+class="math inline">\(\tilde\Gamma_a\)</span>都是幺正矩阵。
+表示的幺正性是构造上节中的狄拉克哈密顿量所必须的。</p>
+<h3 id="一些张量积结构">一些张量积结构</h3>
+<p>接下来，我们给出一些不同<span
+class="math inline">\(q,p\)</span>的Clifford代数之间的关系。</p>
+<p>首先，我们有如下结论： <span
+class="math display">\[\mathrm{Cl}^{q+1,p+1}\simeq\mathrm{Cl}^{q,p}\otimes\mathrm{Cl}^{1,1}.
+\]</span> 这个同构关系可以直接验证： <span
+class="math display">\[e_i\mapsto e_i\otimes \tilde ee,
+e_{q+1}\mapsto 1\otimes e,
+\tilde e_{p+1}\mapsto 1\otimes\tilde e.
+\]</span> 由此，可以得到<span class="math inline">\(A^{q,p}\simeq
+A^{q+1, p+1}\)</span>。 这个结论可以直观地理解为：一个平方为<span
+class="math inline">\(+1\)</span>的生成元可以“抵消”一个平方为<span
+class="math inline">\(-1\)</span>的生成元。 因此，<span
+class="math inline">\(A^{q,p}\)</span>只依赖于<span
+class="math inline">\(q\)</span>与<span
+class="math inline">\(p\)</span>的差。</p>
+<p>其次，我们有： <span
+class="math display">\[\mathrm{Cl}^{q+8,0}\simeq\mathrm{Cl}^{q,0}\otimes
+M_{16}(\mathbb R).\]</span> 由此可以推出：<span
+class="math inline">\(A^{q,p}\simeq A^{q+8,p}\)</span>。
+这个结果被称为Bott周期律。 利用这个结论，即使当<span
+class="math inline">\(q&lt;0\)</span>时，我们也可以将<span
+class="math inline">\(A^{q,0}\)</span>定义为<span
+class="math inline">\(A^{q+8n,0}\)</span>。 因此，我们可以放心地将<span
+class="math inline">\(A^{q,p}\)</span>写成<span
+class="math inline">\(A^{q-p}\)</span>； 后者只依赖于<span
+class="math inline">\(q-p\)</span>模8的余数。</p>
+<p>类似地，对于复Clifford代数： <span class="math display">\[\mathbb
+C\mathrm l^{q+2}\simeq\mathbb C\mathrm l^q\otimes M_2(\mathbb
+C).\]</span> 因此相应的Bott周期律周期为2。</p>
+<h3 id="拓扑分类的结果">拓扑分类的结果</h3>
+<p>最后，我们（不加证明地）给出<span
+class="math inline">\(\mathrm{Cl}^{q,0}\)</span>的Artin-Wedderburn分解和相应的<span
+class="math inline">\(A^q\)</span>的结果：</p>
+<div id="tbl:classification:NA" class="tablenos">
+<table id="tbl:classification:NA">
+<caption><span>Table 1:</span> 实Clifford代数的表示 </caption>
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 40%" />
+<col style="width: 46%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(q\)</span></th>
+<th><span class="math inline">\(\mathrm{Cl}^{q,0}\)</span></th>
+<th><span class="math inline">\(N(\mathrm{Cl}^{q,0})\)</span></th>
+<th><span class="math inline">\(A^q\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(\mathbb C\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><span class="math inline">\(\mathbb H\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><span class="math inline">\(\mathbb H\oplus\mathbb H\)</span></td>
+<td><span class="math inline">\(\mathbb Z\oplus\mathbb Z\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><span class="math inline">\(M_2(\mathbb H)\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><span class="math inline">\(M_4(\mathbb C)\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><span class="math inline">\(M_8(\mathbb R)\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><span class="math inline">\(M_8(\mathbb R)\oplus M_8(\mathbb
+R)\)</span></td>
+<td><span class="math inline">\(\mathbb Z\oplus\mathbb Z\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><span class="math inline">\(M_{16}(\mathbb R)\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>类似地，对于复Clifford代数：</p>
+<div id="tbl:classification:NAc" class="tablenos">
+<table id="tbl:classification:NAc">
+<caption><span>Table 2:</span> 实Clifford代数的表示 </caption>
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 40%" />
+<col style="width: 46%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(q\)</span></th>
+<th><span class="math inline">\(\mathbb C \mathrm l^q\)</span></th>
+<th><span class="math inline">\(N(\mathbb C \mathrm l^q)\)</span></th>
+<th><span class="math inline">\(\mathbb A^q\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(\mathbb C\oplus\mathbb C\)</span></td>
+<td><span class="math inline">\(\mathbb Z\oplus\mathbb Z\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><span class="math inline">\(M_2(\mathbb C)\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>由此，我们可以得到十重态的分类结果</p>
+<div id="tbl:classification:10" class="tablenos">
+<table id="tbl:classification:10" style="width:100%;">
+<caption><span>Table 3:</span> 十种对称性类型的拓扑分类。 </caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 23%" />
+<col style="width: 6%" />
+<col style="width: 13%" />
+<col style="width: 6%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>对称性类型</th>
+<th>系数类型</th>
+<th><span class="math inline">\(q\)</span></th>
+<th>d=0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td><span class="math inline">\(\mathbb C\)</span></td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>AIII</td>
+<td><span class="math inline">\(\mathbb C\)</span></td>
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>DIII</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>1</td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+</tr>
+<tr class="odd">
+<td>AII</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>2</td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+</tr>
+<tr class="even">
+<td>CII</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>3</td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>CI</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+</tr>
+<tr class="odd">
+<td>AI</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>6</td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>BDI</td>
+<td><span class="math inline">\(\mathbb R\)</span></td>
+<td>7</td>
+<td><span class="math inline">\(\mathbb Z_2\)</span></td>
+<td><span class="math inline">\(\mathbb Z\)</span></td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</body>
+</html>

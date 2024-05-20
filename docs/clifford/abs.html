@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>狄拉克哈密顿量与ABS构造</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">狄拉克哈密顿量与ABS构造</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>费米子拓扑分类的十重态</li>
+        <li>狄拉克哈密顿量与ABS构造</li>
+      </ul>
+</nav>
+<p>在第5章中，我们讲解了自由费米子的十种对称类型。 一般地，一个<span
+class="math inline">\(d\)</span>维的费米子能带（对于我们关心的物理体系，<span
+class="math inline">\(d=0,1,2,3\)</span>）可以用一个一次量子化的哈密顿量<span
+class="math inline">\(H(k)\)</span>以及费米能（化学势）<span
+class="math inline">\(\mu\)</span>给出： <span
+class="math inline">\(H(k)\)</span>的所有<span
+class="math inline">\(满足E_{k\alpha}&lt;\mu\)</span>的波函数组成的占据态能带（导带）就是我们关心的能带。
+自然地，我们要求<span class="math inline">\(\mu\)</span>位于一个能隙内。
+我们一般取<span
+class="math inline">\(\mu=0\)</span>：对于绝缘体，总可以调整能量零点使得<span
+class="math inline">\(\mu=0\)</span>；对于超导体的BdG哈密顿量，物理上有意义的情形就是<span
+class="math inline">\(\mu=0\)</span>。</p>
+<p>在十种对称性类型中，我们要求哈密顿量<span
+class="math inline">\(H(k)\)</span>具备时间反演对称性<span
+class="math inline">\(\mathcal T+U_T\mathcal
+K\)</span>、粒子空穴对称性<span class="math inline">\(\mathcal
+C=U_C\mathcal K\)</span>及手征对称性<span
+class="math inline">\(S\)</span>（其中<span
+class="math inline">\(\mathcal
+K\)</span>为复共轭操作，即一个实结构；<span
+class="math inline">\(U_T\)</span>和<span
+class="math inline">\(U_C\)</span>为幺正矩阵）。
+它们对哈密顿量的约束为： <span id="eq:abs:THT" class="eqnos"><span
+class="math display">\[H(k)=\mathcal T H(-k)\mathcal T^{-1} =
+U_TH(-k)^\ast U_T^{-1};
+\]</span><span class="eqnos-number">(1)</span></span>
+<span id="eq:abs:CHC" class="eqnos"><span
+class="math display">\[H(k)=-\mathcal CH(-k)\mathcal
+C^{-1}=-U_CH(-k)^\ast U_C^{-1};
+\]</span><span class="eqnos-number">(2)</span></span>
+<span id="eq:abs:SHS" class="eqnos"><span
+class="math display">\[H(k)=-SH(k)S^{-1}.
+\]</span><span class="eqnos-number">(3)</span></span> </p>
+<h2 id="纤维丛分类和abs构造">纤维丛分类和ABS构造</h2>
+<p>如第6章中所述，费米子能带的拓扑分类问题可以描述为数学中纤维丛的分类问题。
+其中，对称类型A和D分别对应复纤维丛和实纤维丛的分类问题。
+严格地说，这里我们考虑的是底空间为球面，而非环面上的纤维丛问题。
+这对应于前文中阐述的去掉弱拓扑态的拓扑分类。
+此外，对称类型D对应的是数学中纤维丛分类的KR理论而非KO理论：
+这是因为粒子空穴对称性会把动量反号，因此它对应一个会将底空间坐标反号的复共轭操作。
+这些细节供读者查阅数学文献时参考，我们下文中并不会仔细讨论KR或KO理论。</p>
+<p>在物理理论中，解决费米子能带拓扑分类问题的一个重要思路是利用狄拉克费米子哈密顿量来构造各种拓扑非平庸的能带。
+对于对称类型A和D，数学上有被称为ABS构造（Atiyah-Bott-Shapiro
+construction）的理论，可以给出相应的纤维丛分类中每个等价类的一个代表元；这些代表元翻译成物理的语言，都具有狄拉克费米子哈密顿量的形式。
+因此，对于这两个对称性类型，可以严格地证明能带的各种拓扑等价类都可以利用狄拉克费米子构造。
+对于其它的八个对称类型，物理文献中普遍认为能带的各种拓扑等价类也可以利用狄拉克费米子构造（即不存在超越狄拉克费米子的新的拓扑分类）；但是这个结果在文献中并没有严格的数学证明。</p>
+<h2 id="狄拉克哈密顿量">狄拉克哈密顿量</h2>
+<p>接下来，我们给出狄拉克费米子哈密顿量的一般形式。 对于<span
+class="math inline">\(d\)</span>维系统，这些哈密顿量具有如下形式：
+<span id="eq:abs:H-D" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=
+\sum_{a=1}^d k_a\tilde\Gamma_a+im\Gamma_0;
+\]</span><span class="eqnos-number">(4)</span></span> 其中<span
+class="math inline">\(\tilde\Gamma_a\)</span>和<span
+class="math inline">\(\Gamma_0\)</span>是相互反对易的实正交矩阵，且满足<span
+class="math inline">\(\Gamma_0^2=-1\)</span>、<span
+class="math inline">\(\tilde\Gamma_a^2=+1\)</span>。
+这些反对易关系保证了<span
+class="math inline">\(H(k)^2=k^2+m^2\)</span>，因此这是一个有能隙的狄拉克哈密顿量。
+此外，<span class="math inline">\(\Gamma_0\)</span>和<span
+class="math inline">\(\tilde\Gamma_a\)</span>的正交性质保证了它们分别为反对称和对称实矩阵。
+这进一步保证了<span class="math inline">\(H(\boldsymbol
+k)\)</span>是一个厄米矩阵。</p>
+<p>我们注意到(<a
+href="#eq:abs:H-D">5</a>)中包含一个粒子空穴对称性：<span
+class="math inline">\(\mathcal C=\mathcal K\)</span>，其中<span
+class="math inline">\(\mathcal K\)</span>代表复共轭操作。
+容易看出，复共轭操作会将质量项<span
+class="math inline">\(im\Gamma_0\)</span>反号，而保持<span
+class="math inline">\(k_a\tilde\Gamma_a\)</span>不变。 由此不难验证<span
+class="math inline">\(\mathcal C=\mathcal K\)</span>满足(<a
+href="#eq:abs:CHC">2</a>)的要求。 这是一个<span
+class="math inline">\(\mathcal C^2=+1\)</span>的粒子空穴对称性。
+因此，(<a
+href="#eq:abs:H-D">5</a>)式是一个对称类型D的狄拉克哈密顿量。</p>
+<p>我们注意到，这样一个类型D的狄拉克哈密顿量可以用<span
+class="math inline">\(d\)</span>个平方为+1和1个平方为<span
+class="math inline">\(-1\)</span>的Clifford代数生成元表示出来。
+因此，类型D的狄拉克哈密顿量对应<span
+class="math inline">\(\mathrm{Cl}^{1,d}\)</span>的一个表示。</p>
+<h3 id="质量项反号与拓扑非平庸能带">质量项反号与拓扑非平庸能带</h3>
+<h2
+id="不同对称性类型的狄拉克哈密顿量">不同对称性类型的狄拉克哈密顿量</h2>
+<p>接下来，我们论证实的8种对称类型可以依次通过在上述Clifford代数<span
+class="math inline">\(\mathrm{Cl}^{1,d}\)</span>中加入一个个平方为<span
+class="math inline">\(-1\)</span>的生成元得到，即它们对应<span
+class="math inline">\(\mathrm{Cl}^{q+1,d}\)</span>的表示（<span
+class="math inline">\(q\)</span>为第5.4节表格1中的编号）。</p>
+<h3 id="类型diii">类型DIII</h3>
+<p>加入一个平方为<span class="math inline">\(-1\)</span>的生成元<span
+class="math inline">\(\Gamma_1\)</span>之后，我们可以定义时间反演对称性<span
+class="math inline">\(\mathcal T=\Gamma_1\mathcal K\)</span>。
+容易验证，它满足(<a href="#eq:abs:THT">1</a>)式的要求。 并且<span
+class="math inline">\(\mathcal T^2=\Gamma_1^2=-1\)</span>。
+因此，这是对称类型DIII。</p>
+<h3 id="类型aii">类型AII</h3>
+<p>接下来，我们论证再加入一个平方为<span
+class="math inline">\(-1\)</span>的生成元<span
+class="math inline">\(\Gamma_2\)</span>之后会得到类型AII的狄拉克哈密顿量。
+乍一看这有点奇怪：因为AII的对称性比DIII要低：其中少了一个粒子空穴对称性。
+为什么增加了一个生成元之后，对称性反而变少了呢？
+事实上，这是因为在之前的构造中，我们一直从外面引入了一个额外的虚数单位<span
+class="math inline">\(i\)</span>； 从AII起，我们不再需要引入额外的<span
+class="math inline">\(i\)</span>，而是利用<span
+class="math inline">\(\Gamma_1\Gamma_2\)</span>作为虚数单位<span
+class="math inline">\(i\)</span>： 注意这是一个平方为<span
+class="math inline">\(-1\)</span>的反对称矩阵，且它与哈密顿量里的<span
+class="math inline">\(\Gamma_0\)</span>和<span
+class="math inline">\(\tilde\Gamma_a\)</span>都对易。
+因此，它的代数性质和<span
+class="math inline">\(i\)</span>一样，完全可以当成后者使用。
+这样，原本与<span class="math inline">\(i\)</span>相关的<span
+class="math inline">\(\mathcal K\)</span>就不再存在了；相应地，<span
+class="math inline">\(\mathcal C=\mathcal
+K\)</span>也就不再是一个对称性。 此时，<span
+class="math inline">\(\mathcal T=\Gamma_1\)</span>与<span
+class="math inline">\(i=\Gamma_1\Gamma_2\)</span>反对易，因此是一个反幺正对称性；
+且它满足(<a href="#eq:abs:THT">1</a>)式。 因此，它是一个满足<span
+class="math inline">\(\mathcal
+T^2=\Gamma_1^2=-1\)</span>的时间反演对称性。
+相应地，这个对称性类型是AII。</p>
+<h3 id="类型cii">类型CII</h3>
+<p>接下来这个类型比较简单：再加入<span
+class="math inline">\(\Gamma_3\)</span>之后，<span
+class="math inline">\(\mathcal
+C=\Gamma_1\Gamma_3\)</span>是一个粒子空穴对称性，且<span
+class="math inline">\(\mathcal C^1=-1\)</span>。 因此这是类型CII。</p>
+<h3 id="类型c">类型C</h3>
+<p>接下来，我们遇到和DIII到AII时类似的情况：增加一个生成元<span
+class="math inline">\(\Gamma_4\)</span>之后，对称性反而变少了。
+这是因为此时我们可以定义算符<span
+class="math inline">\(P=\Gamma_1\Gamma_2\Gamma_3\Gamma_4\)</span>。
+容易验证，<span class="math inline">\(P\)</span>是一个满足<span
+class="math inline">\(P^2=1\)</span>的对称矩阵，且与哈密顿量对易。
+因此，我们可以将希尔伯特空间按<span
+class="math inline">\(P\)</span>的本征值分成<span
+class="math inline">\(P=\pm1\)</span>的两个子空间。 由于<span
+class="math inline">\(\Gamma_1\)</span>与<span
+class="math inline">\(P\)</span>反对易，它的存在会保证<span
+class="math inline">\(P=\pm1\)</span>的两个子空间同构。
+因此，我们只需要考虑<span
+class="math inline">\(P=1\)</span>的子空间就够了。
+（此处子空间中哈密顿量的写法类似第5.5节中，类型C的BdG哈密顿量中只写自旋向上的电子和自旋向下的空穴）。
+在这个子空间中，<span
+class="math inline">\(\Gamma_1\Gamma_2\Gamma_3\Gamma_4=1\)</span>，因此我们可以认为<span
+class="math inline">\(\Gamma_4=-\Gamma_1\Gamma_2\Gamma_3\)</span>不再是一个独立的生成元。
+同时在投影后的子空间中，我们只能用和<span
+class="math inline">\(P\)</span>对易的算符来构造对称性操作（和<span
+class="math inline">\(P\)</span>反对易的算符会映到<span
+class="math inline">\(P=-1\)</span>的子空间中去，因此不是<span
+class="math inline">\(P=+1\)</span>子空间上的对称性操作）。
+我们还是用<span class="math inline">\(\Gamma_1\Gamma_2\)</span>作为<span
+class="math inline">\(i\)</span>； 此时反幺正对称性只有<span
+class="math inline">\(\mathcal
+C=\Gamma_1\Gamma_3=-\Gamma_2\Gamma_4\)</span>；它满足<span
+class="math inline">\(\mathcal C^2=-1\)</span>。 因此这是类型C。</p>
+<h3 id="类型ci">类型CI</h3>
+<p>增加<span
+class="math inline">\(\Gamma_5\)</span>之后，我们可以构造<span
+class="math inline">\(\mathcal T=\Gamma_1\Gamma_3\Gamma_5\)</span>；
+它满足<span class="math inline">\(\mathcal T^2=1\)</span>。
+因此这是类型CI。</p>
+<h3 id="类型ai">类型AI</h3>
+<p>增加<span
+class="math inline">\(\Gamma_6\)</span>之后，我们又遇到了对称性减少的情形。
+此时，我们又有了一个算符<span
+class="math inline">\(Q=\Gamma_1\Gamma_2\Gamma_5\Gamma_6\)</span>。
+我们可以投影到<span class="math inline">\(P=Q=+1\)</span>的子空间。
+在这个子空间上，对称性只有<span class="math inline">\(\mathcal
+T=\Gamma_1\Gamma_3\Gamma_5\)</span>。 故这是类型AI。</p>
+<h3 id="类型bdi">类型BDI</h3>
+<p>最后，增加<span
+class="math inline">\(\Gamma_7\)</span>之后，我们有<span
+class="math inline">\(\mathcal
+T=\Gamma_1\Gamma_3\Gamma_5\)</span>和<span
+class="math inline">\(\mathcal
+C=\Gamma_1\Gamma_3\Gamma_5\Gamma_7\)</span>。 它们满足<span
+class="math inline">\(\mathcal T^2=\mathcal
+C^2=1\)</span>。故这是类型BDI。</p>
+<p>综上所述，第5.4节表格1中编号为<span
+class="math inline">\(q\)</span>的实对称类型的狄拉克哈密顿量可以用<span
+class="math inline">\(\mathrm{Cl}^{q+1, d}\)</span>的正交表示得到。</p>
+<h3 id="复对称类型">复对称类型</h3>
+<p>对于没有反幺正对称性的两个复对称类型，情况要简单得多。
+此时，我们可以用一般的复厄米矩阵构造狄拉克哈密顿量：
+<span id="eq:abs:H-D" class="eqnos"><span
+class="math display">\[H(\boldsymbol k)=
+\sum_{a=1}^d k_a\Gamma_a+m\Gamma_0;
+\]</span><span class="eqnos-number">(5)</span></span> 此时复<span
+class="math inline">\(\Gamma\)</span>-矩阵满足 <span
+class="math display">\[\{\Gamma_a, \Gamma_b\}=2\delta_{ab}.\]</span>
+因此，它们构成复Clifford代数<span class="math inline">\(\mathbb C\mathrm
+l^{d+1}\)</span>的表示 （对于复Clifford代数，不需要区分平方等于<span
+class="math inline">\(\pm1\)</span>的生成元）。
+这构成对称类型A的狄拉克哈密顿量（即没有任何对称性）。</p>
+<p>在此基础上，增加一个复Clfford代数生成元<span
+class="math inline">\(\Gamma_{d+1}\)</span>。
+此时，我们就得到了手征对称性<span
+class="math inline">\(S=\Gamma_{d+1}\)</span>；它满足(<a
+href="#eq:abs:SHS">3</a>)的条件。 因此，<span
+class="math inline">\(\mathbb C\mathrm
+l^{d+2}\)</span>的表示可以用来构造对称类型AIII的狄拉克哈密顿量。</p>
+<p>综上所述，第5.4节表格1中编号为<span
+class="math inline">\(q\)</span>的复对称类型的狄拉克哈密顿量可以用<span
+class="math inline">\(\mathbb C\mathrm
+l^{q+d+1}\)</span>的幺正表示得到。</p>
+</body>
+</html>
