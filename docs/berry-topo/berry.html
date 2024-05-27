@@ -275,7 +275,7 @@ href="#eq:def-A1">2</a>)改写为 <span class="math display">\[\Phi =
 class="math inline">\(C\)</span>上，一系列无穷小的幺正演化<span
 class="math inline">\(\exp[i\Delta\boldsymbol x\cdot\mathcal
 A(\boldsymbol x)]\)</span>的连乘。 因此，当贝里联络为(<a
-href="#eq:def-An">3</a>)式中的矩阵时，我们也可以考虑无穷小的幺正演化<span
+href="#eq:def-An">7</a>)式中的矩阵时，我们也可以考虑无穷小的幺正演化<span
 class="math inline">\(\exp[i\Delta\boldsymbol x\cdot\mathcal
 A(\boldsymbol x)]\)</span>的连乘。 此时，该幺正矩阵表示从<span
 class="math inline">\(\boldsymbol x\)</span>点的基态子空间到<span
@@ -343,6 +343,68 @@ class="math inline">\(+1\)</span>。
 <p>由于本书中主要讨论的是动量空间上的贝里相位和贝里联络，在本节的剩余部分我们将把参数<span
 class="math inline">\(\boldsymbol x\)</span>写成动量<span
 class="math inline">\(\boldsymbol k\)</span>。</p>
+<h2 id="能带理论回顾">能带理论回顾</h2>
+<p>在本节中，我们简要地回顾与能带有关的若干概念，特别是布洛赫定理和布洛赫波函数的概念。
+其中关于元胞周期性波函数的选取的问题对于后面章节中定义贝里联络、电荷泵浦等概念非常关键。</p>
+<p>首先，我们回顾固体物理中的布洛赫（Bloch）定理：
+晶体哈密顿量的本征态可以用准动量<span class="math inline">\(\boldsymbol
+k\)</span>标记，并且满足如下的平移变换性质：
+<span id="eq:berry:bloch-thm" class="eqnos"><span
+class="math display">\[\langle \boldsymbol r+\boldsymbol
+R|\psi[\boldsymbol k]\rangle
+=e^{i\boldsymbol k\cdot\boldsymbol R}
+\langle \boldsymbol r|\psi[\boldsymbol k]\rangle,
+\]</span><span class="eqnos-number">(6)</span></span> 其中<span
+class="math inline">\(\boldsymbol R\)</span>是晶体的一个晶格矢量。
+这里<span class="math inline">\(\langle \boldsymbol r|\psi[\boldsymbol
+k]\rangle\)</span>就是相应的本征态波函数<span
+class="math inline">\(\psi[\boldsymbol k](\boldsymbol r)\)</span>。
+不难看出，上述布洛赫定理就是前文第2.2节中讲解的，<span
+class="math inline">\(|\psi[\boldsymbol
+k]\rangle\)</span>构成平移对称群的一维表示的直接推论。</p>
+<p>我们注意到，布洛赫定理表明虽然晶体哈密顿量的本征态波函数是一个延展（extended）的波函数，它在每个元胞里的振幅是一样的。
+但是，它在不同元胞里的取值是由(<a
+href="#eq:berry:bloch-thm">6</a>)相互关联的。
+因此，在数学上，我们可以将能带中的波函数认为是定义在一个元胞里的波函数。
+特别地，如果<span class="math inline">\(\boldsymbol R=\boldsymbol
+a_i\)</span>是一个晶格基矢， (<a
+href="#eq:berry:bloch-thm">6</a>)表明波函数<span
+class="math inline">\(\langle \boldsymbol r|\psi[\boldsymbol
+k]\rangle\)</span>满足如下的边条件： <span
+class="math display">\[\langle \boldsymbol r+\boldsymbol
+a_i|\psi[\boldsymbol k]\rangle
+=e^{ik_i}\langle \boldsymbol r|\psi[\boldsymbol k]\rangle.\]</span>
+这不是一个很方便使用的边界条件。
+特别地，这会导致不同准动量上的波函数满足不同的边界条件，从而隶属于不同的希尔伯特空间
+<span class="math display">\[\mathcal H_k:=\{f\in
+L^2(V_{\text{uc}})|f(\boldsymbol r+\boldsymbol
+a_i)=e^{ik_i}f(\boldsymbol r)\}.\]</span> 而一般地，<span
+class="math inline">\(\mathcal H_k\neq\mathcal H_{k&#39;}\)</span>。
+这种复杂性会带来很多麻烦，例如下面定义贝里联络时我们需要取波函数对动量的导数；
+而严格意义上讲，当不同动量的波函数分属不同函数空间时，我们无法定义导数操作。</p>
+<p>为了解决这一问题，我们可以改用固体物理中常用的布洛赫波函数<span
+class="math inline">\(|u[\boldsymbol k]\rangle\)</span>。
+它和原始的波函数相差一个幺正变换<span
+class="math inline">\(e^{-i\boldsymbol k\cdot\hat{\boldsymbol
+r}}\)</span>： <span class="math display">\[|u[\boldsymbol
+k]\rangle=e^{-i\boldsymbol k\cdot\hat{\boldsymbol r}}|\psi[\boldsymbol
+k]\rangle.\]</span> 这个布洛赫波函数满足周期性边条件： <span
+class="math display">\[\langle \boldsymbol r+\boldsymbol
+a_i|u[\boldsymbol k]\rangle
+=\langle \boldsymbol r|u[\boldsymbol k]\rangle.\]</span>
+由于布洛赫波函数可以通过原始波函数进行幺正变换得到，它对应的能带哈密顿量<span
+class="math inline">\(H(\boldsymbol
+k)\)</span>也可以通过原始的能带哈密顿量<span
+class="math inline">\(\tilde H(\boldsymbol k)\)</span>得到： <span
+class="math display">\[H(\boldsymbol k)=e^{-i\boldsymbol
+k\cdot\boldsymbol r}\tilde H(\boldsymbol k)e^{i\boldsymbol
+k\cdot\boldsymbol r}.\]</span>
+在本书中，我们均使用布洛赫波函数以及相应的能带哈密顿量。</p>
+<p>特别地，在定义布里渊区上的贝里联络时，我们应当采用布洛赫波函数：
+<span id="eq:def-An" class="eqnos"><span class="math display">\[\mathcal
+A(\boldsymbol k)_{\alpha\beta} = i\langle u[\boldsymbol k]_\alpha|
+\frac\partial{\partial\boldsymbol k}|u[\boldsymbol k]_\beta\rangle.
+\]</span><span class="eqnos-number">(7)</span></span> </p>
 <h2 id="贝里联络的规范变换">贝里联络的规范变换</h2>
 <p>在量子力学中，我们熟知一个波函数的绝对相位是无法被直接观测的，因而并不具有真实的物理意义；两个量子态的相对相位，或者量子态的相位变化才能够通过干涉效应转化成可观测的几率等物理量，从而具有真实的物理意义。
 数学上，这体现在我们可以重新定义波函数的相位：<span
@@ -351,14 +413,14 @@ e^{i\theta}|\psi\rangle\)</span>，而不产生可观测的物理效应。
 对于非简并基态的贝里联络，由于不同参数<span
 class="math inline">\(\boldsymbol k\)</span>对应不同的哈密顿量<span
 class="math inline">\(H[\boldsymbol k]\)</span>以及不同的基态波函数<span
-class="math inline">\(|\psi[\boldsymbol
+class="math inline">\(|u[\boldsymbol
 k]\rangle\)</span>，我们可以对不同的<span
 class="math inline">\(\boldsymbol k\)</span>选择不同的相位<span
 class="math inline">\(\theta\)</span>：
 <span id="eq:berry:gauge-transf-u1" class="eqnos"><span
-class="math display">\[|\psi[\boldsymbol k]\rangle\mapsto
-e^{i\theta(\boldsymbol k)}|\psi[\boldsymbol k]\rangle.
-\]</span><span class="eqnos-number">(6)</span></span>
+class="math display">\[|u[\boldsymbol k]\rangle\mapsto
+e^{i\theta(\boldsymbol k)}|u[\boldsymbol k]\rangle.
+\]</span><span class="eqnos-number">(8)</span></span>
 这对应于在参数空间上的一个局域的U(1)相位变换，因此被称为一个U(1)规范变换。</p>
 <p>从贝里联络的定义不难看出，它并不是一个规范不变的量。直观地看，这是因为其定义中涉及到基态波函数对参数<span
 class="math inline">\(\boldsymbol
@@ -383,15 +445,15 @@ k_1\)</span>时，等式右端的两个相位相互抵消，因而<span
 class="math inline">\(\gamma\)</span>具有规范不变性。</p>
 <p>对于简并基态（即高维子空间）的贝里联络，其规范变换的性质要更复杂一些。
 类似于(<a
-href="#eq:berry:gauge-transf-u1">6</a>)，我们可以对基底做一个规范变换；但是此时我们不仅可以给每个基底加上一个任意的相位，而且可以在这<span
+href="#eq:berry:gauge-transf-u1">8</a>)，我们可以对基底做一个规范变换；但是此时我们不仅可以给每个基底加上一个任意的相位，而且可以在这<span
 class="math inline">\(n\)</span>个基底之间做任意的幺正变换。
 因此，我们可以进行任意的<span
 class="math inline">\(U(n)\)</span>规范变换：
 <span id="eq:berry:gauge-transf-un" class="eqnos"><span
-class="math display">\[|\psi[\boldsymbol
-k]_\alpha\rangle\mapsto|\psi[\boldsymbol k]_\beta\rangle U[\boldsymbol
+class="math display">\[|u[\boldsymbol
+k]_\alpha\rangle\mapsto|u[\boldsymbol k]_\beta\rangle U[\boldsymbol
 k]_{\beta\alpha},
-\]</span><span class="eqnos-number">(7)</span></span> 其中<span
+\]</span><span class="eqnos-number">(9)</span></span> 其中<span
 class="math inline">\(U[\boldsymbol k]\in
 U(n)\)</span>是一个依赖于准动量<span class="math inline">\(\boldsymbol
 k\)</span>的幺正矩阵。
@@ -409,12 +471,12 @@ U^{-1}\)</span>，我们可以将上式的第二项改写成如下形式：
 <span id="eq:berry:gauge-transf-An" class="eqnos"><span
 class="math display">\[\mathcal A\mapsto U^\dagger\mathcal A U +
 i\frac{\partial}{\partial\boldsymbol k}\ln U.
-\]</span><span class="eqnos-number">(8)</span></span> </p>
+\]</span><span class="eqnos-number">(10)</span></span> </p>
 <p>接下来，我们需要推导(<a
 href="#eq:def-Phi">5</a>)式中定义的和乐矩阵的规范变换性质。
 我们首先讨论对贝里联络<span class="math inline">\(\mathcal
 A\)</span>取迹后在(<a href="#eq:def-gn">4</a>)式中得到的标量相位。 对(<a
-href="#eq:berry:gauge-transf-An">8</a>)式取迹之后，第一项中的基底变换就消失了（因为矩阵的迹与基底无关），我们得到：
+href="#eq:berry:gauge-transf-An">10</a>)式取迹之后，第一项中的基底变换就消失了（因为矩阵的迹与基底无关），我们得到：
 <span class="math display">\[\mathrm{tr}\;\mathcal
 A\mapsto\mathrm{tr}\,\mathcal A+i\frac{\partial}{\partial\boldsymbol
 k}\ln\det U.\]</span> 注意到这里我们用到了矩阵的一个性质：<span
@@ -430,7 +492,7 @@ class="math inline">\(e^{i\gamma}=\det\Phi\)</span>也是规范不变的。</p>
 href="#eq:def-Phi">5</a>)式中定义的和乐矩阵，我们需要考虑其中每个无穷小幺正矩阵<span
 class="math inline">\(\exp[i\Delta\boldsymbol x\cdot\mathcal
 A(\boldsymbol k)]\)</span>的规范变换性质。 将(<a
-href="#eq:berry:gauge-transf-An">8</a>)式中的规范变换带入无穷小幺正矩阵，并保留到<span
+href="#eq:berry:gauge-transf-An">10</a>)式中的规范变换带入无穷小幺正矩阵，并保留到<span
 class="math inline">\(\Delta\boldsymbol
 k\)</span>的一阶，我们得到如下的规范变换： <span
 class="math display">\[e^{i\Delta\boldsymbol k\cdot\mathcal

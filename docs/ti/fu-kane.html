@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>贝里联络与Fu-Kane不变量</title>
+  <style>
+    html {
+      line-height: 2;
+      font-family: “Helvetica Neue”, Helvetica, Arial, “PingFang SC”,
+    “Microsoft Yahei”,“Hiragino Sans GB”,“Heiti SC”,“WenQuanYi Micro
+    Hei”,sans-serif;;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 1em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+    figure {
+      text-align: center;
+    }
+    .breadcrumb ul {
+        display: flex;
+        list-style: none;
+    }
+
+    .breadcrumb li::before {
+        content: "\00a0/\00a0";
+    }
+
+    .breadcrumb li:first-child::before {
+        content: "";
+    }  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  
+  <!-- pandoc-eqnos: equation style -->
+  <style>
+    .eqnos { display: inline-block; position: relative; width: 100%; }
+    .eqnos br { display: none; }
+    .eqnos-number { position: absolute; right: 0em; top: 50%; line-height: 0; }
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">贝里联络与Fu-Kane不变量</h1>
+</header>
+<nav class="breadcrumb">
+  <ul>
+        <li>二维和三维拓扑绝缘体</li>
+        <li>贝里联络与Fu-Kane不变量</li>
+      </ul>
+</nav>
+<h2 id="维拓扑绝缘体的不变量">2维拓扑绝缘体的不变量</h2>
+<p>在前面6.3节中，我们看到，对于2维陈绝缘体（对称类型为A的绝缘体），其拓扑不变量陈数反映了对全局基底存在性的一种阻碍（obstruction）。
+对于二维拓扑绝缘体，我们可以用类似的思路构造其拓扑不变量。</p>
+<h3 id="基底与时间反演变换">基底与时间反演变换</h3>
+<p>二维拓扑绝缘体，即对称类型为AII的绝缘体，具有<span
+class="math inline">\(\mathcal T^2=-1\)</span>的时间反演对称性。
+如前所述，由于陈数在时间反演下反号，因此一个拓扑绝缘体的陈数一定为零。
+因此，我们一定可以取一组随动量光滑变化的全局基底。
+在此基础上，我们如何判断它是不是拓扑非平庸的拓扑绝缘体呢？
+鉴于时间反演对称性在拓扑绝缘体中的重要地位，我们猜想其拓扑不变量应该与时间反演对称性有关。
+事实上，我们可以试图取一组与时间反演对称性相容的全局基底；对于这种基底存在性的阻碍就构成了拓扑绝缘体的拓扑不变量。
+我们注意到，如果不考虑自旋轨道耦合，电子态可以用自旋量子数<span
+class="math inline">\(s^z=\uparrow,\downarrow\)</span>标记；而时间反演对称性的作用形式为<span
+class="math inline">\(\mathcal T=i\sigma^y\mathcal K\)</span>，
+即我们可以取定一组布洛赫波函数<span class="math inline">\(|u[\boldsymbol
+k]\alpha;s\rangle\)</span>，其中<span
+class="math inline">\(s=\uparrow,\downarrow\)</span>，使得<span
+class="math inline">\(\mathcal T\)</span>的作用形式如下： <span
+class="math display">\[\mathcal T|u[\boldsymbol k]\alpha\uparrow\rangle=
+|u[-\boldsymbol k]\alpha\downarrow\rangle;
+\mathcal T|u[\boldsymbol k]\alpha\downarrow\rangle=
+-|u[-\boldsymbol k]\alpha\uparrow\rangle.\]</span>
+在考虑了自旋轨道耦合之后，<span
+class="math inline">\(s^z\)</span>不再是好量子数，因而时间反演对称性的作用形式不能再用<span
+class="math inline">\(s^z=\uparrow,\downarrow\)</span>标记。
+但是，如果只考虑一对动量点<span class="math inline">\(\pm\boldsymbol
+k\)</span>，我们仍然可以取定一组基底<span
+class="math inline">\(|u[\boldsymbol
+k]\alpha;s\rangle\)</span>，其中<span
+class="math inline">\(s=1,2\)</span>，使得
+<span id="eq:fu-kane:trs" class="eqnos"><span
+class="math display">\[\mathcal T|u[\boldsymbol k]\alpha1\rangle=
+|u[-\boldsymbol k]\alpha2\rangle;
+\mathcal T|u[\boldsymbol k]\alpha2\rangle=
+-|u[-\boldsymbol k]\alpha1\rangle.
+\]</span><span class="eqnos-number">(1)</span></span> </p>
+<p>接下来，我们试图在整个布里渊区中寻找一组全局基底，使得时间反演对称性具有(<a
+href="#eq:fu-kane:trs">1</a>)式中的形式。
+对这样的全局基底的阻碍就可以给出一个描述非平庸拓扑绝缘体的拓扑不变量。
+为了描述这种阻碍，我们在布里渊区的两个子空间引入两种满足(<a
+href="#eq:fu-kane:trs">1</a>)的基底，并检查二者是否可以衔接起来。
+如图??所示，我们将布里渊区取为<span class="math inline">\(-\pi\leq
+k_{1,2}\leq\pi\)</span>，并将其划分为四个象限，记作<span
+class="math inline">\(\tau_1,\ldots,\tau_4\)</span>。 在<span
+class="math inline">\(\tau_1\)</span>中，我们取定基底<span
+class="math inline">\(A\)</span>：<span
+class="math inline">\(|u[\boldsymbol k] \alpha s\rangle_A\)</span>。
+由于<span
+class="math inline">\(\tau_1\)</span>中的动量在时间反演下变成<span
+class="math inline">\(\tau_3\)</span>中的动量，这样一组基底并不受(<a
+href="#eq:fu-kane:trs">1</a>)式的限制，因而总是可以取到的。
+接下来，(eq:fu-kane:trs)式相应地给出<span
+class="math inline">\(\tau_3\)</span>式中的基底<span
+class="math inline">\(A\)</span>。 因此，我们可以在<span
+class="math inline">\(\tau_1\cup\tau_3\)</span>的区域中建立满足(<a
+href="#eq:fu-kane:trs">1</a>)式的基底<span
+class="math inline">\(A\)</span>。 类似地，我们可以在<span
+class="math inline">\(\tau_2\cup\tau_4\)</span>的区域中建立满足(<a
+href="#eq:fu-kane:trs">1</a>)式的基底<span
+class="math inline">\(B\)</span>。</p>
+<p>需要特别说明的是，我们可以将两种基底的选择扩展到覆盖四个象限的边界（即<span
+class="math inline">\(k_{x,y}=0,\pi\)</span>）的区域上，从而使得这两种基底在这些边界上有所重合（即这些动量点上同时存在AB两种基底）。
+这种重合对于下文定义拓扑不变量十分关键。
+为什么这两种基底可以拓展到四个象限的边界呢？
+在每个象限内部取定基底是非常容易的：因为每个象限的内部构成一个可缩的空间，且不受时间反演对称性约束。
+但是，当拓展到象限边界上时，由于<span
+class="math inline">\(k_{x,y}=0,\pi\)</span>这四条边界在时间反演对称性下映到自身，且它们构成非平庸的闭合环路，因此我们需要担心能带是否具有某些拓扑非平庸的性质，使得上述基底的选择不能光滑地覆盖整个边界区域。
+但是正如前文所述，我们在讨论拓扑能带时，一般总是假设其不包含各种弱拓扑态的结构，即能带的拓扑性质不会在布里渊区的低维子空间上呈现出来，而只会包含于二维布里渊区的整体性质之中。
+因此，排除掉可能的低维弱拓扑态之后，我们就可以假设基底的选择可以拓展到象限的边界上。（事实上，由于1维AII类型分类为零，2维拓扑绝缘体并没有弱拓扑态。）</p>
+<h3 id="绕数不变量">绕数不变量</h3>
+<p>为了刻画布里渊区上能否取定一个满足(<a
+href="#eq:fu-kane:trs">1</a>)式的全局基底，
+我们研究AB两种基底能否以满足(<a
+href="#eq:fu-kane:trs">1</a>)式的形式衔接起来。
+特别地，考虑四个象限之间的边界：
+由于时间反演对称性的约束，只需要考虑其中一半的边界，例如<span
+class="math inline">\(\tau_1\)</span>的边界<span
+class="math inline">\(\partial\tau_1\)</span>。
+如前所述，在这个边界上同时存在AB两组基底。
+我们考虑这两组基底之间的幺正变换：
+<span id="eq:fu-kane:tAB" class="eqnos"><span
+class="math display">\[|u[\boldsymbol k]\alpha s\rangle_A=
+\sum_{\alpha=1}^N\sum_{s=1,2}t^{AB}_{\alpha s; \beta t}
+|u[\boldsymbol k]\beta t\rangle_B,
+\]</span><span class="eqnos-number">(2)</span></span> 其中<span
+class="math inline">\(t^{AB}\in\mathrm U(2N)\)</span>是一个幺正矩阵。
+利用第8章中引入的绕数公式，我们可以计算<span
+class="math inline">\(t^{AB}\)</span>在<span
+class="math inline">\(\partial\tau_1\)</span>上的绕数： <span
+class="math display">\[
+D := \frac1{2\pi i}\oint_{\partial\tau_1}d\boldsymbol k\cdot
+\mathrm{tr}\left[t^{AB}(\boldsymbol k)^{-1}\nabla_kt^{AB}(\boldsymbol
+k)\right].
+\]</span> 这个绕数可以刻画<span
+class="math inline">\(t^{AB}\)</span>在<span
+class="math inline">\(\tau_1\)</span>的边界上是否有非平庸的拓扑性质：如果<span
+class="math inline">\(D=0\)</span>，即可以通过连续变形，将<span
+class="math inline">\(t^{AB}\)</span>在<span
+class="math inline">\(\tau_1\)</span>的边界上处处变为常矩阵，那么这意味着我们可以通过一个全局基底变换将<span
+class="math inline">\(AB\)</span>两组基底统一起来，得到整个布里渊区上一组满足(<a
+href="#eq:fu-kane:trs">1</a>)的全局基底。 反之，<span
+class="math inline">\(D\neq0\)</span>（严格地讲，是<span
+class="math inline">\(D\)</span>模2的余数不为零；关于什么样的<span
+class="math inline">\(D\)</span>是平庸的，我们会在下文继续讨论）则反映了对这样一组基底的阻碍。
+因此，<span
+class="math inline">\(D\)</span>可以作为描述二维绝缘体拓扑性质的不变量。</p>
+<h3 id="fu-kane不变量公式">Fu-Kane不变量公式</h3>
+<p>接下来，我们推导用贝里联络和贝里曲率计算绕数<span
+class="math inline">\(D\)</span>的公式，这个公式在文献中被称为Fu-Kane不变量公式。</p>
+<p>首先，我们注意到(<a href="#eq:fu-kane:tAB">2</a>)式中的幺正矩阵<span
+class="math inline">\(t^{AB}\)</span>是两套基底之间的幺正变换。
+根据6.3节中的推导，<span
+class="math inline">\(t^{AB}\)</span>可以用来描述两套基底对应的贝里联络的变换形式：
+<span class="math display">\[\mathrm{tr}\,\mathcal
+A^B=\mathrm{tr}\,\mathcal A^A
++i\nabla_k\ln\det t^{AB}.\]</span> 其中<span
+class="math inline">\(\mathcal A^{A,B}\)</span>分别代表<span
+class="math inline">\(A,B\)</span>两套基底的贝里联络。 将上式在<span
+class="math inline">\(\partial\tau_1\)</span>上积分，即得到
+<span id="eq:fu-kane:DAB" class="eqnos"><span
+class="math display">\[D=\frac1{2\pi}\oint_{\partial\tau_1}d\boldsymbol
+k\cdot
+\left(\mathrm{tr}\,\mathcal A^B-
+\mathrm{tr}\,\mathcal A^A\right).
+\]</span><span class="eqnos-number">(3)</span></span>
+利用斯托克斯公式，我们得到 <span
+class="math display">\[\frac1{2\pi}\oint_{\partial\tau_1}d\boldsymbol
+k\cdot\mathrm{tr}\,\mathcal A^A=
+\frac1{2\pi}\int_{\tau_1}d^2k\,\mathrm{tr}\mathcal F_{xy}.\]</span>
+注意此处<span class="math inline">\(A\)</span>基底在<span
+class="math inline">\(\tau_1\)</span>内处处有定义，所以可以应用斯托克斯公式。
+在应用该公式时，<span class="math inline">\(\mathcal
+F\)</span>是用基底<span
+class="math inline">\(A\)</span>计算的；但由于贝里曲率是规范不变的，我们无需标记该基底。</p>
+<p>接下来，由于<span class="math inline">\(B\)</span>基底在<span
+class="math inline">\(\tau_2\)</span>内有定义，我们可以在<span
+class="math inline">\(\tau_2\)</span>内使用斯托克斯公式： <span
+class="math display">\[\frac1{2\pi}\oint_{\partial\tau_2}d\boldsymbol
+k\cdot\mathrm{tr}\,\mathcal A^B=
+\frac1{2\pi}\int_{\tau_2}d^2k\,\mathrm{tr}\mathcal F_{xy}.\]</span></p>
+<p>将上述结果代入，我们得到 <span
+class="math display">\[D=\frac1{2\pi}\oint_{\partial\tau_{12}}d\boldsymbol
+k\cdot\mathrm{tr}\mathcal A^{B}
+-\frac1{2\pi}\int_{\tau_{12}}d^2k\mathcal F_{xy},
+\]</span> 其中<span
+class="math inline">\(\tau_{12}=\tau_1\cup\tau_2\)</span>为第一、第二象限的并集。
+在上式中，<span
+class="math inline">\(B\)</span>基底可以取为任意的在<span
+class="math inline">\(\tau_{12}\)</span>边界上满足(<a
+href="#eq:fu-kane:trs">1</a>)的基底。
+这是因为对于任意一组这样的基底，我们总可以将其拓展到<span
+class="math inline">\(\tau_2\)</span>内（<span
+class="math inline">\(\tau_2\cup\partial\tau_{12}\)</span>可以连续收缩到<span
+class="math inline">\(\partial\tau_{12}\)</span>上），因而总可以当成<span
+class="math inline">\(B\)</span>基底使用。
+所以我们可以在上式中将贝里联络的基底标记也省去，从而得到：
+<span id="eq:fu-kane:fk" class="eqnos"><span
+class="math display">\[D=\frac1{2\pi}\left[\oint_{\partial\tau_{12}}d\boldsymbol
+k\cdot\mathrm{tr}\mathcal A
+-\int_{\tau_{12}}d^2k\mathrm{tr}\mathcal F_{xy}\right],
+\]</span><span class="eqnos-number">(4)</span></span>
+上面公式给出的就是可以描述二维拓扑绝缘体的拓扑不变量，通常称为Fu-Kane不变量。</p>
+<p>我们注意到对于A类型的绝缘体，陈数的公式也可以写成 <span
+class="math display">\[c_1=-\frac1{2\pi}\left[\oint_{\partial
+BZ}d\boldsymbol k\cdot\mathrm{tr}\mathcal
+A-\int_{BZ}d^2k\,\mathrm{tr}\mathcal F_{xy}\right],\]</span>
+其中第一项由于布里渊区上的周期性边条件，总是等于零。
+因此，Fu-Kane不变量可以看成陈数公式在具有时间反演对称性的拓扑绝缘体中的推广：
+由于时间反演对称性，布里渊区可以分割成被时间反演变换联系起来的两半；我们可以在其中半个布里渊区上定义相应的拓扑不变量。</p>
+<h3 id="fu-kane不变量的规范变换">Fu-Kane不变量的规范变换</h3>
+<p>最后，我们给出在基底变换（即规范变换）下Fu-Kane不变量的变换形式，并由此得出二维拓扑绝缘体的<span
+class="math inline">\(\mathbb Z_2\)</span>分类。 在(<a
+href="#eq:fu-kane:fk">4</a>)式中，第二项中的贝里曲率是不依赖于基底的选择的。
+因此，该不变量的基底依赖性来自于第一项中的贝里联络。</p>
+<p>假如在<span
+class="math inline">\(\partial\tau_{12}\)</span>上选择另外一组基底<span
+class="math inline">\(C\)</span>，第一项中贝里联络的环路积分就会相应地发生变化。
+与(<a href="#eq:fu-kane:tAB">2</a>)式类似，我们可以引入<span
+class="math inline">\(B\)</span>和<span
+class="math inline">\(C\)</span>之间的幺正变换矩阵<span
+class="math inline">\(t^{BC}\)</span>， 并得到与(<a
+href="#eq:fu-kane:DAB">3</a>)式类似的结果： <span
+class="math display">\[\frac1{2\pi}\oint_{\partial\tau_{12}}d\boldsymbol
+k\cdot\mathrm{tr}\mathcal A^C=
+\frac1{2\pi}\oint_{\partial\tau_{12}}d\boldsymbol
+k\cdot\mathrm{tr}\mathcal A^B+
+\frac1{2\pi i}\oint_{\partial\tau_{12}}d\boldsymbol k\cdot\nabla\ln\det
+t^{BC}.\]</span> 其中最后一项为<span
+class="math inline">\(t^{BC}\)</span>在<span
+class="math inline">\(\partial\tau_{12}\)</span>上的绕数。
+容易证明，如果基底<span class="math inline">\(B,C\)</span>满足(<a
+href="#eq:fu-kane:trs">1</a>)，则时间反演对称性会导致<span
+class="math inline">\(t^{BC}\)</span>在<span
+class="math inline">\(\partial\tau_1\)</span>上的绕数等于<span
+class="math inline">\(\partial\tau_2\)</span>上的绕数（这是因为其中一部分边界可以由时间反演对称性得到）。
+因此，<span class="math inline">\(t^{BC}\)</span>在<span
+class="math inline">\(\partial\tau_{12}\)</span>上的绕数一定是偶数。</p>
+<p>由此，我们证明了(<a
+href="#eq:fu-kane:fk">4</a>)式在基底变换下只能变化一个偶数。 因此，(<a
+href="#eq:fu-kane:fk">4</a>)式模2的余数是一个定义良好的（与基底无关的）拓扑不变量。
+相应地，它给出了二维AII类型的拓扑绝缘体的<span
+class="math inline">\(\mathbb Z_2\)</span>分类。
+在后面章节中，我们将看到，K理论给出的二维AII类型的拓扑绝缘体的分类就是<span
+class="math inline">\(\mathbb Z_2\)</span>。 因此，(<a
+href="#eq:fu-kane:fk">4</a>)式给出的Fu-Kane不变量（模2的余数）可以完整地分类2维拓扑绝缘体。
+从上面的推导中，我们也再一次看到：为了用(<a
+href="#eq:fu-kane:fk">4</a>)式计算Fu-Kane不变量，我们必须取一个满足(<a
+href="#eq:fu-kane:trs">1</a>)的基底。
+事实上，如果取一组任意的基底，通常的基底变换会导致贝里曲率的环路积分改变一个任意的整数，Fu-Kane不变量也就失去意义了。</p>
+<h2 id="维拓扑绝缘体的不变量-1">3维拓扑绝缘体的不变量</h2>
+</body>
+</html>
